@@ -1,3 +1,18 @@
-body {
-  background: rgb(255, 171, 171);
-}
+//reset
+@import './base/reset';
+
+//variables
+@import './helpers/variables';
+
+//Header
+@import './layout/header';
+
+//Footer
+@import './layout/footer';
+
+//HomePage
+@import './layout/home/funtion';
+@import './layout/home/introduce';
+@import './layout/home/mainBanner';
+@import './layout/home/notice';
+@import './layout/home/articles';
