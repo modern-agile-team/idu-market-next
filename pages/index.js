@@ -1,8 +1,10 @@
 import Head from "next/head";
-import Header from "../components/Header/Header";
 import MainBanner from "../components/HomePage/MainBanner";
 import Function from "../components/HomePage/Function";
 import Introduce from "../components/HomePage/Introduce";
+import Notice from "../components/HomePage/Notice";
+import { SliderData } from "../Data/NoticeSliderData";
+import Articles from "../components/HomePage/Articles";
 
 export default function Home() {
   return (
@@ -11,10 +13,11 @@ export default function Home() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header></Header>
       <MainBanner></MainBanner>
       <Function></Function>
       <Introduce></Introduce>
+      <Notice slides={SliderData}></Notice>
+      <Articles />
     </div>
   );
 }
