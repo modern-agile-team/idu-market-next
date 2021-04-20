@@ -34,6 +34,16 @@ const Header = () => {
               );
             })}
           </ul>
+
+          <>
+            <Link href="/login" onClick={() => setSidebar(!sidebar)}>
+              <a className="header-btn">로그인</a>
+            </Link>
+
+            <Link href="/register" onClick={() => setSidebar(!sidebar)}>
+              <a className="header-btn">회원가입</a>
+            </Link>
+          </>
         </nav>
       </div>
     </header>
