@@ -6,6 +6,9 @@ import store from "../redux/store";
 import "../scss/main.scss";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
+import loginCheck from "../components/auth/loginCheck";
+
+loginCheck();
 
 function MyApp({ Component, pageProps }) {
   return (
