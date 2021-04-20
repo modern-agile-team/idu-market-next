@@ -1,2 +1,4 @@
-export const GET_POSTS = "GET_POSTS";
-export const GET_REQ = "GET_REQ";
+//LOGIN
+export const LOGIN_REQUEST = "LOGIN_REQUEST";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAILURE = "LOGIN_FAILURE";

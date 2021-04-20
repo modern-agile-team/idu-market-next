@@ -1,7 +1,7 @@
 import { all, fork } from "redux-saga/effects";
-import postSaga from "./postSaga";
+import authSaga from "./authSaga";
 
 //제너레이터
 export default function* rootSaga() {
-  yield all([fork(postSaga)]);
+  yield all([fork(authSaga)]);
 }
