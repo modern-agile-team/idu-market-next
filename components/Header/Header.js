@@ -2,12 +2,17 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { HeaderMenuData } from "../../Data/HeaderMenuData";
 import DropMenu from "./DropMenu";
+import { useDispatch, useSelector } from "react-redux";
 
 import { FaBars } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 
 const Header = () => {
   const [sidebar, setSidebar] = useState(false);
+
+  // const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+
   const showSidebar = () => setSidebar(!sidebar);
 
   return (
@@ -35,15 +40,36 @@ const Header = () => {
             })}
           </ul>
 
-          <>
-            <Link href="/login" onClick={() => setSidebar(!sidebar)}>
-              <a className="header-btn">로그인</a>
-            </Link>
+          {auth.jwt ? (
+            <>
+              <Link
+                href={`/students/${auth.id}`}
+                onClick={() => setSidebar(!sidebar)}
+              >
+                <a className="profile-icon-btn">
+                  <div className="profile-icon-box">
+                    <img src={auth.profilePath} alt="프로필 이미지" />
+                  </div>
+                </a>
+              </Link>
+              {/* <Link href="/login" onClick={onLogoutHandler}>
+                <a className="header-btn">로그아웃</a>
+              </Link> */}
+              <Link href="/login">
+                <a className="header-btn">로그아웃</a>
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link href="/login" onClick={() => setSidebar(!sidebar)}>
+                <a className="header-btn">로그인</a>
+              </Link>
 
-            <Link href="/register" onClick={() => setSidebar(!sidebar)}>
-              <a className="header-btn">회원가입</a>
-            </Link>
-          </>
+              <Link href="/register" onClick={() => setSidebar(!sidebar)}>
+                <a className="header-btn">회원가입</a>
+              </Link>
+            </>
+          )}
         </nav>
       </div>
     </header>
