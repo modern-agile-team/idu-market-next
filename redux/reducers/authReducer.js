@@ -1,4 +1,11 @@
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from "../types";
+import {
+  LOGIN_FAILURE,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOADING_FAILURE,
+  LOADING_SUCCESS,
+  LOADING_REQUEST,
+} from "../types";
 
 const initialState = {
   jwt: null,
@@ -6,7 +13,6 @@ const initialState = {
   successMsg: "",
   loginErrorMsg: "",
   registerErrorMsg: "",
-  checkLogin: false,
   checkRegister: false,
   id: "",
   email: "",
@@ -19,6 +25,7 @@ const initialState = {
 
 const auth = (state = initialState, action) => {
   switch (action.type) {
+    case LOADING_REQUEST:
     case LOGIN_REQUEST:
       return {
         ...state,
@@ -42,7 +49,6 @@ const auth = (state = initialState, action) => {
         isLoading: false,
         successMsg: action.payload.msg,
         loginErrorMsg: "",
-        checkLogin: true,
       };
 
     case LOGIN_FAILURE:
@@ -53,7 +59,32 @@ const auth = (state = initialState, action) => {
         isLoading: false,
         successMsg: "",
         loginErrorMsg: action.payload.data.msg,
-        checkLogin: false,
+      };
+    case LOADING_SUCCESS:
+      return {
+        ...state,
+        jwt: localStorage.getItem("jwt"),
+        isLoading: false,
+        id: action.payload.user.id,
+        email: action.payload.user.email,
+        name: action.payload.user.name,
+        exp: action.payload.user.exp,
+        iss: action.payload.user.iss,
+        profilePath: action.payload.user.profilePath,
+        isAdmin: action.payload.user.isAdmin,
+      };
+    case LOADING_FAILURE:
+      return {
+        ...state,
+        jwt: null,
+        isLoading: false,
+        id: "",
+        email: "",
+        name: "",
+        exp: "",
+        iss: "",
+        profilePath: "",
+        isAdmin: "",
       };
     default:
       return state;

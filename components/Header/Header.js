@@ -47,14 +47,10 @@ const Header = () => {
                 onClick={() => setSidebar(!sidebar)}
               >
                 <a className="profile-icon-btn">
-                  <div className="profile-icon-box">
-                    <img src={auth.profilePath} alt="프로필 이미지" />
-                  </div>
+                  <img src={auth.profilePath} alt="프로필 이미지" />
                 </a>
               </Link>
-              {/* <Link href="/login" onClick={onLogoutHandler}>
-                <a className="header-btn">로그아웃</a>
-              </Link> */}
+
               <Link href="/login">
                 <a className="header-btn">로그아웃</a>
               </Link>

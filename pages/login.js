@@ -7,7 +7,7 @@ import { LOGIN_REQUEST } from "../redux/types";
 const Login = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { loginErrorMsg, checkLogin } = useSelector((state) => state.auth);
+  const { loginErrorMsg, jwt } = useSelector((state) => state.auth);
 
   const [errorMsg, setErrorMsg] = useState("");
   const [formValues, setFormValues] = useState({
@@ -15,11 +15,11 @@ const Login = () => {
     psword: "",
   });
 
-  if (checkLogin) router.push("/");
-
   useEffect(() => {
     setErrorMsg(loginErrorMsg);
-  }, [loginErrorMsg]);
+
+    if (jwt) router.push("/");
+  }, [loginErrorMsg, jwt]);
 
   const onChange = (e) => {
     setFormValues({
