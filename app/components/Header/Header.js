@@ -1,19 +1,28 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { HeaderMenuData } from "../../Data/HeaderMenuData";
 import DropMenu from "./DropMenu";
 import { useDispatch, useSelector } from "react-redux";
 
 import { FaBars } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
+import { LOGOUT_REQUEST } from "../../redux/types";
 
 const Header = () => {
   const [sidebar, setSidebar] = useState(false);
 
-  // const dispatch = useDispatch();
+  const router = useRouter();
+  const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
 
   const showSidebar = () => setSidebar(!sidebar);
+
+  const onLogoutHandler = () => {
+    dispatch({
+      type: LOGOUT_REQUEST,
+    });
+  };
 
   return (
     <header id="header" className="header">
@@ -55,7 +64,9 @@ const Header = () => {
               </Link>
 
               <Link href="/login">
-                <a className="header-btn">로그아웃</a>
+                <a className="header-btn" onClick={onLogoutHandler}>
+                  로그아웃
+                </a>
               </Link>
             </>
           ) : (

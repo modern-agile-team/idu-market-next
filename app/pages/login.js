@@ -6,14 +6,14 @@ import { LOGIN_CHECK_REQUEST } from "../redux/types";
 import axios from "axios";
 
 const Login = () => {
-  const router = useRouter();
-  const dispatch = useDispatch();
-
   const [errorMsg, setErrorMsg] = useState("");
   const [formValues, setFormValues] = useState({
     id: "",
     psword: "",
   });
+
+  const router = useRouter();
+  const dispatch = useDispatch();
 
   const onChange = (e) => {
     setFormValues({

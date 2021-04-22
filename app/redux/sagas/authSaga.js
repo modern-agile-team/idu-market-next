@@ -4,6 +4,9 @@ import {
   LOGIN_CHECK_FAILURE,
   LOGIN_CHECK_SUCCESS,
   LOGIN_CHECK_REQUEST,
+  LOGOUT_REQUEST,
+  LOGOUT_FAILURE,
+  LOGOUT_SUCCESS,
 } from "../types";
 
 // Loading
@@ -25,11 +28,8 @@ function loginCheckAPI(token) {
   }
 }
 
-//LOADING
 function* loginCheck(action) {
   const result = yield call(loginCheckAPI, action.payload);
-
-  console.log(result);
 
   try {
     yield put({
@@ -44,11 +44,28 @@ function* loginCheck(action) {
   }
 }
 
+// LOGOUT
+function* logout() {
+  try {
+    yield put({
+      type: LOGOUT_SUCCESS,
+    });
+  } catch (e) {
+    yield put({
+      type: LOGOUT_FAILURE,
+    });
+  }
+}
+
 function* watchLoginCheck() {
   yield takeEvery(LOGIN_CHECK_REQUEST, loginCheck);
 }
 
+function* watchLogout() {
+  yield takeEvery(LOGOUT_REQUEST, logout);
+}
+
 //authSaga() 여러 Saga 통합
 export default function* authSaga() {
-  yield all([fork(watchLoginCheck)]);
+  yield all([fork(watchLoginCheck), fork(watchLogout)]);
 }
