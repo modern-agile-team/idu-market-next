@@ -11,7 +11,7 @@ import {
 
 // LOGIN
 function loginUserAPI(loginData) {
-  return axios.post("http://13.125.55.135:9800/api/jwt", loginData);
+  return axios.post(`${process.env.API_URL}/api/jwt`, loginData);
 }
 
 function* loginUser(action) {
@@ -43,15 +43,17 @@ function loginCheckAPI(token) {
     },
   };
 
+  console.log(process.env.NEXT_PUBLIC_API_URL);
+
   if (token) {
     config.headers["x-auth-token"] = token;
     return axios
-      .get("http://13.125.55.135:9800/api/auth", config)
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/api/auth`, config)
       .catch((e) => {
         localStorage.removeItem("jwt");
       });
   } else {
-    return axios.get("http://13.125.55.135:9800/api/un-auth", config);
+    return axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/un-auth`, config);
   }
 }
 
