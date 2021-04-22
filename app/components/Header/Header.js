@@ -22,6 +22,8 @@ const Header = () => {
     dispatch({
       type: LOGOUT_REQUEST,
     });
+
+    setSidebar(false);
   };
 
   return (
