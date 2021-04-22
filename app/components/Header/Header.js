@@ -31,6 +31,7 @@ const Header = () => {
             <FaBars onClick={showSidebar} />
           )}
         </div>
+
         <nav className={sidebar ? "header-nav active" : "header-nav"}>
           <ul className="header-list">
             {HeaderMenuData.map((item, index) => {
@@ -42,13 +43,12 @@ const Header = () => {
 
           {auth.jwt ? (
             <>
-              <Link
-                href={`/students/${auth.id}`}
-                onClick={() => setSidebar(!sidebar)}
-                className="profile-icon-btn"
-              >
+              <Link href={`/students/${auth.id}`} className="profile-icon-btn">
                 {/* <a className="profile-icon-btn"> */}
-                <a className="profile-icon-box">
+                <a
+                  className="profile-icon-box"
+                  onClick={() => setSidebar(!sidebar)}
+                >
                   <img src={auth.profilePath} alt="프로필 이미지" />
                 </a>
                 {/* </a> */}
@@ -60,12 +60,16 @@ const Header = () => {
             </>
           ) : (
             <>
-              <Link href="/login" onClick={() => setSidebar(!sidebar)}>
-                <a className="header-btn">로그인</a>
+              <Link href="/login">
+                <a className="header-btn" onClick={() => setSidebar(false)}>
+                  로그인
+                </a>
               </Link>
 
-              <Link href="/register" onClick={() => setSidebar(!sidebar)}>
-                <a className="header-btn">회원가입</a>
+              <Link href="/register">
+                <a className="header-btn" onClick={() => setSidebar(false)}>
+                  회원가입
+                </a>
               </Link>
             </>
           )}
