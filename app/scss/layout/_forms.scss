@@ -1,0 +1,302 @@
+.form-template {
+    width: 100%;
+    height: 1000px;
+    padding-top: 63px;
+
+    .container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.form-field {
+    width: 400px;
+    border-radius: 10px;
+    padding: 0 40px;
+    border: 3px solid $main-color-3;
+
+    .form-title {
+        font-family: $Fredoka-font;
+        text-align: center;
+        padding: 40px 0 10px 0;
+        font-size: 2rem;
+        color: #222;
+    }
+}
+// select
+.select-field {
+    margin-top: 20px;
+    border-bottom: 2px solid #999;
+}
+
+.select-major {
+    -moz-appearance: none;
+    padding: 3px;
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    font-family: $Montserrat-font;
+    font-size: 1rem;
+    color:#999;
+    outline: 0;
+    border: none;
+    cursor: pointer;
+    option {
+        color: #222;
+    }    
+}
+
+.text-field {
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+
+    .input-text {
+        font-family: $Montserrat-font;
+        width: 100%;
+        padding: 0 5px;
+        height: 40px;
+        outline: none;
+        border: none;
+        font-size: 1rem;
+
+        &:focus ~ .input-label {
+            top: -5px;
+            color: $main-color-2;
+        }
+
+        &:focus ~ .input-border::before {
+            width: 100%;
+        }
+    }
+
+    .input-border {
+        &::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: $main-color-4;
+            transition: 1s;
+        }
+        &.fill::before {
+            width: 100%;
+        }
+    }
+    
+    .input-label {
+        font-family: $Montserrat-font;
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        color: #adadad;
+        transform: translateY(-50%);
+        font-size: 16px;
+        pointer-events: none;
+        transition: .5s top;
+        &.fix {
+            top: -5px;
+            color: $main-color-4;
+        }
+    }
+
+    .psword-text {
+        font-size: 0.8rem;
+    }
+}
+
+
+.form-errmsg {
+    color:red;
+    font-size: 0.8rem;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.form-search {
+    font-size: 0.8rem;
+    a {
+        margin: 0 2px;
+        &:hover {
+            color: $main-color-4;
+            text-decoration: underline;
+        }
+    }
+}
+
+.form-submit {
+    font-family: $Montserrat-font;
+    width: 100%;
+    height: 50px;
+    border: 1px solid;
+    background: $main-color-4;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    color : #fdfdfd;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    margin: 20px 0;
+    
+    &:hover {
+        background: $main-color-5;
+        transition: .5s;
+    }
+}
+
+.form-signup-link {
+    font-family: $Montserrat-font;
+    margin: 10px 0 20px 0;
+    text-align: center;
+    font-size: 16px;
+    color: #666666;
+    
+    a {
+        font-family: $Montserrat-font;
+        color: $main-color-4;
+        text-decoration: none;
+
+        &:hover { 
+            text-decoration: underline; 
+        }
+    }
+}
+
+.form-question {
+    margin: 10px 0 20px 0;
+    text-align: center;
+    p {
+        font-family: $Montserrat-font;
+        display: inline;
+    }
+    a { 
+        font-family: $Montserrat-font;
+        margin-left: 10px;
+        color: #d3a887;
+
+        &:hover { 
+            text-decoration: underline; 
+        }
+    }
+}
+
+/* 0 ~ 670 : 테블릿  */
+@media screen and (max-width: 670px){ 
+    .form-template {
+        width: 100%;
+        height: 800px;
+        padding-top: 120px;
+    }
+    .form-field {
+    width: 350px;
+    padding: 0 30px;
+
+        .form-title {
+            padding: 30px 0 10px 0;
+            font-size: 1.7rem;
+        }
+    }
+
+    .text-field {
+        margin: 30px 0;
+
+        .input-label {
+            font-size: 0.8rem;
+        }
+    }
+    
+    .modal-wrapper {
+        width: 350px;
+
+        .modal-icon {
+            font-size: 1rem;
+        }
+    
+        .modal-icon-error {
+            font-size: 1rem;
+        }
+
+        .modal-msg{
+            font-size: 0.8rem;
+        }
+        .modal-msg-error{
+            font-size: 0.8rem;
+        }
+    }
+}
+
+@media screen and (max-width: 480px){
+    .modal-wrapper {
+        width: 300px;
+
+        .modal-icon {
+            font-size: 0.8rem;
+        }
+    
+        .modal-icon-error {
+            font-size: 0.8rem;
+        }
+
+        .modal-msg{
+            font-size: 0.6rem;
+        }
+        .modal-msg-error{
+            font-size: 0.6rem;
+        }
+    }
+}
+
+/* 0 ~ 360 : 모바일  */
+@media screen and (max-width: 360px){ 
+    // .form-template {
+    //     height: 625px;
+    // }
+
+    .form-field {
+        width: 280px;
+        padding: 0 22px;
+
+        .form-title {
+            font-size: 1.5rem;
+        }
+    }
+
+    .text-field {
+        margin: 25px 0;
+
+        .input-label {
+            font-size: 0.8rem;
+        }
+    }
+
+    .modal-wrapper {
+        width: 240px;
+    }
+    .select-major {
+        font-size: 0.8rem;
+    }
+    .form-question {
+        p {
+            font-size: 0.8rem;
+        }
+        a {
+            font-size: 0.8rem;
+        }
+    }
+}
+
+@keyframes spin {
+    from   {  
+        transform: rotate(0deg); 
+    }
+    to   {  
+        transform: rotate(360deg); 
+    }
+  }

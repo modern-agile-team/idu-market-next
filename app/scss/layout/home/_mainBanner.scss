@@ -1,0 +1,254 @@
+.main-banner {
+    position: relative;
+    width: 100%;
+    height: 970px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 50px;
+    background: $bg-color-1;
+}
+
+.banner-start-btn {
+    position: relative;
+    font-size: 1.4rem;
+    margin-top: 130px;
+    margin-left: 20px;
+    font-family: $Fredoka-font;
+    cursor: pointer;
+    display: none;
+    background-color: $bg-color-2;
+    padding: 10px 20px;
+    border-radius: 5px;
+    &:hover {
+        color: $main-color-5;
+    }
+}
+
+.banner-img {
+    position: relative;
+    width: 520px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+    a {
+        font-family: $Fredoka-font;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        text-align: center;
+        transform: translate(350%, -50%) rotate(180deg);
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        border-radius: 50%;
+        background: $main-color-4;
+        font-size: 1.3rem;
+        transition: .5s transform;
+        color: #fdfdfd;
+
+        &:hover::after {
+            content: "↓";
+            position: absolute;
+            top: 110%;
+            left: 50%;
+            line-height: 50px;
+            transform: translate(-50%, -50%);
+            font-size: 3.5rem;
+            color: $main-color-8;
+            font-weight: bold;
+            border-radius: 50%;
+            animation: arrow 1.2s infinite ease;
+        }
+    }
+    
+    &:hover a { 
+        transform: translate(-50%, -50%) rotate(0); 
+        color: #fdfdfd;
+    }
+
+    &:hover img { 
+        opacity: 0.3; 
+    }
+
+    img {
+        width: 100%;
+        opacity: 0.8;
+        transition: .5s opacity;
+    }
+}
+
+.banner-title {
+    position: relative;
+    margin-top: 150px;
+    z-index: 99;
+
+    span, 
+    h1, 
+    p, 
+    em { 
+        font-family: $Fredoka-font; 
+    }
+
+    h1 {
+        position: relative;
+        font-size: 4.8rem;
+
+        span, 
+        em { 
+            color: $main-color-2; 
+        }
+
+        em {
+            position: absolute;
+            margin-left: 5px;
+            animation: text2 1s;
+            transform: rotate(25deg);
+            font-style: normal;
+        }
+    }
+
+    p {
+        margin-top: -10px;
+        position: relative;
+        text-align: right;
+        transform: translateX(0);
+        opacity: 0;
+
+        &.show {
+            animation: text 2s;
+            opacity: 1;
+        }
+    }
+}
+
+/* 0 ~ 960 : 테블릿1  */
+@media screen and (max-width: 960px){
+    .banner-img { 
+        width: 400px; 
+        height: 400px;
+    }
+
+    .banner-title {
+        margin-top: 0;
+        h1 { 
+            font-size: 3.72rem; 
+        }
+    }
+}
+
+/* 0 ~ 768px : 테블릿2 */
+@media screen and (max-width: 768px){
+    .main-banner { 
+        height: 930px; 
+    }
+
+    .banner-img {
+        display: none;
+    }
+
+    .banner-title {
+        h1 { 
+            font-size: 3rem; 
+        }
+    }
+    .banner-start-btn {
+        display: block;
+    }
+}
+
+/* 0 ~ 670px : 테블릿3 */
+@media screen and (max-width: 670px){
+    .main-banner { 
+        padding: 0 20px;
+    }
+
+    .banner-title {
+        h1 { 
+            font-size: 2.2rem; 
+        }
+
+        p {
+            font-size: 0.8rem;
+            margin-top: -5px;
+        }
+    }
+    .banner-start-btn {
+        font-size: 1rem;
+        margin-top: 130px;
+        margin-left: 20px;
+    }
+}
+
+/* 0 ~ 480px : 모바일1 */
+@media screen and (max-width: 480px){
+    #main-banner { 
+        height: 720px; 
+    }
+
+    .banner-title {
+        h1 { 
+            font-size: 1.65rem; 
+        }
+
+        p { 
+            font-size: 0.6rem; 
+        }
+    }
+    .banner-start-btn {
+        font-size: 0.8rem;
+        margin-top: 70px;
+        margin-bottom: -100px;
+        margin-left: 20px;
+        padding: 5px 10px;
+    }
+}
+
+/* 0 ~ 360px : 모바일1 */
+@media screen and (max-width: 360px){
+    .banner-title {
+        h1 { 
+            font-size: 1.5rem; 
+        }
+        
+        p { 
+            font-size: 0.5rem; 
+        }
+    }
+}
+
+//애니메이션
+@keyframes text {
+    from {
+        transform: translateX(10%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes text2 {
+    from {
+        transform: rotate(0deg);
+        color: #222;
+    }
+
+    to {
+        transform: rotate(25deg);
+        color:#cfac8c;
+    }
+}
+
+@keyframes arrow {
+    0% { 
+        opacity: 0.2; 
+    }
+    100% { 
+        opacity: 1; 
+    }
+}

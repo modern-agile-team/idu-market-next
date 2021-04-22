@@ -1,0 +1,276 @@
+.home-notice {
+    height: 900px;
+    background-color: $bg-color-2;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notice-box {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    top: 50px;
+    left: 20%;
+    background: $main-color-3;
+    border-radius: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    h1 {
+        font-family: 'Thasadith', sans-serif;
+        font-size: 3.7rem;
+        padding-left: 20px;
+        color: #fdfdfd;
+        line-height: 50px;
+    }
+}
+
+.notice-slide {
+    transition: 1.5s ease;
+    opacity: 0;
+    z-index: 99;
+
+    &.active { 
+        opacity: 1; 
+    }
+
+    .notice-image {
+        width: 700px;
+        height: 600px;
+    }
+}
+
+.right-arrow {
+    position: absolute;
+    top: 50%;
+    right: 280px;
+    font-size: 5rem;
+    color: #000;
+    z-index: 100;
+    cursor: pointer;
+    user-select: none;
+}
+  
+.left-arrow {
+    position: absolute;
+    top: 50%;
+    left: 280px;
+    font-size: 5rem;
+    color: #000;
+    z-index: 100;
+    cursor: pointer;
+    user-select: none;
+}
+
+.slide-btns {
+    display: flex;
+    flex-direction: column;
+
+    .slide-btn {
+        width: 15px;
+        height: 15px;
+        background-color:rgba(255,255,255,0.8);
+        margin: 15px 0;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &.active {
+            background: $main-color-9;
+        }
+    }
+}
+
+ /* 0 ~ 1550 : 데스크탑1  */
+ @media screen and (max-width: 1550px) {
+    .notice-box {
+        left: 17%;
+        
+        h1 { 
+            font-size: 3rem;
+        }
+    }
+
+    .notice-slide {
+        .notice-image {
+            width: 700px;
+            height: 600px;
+        }
+    }
+    .right-arrow { 
+        right: 150px;
+    }
+
+    .left-arrow { 
+        left: 150px;
+    }
+}
+
+/* 0 ~ 1220 : 데스크탑2  */
+@media screen and (max-width: 1220px) {
+    .notice-box {
+        left: 12%;
+        width: 250px;
+        height: 250px;
+
+        h1 {
+            font-size: 2.8rem;
+            padding-left: 10px;
+        }
+    }
+
+    .notice-slide {
+        .notice-image {
+            width: 680px;
+            height: 580px;
+        }
+    }
+    
+    .right-arrow { 
+        right: 50px;
+    }
+
+    .left-arrow { 
+        left: 50px;
+    }
+}
+
+/* 0 ~ 960 : 테블릿1  */
+@media screen and (max-width: 960px) {
+    .home-notice {
+        flex-direction: column;
+    }
+
+    .notice-box {
+        left: 5%;
+    }
+
+    .notice-slide {
+        .notice-image {
+            width: 650px;
+            height: 550px;
+        }
+    }
+
+    .slide-btns {
+        flex-direction: row;
+
+        .slide-btn { 
+            margin: 20px 10px 0 10px;
+        }
+    }
+}
+
+/* 0 ~ 768px : 테블릿2 */
+@media screen and (max-width: 768px) {
+    .home-notice { 
+        height: 800px; 
+    }
+
+    .notice-box {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 120px;
+        border-radius: 0;
+        padding-left: 0;
+        justify-content: center;
+
+        .notice-title {
+            font-size: 4rem;
+        }
+    }
+
+    .notice-slide {
+        .notice-image {
+            width: 550px;
+            height: 450px;
+        }
+    }
+
+    .right-arrow {
+        right: 20px;
+        font-size: 3.5rem;
+        
+    }
+      
+    .left-arrow {
+        left: 20px;
+        font-size: 3.5rem;
+    }
+}
+
+/* 0 ~ 670px : 테블릿2 */
+@media screen and (max-width: 670px) {
+    .home-notice { 
+        height: 700px; 
+    }
+
+    .notice-slide {
+        .notice-image {
+            width: 450px;
+            height: 350px;
+        }
+    }
+
+    .right-arrow {
+        right: 20px;
+        font-size: 3rem;
+        
+    }
+      
+    .left-arrow {
+        left: 20px;
+        font-size: 3rem;
+    }
+    
+    .slide-btns {
+        .slide-btn {
+            width: 10px;
+            height: 10px;
+        }
+    }
+}
+
+/* 0 ~ 480px : 모바일1 */
+@media screen and (max-width: 480px){ 
+    .home-notice { 
+        height: 600px; 
+    }
+
+    .notice-slide {
+        .notice-image {
+            width: 330px;
+            height: 300px;
+        }
+    }
+
+    .right-arrow {
+        top: 75%;
+        font-size: 2.2rem;
+    }
+      
+    .left-arrow {
+        top: 75%;
+        font-size: 2.2rem;
+    }
+}
+
+/* 0 ~ 360px : 모바일1 */
+@media screen and (max-width: 360px){
+    .notice-slide {
+        .notice-image {
+            width: 300px;
+            height: 280px;
+        }
+    }
+    .right-arrow {
+        font-size: 1.5rem;
+    }
+
+    .left-arrow {
+        font-size: 1.5rem;
+    }
+}
