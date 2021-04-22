@@ -2,9 +2,9 @@ import {
   LOGIN_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  LOADING_FAILURE,
-  LOADING_SUCCESS,
-  LOADING_REQUEST,
+  LOGIN_CHECK_FAILURE,
+  LOGIN_CHECK_SUCCESS,
+  LOGIN_CHECK_REQUEST,
 } from "../types";
 
 const initialState = {
@@ -25,7 +25,7 @@ const initialState = {
 
 const auth = (state = initialState, action) => {
   switch (action.type) {
-    case LOADING_REQUEST:
+    case LOGIN_CHECK_REQUEST:
     case LOGIN_REQUEST:
       return {
         ...state,
@@ -60,7 +60,7 @@ const auth = (state = initialState, action) => {
         successMsg: "",
         loginErrorMsg: action.payload.data.msg,
       };
-    case LOADING_SUCCESS:
+    case LOGIN_CHECK_SUCCESS:
       return {
         ...state,
         jwt: localStorage.getItem("jwt"),
@@ -73,7 +73,7 @@ const auth = (state = initialState, action) => {
         profilePath: action.payload.user.profilePath,
         isAdmin: action.payload.user.isAdmin,
       };
-    case LOADING_FAILURE:
+    case LOGIN_CHECK_FAILURE:
       return {
         ...state,
         jwt: null,

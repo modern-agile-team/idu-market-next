@@ -1,16 +1,16 @@
 import store from "../../redux/store";
-import { LOADING_REQUEST } from "../../redux/types";
+import { LOGIN_CHECK_REQUEST } from "../../redux/types";
 
 const loadingUser = async () => {
   try {
     if (localStorage.getItem("jwt")) {
       await store.dispatch({
-        type: LOADING_REQUEST,
+        type: LOGIN_CHECK_REQUEST,
         payload: localStorage.getItem("jwt"),
       });
     } else {
       store.dispatch({
-        type: LOADING_REQUEST,
+        type: LOGIN_CHECK_REQUEST,
       });
     }
   } catch (e) {
