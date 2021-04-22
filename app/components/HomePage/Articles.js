@@ -17,7 +17,9 @@ const Articles = () => {
             </p>
             <h2 className="article-item-title">Book</h2>
             <Link href="/boards/book">
-              <a><FaArrowCircleRight className="article-btn" /></a>
+              <a>
+                <FaArrowCircleRight className="article-btn" />
+              </a>
             </Link>
           </div>
           <div className="article-item-box box2">
@@ -26,7 +28,9 @@ const Articles = () => {
             </p>
             <h2 className="article-item-title">Clothes</h2>
             <Link href="/boards/clothes">
-              <a><FaArrowCircleRight className="article-btn" /></a>
+              <a>
+                <FaArrowCircleRight className="article-btn" />
+              </a>
             </Link>
           </div>
           <div className="article-item-box box3">
@@ -35,7 +39,9 @@ const Articles = () => {
             </p>
             <h2 className="article-item-title">Device</h2>
             <Link href="/boards/device">
-              <a><FaArrowCircleRight className="article-btn" /></a>
+              <a>
+                <FaArrowCircleRight className="article-btn" />
+              </a>
             </Link>
           </div>
         </div>
