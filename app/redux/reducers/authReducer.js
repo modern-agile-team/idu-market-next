@@ -2,6 +2,9 @@ import {
   LOGIN_CHECK_FAILURE,
   LOGIN_CHECK_SUCCESS,
   LOGIN_CHECK_REQUEST,
+  LOGOUT_FAILURE,
+  LOGOUT_REQUEST,
+  LOGOUT_SUCCESS,
 } from "../types";
 
 const initialState = {
@@ -12,6 +15,7 @@ const initialState = {
   name: "",
   profilePath: "",
   isAdmin: "",
+  msg: "",
 };
 
 const auth = (state = initialState, action) => {
@@ -31,6 +35,7 @@ const auth = (state = initialState, action) => {
         name: action.payload.user.name,
         profilePath: action.payload.user.profilePath,
         isAdmin: action.payload.user.isAdmin,
+        msg: action.payload.user.msg,
       };
 
     case LOGIN_CHECK_FAILURE:
@@ -43,7 +48,28 @@ const auth = (state = initialState, action) => {
         name: "",
         profilePath: "",
         isAdmin: "",
+        msg: "",
       };
+
+    case LOGOUT_REQUEST:
+    case LOGOUT_FAILURE:
+      return {
+        ...state,
+      };
+
+    case LOGOUT_SUCCESS:
+      localStorage.removeItem("jwt");
+      return {
+        ...state,
+        jwt: null,
+        isLoading: false,
+        msg: "로그아웃에 성공하셨습니다.",
+        email: "",
+        name: "",
+        profilePath: "",
+        isAdmin: "",
+      };
+
     default:
       return state;
   }
