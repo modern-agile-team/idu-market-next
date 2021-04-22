@@ -1,0 +1,208 @@
+.home-articles {
+    width: 100%;
+    background-color: $bg-color-1;
+    
+    .container {
+        width: 95%;
+        margin: 0 auto;
+        height: 900px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: column;
+        padding-bottom: 120px;
+    }
+}
+
+.article-box {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.article-title {
+    position: relative;
+    margin-bottom: 40px;
+    font-size: 7rem;
+    font-family: $Thasadith-font;
+    color: $main-color-7;
+}
+
+.article-item-box {
+    width: 300px;
+    height: 400px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid $main-color-4;
+    
+    &:hover {
+        box-shadow: 0 0 20px $main-color-4;
+        transform: translateY(-20px);
+    }
+    
+    .article-item-icon {
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid $main-color-9;
+        background-color: rgba(195, 159, 127, 0.3);
+
+        svg {
+            border: 2px solid $main-color-10;
+            border-radius: 50%;
+            font-size: 4.5rem;
+            color: $main-color-10;
+        }
+    }
+
+    .article-item-title {
+        font-family: $Fredoka-font;
+        margin: 60px 0;
+        font-size: 3rem;
+        color: $main-color-9;
+    }
+
+    .article-btn {
+        margin-top: 30px;
+        font-size: 3rem;
+        color: $main-color-4;
+        cursor: pointer;
+        &:hover {
+            color: $main-color-9;
+        }
+    }
+
+    &.box1 {
+        position: relative;
+        top: -30px;
+    }
+
+    &.box2 {
+        position: relative;
+        top: 60px;
+    }
+
+    &.box3 {
+        position: relative;
+        top: -30px; 
+    }
+}
+
+/* 0 ~ 970 : 테블릿1  */
+@media screen and (max-width: 970px) {
+    .article-item-box {
+        width: 230px;
+        height: 330px;
+
+        .article-item-icon {
+            svg{
+                font-size: 3.5rem;
+            }
+        }
+
+        .article-item-title {
+            font-size: 2.5rem;
+        }
+
+        .article-btn {
+            font-size: 2rem;
+            margin-top: 10px;
+        }
+    }
+}
+
+/* 0 ~ 768px : 테블릿2 */
+@media screen and (max-width: 768px){ 
+    .home-articles {
+        .container {
+            width: 100%;
+        }
+    }
+
+    .article-box {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .article-title {
+        position: relative;
+        width: 100%;
+        height: 120px;
+        text-align: center;
+        background: $main-color-3;
+        color: #fdfdfd;
+        align-items: center;
+        font-size: 4rem;
+        line-height: 120px;
+        margin-top: 150px;
+    }
+    .article-item-box {
+        width: 100%;
+        height: 200px;
+        flex-direction: row;
+        margin: 30px;
+        justify-content: space-between;
+
+        &:hover {
+            transform: translateY(0);
+        }
+
+        .article-item-icon {
+            padding: 0;
+            width: 20%;
+            height: 100%;
+            border-bottom: none;
+            border-right: 1px solid $main-color-9;
+        }
+
+        .article-item-title {
+            margin: 0;
+            font-size: 3rem;
+        }
+
+        .article-btn {
+            margin-right: 30px;
+        }
+
+        &.box1{
+            top: 0;
+        }
+
+        &.box2{
+            top: 0;
+        }
+
+        &.box3{
+            top: 0;
+        }
+    }
+}
+
+/* 0 ~ 480px : 모바일1 */
+@media screen and (max-width: 480px) { 
+    .article-title {
+        margin-top: 80px;
+    }
+
+    .article-item-box {
+        height: 180px;
+        margin: 20px;
+
+        .article-item-icon {
+            width: 25%;
+            svg {
+                font-size: 3rem;
+            }
+        }
+
+        .article-item-title {
+            font-size: 2rem;
+        }
+    }
+}
