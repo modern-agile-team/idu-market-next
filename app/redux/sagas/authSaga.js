@@ -4,9 +4,9 @@ import {
   LOGIN_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  LOADING_FAILURE,
-  LOADING_SUCCESS,
-  LOADING_REQUEST,
+  LOGIN_CHECK_FAILURE,
+  LOGIN_CHECK_SUCCESS,
+  LOGIN_CHECK_REQUEST,
 } from "../types";
 
 // LOGIN
@@ -24,7 +24,7 @@ function* loginUser(action) {
     });
 
     yield put({
-      type: LOADING_REQUEST,
+      type: LOGIN_CHECK_REQUEST,
       payload: localStorage.getItem("jwt"),
     });
   } catch (e) {
@@ -42,9 +42,6 @@ function loginCheckAPI(token) {
       "Content-Type": "application/json",
     },
   };
-
-  console.log(process.env.NEXT_PUBLIC_API_URL);
-
   if (token) {
     config.headers["x-auth-token"] = token;
     return axios
@@ -65,12 +62,12 @@ function* loginCheck(action) {
 
   try {
     yield put({
-      type: LOADING_SUCCESS,
+      type: LOGIN_CHECK_SUCCESS,
       payload: result.data,
     });
   } catch (e) {
     yield put({
-      type: LOADING_FAILURE,
+      type: LOGIN_CHECK_FAILURE,
       payload: e.response,
     });
   }
@@ -81,7 +78,7 @@ function* watchLoginUser() {
 }
 
 function* watchLoginCheck() {
-  yield takeEvery(LOADING_REQUEST, loginCheck);
+  yield takeEvery(LOGIN_CHECK_REQUEST, loginCheck);
 }
 
 //authSaga() 여러 Saga 통합
