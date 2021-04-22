@@ -1,24 +1,16 @@
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/router";
-import { LOGIN_CHECK_REQUEST } from "../redux/types";
+import React, { useState } from "react";
 import axios from "axios";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-const Login = () => {
+const FindId = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [formValues, setFormValues] = useState({
-    id: "",
-    psword: "",
+    name: "",
+    email: "",
   });
 
   const router = useRouter();
-  const dispatch = useDispatch();
-  const { jwt } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    if (jwt) router.push("/");
-  }, [jwt]);
 
   const onChange = (e) => {
     setFormValues({
@@ -30,19 +22,15 @@ const Login = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
-    const { id, psword } = formValues;
-    const body = { id, psword };
+    const { name, email } = formValues;
+    const body = { name, email };
 
     axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/api/jwt`, body)
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/api/forgot-id`, body)
       .then((response) => {
         if (response.data.success) {
-          localStorage.setItem("jwt", response.data.jwt);
-          dispatch({
-            type: LOGIN_CHECK_REQUEST,
-            payload: localStorage.getItem("jwt"),
-          });
-          router.push("/");
+          alert(response.data.msg);
+          router.push("/login");
         }
       })
       .catch((err) => {
@@ -57,43 +45,43 @@ const Login = () => {
     <section id="form-template" className="form-template">
       <div className="container">
         <form className="form-field">
-          <h1 className="form-title">LOGIN</h1>
+          <h1 className="form-title">Find ID</h1>
 
           <div className="text-field">
             <input
               type="text"
-              name="id"
+              name="name"
               onChange={onChange}
               className="input-text"
               autoComplete="on"
             />
             <span
-              className={formValues.id ? "input-border fill" : "input-border"}
+              className={formValues.name ? "input-border fill" : "input-border"}
             />
             <label
-              className={formValues.id ? "input-label fix" : "input-label"}
+              className={formValues.name ? "input-label fix" : "input-label"}
             >
-              학번
+              이름
             </label>
           </div>
 
           <div className="text-field">
             <input
-              type="password"
-              name="psword"
+              type="text"
+              name="email"
               onChange={onChange}
               className="input-text"
               autoComplete="on"
             />
             <span
               className={
-                formValues.psword ? "input-border fill" : "input-border"
+                formValues.email ? "input-border fill" : "input-border"
               }
             />
             <label
-              className={formValues.psword ? "input-label fix" : "input-label"}
+              className={formValues.email ? "input-label fix" : "input-label"}
             >
-              비밀번호
+              이메일
             </label>
           </div>
 
@@ -101,34 +89,26 @@ const Login = () => {
 
           <div className="form-search">
             <p>
-              <Link href="/findId">
-                <a>아이디</a>
+              <Link href="/login">
+                <a>로그인</a>
               </Link>
               <span> / </span>
-              <Link href="/findPwd">
-                <a>비밀번호</a>
+              <Link href="/register">
+                <a>회원가입</a>
               </Link>
-              <span>찾기</span>
             </p>
           </div>
 
           <input
             type="submit"
-            value="Login"
+            value="Find ID"
             onClick={onSubmitHandler}
             className="form-submit"
           />
-
-          <div className="form-signup-link">
-            Not a Member?{" "}
-            <Link href="/register">
-              <a>Sign Up</a>
-            </Link>
-          </div>
         </form>
       </div>
     </section>
   );
 };
 
-export default Login;
+export default FindId;

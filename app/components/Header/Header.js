@@ -56,12 +56,12 @@ const Header = () => {
             <>
               <Link href={`/students/${auth.id}`} className="profile-icon-btn">
                 {/* <a className="profile-icon-btn"> */}
-                <a
+                <div
                   className="profile-icon-box"
                   onClick={() => setSidebar(!sidebar)}
                 >
                   <img src={auth.profilePath} alt="프로필 이미지" />
-                </a>
+                </div>
                 {/* </a> */}
               </Link>
 

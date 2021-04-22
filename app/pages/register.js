@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 const Register = () => {
   const [errorMsg, setErrorMsg] = useState("");
@@ -15,7 +16,12 @@ const Register = () => {
     major: "",
   });
 
+  const { jwt } = useSelector((state) => state.auth);
   const router = useRouter();
+
+  useEffect(() => {
+    if (jwt) router.push("/");
+  }, [jwt]);
 
   const onChange = (e) => {
     setFormValues({

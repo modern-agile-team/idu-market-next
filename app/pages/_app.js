@@ -11,6 +11,10 @@ import loginCheck from "../components/auth/loginCheck";
 loginCheck();
 
 function MyApp({ Component, pageProps }) {
+  if (process.env.NODE_ENV === "production") console.log("production");
+  else if (process.env.NODE_ENV === "development") console.log("development");
+  else console.log("other");
+
   return (
     <Provider store={store}>
       <Header />
