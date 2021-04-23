@@ -5,7 +5,7 @@ import BoardListTop from "../../components/Board/BoardListTop";
 import BoardBanner from "../../components/Board/BoardBanner";
 import Market from "../../components/Board/Market";
 
-const Category = () => {
+const Clothes = () => {
   const router = useRouter();
 
   const scrollTop = () => {
@@ -19,11 +19,11 @@ const Category = () => {
         <button className="scroll-top-btn" onClick={scrollTop}>
           <AiOutlineArrowUp />
         </button>
-        <BoardListTop />
-        <Market />
+        <BoardListTop categoryName="clothes" />
+        <Market categoryName="clothes" />
       </section>
     </>
   );
 };
 
-export default Category;
+export default Clothes;

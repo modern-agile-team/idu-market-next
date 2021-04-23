@@ -4,9 +4,8 @@ import { BiEditAlt } from "react-icons/bi";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const BoardListTop = () => {
+const BoardListTop = ({ categoryName }) => {
   const router = useRouter();
-  const { categoryName } = router.query;
 
   const [formValues, setFormValues] = useState({
     content: "",
