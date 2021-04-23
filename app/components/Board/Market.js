@@ -3,19 +3,18 @@ import BoardListItem from "./BoardListItem";
 import { useRouter } from "next/router";
 import axios from "axios";
 
-const Market = () => {
+const Market = ({ categoryName }) => {
   const [productList, setProductList] = useState([]);
   // const auth = useSelector((state) => state.auth);
 
   const router = useRouter();
-  const { categoryName } = router.query;
-
   const LAST_COUNT = 9;
 
   let isLoading = false;
   let lastNum = 0;
 
   const getMoreData = async () => {
+    console.log(categoryName);
     isLoading = true;
     await axios
       .get(
@@ -31,6 +30,12 @@ const Market = () => {
             lastNum = result[LAST_COUNT].num;
           }
           setProductList((prev) => [...prev, ...result]);
+        }
+      })
+      .catch((err) => {
+        const response = err.response;
+        if (response.status === 400) {
+          console.log(response);
         }
       });
     isLoading = false;
@@ -54,7 +59,7 @@ const Market = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [categoryName]);
 
   return (
     <div className="container">
