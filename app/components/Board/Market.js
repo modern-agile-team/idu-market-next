@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import BoardListItem from "./BoardListItem";
-import { useRouter } from "next/router";
+import MarketListItem from "./MarketListItem";
 import axios from "axios";
 
 const Market = ({ categoryName }) => {
   const [productList, setProductList] = useState([]);
-  // const auth = useSelector((state) => state.auth);
 
-  const router = useRouter();
   const LAST_COUNT = 9;
 
   let isLoading = false;
@@ -35,7 +32,7 @@ const Market = ({ categoryName }) => {
       .catch((err) => {
         const response = err.response;
         if (response.status === 400) {
-          console.log(response);
+          console.log(response.data.msg);
         }
       });
     isLoading = false;
@@ -63,7 +60,7 @@ const Market = ({ categoryName }) => {
 
   return (
     <div className="container">
-      <BoardListItem productList={productList} categoryName={categoryName} />
+      <MarketListItem productList={productList} categoryName={categoryName} />
     </div>
   );
 };
