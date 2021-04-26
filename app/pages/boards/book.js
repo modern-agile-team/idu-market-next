@@ -14,7 +14,7 @@ const Book = () => {
 
   return (
     <>
-      <BoardBanner title="Market" desc={`${router.query.categoryName}`} />
+      <BoardBanner title="Market" desc="book" />
       <section className="market" id="market">
         <button className="scroll-top-btn" onClick={scrollTop}>
           <AiOutlineArrowUp />
