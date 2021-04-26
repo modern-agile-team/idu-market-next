@@ -1,0 +1,239 @@
+.boardlist-common {
+    position: relative;
+    width: 80%;
+    height: 700px;
+    margin: 0 auto;
+    margin-top: 150px;
+
+    .container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+
+/* 테이블 */
+.boardlist-common-tables {
+    width: 90%;
+    border-spacing: 0;
+    margin-top: 30px;
+    
+
+    .boardlist-common-title {
+        text-align: center;
+        width: 60%;
+        font-family: $Jua-font;
+        word-wrap:break-word;
+        word-break:break-all;
+    }
+
+    td {
+        text-align: center;
+        padding: 10px;
+        border-bottom: 1.2px solid #222;
+        font-family: $Jua-font;
+    }
+
+    th {
+        padding: 10px;
+        border-top: 2px solid #cfac8c;
+        border-bottom: 2px solid #cfac8c;
+        font-family: $Jua-font;
+        font-size: 1.1rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    a {
+        text-decoration: none;
+        color: #222222;
+        text-align: left;
+        font-size: 1rem; 
+        font-family: $Jua-font;
+
+        &:hover { 
+            color: $main-color-6; 
+        }
+    }
+
+    .boardlist-common-td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+
+/* 페이지버튼 */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 1.3rem;
+    outline: none;
+    margin-top: 20px;
+
+    a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #222222;
+        height: 40px;
+        width: 40px;
+        text-decoration: none;
+        font-family: $Jua-font;
+        outline: none;
+        cursor: pointer;
+    }
+
+    a.active {
+        background-color: #c97f4e;
+        color: #fff;
+        border-radius: 20px;
+    }
+
+    a.disabled {
+        opacity: 0.2;
+    }
+    
+}
+
+.board-profile-img {
+    width: 20px;
+    border-radius: 50%;
+    border: 1px solid $main-color-5;
+    margin-right: 5px;
+}
+
+/* 0 ~ 1024 : 데스크탑3  */
+@media screen and (max-width: 1024px) {
+    .boardlist-common-tables {
+        .boardlist-common-title {
+            width: 50%;
+        }
+        
+        td {
+            font-size: 0.8rem;
+        }
+    }
+}
+
+/* 0 ~ 768px : 테블릿2 */
+@media screen and (max-width: 768px) {
+    .boardlist-common {
+        width: 90%;
+    }
+    .boardlist-common-tables {
+        .boardlist-common-title {
+            width: 50%;
+        }
+        th {
+            font-size: 0.8rem;
+        }
+        td {
+            font-size: 0.8rem;
+        }
+    }
+}
+@media screen and (max-width: 670px) {
+    .boardlist-common {
+        width: 95%;
+        height: 600px;
+    }
+    .boardlist-common-nickname {
+        font-size: 0.8rem;
+    }
+    .boardlist-common-tables {
+        width: 95%;
+        th {
+            padding: 6px;
+        }
+        td {
+            padding: 6px;
+
+            &:nth-child(1),
+            &:nth-child(4),
+            &:nth-child(3),
+            &:nth-child(5) {
+                font-size: 0.4rem;
+            }
+        }
+     }
+     .pagination-container {
+         bottom: 30px;
+     }
+    
+}
+/* 모바일 */
+@media screen and (max-width: 480px) {
+    .boardlist-common {
+        width: 95%;
+        height: 600px;
+        margin-top: 100px;
+    }
+    .boardlist-common-tables {
+        .boardlist-common-title {
+            width: 40%;
+        }
+        td {
+            padding: 6px 0px;
+            &:last-child {
+                width: 15%;
+            }
+        }
+        .boardlist-common-nickname {
+            font-size: 0.7rem;
+        }
+        a {
+            font-size: 0.8rem;
+        }
+    }
+    .pagination-container {
+        bottom: 0px;
+        font-size: 1rem;
+        a {
+            height: 30px;
+            width: 30px;
+        }
+    }
+}
+
+@media screen and (max-width: 410px) {
+    .boardlist-common-tables {
+        .boardlist-common-title {
+            width: 40%;
+        }
+        .boardlist-common-td {
+            width: 15%;
+        }
+        td {
+            padding: 3px 0px;
+            &:last-child {
+                width: 15%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .boardlist-common-tables {
+        .boardlist-common-title {
+            width: 40%;
+        }
+        .boardlist-common-td {
+            width: 15%;
+        }
+        td {
+            padding: 3px 0px;
+            &:last-child {
+                width: 15%;
+            }
+        }
+    }
+   
+}
