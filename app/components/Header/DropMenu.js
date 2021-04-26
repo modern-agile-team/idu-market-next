@@ -26,8 +26,8 @@ const DropMenu = ({ item, showSidebar }) => {
         ref={refEl}
       >
         {item.path ? (
-          <Link href={`${item.path}`} onClick={showSidebar}>
-            <a>{item.title}</a>
+          <Link href={`${item.path}`}>
+            <a onClick={showSidebar}>{item.title}</a>
           </Link>
         ) : (
           <>{item.title}</>
@@ -37,8 +37,8 @@ const DropMenu = ({ item, showSidebar }) => {
             item.subMenu.map((item, index) => {
               return (
                 <li key={index}>
-                  <Link href={item.path} onClick={showSidebar}>
-                    <a>{item.title}</a>
+                  <Link href={item.path}>
+                    <a onClick={showSidebar}>{item.title}</a>
                   </Link>
                 </li>
               );
