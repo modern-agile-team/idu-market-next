@@ -11,7 +11,7 @@ const Notice = () => {
     <>
       <BoardBanner title="Boards" desc="notice" />
       <section id="boardlist-common" className="boardlist-common">
-        <BoardListTop />
+        <BoardListTop categoryName="notice" />
         <div className="container">
           <Basic categoryName="notice" />
         </div>

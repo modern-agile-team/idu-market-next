@@ -11,7 +11,7 @@ const Free = () => {
     <>
       <BoardBanner title="Boards" desc="freeboard" />
       <section id="boardlist-common" className="boardlist-common">
-        <BoardListTop />
+        <BoardListTop categoryName="free" />
         <div className="container">
           <Basic categoryName="free" />
         </div>
