@@ -3,6 +3,7 @@ import Link from "next/link";
 import ReactPaginate from "react-paginate";
 import axios from "axios";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import BoardListItem from "./BoardListItem";
 
 const Basic = ({ categoryName }) => {
   const [pageNumber, setPageNumber] = useState(0);
@@ -17,7 +18,8 @@ const Basic = ({ categoryName }) => {
       .get(`${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`)
       .then((response) => {
         if (response.data.success) {
-          setBoardList(response.data.boards);
+          const result = response.data.boards;
+          setBoardList(result);
         }
       })
       .catch((err) => {
@@ -26,7 +28,7 @@ const Basic = ({ categoryName }) => {
           alert(response.data.msg);
         }
       });
-  }, []);
+  }, [categoryName]);
 
   const changePage = ({ selected }) => {
     setPageNumber(selected);
@@ -57,35 +59,11 @@ const Basic = ({ categoryName }) => {
     });
 
   return (
-    <>
-      <table className="boardlist-common-tables">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>등록일</th>
-            <th>조회수</th>
-          </tr>
-        </thead>
-
-        <tbody id="boardlist-common-body">{displayBoardList}</tbody>
-      </table>
-
-      <div className="pagination-container">
-        <ReactPaginate
-          previousLabel={<FaAngleLeft />}
-          nextLabel={<FaAngleRight />}
-          pageCount={pageCount}
-          onPageChange={changePage}
-          containerClassName={"pagination-container"}
-          previousLinkClassName={"previousBtn"}
-          nextLinkClassName={"nextBtn"}
-          disabledClassName={"disabled"}
-          activeLinkClassName={"active"}
-        />
-      </div>
-    </>
+    <BoardListItem
+      displayBoardList={displayBoardList}
+      pageCount={pageCount}
+      changePage={changePage}
+    />
   );
 };
 
