@@ -1,20 +1,23 @@
 import React from "react";
 import { useRouter } from "next/router";
+import BoardBanner from "../../../components/Board/BoardBanner";
+import dynamic from "next/dynamic";
 
 const New = () => {
   const router = useRouter();
 
-  console.log(router);
+  const EditorComponent = dynamic(
+    () => import("../../../components/Editor/Editor"),
+    {
+      ssr: false,
+    }
+  );
+
   return (
-    <div>
-      <h1>HI</h1>
-      <h1>HI</h1>
-      <h1>HI</h1>
-      <h1>HI</h1>
-      <h1>HI</h1>
-      <h1>HI</h1>
-      <h1>HI</h1>
-    </div>
+    <>
+      <BoardBanner title="Market" desc="book" />
+      <EditorComponent />
+    </>
   );
 };
 
