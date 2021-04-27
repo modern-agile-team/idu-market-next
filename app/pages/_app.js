@@ -3,10 +3,12 @@ import React from "react";
 import { Provider } from "react-redux";
 import { createWrapper } from "next-redux-wrapper";
 import store from "../redux/store";
-import "../scss/main.scss";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import loginCheck from "../components/auth/loginCheck";
+
+import "../scss/main.scss";
+import "suneditor/dist/css/suneditor.min.css";
 
 loginCheck();
 
@@ -18,7 +20,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <Header />
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
       <Footer />
     </Provider>
   );

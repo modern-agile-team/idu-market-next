@@ -43,7 +43,7 @@ const Header = () => {
           )}
         </div>
 
-        <nav className={sidebar ? "header-nav active" : "header-nav"}>
+        <div className={sidebar ? "header-nav active" : "header-nav"}>
           <ul className="header-list">
             {HeaderMenuData.map((item, index) => {
               return (
@@ -86,7 +86,7 @@ const Header = () => {
               </Link>
             </>
           )}
-        </nav>
+        </div>
       </div>
     </header>
   );
