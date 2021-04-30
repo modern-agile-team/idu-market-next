@@ -8,7 +8,7 @@ import Footer from "../components/Footer/Footer";
 import loginCheck from "../components/auth/loginCheck";
 
 import "../scss/main.scss";
-import "suneditor/dist/css/suneditor.min.css";
+import "react-quill/dist/quill.snow.css";
 
 loginCheck();
 
