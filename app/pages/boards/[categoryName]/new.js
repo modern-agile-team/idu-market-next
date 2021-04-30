@@ -16,7 +16,11 @@ const New = () => {
   return (
     <>
       <BoardBanner title="Market" desc="book" />
-      <EditorComponent />
+      <section id="post-write" className="post-write">
+        <div className="container">
+          <EditorComponent />
+        </div>
+      </section>
     </>
   );
 };
