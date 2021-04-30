@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { BOARD_WRITE_REQUEST } from "../../redux/types";
-import SunEditor from "suneditor-react";
+import axios from "axios";
 
 const Editor = () => {
   const router = useRouter();
@@ -20,7 +20,8 @@ const Editor = () => {
     price: "",
     categoryName: categoryName,
   });
-  const [image, setImage] = useState(null);
+  const [images, setImages] = useState(null);
+  const [imagesName, setImagesName] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -33,14 +34,56 @@ const Editor = () => {
   };
 
   const handleImageUpload = (e) => {
-    setImage(e.target.files);
+    const formData = new FormData();
+    const fileImages = e.target.files;
+    const imageName = [];
+    let imageValidation = false;
+
+    if (Object.keys(fileImages).length > 5) {
+      alert("한번에 업로드 하실 수 있는 이미지의 개수는 5개입니다.");
+    } else {
+      for (let i = 0; i < Object.keys(fileImages).length; i++) {
+        if (imagesName.includes(fileImages[i].name)) {
+          alert("이미 같은 이름으로 추가 된 이미지 파일이 있습니다.");
+          imageValidation = false;
+          break;
+        } else if (imageName.length > 5) {
+          alert("업로드 하실 수 있는 이미지의 최대 개수는 5개입니다.");
+          imageValidation = false;
+          break;
+        } else {
+          if (Object.keys(fileImages).length + imagesName.length > 5) {
+            alert("업로드 하실 수 있는 이미지의 최대 개수는 5개입니다.");
+            imageValidation = false;
+            break;
+          } else {
+            imageValidation = true;
+            imageName.push(fileImages[i].name);
+            setImagesName([...imagesName, ...imageName]);
+            formData.append("upload", fileImages[i]);
+          }
+        }
+      }
+    }
+
+    if (imageValidation) {
+      axios
+        .post(`${process.env.NEXT_PUBLIC_API_URL}/api/image`, formData)
+        .then((response) => {
+          if (response.data.success) {
+            console.log(response.data);
+            setImages(response.data.url);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   const handleBlur = (e) => {
-    const formData = new FormData();
-    formData.append("uploadImages", image);
-
-    console.log(image);
+    console.log(images);
+    console.log(imagesName);
   };
 
   const onSubmit = (e) => {
@@ -53,67 +96,79 @@ const Editor = () => {
   };
 
   return (
-    <section id="post-write" className="post-write">
-      <div className="container">
-        <form className="post-write-form">
-          <div className="form-group">
-            <input
-              type="text"
-              name="title"
-              id="title"
-              className="write-title"
-              onChange={onChange}
-              placeholder="Title"
-            />
-            <span className="post-write-border"></span>
-          </div>
+    <form className="post-write-form">
+      <div className="form-group">
+        <input
+          type="text"
+          name="title"
+          id="title"
+          className="write-title"
+          onChange={onChange}
+          placeholder="Title"
+        />
+        <span className="post-write-border"></span>
+      </div>
 
-          {categoryName === "free" || categoryName === "notice" ? (
-            ""
-          ) : (
-            <div className="form-group price">
-              <input
-                type="text"
-                name="price"
-                id="price"
-                className="write-price"
-                onChange={onChange}
-                placeholder="Price"
-              />
-              <span className="post-write-border"></span>
-              <span className="price-won">원 (숫자만 입력)</span>
-            </div>
-          )}
-
+      {categoryName === "free" || categoryName === "notice" ? (
+        ""
+      ) : (
+        <div className="form-group price">
           <input
+            type="text"
+            name="price"
+            id="price"
+            className="write-price"
+            onChange={onChange}
+            placeholder="Price"
+          />
+          <span className="post-write-border"></span>
+          <span className="price-won">원 (숫자만 입력)</span>
+        </div>
+      )}
+
+      <div className="form-group">
+        <textarea
+          className="form-textarea"
+          onChange={onChange}
+          name="content"
+          type="textarea"
+          onBlur={handleBlur}
+          style={{
+            width: "100%",
+            height: "500px",
+            resize: "none",
+          }}
+        />
+      </div>
+
+      <div className="image-upload-box">
+        <label htmlFor="image-upload" className="image-upload-label">
+          <input
+            id="image-upload"
             type="file"
-            name="content"
             multiple
             accept="image/jpg,image/png,image/jpeg,image/gif"
             onChange={handleImageUpload}
+            style={{ display: "none" }}
           />
-
-          <div className="form-group">
-            <textarea
-              onChange={onChange}
-              name="content"
-              type="textarea"
-              style={{ resize: "none", width: "80%", height: "1000px" }}
-              onBlur={handleBlur}
-            />
-          </div>
-
-          <div className="post-btn-box">
-            <button className="post-write-btn" onClick={onSubmit}>
-              Upload
-            </button>
-            <Link href={`/boards/${categoryName}`}>
-              <a className="post-cancel-btn">Cancel</a>
-            </Link>
-          </div>
-        </form>
+          이미지 업로드 Click
+        </label>
+        <div className="image-name-box">
+          {imagesName.map((el, index) => {
+            return <p key={index}>{el}</p>;
+          })}
+        </div>
       </div>
-    </section>
+
+      <div className="post-btn-box">
+        <button className="post-write-btn" onClick={onSubmit}>
+          Upload
+        </button>
+        <Link href={`/boards/${categoryName}`}>
+          <a className="post-cancel-btn">Cancel</a>
+        </Link>
+      </div>
+    </form>
   );
 };
 

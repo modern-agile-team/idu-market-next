@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 const Introduce = () => {
-  const [scrollActionYoutube, setScrollViewYoutube] = useState(false);
-  const [scrollActionIntro, setScrollViewIntro] = useState(false);
+  const [scrollViewYoutube, setScrollViewYoutube] = useState(false);
+  const [scrollViewIntro, setScrollViewIntro] = useState(false);
 
   const handleScroll = () => {
     const pageScrollY = window.scrollY;
@@ -25,12 +25,10 @@ const Introduce = () => {
   return (
     <section id="home-introduce" className="home-introduce">
       <div className="container">
-        <div className={scrollActionIntro ? "intro-box show" : "intro-box"}>
+        <div className={scrollViewIntro ? "intro-box show" : "intro-box"}>
           <h1 className="intro-title">INTRO</h1>
         </div>
-        <div
-          className={scrollActionYoutube ? "youtube-box show" : "youtube-box"}
-        >
+        <div className={scrollViewYoutube ? "youtube-box show" : "youtube-box"}>
           <iframe
             className="intro-youtube"
             title="iuam intro youtube"

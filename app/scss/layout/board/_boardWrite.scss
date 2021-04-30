@@ -1,0 +1,188 @@
+.post-write {
+  width: 100%;
+  padding: 50px 0 100px 0;
+
+  .container {
+    width: 80%;
+    // display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  }
+}
+
+.post-write-form {
+  position: relative;
+}
+
+.form-group {
+  position: relative;
+  width: 100%;
+  margin: 25px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .form-textarea {
+    font-family: $Jua-font;
+    padding: 5px;
+    font-size: 1.1rem;
+    outline: none;
+    border: 2px solid #999;
+  }
+  &.price {
+    width: 200px;
+  }
+}
+
+.image-upload-box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 50%;
+  height: 150px;
+  background-color: #fdfdfd;
+  display: flex;
+  padding: 0 10px;
+  border: 2px solid $main-color-2;
+
+  .image-upload-label {
+    font-family: $Jua-font;
+    text-align: center;
+    width: 70px;
+    height: 80px;
+    border: 2px solid $main-color-6;
+    border-radius: 5px;
+    margin-right: 20px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+
+    &:hover {
+      color: $main-color-6;
+    }
+  }
+
+  .image-name-box {
+    border-left: 2px solid $main-color-2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20px;
+
+    p {
+      font-family: $Jua-font;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+.write-title {
+  width: 100%;
+  height: 40px;
+  outline: none;
+  border: none;
+  font-size: 1.5rem;
+  padding: 10px;
+  margin-bottom: 7px;
+  font-family: $Jua-font;
+}
+
+.write-price {
+  width: 100%;
+  height: 40px;
+  outline: none;
+  border: none;
+  font-size: 1.5rem;
+  padding: 10px;
+  margin-bottom: 7px;
+  font-family: $Jua-font;
+}
+
+.price-won {
+  position: absolute;
+  right: -180px;
+  top: 3px;
+  font-size: 1.5rem;
+  font-family: $Jua-font;
+}
+
+.post-write-border {
+  height: 2px;
+  width: 100%;
+  background-color: #999;
+}
+
+.post-btn-box {
+  position: absolute;
+  right: 0;
+  bottom: 115px;
+
+  .post-write-btn {
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    margin-right: 30px;
+    background-color: $main-color-2;
+    color: #fdfdfd;
+    font-size: 1.2rem;
+    outline: none;
+
+    &:hover {
+      background-color: $main-color-5;
+    }
+  }
+  .post-cancel-btn {
+    padding: 5px 10px;
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border: 1px solid $main-color-2;
+  }
+}
+
+
+@media screen and (max-width: 1024px) { 
+}
+
+@media screen and (max-width: 767px) {
+    
+    .price-won {
+      font-size: 1.2rem;
+      top: 5px;
+      right: -150px;
+    }
+ }
+ 
+ @media screen and (max-width: 480px) {
+  .form-group {
+    &.price {
+      width: 150px;
+    }
+  }
+  
+  .price-won {
+    font-size: 1rem;
+    top: 10px;
+    right: -120px;
+  }
+  .write-title {
+    font-size: 1.3rem;
+  }
+  .write-price {
+    font-size: 1.3rem;
+  }
+  
+ }
+
+ @media screen and (max-width: 360px) { 
+  .price-won {
+    font-size: 0.85rem;
+    top: 10px;
+    right: -90px;
+  }
+}
