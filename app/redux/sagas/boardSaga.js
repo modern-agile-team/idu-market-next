@@ -41,6 +41,8 @@ function* boardDetail(action) {
 function boardWriteAPI(payload) {
   const categoryName = payload.categoryName;
 
+  console.log(payload);
+
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`,
     payload
