@@ -59,7 +59,6 @@ function* boardWrite(action) {
       payload: result.data,
     });
   } catch (e) {
-    console.log(e);
     yield put({
       type: BOARD_WRITE_FAILURE,
       payload: e.response,
