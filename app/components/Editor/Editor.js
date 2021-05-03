@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
@@ -78,7 +78,7 @@ const Editor = () => {
             if (uploadImages.length === 0) {
               setFormValues({
                 ...formValues,
-                thumbnail: response.data.images[0].imageUrl,
+                thumbnail: response.data.images[0],
               });
             }
           }
@@ -98,14 +98,12 @@ const Editor = () => {
       setFormValues({
         ...formValues,
         images: [],
-        thumbnail:
-          "https://wooahan-agile.s3.ap-northeast-2.amazonaws.com/thumbNail/communication.png",
+        thumbnail: "",
       });
     } else {
       for (let i = 0; i < uploadImages.length; i++) {
-        images.push(uploadImages[i].imageUrl);
+        images.push(uploadImages[i]);
       }
-
       setFormValues({
         ...formValues,
         images,
@@ -115,12 +113,72 @@ const Editor = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // dispatch({
-    //   type: BOARD_WRITE_REQUEST,
-    //   payload: formValues,
-    // });
-
     console.log(formValues);
+
+    if (categoryName === "free" || categoryName === "notice") {
+      const { studentId, title, content, categoryName } = formValues;
+
+      const body = {
+        studentId,
+        title,
+        content,
+        categoryName,
+      };
+
+      //유효성 검사
+      if (title === "") {
+        alert("타이틀을 적어주세요.");
+      } else if (content === "") {
+        alert("빈 본문입니다.");
+      } else {
+        dispatch({
+          type: BOARD_WRITE_REQUEST,
+          payload: body,
+        });
+        alert("게시글 업로드에 성공하셨습니다.");
+        router.push(`/boards/${categoryName}`);
+      }
+    } else {
+      const {
+        studentId,
+        title,
+        content,
+        thumbnail,
+        price,
+        categoryName,
+        images,
+      } = formValues;
+
+      const body = {
+        studentId,
+        title,
+        content,
+        thumbnail,
+        price,
+        categoryName,
+        images,
+      };
+
+      //유효성 검사
+      if (title === "") {
+        alert("타이틀을 적어주세요.");
+      }
+      /// ^[0-9]+$/: 비어있지 않은 연속된 숫자 문자열
+      else if (price.length > 0 && price.match(/^[0-9]+$/) === null) {
+        alert("가격을 숫자만 입력해주세요.");
+      } else if (price.length >= 8) {
+        alert("가격은 9,999,999원 이하로 입력해주세요.");
+      } else if (content === "") {
+        alert("빈 본문입니다.");
+      } else {
+        dispatch({
+          type: BOARD_WRITE_REQUEST,
+          payload: body,
+        });
+        alert("게시글 업로드에 성공하셨습니다.");
+        router.push(`/boards/${categoryName}`);
+      }
+    }
   };
 
   return (
@@ -138,61 +196,72 @@ const Editor = () => {
       </div>
 
       {categoryName === "free" || categoryName === "notice" ? (
-        ""
+        <>
+          <div className="form-group">
+            <QuillNoSSRWrapper
+              name="content"
+              modules={modules}
+              formats={formats}
+              onChange={handleEditor}
+            />
+          </div>
+        </>
       ) : (
-        <div className="form-group price">
-          <input
-            type="text"
-            name="price"
-            id="price"
-            className="write-price"
-            onChange={onChange}
-            placeholder="Price"
-          />
-          <span className="post-write-border"></span>
-          <span className="price-won">원 (숫자만 입력)</span>
-        </div>
+        <>
+          <div className="form-group price">
+            <input
+              type="text"
+              name="price"
+              id="price"
+              className="write-price"
+              onChange={onChange}
+              placeholder="Price"
+            />
+            <span className="post-write-border"></span>
+            <span className="price-won">원 (숫자만 입력)</span>
+          </div>
+
+          <div className="form-group">
+            <QuillNoSSRWrapper
+              name="content"
+              modules={modules}
+              formats={formats}
+              onChange={handleEditor}
+            />
+          </div>
+
+          <div className="image-upload-box">
+            <label htmlFor="image-upload" className="image-upload-label">
+              <input
+                id="image-upload"
+                type="file"
+                multiple
+                accept="image/jpg,image/png,image/jpeg,image/gif"
+                onChange={handleImageUpload}
+                style={{ display: "none" }}
+              />
+              이미지 업로드 CLICK
+            </label>
+
+            <div className="image-preview-box">
+              {uploadImages &&
+                uploadImages.map((el, index) => {
+                  return (
+                    <div key={index} className="image-preview">
+                      <img src={`${el}`} alt="미리보기" />
+                      <div
+                        className="delete-image-btn"
+                        onClick={() => handleDelete(index)}
+                      >
+                        <RiDeleteBin6Line />
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+        </>
       )}
-
-      <div className="form-group">
-        <QuillNoSSRWrapper
-          name="content"
-          modules={modules}
-          formats={formats}
-          onChange={handleEditor}
-        />
-      </div>
-
-      <div className="image-upload-box">
-        <label htmlFor="image-upload" className="image-upload-label">
-          <input
-            id="image-upload"
-            type="file"
-            multiple
-            accept="image/jpg,image/png,image/jpeg,image/gif"
-            onChange={handleImageUpload}
-            style={{ display: "none" }}
-          />
-          이미지 업로드 CLICK
-        </label>
-
-        <div className="image-preview-box">
-          {uploadImages &&
-            uploadImages.map((el, index) => {
-              return (
-                <div key={index} className="image-preview">
-                  <img src={`${el.imageUrl}`} alt="미리보기" />
-                  <div
-                    className="delete-image-btn"
-                    onClick={() => handleDelete(index)}
-                  >
-                    <RiDeleteBin6Line />
-                  </div>
-                </div>
-              );
-            })}
-        </div>
-      </div>
 
       <div className="post-btn-box">
         <button

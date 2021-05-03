@@ -5,6 +5,9 @@ import {
   BOARD_DETAIL_REQUEST,
   BOARD_DETAIL_SUCCESS,
   BOARD_DETAIL_FAILURE,
+  BOARD_STATUS_REQUEST,
+  BOARD_STATUS_SUCCESS,
+  BOARD_STATUS_FAILURE,
 } from "../types";
 
 const initialState = {
@@ -25,17 +28,18 @@ const initialState = {
   isWatchList: null,
   categoryName: "",
   profilePath: "",
+  images: [],
 };
 
 const board = (state = initialState, action) => {
   switch (action.type) {
+    case BOARD_STATUS_REQUEST:
     case BOARD_DETAIL_REQUEST:
     case BOARD_WRITE_REQUEST:
       return {
         ...state,
         isLoading: true,
         msg: "",
-        num: "",
       };
     case BOARD_WRITE_SUCCESS:
       return {
@@ -69,6 +73,7 @@ const board = (state = initialState, action) => {
         isWatchList: action.payload.isWatchList,
         categoryName: action.payload.board.categoryName,
         profilePath: action.payload.board.profilePath,
+        images: action.payload.images,
       };
     case BOARD_DETAIL_FAILURE:
       return {
@@ -86,7 +91,23 @@ const board = (state = initialState, action) => {
         profilePath: "",
         isWatchList: "",
         msg: "",
+        images: [],
       };
+    case BOARD_STATUS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        msg: action.payload.msg,
+        status: action.payload.status,
+      };
+    case BOARD_STATUS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        msg: action.payload.data.msg,
+        status: "",
+      };
+
     default:
       return state;
   }
