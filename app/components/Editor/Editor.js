@@ -28,7 +28,6 @@ const Editor = () => {
     categoryName: categoryName,
   });
   const [uploadImages, setUploadImages] = useState([]);
-  const [imagesName, setImagesName] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -47,36 +46,25 @@ const Editor = () => {
   };
 
   const handleDelete = (index) => {
+    console.log(index);
     setUploadImages(uploadImages.filter((_, i) => i !== index));
-    setImagesName(imagesName.filter((_, i) => i !== index));
   };
 
   const handleImageUpload = async (e) => {
     const formData = new FormData();
-    const imageName = [];
     const fileImages = e.target.files;
     let imageValidation = false;
 
-    if (Object.keys(imagesName).length > 5) {
-      alert("한번에 업로드 하실 수 있는 이미지의 개수는 5개입니다.");
+    if (Object.keys(fileImages).length > 5) {
+      alert("업로드 하실 수 있는 이미지의 최대 개수는 5개입니다.");
     } else {
       for (let i = 0; i < Object.keys(fileImages).length; i++) {
-        if (imagesName.includes(fileImages[i].name)) {
-          alert("이미 같은 이름으로 추가 된 이미지 파일이 있습니다.");
-          break;
-        } else if (imageName.length > 5) {
+        if (Object.keys(fileImages).length + uploadImages.length > 5) {
           alert("업로드 하실 수 있는 이미지의 최대 개수는 5개입니다.");
           break;
         } else {
-          if (Object.keys(fileImages).length + imagesName.length > 5) {
-            alert("업로드 하실 수 있는 이미지의 최대 개수는 5개입니다.");
-            break;
-          } else {
-            imageValidation = true;
-            imageName.push(fileImages[i].name);
-            setImagesName([...imagesName, ...imageName]);
-            formData.append("upload", fileImages[i]);
-          }
+          imageValidation = true;
+          formData.append("upload", fileImages[i]);
         }
       }
     }
@@ -106,14 +94,23 @@ const Editor = () => {
 
     const images = [];
 
-    for (let i = 0; i < uploadImages.length; i++) {
-      images.push(uploadImages[i].imageUrl);
-    }
+    if (uploadImages.length === 0) {
+      setFormValues({
+        ...formValues,
+        images: [],
+        thumbnail:
+          "https://wooahan-agile.s3.ap-northeast-2.amazonaws.com/thumbNail/communication.png",
+      });
+    } else {
+      for (let i = 0; i < uploadImages.length; i++) {
+        images.push(uploadImages[i].imageUrl);
+      }
 
-    setFormValues({
-      ...formValues,
-      images,
-    });
+      setFormValues({
+        ...formValues,
+        images,
+      });
+    }
   };
 
   const onSubmit = (e) => {
@@ -158,18 +155,6 @@ const Editor = () => {
       )}
 
       <div className="form-group">
-        {/* <textarea
-          className="form-textarea"
-          onChange={onChange}
-          name="content"
-          type="textarea"
-          onBlur={handleBlur}
-          style={{
-            width: "100%",
-            height: "500px",
-            resize: "none",
-          }}
-        /> */}
         <QuillNoSSRWrapper
           name="content"
           modules={modules}
@@ -197,7 +182,6 @@ const Editor = () => {
               return (
                 <div key={index} className="image-preview">
                   <img src={`${el.imageUrl}`} alt="미리보기" />
-                  <p>{el.imageName}</p>
                   <div
                     className="delete-image-btn"
                     onClick={() => handleDelete(index)}
