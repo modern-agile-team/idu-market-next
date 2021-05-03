@@ -1,0 +1,55 @@
+.board-detail-image {
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.detail-slide {
+  transition: 1.5s ease;
+  display: none;
+  z-index: 99;
+
+  &.active { 
+    display: block;
+  }
+
+  .detail-image {
+    width: 600px;
+  }
+}
+
+.detail-right-arrow {
+  position: absolute;
+  bottom: 30%;
+  right: 0px;
+  font-size: 5rem;
+  color: #000;
+  z-index: 100;
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    color: $main-color-2;
+  }
+}
+
+.detail-left-arrow {
+  position: absolute;
+  bottom: 30%;
+  left: 0px;
+  font-size: 5rem;
+  color: #000;
+  z-index: 100;
+  cursor: pointer;
+  user-select: none;
+  &:hover {
+    color: $main-color-2;
+  }
+}
+
+.detail-arrow-box {
+  display: flex;
+  justify-content: space-between;
+}
