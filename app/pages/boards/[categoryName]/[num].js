@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { BOARD_DETAIL_REQUEST } from "../../../redux/types";
 import BoardBanner from "../../../components/Board/BoardBanner";
+import BoardDetailTop from "../../../components/Board/BoardDetailTop";
 
 const BoardDetail = () => {
   const router = useRouter();
   const { categoryName, num } = router.query;
 
-  const { content } = useSelector((state) => state.board);
+  const boardDetail = useSelector((state) => state.board);
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -21,16 +22,27 @@ const BoardDetail = () => {
         studentId: auth.id,
       },
     });
-  }, [dispatch, categoryName, num, auth.id]);
+  }, [dispatch, categoryName, num]);
 
   return (
     <>
       <BoardBanner title="Detail" desc={`${categoryName}`} />
-      {content ? (
-        <div dangerouslySetInnerHTML={{ __html: content }}></div>
-      ) : (
-        <></>
-      )}
+      <section id="board-Detail" className="board-Detail">
+        <div className="container">
+          <BoardDetailTop
+            boardDetail={boardDetail}
+            categoryName={categoryName}
+            num={num}
+          />
+          {boardDetail.content ? (
+            <div
+              dangerouslySetInnerHTML={{ __html: boardDetail.content }}
+            ></div>
+          ) : (
+            <></>
+          )}
+        </div>
+      </section>
     </>
   );
 };

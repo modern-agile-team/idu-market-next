@@ -9,7 +9,14 @@ const New = () => {
 
   return (
     <>
-      <BoardBanner title="Market" desc="book" />
+      <BoardBanner
+        title={
+          router.query === "notice" || router.query === "free"
+            ? "boards"
+            : "Market"
+        }
+        desc="write"
+      />
       <section id="post-write" className="post-write">
         <div className="container">
           <Editor />

@@ -7,6 +7,9 @@ import {
   BOARD_DETAIL_REQUEST,
   BOARD_DETAIL_SUCCESS,
   BOARD_DETAIL_FAILURE,
+  BOARD_STATUS_REQUEST,
+  BOARD_STATUS_SUCCESS,
+  BOARD_STATUS_FAILURE,
 } from "../types";
 
 //Board Detial
@@ -66,6 +69,35 @@ function* boardWrite(action) {
   }
 }
 
+//Board Status
+function boardStatusAPI(payload) {
+  const categoryName = payload.categoryName;
+  const num = payload.num;
+  const body = {
+    status: payload.status,
+  };
+  return axios.patch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/status`,
+    body
+  );
+}
+
+function* boardStatus(action) {
+  try {
+    const result = yield call(boardStatusAPI, action.payload);
+
+    yield put({
+      type: BOARD_STATUS_SUCCESS,
+      payload: result.data,
+    });
+  } catch (e) {
+    yield put({
+      type: BOARD_STATUS_FAILURE,
+      payload: e.response,
+    });
+  }
+}
+
 function* watchBoardWrite() {
   yield takeEvery(BOARD_WRITE_REQUEST, boardWrite);
 }
@@ -74,7 +106,15 @@ function* watchBoardDetail() {
   yield takeEvery(BOARD_DETAIL_REQUEST, boardDetail);
 }
 
+function* watchBoardStatus() {
+  yield takeEvery(BOARD_STATUS_REQUEST, boardStatus);
+}
+
 //boardSaga() 여러 Saga 통합
 export default function* boardSaga() {
-  yield all([fork(watchBoardWrite), fork(watchBoardDetail)]);
+  yield all([
+    fork(watchBoardWrite),
+    fork(watchBoardDetail),
+    fork(watchBoardStatus),
+  ]);
 }
