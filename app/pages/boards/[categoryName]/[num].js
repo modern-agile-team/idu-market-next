@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { BOARD_DETAIL_REQUEST } from "../../../redux/types";
 import BoardBanner from "../../../components/Board/BoardBanner";
 import BoardDetailTop from "../../../components/Board/BoardDetailTop";
+import BoardDetailImage from "../../../components/Board/BoardDetailImage";
 
 const BoardDetail = () => {
   const router = useRouter();
@@ -34,6 +35,7 @@ const BoardDetail = () => {
             categoryName={categoryName}
             num={num}
           />
+          <BoardDetailImage boardDetail={boardDetail} />
           {boardDetail.content ? (
             <div
               dangerouslySetInnerHTML={{ __html: boardDetail.content }}
