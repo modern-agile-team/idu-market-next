@@ -15,14 +15,25 @@ const BoardDetail = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({
-      type: BOARD_DETAIL_REQUEST,
-      payload: {
-        categoryName: categoryName,
-        num: num,
-        studentId: auth.id,
-      },
-    });
+    if (auth.id.length === 0) {
+      dispatch({
+        type: BOARD_DETAIL_REQUEST,
+        payload: {
+          categoryName,
+          num,
+          studentId: "not-login",
+        },
+      });
+    } else {
+      dispatch({
+        type: BOARD_DETAIL_REQUEST,
+        payload: {
+          categoryName: categoryName,
+          num: num,
+          studentId: auth.id,
+        },
+      });
+    }
   }, [dispatch, categoryName, num]);
 
   return (

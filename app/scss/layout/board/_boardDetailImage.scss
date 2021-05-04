@@ -1,8 +1,10 @@
 .board-detail-image {
-  height: 700px;
+  height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 2px solid #999;
+  margin-bottom: 30px;
 }
 
 
@@ -52,4 +54,103 @@
 .detail-arrow-box {
   display: flex;
   justify-content: space-between;
+}
+
+@media screen and (max-width: 970px) {
+  .board-detail-image {
+    height: 500px;
+  }
+  .detail-slide {
+    .detail-image {
+      width: 500px;
+    }
+  }
+
+  .detail-right-arrow {
+    font-size: 4rem;
+    bottom: 25%;
+  }
+  
+  .detail-left-arrow {
+    font-size: 4rem;
+    bottom: 25%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .board-detail-image {
+    height: 400px;
+  }
+  .detail-slide {
+    .detail-image {
+      width: 400px;
+    }
+  }
+  .detail-right-arrow {
+    font-size: 3rem;
+  }
+  
+  .detail-left-arrow {
+    font-size: 3rem;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .board-detail-image {
+    height: 350px;
+  }
+  .detail-slide {
+    .detail-image {
+      width: 320px;
+    }
+  }
+  .detail-right-arrow {
+    font-size: 3rem;
+    bottom: 25%;
+  }
+  
+  .detail-left-arrow {
+    font-size: 3rem;
+    bottom: 25%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .board-detail-image {
+    height: 300px;
+  }
+  .detail-slide {
+    .detail-image {
+      width: 260px;
+    }
+  }
+
+  .detail-right-arrow {
+    font-size: 2.5rem;
+  }
+  
+  .detail-left-arrow {
+    font-size: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .board-detail-image {
+    height: 250px;
+  }
+  .detail-slide {
+    .detail-image {
+      width: 230px;
+    }
+  }
+
+  .detail-right-arrow {
+    font-size: 2rem;
+    bottom: 22%;
+  }
+  
+  .detail-left-arrow {
+    font-size: 2rem;
+    bottom: 22%;
+  }
 }
