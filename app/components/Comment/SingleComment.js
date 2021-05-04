@@ -8,6 +8,7 @@ import {
   COMMENT_UPDATE_REQUEST,
   REPLY_UPLOAD_REQUEST,
 } from "../../redux/types";
+import ReplyComment from "./ReplyComment";
 
 const SingleComment = ({ comment, categoryName, num }) => {
   const [openReply, setOpenReply] = useState(false);
@@ -94,6 +95,8 @@ const SingleComment = ({ comment, categoryName, num }) => {
         ...formValue,
         content: "",
       });
+
+      setOpenReply(!openReply);
     }
   };
 
@@ -269,8 +272,15 @@ const SingleComment = ({ comment, categoryName, num }) => {
           </div>
         </>
       ) : (
-        <></>
-        // <ReplyComment comment={comment} categoryName={categoryName} num={num} />
+        <ReplyComment
+          comment={comment}
+          categoryName={categoryName}
+          num={num}
+          onUpdateChange={onUpdateChange}
+          onUpdate={onUpdate}
+          onDelete={onDelete}
+          onOpenUpdate={onOpenUpdate}
+        />
       )}
     </>
   );
