@@ -1,0 +1,310 @@
+.detail-comment {
+    width: 100%;
+    height: 150px;
+    padding: 20px;
+    border: 2px solid #999;
+    border-radius: 5px;
+    margin: 20px 0 50px 0;
+
+    .comment-title {
+        font-family: $Fredoka-font;
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+}
+
+.comment-submit-box {
+    display: flex;
+    margin-top: 10px;
+    
+    .comment-content-area {
+        font-family: $Jua-font;
+        width: 100%;
+        border-radius: 5px;
+        height: 60px;
+        resize: none;
+        outline: none;
+        border: 1px solid $main-color-2;
+        padding: 10px;
+        font-size: 1rem;
+
+        &.update {
+            border: 1px solid #999;
+        }
+    }
+
+    .comment-submit-btn {
+        cursor: pointer;
+        font-family: $Jua-font;
+        width: 20%;
+        height: 60px;
+        outline: none;
+        margin-left: 10px;
+        background-color: $bg-color-2;
+        border: 1px solid $main-color-5;
+        border-radius: 5px;
+        font-size: 1rem;
+
+        &.update {
+            border: 1px solid #999;
+            background-color: rgb(241, 241, 241);
+        }
+    }
+
+    .not-login-comment {
+        font-family: $Jua-font;
+        font-size: 1.3rem;
+    }
+}
+
+.comment-box {
+    position: relative;
+    width: 100%;
+    border-bottom: 2px solid #999;
+    padding: 13px;
+}
+
+.reply-box {
+    position: relative;
+    width: 100%;
+    margin: 10px 0;
+    background-color: rgb(241, 241, 241);
+    padding: 10px 50px;
+
+    &::after {
+        content: "";
+        position: absolute;
+        width: 17px;
+        height: 17px;
+        border-bottom: 2px solid #999;
+        border-left: 2px solid #999;
+        top: 43%;
+        left: 15px;
+        transform: translateY(-50%);
+    }
+}
+
+.comment-student-id{
+    display: flex;
+    align-items: center;
+
+    .comment-profile-img {
+        width: 25px;
+        border-radius: 50%;
+        border: 1px solid $main-color-5;
+        margin-right: 5px;
+    }
+
+    a { 
+        font-family: $Jua-font;
+        color: rgb(104, 104, 104);
+
+        &:hover {
+            color: $main-color-5;
+        }
+    }
+}
+
+.comment-content {
+    font-size: 1.2rem;
+    margin: 8px 0;
+
+    span { 
+        font-family: $Jua-font;
+    }
+}
+
+.comment-comment-date {
+    color: #999;
+    font-size: 0.9rem;
+
+    span { 
+        font-family: $Jua-font;
+    }
+}
+
+.reply-open-btn {
+    margin-top: 7px;
+    padding: 5px 15px;
+    background: $main-color-1;
+    border: 1px solid $main-color-2;
+    border-radius: 5px;
+    font-family: $Montserrat-font;
+    outline: none;
+    cursor: pointer;
+    &:hover {
+        background: $main-color-2;
+    }
+}
+
+.comment-update-box {
+    position: absolute;
+    right: 0;
+    top: 20px;
+
+    .comment-delete-icon {
+        font-size: 1.5rem;
+        background-color: transparent;
+        cursor: pointer;
+        margin-right: 10px;
+        outline: none;
+
+        &:hover {
+            color: $main-color-2;
+        }
+    }
+    .comment-update-icon {
+        font-size: 1.5rem;
+        background-color: transparent;
+        cursor: pointer;
+        margin-right: 10px;
+        outline: none;
+
+        &:hover {
+            color: $main-color-2;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) { 
+    .detail-comment {
+        margin: 50px 0 30px 0;
+    }
+}
+
+@media screen and (max-width: 480px) { 
+    .detail-comment {
+        margin: 30px 0 30px 0;
+        height: 130px;
+        padding: 20px 10px 20px 10px;
+
+        .comment-title {
+            font-size: 1rem;
+        }
+    }
+    .comment-submit-box {
+        .comment-content-area {
+            font-size: 0.8rem;
+            height: 50px;
+            padding: 8px 5px 8px 5px;
+        }
+
+        .comment-submit-btn {
+            font-size: 0.8rem;
+            height: 50px;
+        }
+        .not-login-comment {
+            font-size: 1rem;
+        }
+    }
+
+    .comment-student-id{
+        font-size: 0.9rem;
+
+        span { 
+            font-family: $Jua-font;
+        }
+    }
+
+    .comment-content {
+        font-size: 1.1rem;
+
+        span { 
+            font-family: $Jua-font;
+        }
+    }
+
+    .comment-comment-date {
+        font-size: 0.8rem;
+
+        span { 
+            font-family: $Jua-font;
+        }
+    }
+
+    .reply-box {
+        padding: 10px 25px;
+
+        &::after {
+            width: 9px;
+            height: 9px;
+            top: 47%;
+            left: 6px;
+            transform: translateY(-50%);
+        }
+    }
+
+    .reply-open-btn { 
+        padding: 5px 10px;
+        font-size: 0.7rem;
+    }
+
+    .comment-update-box {
+        top: 12px;
+        .comment-delete-icon {
+            font-size: 1.1rem;
+            margin-right: 10px;
+        }
+
+        .comment-update-icon {
+            font-size: 1.1rem;
+            margin-right: 10px;
+        }
+    }
+}
+@media screen and (max-width: 360px) { 
+    .detail-comment {
+        height: 110px;
+        padding: 20px 10px 20px 10px;
+
+        .comment-title {
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+    }
+    .comment-submit-box {
+        .comment-content-area {
+            font-size: 0.6rem;
+            height: 35px;
+            padding: 5px 5px 5px 5px;
+        }
+
+        .comment-submit-btn {
+            font-size: 0.6rem;
+            height: 35px;
+        }
+        
+        .not-login-comment {
+            font-size: 0.8rem;
+        }
+    }
+
+    .comment-student-id{
+        font-size: 0.8rem;
+
+        span { 
+            font-family: $Jua-font;
+        }
+    }
+
+    .comment-content {
+        font-size: 1rem;
+
+        span { 
+            font-family: $Jua-font;
+        }
+    }
+
+    .comment-comment-date {
+        font-size: 0.7rem;
+
+        span { 
+            font-family: $Jua-font;
+        }
+    }
+
+    .reply-open-btn { 
+        padding: 4px 10px;
+        font-size: 0.6rem;
+    }
+}

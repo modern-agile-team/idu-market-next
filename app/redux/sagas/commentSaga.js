@@ -63,7 +63,7 @@ function commentUploadAPI(payload) {
 function* commentUpload(action) {
   try {
     const result = yield call(commentUploadAPI, action.payload);
-
+    console.log(result);
     yield put({
       type: COMMENT_UPLOAD_SUCCESS,
       payload: result.data,
@@ -119,8 +119,8 @@ function commentDeleteAPI(payload) {
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${commentNum}`,
     {
       data: {
-        studentId: action.studentId,
-        depth: action.depth,
+        studentId: payload.studentId,
+        depth: payload.depth,
       },
     }
   );
@@ -129,7 +129,6 @@ function commentDeleteAPI(payload) {
 function* commentDelete(action) {
   try {
     const result = yield call(commentDeleteAPI, action.payload);
-
     yield put({
       type: COMMENT_DELETE_SUCCESS,
       payload: result.data,
