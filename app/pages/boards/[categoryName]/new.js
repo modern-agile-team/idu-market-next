@@ -1,14 +1,17 @@
 import React from "react";
 import { useRouter } from "next/router";
 import BoardBanner from "../../../components/Board/BoardBanner";
-import dynamic from "next/dynamic";
 import Editor from "../../../components/Editor/Editor";
+import Head from "next/head";
 
 const New = () => {
   const router = useRouter();
 
   return (
     <>
+      <Head>
+        <title>IUAM | 게시글 작성</title>
+      </Head>
       <BoardBanner
         title={
           router.query === "notice" || router.query === "free"

@@ -6,6 +6,7 @@ import BoardListTop from "../../../components/Board/BoardListTop";
 import MarketListItem from "../../../components/Board/MarketListItem";
 import BoardListItem from "../../../components/Board/BoardListItem";
 import BoardBanner from "../../../components/Board/BoardBanner";
+import Head from "next/head";
 
 const Search = () => {
   const [pageNumber, setPageNumber] = useState(0);
@@ -68,6 +69,9 @@ const Search = () => {
 
   return (
     <>
+      <Head>
+        <title>IUAM | 검색</title>
+      </Head>
       <BoardBanner title="Boards" desc={categoryName} />
       {categoryName === "free" || categoryName === "notice" ? (
         <section id="boardlist-common" className="boardlist-common">

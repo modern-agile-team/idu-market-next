@@ -714,11 +714,6 @@ cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
-ckeditor5-custom-build@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/ckeditor5-custom-build/-/ckeditor5-custom-build-0.0.6.tgz#b5eb3748381101417a9fb1328db6a3fcb28bee7d"
-  integrity sha512-CEFTaipvr8bv+xHexbziIImYRy2w3dx/hcvnc7iAVzUe2ZmOzUyZQ+ecYWaJJLCcehWXqZVgaWAaxcXl1+EO2A==
-
 classnames@2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
@@ -3485,19 +3480,6 @@ stylis@3.5.4:
   version "3.5.4"
   resolved "https://registry.yarnpkg.com/stylis/-/stylis-3.5.4.tgz#f665f25f5e299cf3d64654ab949a57c768b73fbe"
   integrity sha512-8/3pSmthWM7lsPBKv7NXkzn2Uc9W7NotcwGNpJaa3k7WMM1XDCA4MgT5k/8BIexd5ydZdboXtU90XH9Ec4Bv/Q==
-
-suneditor-react@^2.16.3:
-  version "2.16.3"
-  resolved "https://registry.yarnpkg.com/suneditor-react/-/suneditor-react-2.16.3.tgz#9192162dedc048a376fb4eeec2660d8650ba6bca"
-  integrity sha512-SB5j0FIS1CiUCWsqkqgkoQHv/dTp8jj6D5U/a+fAXw/AaGFRfVGxQNgyb/v08xLjGvO4N3mKhjzsGmd4bnZyMw==
-  dependencies:
-    prop-types "^15.7.2"
-    suneditor "^2.38.3"
-
-suneditor@^2.38.3:
-  version "2.38.3"
-  resolved "https://registry.yarnpkg.com/suneditor/-/suneditor-2.38.3.tgz#097532777e56f608b65fb2d7c1624e606e1e1198"
-  integrity sha512-B9v7GpAcVStTxG/ORe1745dSdhfegNMYD9Q1mj5KoVf7srwGf8kzzKHvGdHp1GQ9lmOtZfR/BihGlbwKCh9Ohg==
 
 supports-color@^2.0.0:
   version "2.0.0"

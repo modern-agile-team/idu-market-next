@@ -2,10 +2,14 @@ import React from "react";
 import BoardListTop from "../../components/Board/BoardListTop";
 import BoardBanner from "../../components/Board/BoardBanner";
 import Basic from "../../components/Board/Basic";
+import Head from "next/head";
 
 const Free = () => {
   return (
     <>
+      <Head>
+        <title>IUAM | 자유 게시판</title>
+      </Head>
       <BoardBanner title="Boards" desc="freeboard" />
       <section id="boardlist-common" className="boardlist-common">
         <BoardListTop categoryName="free" />

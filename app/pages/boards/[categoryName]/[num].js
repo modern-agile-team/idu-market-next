@@ -10,6 +10,7 @@ import BoardDetailTop from "../../../components/Board/BoardDetailTop";
 import BoardDetailImage from "../../../components/Board/BoardDetailImage";
 import BoardDetailContent from "../../../components/Board/BoardDetailContent";
 import Comment from "../../../components/Comment/Comment";
+import Head from "next/head";
 
 const BoardDetail = () => {
   const router = useRouter();
@@ -60,6 +61,9 @@ const BoardDetail = () => {
 
   return (
     <>
+      <Head>
+        <title>IUAM | 게시판</title>
+      </Head>
       <BoardBanner title="Detail" desc={`${categoryName}`} />
       <section id="board-Detail" className="board-Detail">
         <div className="container">
