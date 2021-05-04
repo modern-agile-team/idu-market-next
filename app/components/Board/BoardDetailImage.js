@@ -13,7 +13,6 @@ const BoardDetailImage = ({ boardDetail }) => {
     setCurrentImage(currentImage === 0 ? SLIDES_LENGTH - 1 : currentImage - 1);
   };
 
-  console.log(boardDetail.images);
   // if (!Array.isArray(boardDetail.images) || SLIDES_LENGTH <= 0) return null;
 
   return (
