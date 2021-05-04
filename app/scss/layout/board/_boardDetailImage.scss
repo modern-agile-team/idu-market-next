@@ -1,10 +1,10 @@
 .board-detail-image {
+  // position: relative;
   height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
   border: 2px solid #999;
-  margin-bottom: 30px;
 }
 
 
@@ -56,6 +56,54 @@
   justify-content: space-between;
 }
 
+.detail-slide-btns {
+  position: absolute;
+  display: flex;
+  bottom: 24%;
+
+  .detail-slide-btn {
+      width: 15px;
+      height: 15px;
+      background-color:rgba(211, 210, 210, 0.8);
+      margin: 0 10px;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &.active {
+          background: $main-color-9;
+      }
+  }
+}
+
+.board-detail-content {
+  width: 100%;
+  padding: 20px;
+  border: 2px solid #999;
+  margin: 50px 0;
+  font-family: $Jua-font;
+  font-size: 1.1rem;
+  p {
+    font-family: $Jua-font;
+    font-size: 1.1rem;
+    em {
+      font-family: $Jua-font;
+      font-size: 1.1rem;
+    }
+    u {
+      font-family: $Jua-font;
+      font-size: 1.1rem;
+    }
+  }
+  h1 {
+    font-family: $Jua-font;
+    font-size: 2rem;
+  }
+  h2 {
+    font-family: $Jua-font;
+    font-size: 1.8rem;
+  }
+}
+
 @media screen and (max-width: 970px) {
   .board-detail-image {
     height: 500px;
@@ -93,6 +141,10 @@
   .detail-left-arrow {
     font-size: 3rem;
   }
+
+  .detail-slide-btns {
+    bottom: 26%;
+  }
 }
 
 @media screen and (max-width: 670px) {
@@ -113,6 +165,13 @@
     font-size: 3rem;
     bottom: 25%;
   }
+  .detail-slide-btns {
+    .detail-slide-btn {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+    }
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -131,6 +190,12 @@
   
   .detail-left-arrow {
     font-size: 2.5rem;
+  }
+  .detail-slide-btns {
+    .detail-slide-btn {
+      width: 10px;
+      height: 10px;
+    }
   }
 }
 
