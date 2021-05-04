@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Create Next App</title>
+        <title>IUAM | 홈 화면</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MainBanner></MainBanner>
