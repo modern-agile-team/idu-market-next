@@ -59,7 +59,7 @@ const comment = (state = initialState, action) => {
         ...state,
         isLoading: false,
         msg: action.payload.msg,
-        comments: [...state.comments, action.payload.comment],
+        comments: [...state.comments, action.payload.createdComments],
       };
 
     case COMMENT_UPLOAD_FAILURE:

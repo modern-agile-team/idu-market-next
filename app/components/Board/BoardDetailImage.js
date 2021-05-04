@@ -13,8 +13,6 @@ const BoardDetailImage = ({ boardDetail }) => {
     setCurrentImage(currentImage === 0 ? SLIDES_LENGTH - 1 : currentImage - 1);
   };
 
-  // if (!Array.isArray(boardDetail.images) || SLIDES_LENGTH <= 0) return null;
-
   return (
     <section className="board-detail-image">
       {boardDetail.images ? (
@@ -48,6 +46,7 @@ const BoardDetailImage = ({ boardDetail }) => {
           boardDetail.images.map((_, index) => {
             return (
               <div
+                key={index}
                 className={
                   currentImage === index
                     ? "detail-slide-btn active"
