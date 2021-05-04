@@ -4,14 +4,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid #999;
 }
 
 
 .detail-slide {
   transition: 1.5s ease;
   display: none;
-  z-index: 99;
+  z-index: 90;
 
   &.active { 
     display: block;
@@ -60,6 +59,7 @@
   position: absolute;
   display: flex;
   bottom: 8%;
+  z-index: 100;
 
   .detail-slide-btn {
       width: 15px;
