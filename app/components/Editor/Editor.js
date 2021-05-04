@@ -170,6 +170,8 @@ const Editor = () => {
         alert("가격은 9,999,999원 이하로 입력해주세요.");
       } else if (content === "") {
         alert("빈 본문입니다.");
+      } else if (images.length === 0) {
+        alert("1개 이상의 이미지 업로드를 해주시기 바랍니다.");
       } else {
         dispatch({
           type: BOARD_WRITE_REQUEST,

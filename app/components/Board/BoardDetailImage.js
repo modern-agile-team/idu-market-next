@@ -43,19 +43,23 @@ const BoardDetailImage = ({ boardDetail }) => {
           onClick={nextSlide}
         />
       </div>
-      <div className="slide-btns">
-        {/* <div
-            className={currentImage === 0 ? "slide-btn active" : "slide-btn"}
-            onClick={() => setCurrentImage(0)}
-          />
-          <div
-            className={currentImage === 1 ? "slide-btn active" : "slide-btn"}
-            onClick={() => setCurrentImage(1)}
-          />
-          <div
-            className={currentImage === 2 ? "slide-btn active" : "slide-btn"}
-            onClick={() => setCurrentImage(2)}
-          /> */}
+      <div className="detail-slide-btns">
+        {boardDetail.images ? (
+          boardDetail.images.map((_, index) => {
+            return (
+              <div
+                className={
+                  currentImage === index
+                    ? "detail-slide-btn active"
+                    : "detail-slide-btn"
+                }
+                onClick={() => setCurrentImage(index)}
+              />
+            );
+          })
+        ) : (
+          <></>
+        )}
       </div>
     </section>
   );

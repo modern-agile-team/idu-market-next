@@ -37,7 +37,6 @@ const Login = () => {
       .post(`${process.env.NEXT_PUBLIC_API_URL}/api/jwt`, body)
       .then((response) => {
         if (response.data.success) {
-          console.log(response);
           localStorage.setItem("jwt", response.data.jwt);
           dispatch({
             type: LOGIN_CHECK_REQUEST,

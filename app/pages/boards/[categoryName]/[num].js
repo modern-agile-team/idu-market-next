@@ -5,10 +5,12 @@ import { BOARD_DETAIL_REQUEST } from "../../../redux/types";
 import BoardBanner from "../../../components/Board/BoardBanner";
 import BoardDetailTop from "../../../components/Board/BoardDetailTop";
 import BoardDetailImage from "../../../components/Board/BoardDetailImage";
+import BoardDetailContent from "../../../components/Board/BoardDetailContent";
 
 const BoardDetail = () => {
   const router = useRouter();
   const { categoryName, num } = router.query;
+  console.log(categoryName);
 
   const boardDetail = useSelector((state) => state.board);
   const auth = useSelector((state) => state.auth);
@@ -46,14 +48,12 @@ const BoardDetail = () => {
             categoryName={categoryName}
             num={num}
           />
-          <BoardDetailImage boardDetail={boardDetail} />
-          {boardDetail.content ? (
-            <div
-              dangerouslySetInnerHTML={{ __html: boardDetail.content }}
-            ></div>
-          ) : (
+          {categoryName === "free" || categoryName === "notice" ? (
             <></>
+          ) : (
+            <BoardDetailImage boardDetail={boardDetail} />
           )}
+          <BoardDetailContent boardDetail={boardDetail} />
         </div>
       </section>
     </>
