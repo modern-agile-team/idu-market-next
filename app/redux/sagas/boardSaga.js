@@ -16,6 +16,9 @@ import {
   IMAGE_DELETE_REQUEST,
   IMAGE_DELETE_SUCCESS,
   IMAGE_DELETE_FAILURE,
+  BOARD_UPDATE_REQUEST,
+  BOARD_UPDATE_SUCCESS,
+  BOARD_UPDATE_FAILURE,
 } from "../types";
 
 //Board Detial
@@ -156,6 +159,36 @@ function* imageDelete(action) {
   }
 }
 
+//Board Update
+function boardUpdateAPI(payload) {
+  const categoryName = payload.categoryName;
+  const num = payload.num;
+
+  console.log(payload);
+  return axios.put(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}`,
+    payload
+  );
+}
+
+function* boardUpdate(action) {
+  try {
+    const result = yield call(boardUpdateAPI, action.payload);
+
+    console.log(result);
+    yield put({
+      type: BOARD_UPDATE_SUCCESS,
+      payload: result.data,
+    });
+  } catch (e) {
+    console.log(e);
+    yield put({
+      type: BOARD_UPDATE_FAILURE,
+      payload: e.response,
+    });
+  }
+}
+
 function* watchBoardWrite() {
   yield takeEvery(BOARD_WRITE_REQUEST, boardWrite);
 }
@@ -176,6 +209,10 @@ function* watchImageDelete() {
   yield takeEvery(IMAGE_DELETE_REQUEST, imageDelete);
 }
 
+function* watchBoardUpdate() {
+  yield takeEvery(BOARD_UPDATE_REQUEST, boardUpdate);
+}
+
 //boardSaga() 여러 Saga 통합
 export default function* boardSaga() {
   yield all([
@@ -184,5 +221,6 @@ export default function* boardSaga() {
     fork(watchBoardStatus),
     fork(watchBoardDelete),
     fork(watchImageDelete),
+    fork(watchBoardUpdate),
   ]);
 }

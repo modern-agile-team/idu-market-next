@@ -3,13 +3,8 @@ export const modules = {
     [{ header: "1" }, { header: "2" }, { font: [] }],
     [{ size: [] }],
     ["bold", "italic", "underline", "strike", "blockquote"],
-    [
-      { list: "ordered" },
-      { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" },
-    ],
-    ["clean"],
+    [{ align: [] }, { color: [] }],
+    [({ indent: "-1" }, { indent: "+1" })],
   ],
   clipboard: {
     // toggle to add extra line breaks when pasting HTML:
@@ -26,7 +21,6 @@ export const formats = [
   "underline",
   "strike",
   "blockquote",
-  "list",
   "bullet",
   "indent",
 ];

@@ -14,6 +14,9 @@ import {
   IMAGE_DELETE_REQUEST,
   IMAGE_DELETE_SUCCESS,
   IMAGE_DELETE_FAILURE,
+  BOARD_UPDATE_REQUEST,
+  BOARD_UPDATE_SUCCESS,
+  BOARD_UPDATE_FAILURE,
 } from "../types";
 
 const initialState = {
@@ -38,6 +41,7 @@ const initialState = {
 
 const board = (state = initialState, action) => {
   switch (action.type) {
+    case BOARD_UPDATE_REQUEST:
     case IMAGE_DELETE_REQUEST:
     case BOARD_DELETE_REQUEST:
     case BOARD_STATUS_REQUEST:
@@ -120,6 +124,7 @@ const board = (state = initialState, action) => {
         status: "",
       };
 
+    case BOARD_UPDATE_SUCCESS:
     case IMAGE_DELETE_SUCCESS:
     case BOARD_DELETE_SUCCESS:
       return {
@@ -128,6 +133,7 @@ const board = (state = initialState, action) => {
         msg: action.payload.msg,
       };
 
+    case BOARD_UPDATE_FAILURE:
     case IMAGE_DELETE_FAILURE:
     case BOARD_DELETE_FAILURE:
       return {
