@@ -33,3 +33,5 @@ RUN npm run build
 # 노드 서버 가동
 EXPOSE 3000
 CMD ["npm", "start"]
+
+# 자동화 테스트
