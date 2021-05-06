@@ -6,7 +6,8 @@ import Link from "next/link";
 import { BOARD_WRITE_REQUEST } from "../../redux/types";
 import axios from "axios";
 import { modules, formats } from "./EditorConfig";
-import { RiDeleteBin6Line } from "react-icons/ri";
+import EditorImageUpload from "./EditorImageUpload";
+import EditorPost from "./EditorPost";
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
@@ -46,7 +47,6 @@ const Editor = () => {
   };
 
   const handleDelete = (index) => {
-    console.log(index);
     setUploadImages(uploadImages.filter((_, i) => i !== index));
   };
 
@@ -110,7 +110,6 @@ const Editor = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    console.log(formValues);
     if (categoryName === "free" || categoryName === "notice") {
       const { studentId, title, content, categoryName } = formValues;
 
@@ -228,51 +227,19 @@ const Editor = () => {
             />
           </div>
 
-          <div className="image-upload-box">
-            <label htmlFor="image-upload" className="image-upload-label">
-              <input
-                id="image-upload"
-                type="file"
-                multiple
-                accept="image/jpg,image/png,image/jpeg,image/gif"
-                onChange={handleImageUpload}
-                style={{ display: "none" }}
-              />
-              이미지 업로드 CLICK
-            </label>
-
-            <div className="image-preview-box">
-              {uploadImages &&
-                uploadImages.map((el, index) => {
-                  return (
-                    <div key={index} className="image-preview">
-                      <img src={`${el}`} alt="미리보기" />
-                      <div
-                        className="delete-image-btn"
-                        onClick={() => handleDelete(index)}
-                      >
-                        <RiDeleteBin6Line />
-                      </div>
-                    </div>
-                  );
-                })}
-            </div>
-          </div>
+          <EditorImageUpload
+            handleImageUpload={handleImageUpload}
+            handleDelete={handleDelete}
+            uploadImages={uploadImages}
+          />
         </>
       )}
 
-      <div className="post-btn-box">
-        <button
-          className="post-write-btn"
-          onClick={onSubmit}
-          onMouseDown={onMouseDown}
-        >
-          Upload
-        </button>
-        <Link href={`/boards/${categoryName}`}>
-          <a className="post-cancel-btn">Cancel</a>
-        </Link>
-      </div>
+      <EditorPost
+        onSubmit={onSubmit}
+        onMouseDown={onMouseDown}
+        categoryName={categoryName}
+      />
     </form>
   );
 };

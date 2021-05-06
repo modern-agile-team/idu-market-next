@@ -7,6 +7,8 @@ import dynamic from "next/dynamic";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { BOARD_UPDATE_REQUEST } from "../../redux/types";
 import { modules, formats } from "./EditorConfig";
+import EditorImageUpload from "./EditorImageUpload";
+import EditorPost from "./EditorPost";
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
@@ -137,7 +139,6 @@ const UpdateEditor = () => {
         num,
       };
 
-      console.log(body);
       //유효성 검사
       if (title === "") {
         alert("타이틀을 적어주세요.");
@@ -177,9 +178,8 @@ const UpdateEditor = () => {
       while (true) {
         let matcher = price.match(",");
 
-        if (matcher) {
-          price = price.replace(",", "");
-        } else break;
+        if (matcher) price = price.replace(",", "");
+        else break;
 
         body = {
           ...body,
@@ -187,7 +187,6 @@ const UpdateEditor = () => {
         };
       }
 
-      console.log(body);
       //유효성 검사
       if (title === "") {
         alert("타이틀을 적어주세요.");
@@ -265,51 +264,19 @@ const UpdateEditor = () => {
             />
           </div>
 
-          <div className="image-upload-box">
-            <label htmlFor="image-upload" className="image-upload-label">
-              <input
-                id="image-upload"
-                type="file"
-                multiple
-                accept="image/jpg,image/png,image/jpeg,image/gif"
-                onChange={handleImageUpload}
-                style={{ display: "none" }}
-              />
-              이미지 업로드 CLICK
-            </label>
-
-            <div className="image-preview-box">
-              {uploadImages &&
-                uploadImages.map((el, index) => {
-                  return (
-                    <div key={index} className="image-preview">
-                      <img src={`${el}`} alt="미리보기" />
-                      <div
-                        className="delete-image-btn"
-                        onClick={() => handleDelete(index)}
-                      >
-                        <RiDeleteBin6Line />
-                      </div>
-                    </div>
-                  );
-                })}
-            </div>
-          </div>
+          <EditorImageUpload
+            handleImageUpload={handleImageUpload}
+            handleDelete={handleDelete}
+            uploadImages={uploadImages}
+          />
         </>
       )}
 
-      <div className="post-btn-box">
-        <button
-          className="post-write-btn"
-          onClick={onSubmit}
-          onMouseDown={onMouseDown}
-        >
-          Upload
-        </button>
-        <Link href={`/boards/${categoryName}`}>
-          <a className="post-cancel-btn">Cancel</a>
-        </Link>
-      </div>
+      <EditorPost
+        onSubmit={onSubmit}
+        onMouseDown={onMouseDown}
+        categoryName={categoryName}
+      />
     </form>
   );
 };
