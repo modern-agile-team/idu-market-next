@@ -1,0 +1,256 @@
+.post-write {
+  width: 100%;
+  padding: 80px 0 150px 0;
+
+  .container {
+    width: 80%;
+    // display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  }
+}
+
+.post-write-form {
+  position: relative;
+}
+
+.form-group {
+  position: relative;
+  width: 100%;
+  margin: 25px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  &.price {
+    width: 200px;
+  }
+}
+
+.image-upload-box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  background-color: #fdfdfd;
+  display: flex;
+  padding: 30px 10px;
+  border: 2px solid $main-color-2;
+
+  .image-upload-label {
+    font-family: $Jua-font;
+    text-align: center;
+    width: 70px;
+    height: 80px;
+    border: 2px solid $main-color-6;
+    border-radius: 5px;
+    margin-right: 20px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+
+    &:hover {
+      color: $main-color-6;
+    }
+  }
+
+  .image-preview-box {
+    border-left: 2px solid $main-color-2;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px;
+
+    .image-preview {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 10px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border: 2px solid $main-color-2;
+      }
+
+      .delete-image-btn {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top: -10px;
+        right: -5px;
+        background-color: #000;
+        color: #fdfdfd;
+        font-size: 1rem;
+        border-radius: 50%;
+        border: 1px solid #fdfdfd;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+.write-title {
+  width: 100%;
+  height: 40px;
+  outline: none;
+  border: none;
+  font-size: 1.5rem;
+  padding: 10px;
+  margin-bottom: 7px;
+  font-family: $Jua-font;
+}
+
+.write-price {
+  width: 100%;
+  height: 40px;
+  outline: none;
+  border: none;
+  font-size: 1.5rem;
+  padding: 10px;
+  margin-bottom: 7px;
+  font-family: $Jua-font;
+}
+
+.price-won {
+  position: absolute;
+  right: -180px;
+  top: 3px;
+  font-size: 1.5rem;
+  font-family: $Jua-font;
+}
+
+.post-write-border {
+  height: 2px;
+  width: 100%;
+  background-color: #999;
+}
+
+.post-btn-box {
+  position: absolute;
+  right: 0;
+  bottom: -60px;
+
+  .post-write-btn {
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    margin-right: 30px;
+    background-color: $main-color-2;
+    color: #fdfdfd;
+    font-size: 1.2rem;
+    outline: none;
+
+    &:hover {
+      background-color: $main-color-5;
+    }
+  }
+  .post-cancel-btn {
+    padding: 5px 10px;
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border: 1px solid $main-color-2;
+  }
+}
+
+.quill {
+  width: 100%;
+  height: 500px;
+  margin-bottom: 50px;
+}
+
+@media screen and (max-width: 1000px) { 
+  .image-upload-box {
+    .image-preview-box {
+      flex-wrap: wrap;
+      .image-preview {
+        width: 80px;
+        height: 80px;
+      }
+    }
+  }
+  .post-btn-box {
+    .post-write-btn {
+      margin-right: 15px;
+    }
+  }
+}
+
+@media screen and (max-width: 830px) {
+  .image-upload-box {
+    .image-preview-box {
+      padding-left: 0;
+      .image-preview {
+        width: 70px;
+        height: 70px;
+      }
+    }
+  }
+  .post-btn-box {
+    bottom: -50px;
+  }
+  .price-won {
+    font-size: 1.2rem;
+    top: 5px;
+    right: -150px;
+  }
+ }
+
+ @media screen and (max-width: 720px) {
+  .image-upload-box {
+    .image-preview-box {
+      .image-preview {
+        width: 60px;
+        height: 60px;
+        margin-top: 10px;
+      }
+    }
+  }
+}
+ 
+ @media screen and (max-width: 480px) {
+  .image-upload-box {
+    margin-top: 50px;
+  }
+  .form-group {
+    &.price {
+      width: 150px;
+    }
+  }
+  .price-won {
+    font-size: 1rem;
+    top: 10px;
+    right: -120px;
+  }
+  .write-title {
+    font-size: 1.3rem;
+  }
+  .write-price {
+    font-size: 1.3rem;
+  }
+  
+ }
+
+ @media screen and (max-width: 370px) { 
+  .image-upload-box {
+    margin-top: 80px;
+  }
+  .price-won {
+    font-size: 0.85rem;
+    top: 10px;
+    right: -90px;
+  }
+}

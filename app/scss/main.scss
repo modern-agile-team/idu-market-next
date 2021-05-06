@@ -1,0 +1,32 @@
+//reset
+@import './base/reset';
+
+//variables
+@import './helpers/variables';
+
+//Header
+@import './layout/header';
+
+//Footer
+@import './layout/footer';
+
+//HomePage
+@import './layout/home/funtion';
+@import './layout/home/introduce';
+@import './layout/home/mainBanner';
+@import './layout/home/notice';
+@import './layout/home/articles';
+
+//Login, Register form
+@import './layout/forms';
+
+//Board
+@import './layout/board/market';
+@import './layout/board/basic';
+@import './layout/board/boardBanner';
+@import './layout/board/boardWrite';
+@import './layout/board/boardDetail';
+@import './layout/board/boardDetailImage';
+
+//Comment
+@import './layout/board/comment';

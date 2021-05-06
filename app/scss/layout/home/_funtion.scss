@@ -1,0 +1,205 @@
+.home-function {
+    width: 100%;
+    height: 320px;
+    background-color: $bg-color-2;
+    
+    .container {
+        width: 80%;
+        height: 100%;
+        margin: 0 auto;
+    }
+}
+
+.function-items {
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+    padding-bottom: 50px;
+
+    .function-item {
+        width: 200px;
+        height: 200px;
+        opacity: 0;
+
+        .function-img { 
+            width: 100%; 
+        }
+
+        .function-desc {
+            font-family: 'Fredoka One', cursive;
+            text-align: center;
+            color: $main-color-9;
+            font-size: 1.5rem;
+        }
+    }
+}
+
+.function-items.show {
+    .function-item { 
+        opacity: 1; 
+
+        &.shopping { 
+            animation: slide 1s; 
+        }
+
+        &.communication { 
+            animation: slide 1.4s; 
+        }
+
+        &.information { 
+            animation: slide 1.8s; 
+        }
+    }
+}
+
+
+//반응형
+/* 0 ~ 1220 : 데스크탑2  */
+@media screen and (max-width: 1220px) {
+    #home-function { 
+        height: 300px; 
+        .container {
+            padding-bottom: 30px;
+        }
+    }
+    .function-items {
+        padding-bottom: 0;
+
+        .function-item {
+            width: 180px;
+
+            .function-desc { 
+                font-size: 1.2rem; 
+            }
+        }
+    }
+}
+
+/* 0 ~ 960 : 테블릿1  */
+@media screen and (max-width: 960px) {
+    #home-function { 
+        height: 280px;
+
+        .container { 
+            width: 100%; 
+            padding-bottom: 0;
+        }
+    }
+
+    .function-items {
+        .function-item {
+            width: 150px;
+
+            .function-desc { 
+                font-size: 1rem; 
+            }
+        }
+    }
+}
+
+
+/* 0 ~ 768px : 테블릿2 */
+@media screen and (max-width: 768px){
+    #home-function { 
+        height: 300px;
+        background: $bg-color-2;
+
+        .container { 
+            padding: 20px 0; 
+        }
+    }
+    .function-items {
+        width: 100%;
+
+        .function-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            opacity: 1;
+            width: 100%;
+
+            .function-img { width: 70%; }
+
+            .function-desc { 
+                font-size: 1.2rem; 
+                margin-top: 10px;
+            }
+        }
+    }
+
+    .function-items.show {
+        .function-item.shopping { 
+            animation: none; 
+        }
+        
+        .function-item.communication {
+            animation: none; 
+        }
+
+        .function-item.information { 
+            animation: none; 
+        }
+    }
+}
+
+/* 0 ~ 670px : 테블릿3 */
+@media screen and (max-width: 670px) {
+    #home-function { 
+        height: 250px; 
+    }
+
+    .function-items {
+        .function-item {
+            .function-desc { font-size: 1.1rem; }
+        }
+    }
+}
+
+/* 0 ~ 480px : 모바일1 */
+@media screen and (max-width: 480px) {
+    #home-function { 
+        height: 240px;
+        
+        .container {
+            padding: 0;
+        }
+    }
+    .function-items {
+        .function-item {
+            
+            .function-desc { 
+                font-size: 0.8rem;
+            }
+
+            &.shopping { 
+                border-right: none; 
+            }
+
+            &.communication { 
+                border-right: none; 
+            }
+        }
+    }
+}
+
+//애니메이션
+@keyframes slide {
+    from { 
+        transform: translateY(300px); 
+    }
+    to { 
+        transform: translateY(0); 
+    }
+}
+
+@keyframes slide2 {
+    from { 
+        transform: translateX(-300px); 
+    }
+    to { 
+        transform: translateX(0); 
+    }
+}

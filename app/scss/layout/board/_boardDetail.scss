@@ -1,0 +1,334 @@
+.board-Detail {
+  width: 100%;
+  .container {
+    position: relative;
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+.detail-top-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 40px;
+  padding: 80px 0 0 0;
+
+  .detail-title {
+    font-family: $Jua-font;
+    width: 100%;
+    font-size: 2rem;
+    border-bottom: 2px solid #999;
+    padding-bottom: 10px;
+    margin: 120px 0 20px 0;
+  }
+  .detail-price {
+    font-family: $Jua-font;
+    width: 30%;
+    font-size: 2rem;
+    border-bottom: 2px solid #999;
+    padding-bottom: 10px;
+    margin: 20px 0;
+  }
+}
+
+.detail-btn-box {
+  position: absolute;
+  display: flex;
+  right: 0px;
+  top: 80px;
+  
+
+  .detail-btn-edit{
+    font-family: $Jua-font;
+    width: 70px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    background-color: #efefef;
+    cursor: pointer;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: rgb(219, 218, 218);
+    }
+  }
+
+  .detail-btn-delete {
+    font-family: $Jua-font;
+    width: 70px;
+    height: 35px;
+    font-size: 1.2rem;
+    margin: 0 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    &:hover {
+      background-color: rgb(219, 218, 218);
+    }
+  }
+  
+  .detail-btn-list {
+    font-family: $Jua-font;
+    width: 70px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    background-color: #efefef;
+    cursor: pointer;
+    border-radius: 4px;
+    &:hover {
+      background-color: rgb(219, 218, 218);
+    }
+  }
+}
+.detail-trade-status-box {
+  position: absolute;
+  width: 110px;
+  right: 240px;
+  top: 85px;
+  text-align: center;
+  margin-right: 10px;
+
+  .trade-complete-btn {
+    width: 90px;
+    position: absolute;
+    padding: 4px 10px;
+    font-family: $Jua-font;
+    font-size: 1.2rem;
+    right: 130px;
+    top: 0px;
+    background-color: $bg-color-2;
+    border: 2px solid $main-color-6;
+    border-radius: 8px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $main-color-2;
+    }
+  }
+
+  .detail-trade-status {
+    font-family: $Jua-font;
+    font-size: 1.2rem;
+    cursor: pointer;
+
+    .detail-trade-status-drop {
+      li {
+        padding-left: 10px;
+        margin: 7px 0;
+        font-family: $Jua-font;
+        text-align: start;
+      }
+    }
+
+    .trade-status {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background-color: #222;
+      border-radius: 50%;
+      margin-right: 8px;
+
+      &.sale {
+        background-color: rgb(1, 129, 1);
+      }
+      &.reservation {
+        background-color: rgb(211, 211, 0);
+      }
+      &.complete {
+        background-color: rgb(192, 3, 3);
+      }
+    }
+  }
+}
+
+.detail-date-student {
+  position: absolute;
+  right: 0px;
+  top: 130px;
+  p {
+    font-size: 1.1rem;
+    font-family: $Jua-font;
+    display: flex;
+    align-items: center;
+    margin: 3px 0;
+  }
+}
+
+.detail-edtior {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0 100px 0;
+  border: 2px solid #999;
+}
+
+.detail-profile-img {
+  width: 25px;
+  border-radius: 50%;
+  border: 1px solid $main-color-5;
+  margin-left: -3px;
+  margin-right: 3px;
+}
+
+@media screen and (max-width: 1220px) {
+  .board-Detail {
+    .container {
+      width: 80%;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) { 
+  .detail-top-box {
+    .detail-title {
+      font-size: 1.7rem;
+    }
+    .detail-price {
+      font-size: 1.7rem;
+      width: 40%;
+    }
+  }
+
+  .detail-btn-box {
+    top: 90px;
+  
+    .detail-btn-edit{
+      font-size: 1rem;
+      width: 60px;
+      height: 30px;
+    }
+    .detail-btn-delete {
+      font-size: 1rem;
+      width: 60px;
+      height: 30px;
+    }
+    .detail-btn-list {
+      font-size: 1rem;
+      width: 60px;
+      height: 30px;
+    }
+  }
+
+  .detail-trade-status-box {
+    width: 100px;
+    right: 200px;
+    top: 95px;
+    margin-right: 0;
+
+    .trade-complete-btn {
+      padding: 3px 8px;
+      font-size: 1rem;
+      width: 80px;
+      right: 110px;
+    }
+
+    .detail-trade-status {
+      font-size: 1rem;
+      cursor: pointer;
+
+    }
+  }
+
+  .detail-date-student {
+    position: absolute;
+    right: 0px;
+    top: 130px;
+    p {
+      font-size: 1rem;
+      font-family: $Jua-font;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) { 
+  .board-Detail {
+    .container {
+      width: 90%;
+    }
+  }
+  .detail-top-box {
+    .detail-title {
+      font-size: 1.5rem;
+    }
+    .detail-price {
+      font-size: 1.5rem;
+      width: 40%;
+    }
+  }
+  .detail-date-student {
+    top: 140px;
+
+    p {
+      margin-right: 10px;
+      font-size: 0.8rem;
+    }
+  }
+  .detail-edtior {
+    margin: 50px 0;
+  }
+
+  .detail-trade-status-box {
+    .trade-complete-btn {
+      width: 70px;
+      padding: 3px 5px;
+      font-size: 0.9rem;
+      right: -200px;
+      top: -50px;
+    }
+  }
+
+  .detail-profile-img {
+    width: 20px;
+    margin-left: -3px;
+  }
+}
+
+@media screen and (max-width: 360px) { 
+  .detail-top-box {
+    .detail-title {
+      font-size: 1.2rem;
+    }
+    .detail-price {
+      font-size: 1.2rem;
+      width: 40%;
+    }
+  }
+  .detail-btn-box {
+  
+    .detail-btn-edit{
+      font-size: 0.9rem;
+      width: 55px;
+    }
+    .detail-btn-delete {
+      font-size: 0.9rem;
+      width: 55px;
+    }
+    .detail-btn-list {
+      font-size: 0.9rem;
+      width: 55px;
+    }
+  }
+
+  .detail-trade-status-box {
+    width: 100px;
+    right: 180px;
+
+    .detail-trade-status {
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    .trade-complete-btn {
+      right: -180px;
+    }
+  }
+}

@@ -1,0 +1,225 @@
+.board-detail-image {
+  position: relative;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.detail-slide {
+  transition: 1.5s ease;
+  display: none;
+  z-index: 90;
+
+  &.active { 
+    display: block;
+  }
+
+  .detail-image {
+    width: 600px;
+  }
+}
+
+.detail-right-arrow {
+  position: absolute;
+  bottom: 30%;
+  right: -28%;
+  font-size: 5rem;
+  color: #000;
+  z-index: 100;
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    color: $main-color-2;
+  }
+}
+
+.detail-left-arrow {
+  position: absolute;
+  bottom: 30%;
+  left: -28%;
+  font-size: 5rem;
+  color: #000;
+  z-index: 100;
+  cursor: pointer;
+  user-select: none;
+  &:hover {
+    color: $main-color-2;
+  }
+}
+
+.detail-arrow-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.detail-slide-btns {
+  position: absolute;
+  display: flex;
+  bottom: 8%;
+  z-index: 100;
+
+  .detail-slide-btn {
+      width: 15px;
+      height: 15px;
+      background-color:rgba(211, 210, 210, 0.8);
+      margin: 0 10px;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &.active {
+          background: $main-color-9;
+      }
+  }
+}
+
+.board-detail-content {
+  width: 100%;
+  padding: 20px;
+  border: 2px solid #999;
+  margin: 50px 0;
+  font-family: $Jua-font;
+  font-size: 1.1rem;
+  p {
+    font-family: $Jua-font;
+    font-size: 1.1rem;
+    em {
+      font-family: $Jua-font;
+      font-size: 1.1rem;
+    }
+    u {
+      font-family: $Jua-font;
+      font-size: 1.1rem;
+    }
+  }
+  h1 {
+    font-family: $Jua-font;
+    font-size: 2rem;
+  }
+  h2 {
+    font-family: $Jua-font;
+    font-size: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 970px) {
+  .board-detail-image {
+    height: 500px;
+  }
+  .detail-slide {
+    .detail-image {
+      width: 500px;
+    }
+  }
+
+  .detail-right-arrow {
+    font-size: 4rem;
+    bottom: 25%;
+  }
+  
+  .detail-left-arrow {
+    font-size: 4rem;
+    bottom: 25%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .board-detail-image {
+    height: 400px;
+  }
+  .detail-slide {
+    .detail-image {
+      width: 400px;
+    }
+  }
+  .detail-right-arrow {
+    font-size: 3rem;
+  }
+  
+  .detail-left-arrow {
+    font-size: 3rem;
+  }
+
+  .detail-slide-btns {
+    // bottom: 26%;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .board-detail-image {
+    height: 350px;
+  }
+  .detail-slide {
+    .detail-image {
+      width: 320px;
+    }
+  }
+  .detail-right-arrow {
+    font-size: 3rem;
+    bottom: 25%;
+  }
+  
+  .detail-left-arrow {
+    font-size: 3rem;
+    bottom: 25%;
+  }
+  .detail-slide-btns {
+    .detail-slide-btn {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .board-detail-image {
+    height: 300px;
+  }
+  .detail-slide {
+    .detail-image {
+      width: 260px;
+    }
+  }
+
+  .detail-right-arrow {
+    font-size: 2.5rem;
+    right: -22%;
+  }
+  
+  .detail-left-arrow {
+    font-size: 2.5rem;
+    left: -22%;
+  }
+  
+  .detail-slide-btns {
+    .detail-slide-btn {
+      width: 10px;
+      height: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .board-detail-image {
+    height: 250px;
+  }
+  .detail-slide {
+    .detail-image {
+      width: 230px;
+    }
+  }
+
+  .detail-right-arrow {
+    font-size: 2rem;
+    // bottom: 22%;
+    right: -20%;
+  }
+  
+  .detail-left-arrow {
+    font-size: 2rem;
+    left: -20%;
+  }
+}
