@@ -8,10 +8,15 @@ import {
   BOARD_STATUS_REQUEST,
   BOARD_STATUS_SUCCESS,
   BOARD_STATUS_FAILURE,
+  BOARD_DELETE_REQUEST,
+  BOARD_DELETE_SUCCESS,
+  BOARD_DELETE_FAILURE,
+  IMAGE_DELETE_REQUEST,
+  IMAGE_DELETE_SUCCESS,
+  IMAGE_DELETE_FAILURE,
 } from "../types";
 
 const initialState = {
-  data: [],
   loading: false,
   num: "",
   studentName: "",
@@ -33,6 +38,8 @@ const initialState = {
 
 const board = (state = initialState, action) => {
   switch (action.type) {
+    case IMAGE_DELETE_REQUEST:
+    case BOARD_DELETE_REQUEST:
     case BOARD_STATUS_REQUEST:
     case BOARD_DETAIL_REQUEST:
     case BOARD_WRITE_REQUEST:
@@ -41,6 +48,7 @@ const board = (state = initialState, action) => {
         isLoading: true,
         msg: "",
       };
+
     case BOARD_WRITE_SUCCESS:
       return {
         ...state,
@@ -48,12 +56,13 @@ const board = (state = initialState, action) => {
         msg: action.payload.msg,
         num: action.payload.num,
       };
+
     case BOARD_WRITE_FAILURE:
       return {
         ...state,
-        data: [],
         msg: action.payload.data.msg,
       };
+
     case BOARD_DETAIL_SUCCESS:
       return {
         ...state,
@@ -75,6 +84,7 @@ const board = (state = initialState, action) => {
         profilePath: action.payload.board.profilePath,
         images: action.payload.images,
       };
+
     case BOARD_DETAIL_FAILURE:
       return {
         ...state,
@@ -93,6 +103,7 @@ const board = (state = initialState, action) => {
         msg: "",
         images: [],
       };
+
     case BOARD_STATUS_SUCCESS:
       return {
         ...state,
@@ -100,12 +111,29 @@ const board = (state = initialState, action) => {
         msg: action.payload.msg,
         status: action.payload.status,
       };
+
     case BOARD_STATUS_FAILURE:
       return {
         ...state,
         loading: false,
         msg: action.payload.data.msg,
         status: "",
+      };
+
+    case IMAGE_DELETE_SUCCESS:
+    case BOARD_DELETE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        msg: action.payload.msg,
+      };
+
+    case IMAGE_DELETE_FAILURE:
+    case BOARD_DELETE_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        msg: action.payload.data.msg,
       };
 
     default:

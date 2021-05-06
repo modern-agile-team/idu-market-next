@@ -2,16 +2,23 @@ import React, { useState, useEffect } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { BsCalendar, BsTag } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
 import Link from "next/link";
-import { BOARD_STATUS_REQUEST } from "../../redux/types";
+import {
+  BOARD_DELETE_REQUEST,
+  BOARD_STATUS_REQUEST,
+  IMAGE_DELETE_REQUEST,
+} from "../../redux/types";
 
 const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
   const [tradeSentence, setTradeSentence] = useState("판매중");
   const [dropStatus, setDropStatus] = useState(false);
 
   const dispatch = useDispatch();
-  const boards = useSelector((state) => state.boards);
+  const { images } = useSelector((state) => state.board);
   const studentId = useSelector((state) => state.auth.id);
+
+  const router = useRouter();
 
   useEffect(() => {
     if (boardDetail.status === 0) {
@@ -24,25 +31,17 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
   }, [boardDetail]);
 
   const deleteImage = () => {
-    // const imgList = [];
-    // const body = {
-    //   url: [],
-    // };
-    // let data = boardDetail.content;
-    // while (true) {
-    //   const matcher = data.match("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>");
-    //   if (matcher) {
-    //     data = data.replace(matcher[0], "");
-    //   } else break;
-    //   imgList.push(matcher[1]);
-    // }
-    // body.url = [...imgList];
-    // if (body.url.length > 0) {
-    //   dispatch({
-    //     type: IMAGE_DELETE_REQUEST,
-    //     payload: body,
-    //   });
-    // }
+    const body = {
+      url: [],
+    };
+
+    body.url = [...images];
+    if (body.url.length > 0) {
+      dispatch({
+        type: IMAGE_DELETE_REQUEST,
+        payload: body,
+      });
+    }
   };
 
   const onTradeSentenceChange = (e) => {
@@ -89,19 +88,21 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
   const onDelete = (e) => {
     e.preventDefault();
 
-    // const confirm = window.confirm("정말 게시물을 삭제하시겠습니까?");
+    const confirm = window.confirm("정말 게시물을 삭제하시겠습니까?");
 
-    // if (confirm) {
-    //   deleteImage();
+    if (confirm) {
+      deleteImage();
 
-    //   dispatch({
-    //     type: BOARD_DELETE_REQUEST,
-    //     payload: {
-    //       categoryName,
-    //       num,
-    //     },
-    //   });
-    // }
+      dispatch({
+        type: BOARD_DELETE_REQUEST,
+        payload: {
+          categoryName,
+          num,
+        },
+      });
+
+      router.push(`/boards/${categoryName}`);
+    }
   };
 
   return (
