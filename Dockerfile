@@ -25,6 +25,7 @@ COPY ./app/redux ./redux/
 COPY ./app/scss ./scss/
 COPY ./app/styles ./styles/
 COPY ./app/.next.config.js ./
+COPY ./app/.env.production ./
 
 # Next 빌드
 RUN npm run build
