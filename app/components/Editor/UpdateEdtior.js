@@ -7,6 +7,11 @@ import dynamic from "next/dynamic";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { BOARD_UPDATE_REQUEST } from "../../redux/types";
 import { modules, formats } from "./EditorConfig";
+<<<<<<< HEAD
+=======
+import EditorImageUpload from "./EditorImageUpload";
+import EditorPost from "./EditorPost";
+>>>>>>> 54581a248fa8a510bbe5c03886210c417ad57190
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
@@ -137,7 +142,10 @@ const UpdateEditor = () => {
         num,
       };
 
+<<<<<<< HEAD
       console.log(body);
+=======
+>>>>>>> 54581a248fa8a510bbe5c03886210c417ad57190
       //유효성 검사
       if (title === "") {
         alert("타이틀을 적어주세요.");
@@ -177,9 +185,14 @@ const UpdateEditor = () => {
       while (true) {
         let matcher = price.match(",");
 
+<<<<<<< HEAD
         if (matcher) {
           price = price.replace(",", "");
         } else break;
+=======
+        if (matcher) price = price.replace(",", "");
+        else break;
+>>>>>>> 54581a248fa8a510bbe5c03886210c417ad57190
 
         body = {
           ...body,
@@ -187,7 +200,10 @@ const UpdateEditor = () => {
         };
       }
 
+<<<<<<< HEAD
       console.log(body);
+=======
+>>>>>>> 54581a248fa8a510bbe5c03886210c417ad57190
       //유효성 검사
       if (title === "") {
         alert("타이틀을 적어주세요.");
@@ -265,6 +281,7 @@ const UpdateEditor = () => {
             />
           </div>
 
+<<<<<<< HEAD
           <div className="image-upload-box">
             <label htmlFor="image-upload" className="image-upload-label">
               <input
@@ -310,6 +327,21 @@ const UpdateEditor = () => {
           <a className="post-cancel-btn">Cancel</a>
         </Link>
       </div>
+=======
+          <EditorImageUpload
+            handleImageUpload={handleImageUpload}
+            handleDelete={handleDelete}
+            uploadImages={uploadImages}
+          />
+        </>
+      )}
+
+      <EditorPost
+        onSubmit={onSubmit}
+        onMouseDown={onMouseDown}
+        categoryName={categoryName}
+      />
+>>>>>>> 54581a248fa8a510bbe5c03886210c417ad57190
     </form>
   );
 };
