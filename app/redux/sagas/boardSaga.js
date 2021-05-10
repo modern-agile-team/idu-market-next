@@ -192,6 +192,32 @@ function* boardUpdate(action) {
   }
 }
 
+//Board Hit
+function boardHitAPI(payload) {
+  const categoryName = payload.categoryName;
+  const num = payload.num;
+
+  return axios.patch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}`
+  );
+}
+
+function* boardHit(action) {
+  try {
+    const result = yield call(boardHitAPI, action.payload);
+
+    yield put({
+      type: BOARD_HIT_SUCCESS,
+      payload: result.data,
+    });
+  } catch (e) {
+    yield put({
+      type: BOARD_HIT_FAILURE,
+      payload: e.response,
+    });
+  }
+}
+
 function* watchBoardWrite() {
   yield takeEvery(BOARD_WRITE_REQUEST, boardWrite);
 }
@@ -216,6 +242,10 @@ function* watchBoardUpdate() {
   yield takeEvery(BOARD_UPDATE_REQUEST, boardUpdate);
 }
 
+function* watchBoardHit() {
+  yield takeEvery(BOARD_HIT_REQUEST, boardHit);
+}
+
 //boardSaga() 여러 Saga 통합
 export default function* boardSaga() {
   yield all([
@@ -225,5 +255,6 @@ export default function* boardSaga() {
     fork(watchBoardDelete),
     fork(watchImageDelete),
     fork(watchBoardUpdate),
+    fork(watchBoardHit),
   ]);
 }
