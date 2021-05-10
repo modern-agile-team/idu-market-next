@@ -1,7 +1,6 @@
 .form-template {
     width: 100%;
-    height: 1000px;
-    padding-top: 63px;
+    padding: 150px 0 100px 0;
 
     .container {
         width: 100%;
@@ -190,9 +189,7 @@
 /* 0 ~ 670 : 테블릿  */
 @media screen and (max-width: 670px){ 
     .form-template {
-        width: 100%;
-        height: 800px;
-        padding-top: 120px;
+        padding: 120px 0 80px 0;
     }
     .form-field {
     width: 350px;
@@ -255,10 +252,6 @@
 
 /* 0 ~ 360 : 모바일  */
 @media screen and (max-width: 360px){ 
-    // .form-template {
-    //     height: 625px;
-    // }
-
     .form-field {
         width: 280px;
         padding: 0 22px;
