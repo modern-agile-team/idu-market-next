@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
@@ -6,7 +6,8 @@ import Link from "next/link";
 import { BOARD_WRITE_REQUEST } from "../../redux/types";
 import axios from "axios";
 import { modules, formats } from "./EditorConfig";
-import { RiDeleteBin6Line } from "react-icons/ri";
+import EditorImageUpload from "./EditorImageUpload";
+import EditorPost from "./EditorPost";
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
@@ -31,6 +32,18 @@ const Editor = () => {
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (id.length === 0) {
+      alert("로그인한 유저만 접근할 수 있습니다.");
+      router.back();
+    } else {
+      if (categoryName === "notice" && isAdmin !== 1) {
+        alert("관리자만 접근할 수 있는 페이지 입니다.");
+        router.back();
+      }
+    }
+  }, []);
+
   const onChange = (e) => {
     setFormValues({
       ...formValues,
@@ -46,7 +59,6 @@ const Editor = () => {
   };
 
   const handleDelete = (index) => {
-    console.log(index);
     setUploadImages(uploadImages.filter((_, i) => i !== index));
   };
 
@@ -228,51 +240,19 @@ const Editor = () => {
             />
           </div>
 
-          <div className="image-upload-box">
-            <label htmlFor="image-upload" className="image-upload-label">
-              <input
-                id="image-upload"
-                type="file"
-                multiple
-                accept="image/jpg,image/png,image/jpeg,image/gif"
-                onChange={handleImageUpload}
-                style={{ display: "none" }}
-              />
-              이미지 업로드 CLICK
-            </label>
-
-            <div className="image-preview-box">
-              {uploadImages &&
-                uploadImages.map((el, index) => {
-                  return (
-                    <div key={index} className="image-preview">
-                      <img src={`${el}`} alt="미리보기" />
-                      <div
-                        className="delete-image-btn"
-                        onClick={() => handleDelete(index)}
-                      >
-                        <RiDeleteBin6Line />
-                      </div>
-                    </div>
-                  );
-                })}
-            </div>
-          </div>
+          <EditorImageUpload
+            handleImageUpload={handleImageUpload}
+            handleDelete={handleDelete}
+            uploadImages={uploadImages}
+          />
         </>
       )}
 
-      <div className="post-btn-box">
-        <button
-          className="post-write-btn"
-          onClick={onSubmit}
-          onMouseDown={onMouseDown}
-        >
-          Upload
-        </button>
-        <Link href={`/boards/${categoryName}`}>
-          <a className="post-cancel-btn">Cancel</a>
-        </Link>
-      </div>
+      <EditorPost
+        onSubmit={onSubmit}
+        onMouseDown={onMouseDown}
+        categoryName={categoryName}
+      />
     </form>
   );
 };
