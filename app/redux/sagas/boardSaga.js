@@ -206,6 +206,8 @@ function* boardHit(action) {
   try {
     const result = yield call(boardHitAPI, action.payload);
 
+    console.log(result);
+
     yield put({
       type: BOARD_HIT_SUCCESS,
       payload: result.data,

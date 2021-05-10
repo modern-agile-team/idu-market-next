@@ -23,6 +23,8 @@ function* tradeCommentGet(action) {
   try {
     const result = yield call(tradeCommentGetAPI, action.payload);
 
+    console.log(result);
+
     yield put({
       type: TRADE_COMMENT_GET_SUCCESS,
       payload: result.data,
