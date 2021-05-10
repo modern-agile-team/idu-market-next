@@ -17,6 +17,9 @@ import {
   BOARD_UPDATE_REQUEST,
   BOARD_UPDATE_SUCCESS,
   BOARD_UPDATE_FAILURE,
+  BOARD_HIT_REQUEST,
+  BOARD_HIT_SUCCESS,
+  BOARD_HIT_FAILURE,
 } from "../types";
 
 const initialState = {
@@ -41,6 +44,7 @@ const initialState = {
 
 const board = (state = initialState, action) => {
   switch (action.type) {
+    case BOARD_HIT_REQUEST:
     case BOARD_UPDATE_REQUEST:
     case IMAGE_DELETE_REQUEST:
     case BOARD_DELETE_REQUEST:
@@ -133,6 +137,7 @@ const board = (state = initialState, action) => {
         msg: action.payload.msg,
       };
 
+    case BOARD_HIT_FAILURE:
     case BOARD_UPDATE_FAILURE:
     case IMAGE_DELETE_FAILURE:
     case BOARD_DELETE_FAILURE:
@@ -140,6 +145,14 @@ const board = (state = initialState, action) => {
         ...state,
         loading: false,
         msg: action.payload.data.msg,
+      };
+
+    case BOARD_HIT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        msg: action.payload.msg,
+        hit: action.payload.hit,
       };
 
     default:
