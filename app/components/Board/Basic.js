@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import ReactPaginate from "react-paginate";
 import axios from "axios";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import BoardListItem from "./BoardListItem";
 
 const Basic = ({ categoryName }) => {

@@ -25,7 +25,6 @@ const Comment = ({ comments, categoryName, num }) => {
 
     const { content } = formValue;
 
-    console.log(content);
     const body = {
       content: content.replace(/(?:\r\n|\r|\n)/g, " <br /> "),
       studentId: userId,

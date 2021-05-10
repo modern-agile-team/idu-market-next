@@ -53,12 +53,12 @@ const Header = () => {
           {auth.jwt ? (
             <>
               <Link href={`/students/${auth.id}`} className="profile-icon-btn">
-                <a
+                <img
+                  src={auth.profilePath}
+                  alt="프로필 이미지"
                   className="profile-icon-box"
                   onClick={() => setSidebar(!sidebar)}
-                >
-                  <img src={auth.profilePath} alt="프로필 이미지" />
-                </a>
+                />
               </Link>
 
               <Link href="/login">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
@@ -31,6 +31,18 @@ const Editor = () => {
   const [uploadImages, setUploadImages] = useState([]);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (id.length === 0) {
+      alert("로그인한 유저만 접근할 수 있습니다.");
+      router.back();
+    } else {
+      if (categoryName === "notice" && isAdmin !== 1) {
+        alert("관리자만 접근할 수 있는 페이지 입니다.");
+        router.back();
+      }
+    }
+  }, []);
 
   const onChange = (e) => {
     setFormValues({
