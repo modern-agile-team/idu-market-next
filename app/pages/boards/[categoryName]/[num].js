@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import {
   BOARD_DETAIL_REQUEST,
+  BOARD_HIT_REQUEST,
   COMMENT_GET_REQUEST,
 } from "../../../redux/types";
 import BoardBanner from "../../../components/Board/BoardBanner";
@@ -40,6 +41,13 @@ const BoardDetail = () => {
         },
       });
     } else {
+      dispatch({
+        type: BOARD_HIT_REQUEST,
+        payload: {
+          categoryName,
+          num,
+        },
+      });
       dispatch({
         type: BOARD_DETAIL_REQUEST,
         payload: {
