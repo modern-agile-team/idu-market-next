@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { HeaderMenuData } from "../../Data/HeaderMenuData";
 import DropMenu from "./DropMenu";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +11,6 @@ import { LOGOUT_REQUEST } from "../../redux/types";
 const Header = () => {
   const [sidebar, setSidebar] = useState(false);
 
-  const router = useRouter();
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
 
@@ -55,14 +53,12 @@ const Header = () => {
           {auth.jwt ? (
             <>
               <Link href={`/students/${auth.id}`} className="profile-icon-btn">
-                {/* <a className="profile-icon-btn"> */}
-                <div
+                <a
                   className="profile-icon-box"
                   onClick={() => setSidebar(!sidebar)}
                 >
                   <img src={auth.profilePath} alt="프로필 이미지" />
-                </div>
-                {/* </a> */}
+                </a>
               </Link>
 
               <Link href="/login">

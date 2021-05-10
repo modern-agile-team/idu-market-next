@@ -1,22 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { BOARD_WRITE_REQUEST } from "../../redux/types";
 import axios from "axios";
-import { modules, formats } from "./EditorConfig";
+import dynamic from "next/dynamic";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { BOARD_UPDATE_REQUEST } from "../../redux/types";
+import { modules, formats } from "./EditorConfig";
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
   loading: () => <p>Loading ...</p>,
 });
 
-const Editor = () => {
+const UpdateEditor = () => {
   const router = useRouter();
-  const { categoryName } = router.query;
+  const { categoryName, num } = router.query;
   const { id, isAdmin } = useSelector((state) => state.auth);
+  const board = useSelector((state) => state.board);
 
   const [formValues, setFormValues] = useState({
     studentId: id,
@@ -25,11 +26,26 @@ const Editor = () => {
     images: [],
     thumbnail: "",
     price: "",
-    categoryName: categoryName,
+    categoryName,
+    num,
   });
   const [uploadImages, setUploadImages] = useState([]);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setFormValues({
+      studentId: id,
+      title: board.title,
+      content: board.content,
+      thumbnail: board.thumbnail,
+      price: board.price,
+      images: board.images,
+      categoryName,
+      num,
+    });
+    setUploadImages(board.images);
+  }, []);
 
   const onChange = (e) => {
     setFormValues({
@@ -46,7 +62,6 @@ const Editor = () => {
   };
 
   const handleDelete = (index) => {
-    console.log(index);
     setUploadImages(uploadImages.filter((_, i) => i !== index));
   };
 
@@ -74,7 +89,6 @@ const Editor = () => {
         .post(`${process.env.NEXT_PUBLIC_API_URL}/api/image`, formData)
         .then((response) => {
           if (response.data.success) {
-            console.log(response.data);
             setUploadImages(uploadImages.concat(response.data.images));
           }
         })
@@ -101,7 +115,7 @@ const Editor = () => {
       }
       setFormValues({
         ...formValues,
-        images: images,
+        images,
         thumbnail: images[0],
       });
     }
@@ -110,17 +124,20 @@ const Editor = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    console.log(formValues);
     if (categoryName === "free" || categoryName === "notice") {
-      const { studentId, title, content, categoryName } = formValues;
+      const { studentId, title, content, categoryName, num } = formValues;
 
       const body = {
         studentId,
         title,
         content,
+        price: "",
         categoryName,
+        images: [],
+        num,
       };
 
+      console.log(body);
       //유효성 검사
       if (title === "") {
         alert("타이틀을 적어주세요.");
@@ -128,14 +145,14 @@ const Editor = () => {
         alert("빈 본문입니다.");
       } else {
         dispatch({
-          type: BOARD_WRITE_REQUEST,
+          type: BOARD_UPDATE_REQUEST,
           payload: body,
         });
-        alert("게시글 업로드에 성공하셨습니다.");
-        router.push(`/boards/${categoryName}`);
+        alert("게시글 업데이트에 성공하셨습니다.");
+        router.push(`/boards/${categoryName}/${num}`);
       }
     } else {
-      const {
+      let {
         studentId,
         title,
         content,
@@ -143,9 +160,10 @@ const Editor = () => {
         price,
         categoryName,
         images,
+        num,
       } = formValues;
 
-      const body = {
+      let body = {
         studentId,
         title,
         content,
@@ -153,8 +171,23 @@ const Editor = () => {
         price,
         categoryName,
         images,
+        num,
       };
 
+      while (true) {
+        let matcher = price.match(",");
+
+        if (matcher) {
+          price = price.replace(",", "");
+        } else break;
+
+        body = {
+          ...body,
+          price: price,
+        };
+      }
+
+      console.log(body);
       //유효성 검사
       if (title === "") {
         alert("타이틀을 적어주세요.");
@@ -170,11 +203,11 @@ const Editor = () => {
         alert("1개 이상의 이미지 업로드를 해주시기 바랍니다.");
       } else {
         dispatch({
-          type: BOARD_WRITE_REQUEST,
+          type: BOARD_UPDATE_REQUEST,
           payload: body,
         });
-        alert("게시글 업로드에 성공하셨습니다.");
-        router.push(`/boards/${categoryName}`);
+        alert("게시글 업데이트에 성공하셨습니다.");
+        router.push(`/boards/${categoryName}/${num}`);
       }
     }
   };
@@ -189,6 +222,7 @@ const Editor = () => {
           className="write-title"
           onChange={onChange}
           placeholder="Title"
+          defaultValue={board.title}
         />
         <span className="post-write-border"></span>
       </div>
@@ -201,6 +235,7 @@ const Editor = () => {
               modules={modules}
               formats={formats}
               onChange={handleEditor}
+              setContents={board.content}
             />
           </div>
         </>
@@ -214,6 +249,7 @@ const Editor = () => {
               className="write-price"
               onChange={onChange}
               placeholder="Price"
+              defaultValue={board.price}
             />
             <span className="post-write-border"></span>
             <span className="price-won">원 (숫자만 입력)</span>
@@ -225,6 +261,7 @@ const Editor = () => {
               modules={modules}
               formats={formats}
               onChange={handleEditor}
+              defaultValue={board.content}
             />
           </div>
 
@@ -277,4 +314,4 @@ const Editor = () => {
   );
 };
 
-export default Editor;
+export default UpdateEditor;
