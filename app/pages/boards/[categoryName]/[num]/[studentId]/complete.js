@@ -53,7 +53,12 @@ const complete = () => {
       <BoardBanner title="Market" desc="complete" />
       <section className="trade-complete" id="trade-complete">
         <div className="container">
-          <TradeComplete buyers={buyers} nickname={nickname} />
+          <TradeComplete
+            buyers={buyers}
+            nickname={nickname}
+            categoryName={categoryName}
+            num={num}
+          />
         </div>
       </section>
     </>

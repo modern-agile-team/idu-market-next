@@ -20,6 +20,11 @@
     font-size: 1.8rem;
     border-bottom: 2px solid $bg-color-2;
     padding-bottom: 20px;
+
+    p {
+        font-family: $Jua-font;
+        font-size: 1.2rem;
+    }
 }
 
 .trade-buyer-box {
