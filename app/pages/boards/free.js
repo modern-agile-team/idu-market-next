@@ -10,7 +10,7 @@ const Free = () => {
       <Head>
         <title>IUAM | 자유 게시판</title>
       </Head>
-      <BoardBanner title="Boards" desc="freeboard" />
+      <BoardBanner title="Boards" desc="free" />
       <section id="boardlist-common" className="boardlist-common">
         <BoardListTop categoryName="free" />
         <div className="container">
