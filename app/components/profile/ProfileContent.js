@@ -63,6 +63,62 @@ const ProfileContent = ({ authId, studentId, profileDetail }) => {
           </div>
         </>
       ) : (
+        <div className="profile-information-box">
+          <p className="profile-information">
+            <span>
+              <FaUserAlt />
+            </span>
+            {profileDetail.nickname}
+          </p>
+          <p className="profile-information">
+            <span>
+              <MdEmail />
+            </span>
+            {profileDetail.email}
+          </p>
+          <p className="profile-information">
+            <span>
+              <FaGraduationCap />
+            </span>
+            {profileDetail.major}
+          </p>
+        </div>
+      )}
+
+      {openBtnBox ? (
+        <div className="profile-btn-box">
+          <p>
+            <Link href={`/watchlist/${studentId}`}>
+              <a>
+                <span>
+                  <IoIosHeart />
+                </span>
+                관심목록
+              </a>
+            </Link>
+          </p>
+          <p>
+            <Link href={`/sale-list/${studentId}`}>
+              <a>
+                <span>
+                  <IoIosListBox />
+                </span>
+                판매목록
+              </a>
+            </Link>
+          </p>
+          <p>
+            <Link href={`/purchase-list/${studentId}`}>
+              <a>
+                <span>
+                  <IoIosListBox />
+                </span>
+                구매목록
+              </a>
+            </Link>
+          </p>
+        </div>
+      ) : (
         <></>
       )}
     </>
