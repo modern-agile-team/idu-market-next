@@ -1,6 +1,6 @@
 .profile {
     width: 100%;
-    padding: 150px 0;
+    padding: 120px 0 200px 0;
     margin: 0 auto;
 
     .container {
@@ -13,15 +13,6 @@
         align-items: center;
         flex-direction: column;
     }
-}
-
-.profile-box {
-    padding: 30px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 12px;
 }
 
 .profile-img-box {
@@ -77,12 +68,13 @@
 
     .profile-information {
         font-family: $Jua-font;
-        font-size: 1.2rem;
-        margin: 20px 0;
-        padding-bottom: 7px;
         display: flex;
         justify-content: flex-start;
         align-items: center;
+        font-size: 1.2rem;
+        margin: 20px 0;
+        padding-bottom: 7px;
+
         &:nth-child(4) {
             margin-bottom: 10px;
         }
@@ -113,6 +105,7 @@
         border: 2px solid #222;
         margin-bottom: 10px;
         background-color: #fdfdfd;
+
         &:hover {
             color: $main-color-5;
             border-color: $main-color-5;
@@ -127,14 +120,13 @@
     margin-top: 20px;
     padding: 20px 30px;
     display: flex;
-    bottom: 90px;
+    bottom: -120px;
     animation: btn-slide-down 1s;
     
     p {
         font-size: 2.5rem;
         margin: 0 20px;
         display: flex;
-
         cursor: pointer;
 
         &:hover {
@@ -161,6 +153,7 @@
         &:last-child {
             margin-right: 0;
         }
+
         &:first-child {
             margin-left: 0;
         }
@@ -169,19 +162,19 @@
 
 .profile-img-modal {
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 800px;
     padding: 80px 0 50px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    z-index: 20;
     background-color: #fdfdfd;
     border: 2px solid $main-color-5;
     border-radius: 18px;
+    z-index: 20;
 
     .img-select-box {
         width: 200px;
@@ -246,8 +239,9 @@
 
 @media screen and (max-width: 670px){ 
     .profile {
-        padding: 120px 0;
+        padding: 100px 0 150px 0;
     }
+
     .profile-img-modal {
         width: 400px;
         top: 100%;
@@ -260,6 +254,7 @@
             .img-modal-title {
                 font-size: 1.5rem;
                 padding-left: 25px;
+
                 span {
                     font-size: 0.7rem;
                     margin-left: 10px;
@@ -275,12 +270,13 @@
 
 @media screen and (max-width: 480px){ 
     .profile {
-        height: 700px;
+        padding: 80px 0 120px 0;
     }
 
     .profile-img-box {
         width: 150px;
         height: 150px;
+
         .profile-img-update {
             right: 5px;
             bottom: 15px;
@@ -302,13 +298,14 @@
             font-size: 1.2rem;
         }
         .profile-update-btn {
+            
             font-size: 1rem;
         }
     }
 
     .profile-btn-box {
         padding: 10px 20px;
-        bottom: 40px;
+        bottom: -100px;
 
         p {
             font-size: 2rem;
