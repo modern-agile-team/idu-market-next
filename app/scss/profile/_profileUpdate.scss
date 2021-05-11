@@ -1,0 +1,74 @@
+.profile-update {
+    width: 100%;
+    height: 550px;
+    margin: 0 auto;
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+.profile-update-title{
+    font-size: 1.6rem;
+    text-align: center;
+    font-family: $Jua-font;
+    margin-top: -10px;
+    padding-bottom: 20px;
+}
+.update-profile {
+    font-family: $Montserrat-font;
+    width: 180px;
+    height: 30px;
+    padding: 0 5px;
+    outline: none;
+    border: 1px solid #222;
+    &:focus {
+        border: 1px solid $main-color-5;
+    }
+}
+.update-major {
+    height: 30px;
+    -moz-appearance: none;
+    padding: 3px;
+    position: relative;
+    display: block;
+    width: 180px;
+    font-family: $Montserrat-font;
+    // font-size: 1rem;
+    color:#222;
+    outline: 0;
+    cursor: pointer;
+    &:focus {
+        border: 1px solid $main-color-5;
+    }   
+}
+.update-btn {
+    font-family: $Jua-font;
+    float:right;
+    left: 50%;
+    bottom: 10px;
+    background: transparent;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 2px solid #222;
+    border-radius: 5px;
+    padding: 3px 7px;
+    background-color: #fff;
+    margin-top: 5px;
+    outline: none;
+
+    &:hover {
+        color: $main-color-5;
+        border: 2px solid $main-color-5;
+    }
+}
+.update-errmsg {
+    width: 200px;
+    color:red;
+    font-size: 0.8rem;
+    text-align: center;
+    margin-bottom: 15px;
+    margin-left: 12px;
+}
