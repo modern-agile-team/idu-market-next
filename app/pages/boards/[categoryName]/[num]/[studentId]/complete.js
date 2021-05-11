@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import { TRADE_COMMENT_GET_REQUEST } from "../../../../../redux/types";
-import TradeComplete from "../../../../../components/trade/tradeComplete";
+import TradeComplete from "../../../../../components/Trade/tradeComplete";
 import BoardBanner from "../../../../../components/Board/BoardBanner";
 
 const complete = () => {
