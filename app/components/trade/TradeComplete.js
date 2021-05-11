@@ -49,7 +49,7 @@ const TradeComplete = ({ buyers, nickname, categoryName, num }) => {
 
             return count;
           })()})`}{" "}
-          <p>(구매 확정을 지을 인원을 선택해주세요.)</p>
+          <p>(구매 확정 지을 인원을 선택해주세요.)</p>
         </h1>
       ) : (
         <></>
