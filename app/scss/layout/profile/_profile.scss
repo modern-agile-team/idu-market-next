@@ -1,8 +1,7 @@
 .profile {
     width: 100%;
-    height: 850px;
+    padding: 150px 0;
     margin: 0 auto;
-    padding-top: 50px;
 
     .container {
         position: relative;
@@ -71,7 +70,7 @@
 .profile-information-box {
     position: relative;
     margin-top: 30px;
-    padding: 30px 30px 15px 30px;
+    padding: 20px 30px 30px 30px;
     background-color: $bg-color-2;
     border-radius: 12px;
     z-index: 10;
@@ -84,7 +83,9 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        
+        &:nth-child(4) {
+            margin-bottom: 10px;
+        }
     }
     span {
         margin-right: 20px;
@@ -108,14 +109,13 @@
         justify-content: center;
         align-items: center;
         font-family: $Jua-font;
-        position: absolute;
-        right: 15px;
-        top: 15px;
-        font-size: 1.4rem;
-        width: 25px;
-        height: 25px;
+        font-size: 1.2rem;
+        border: 2px solid #222;
+        margin-bottom: 10px;
+        background-color: #fdfdfd;
         &:hover {
             color: $main-color-5;
+            border-color: $main-color-5;
         }
     }
 }
@@ -169,20 +169,19 @@
 
 .profile-img-modal {
     position: absolute;
-    top: 40%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 800px;
-    height: 580px;
+    padding: 80px 0 50px 0;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    z-index: 10;
+    z-index: 20;
     background-color: #fdfdfd;
     border: 2px solid $main-color-5;
     border-radius: 18px;
-    padding-top: 80px;
 
     .img-select-box {
         width: 200px;
@@ -238,7 +237,6 @@
 @media screen and (max-width: 960px){ 
     .profile-img-modal { 
         width: 500px;
-        height: 600px;
 
         .img-select-box {
             width: 150px;
@@ -247,8 +245,17 @@
 }
 
 @media screen and (max-width: 670px){ 
+    .profile {
+        padding: 120px 0;
+    }
     .profile-img-modal {
-        top: 48%;
+        width: 400px;
+        top: 100%;
+
+        .img-select-box {
+            width: 130px;
+        }
+
         .img-modal-top {
             .img-modal-title {
                 font-size: 1.5rem;
@@ -263,21 +270,12 @@
             }
         }
     }
-    .profile-img-modal { 
-        width: 400px;
-        height: 600px;
-
-        .img-select-box {
-            width: 130px;
-        }
-    }
 }
 
 
 @media screen and (max-width: 480px){ 
     .profile {
         height: 700px;
-        padding-top: 70px;
     }
 
     .profile-img-box {
@@ -290,7 +288,7 @@
     }
 
     .profile-information-box {
-        padding: 20px 20px 10px 20px;
+        padding: 20px 20px 20px 20px;
 
         .profile-information {
             font-size: 1rem;
@@ -304,7 +302,7 @@
             font-size: 1.2rem;
         }
         .profile-update-btn {
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
     }
 
@@ -323,8 +321,6 @@
 
     .profile-img-modal { 
         width: 300px;
-        height: 600px;
-        top: 48%;
 
         .img-select-box {
             width: 110px;
@@ -336,8 +332,6 @@
 @media screen and (max-width: 360px){ 
     .profile-img-modal { 
         width: 250px;
-        height: 500px;
-        top: 48%;
 
         .img-select-box {
             width: 90px;

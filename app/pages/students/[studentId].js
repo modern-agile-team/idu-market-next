@@ -5,12 +5,15 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import { PROFILE_GET_REQUEST } from "../../redux/types";
 import ProfileImage from "../../components/profile/ProfileImage";
+import ProfileContent from "../../components/profile/ProfileContent";
 
 const Profile = () => {
   const router = useRouter();
   const { studentId } = router.query;
+
   const dispatch = useDispatch();
   const profileDetail = useSelector((state) => state.profile.profile);
+  const { id } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch({
@@ -28,7 +31,17 @@ const Profile = () => {
       <section className="profile" id="profile">
         <div className="container">
           {profileDetail ? (
-            <ProfileImage profileDetail={profileDetail} studentId={studentId} />
+            <>
+              <ProfileImage
+                profileDetail={profileDetail}
+                studentId={studentId}
+              />
+              <ProfileContent
+                profileDetail={profileDetail}
+                authId={id}
+                studentId={studentId}
+              />
+            </>
           ) : (
             <></>
           )}

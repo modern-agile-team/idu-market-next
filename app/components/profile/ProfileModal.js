@@ -1,5 +1,5 @@
 import React from "react";
-import { MdEmail, MdCancel } from "react-icons/md";
+import { MdCancel } from "react-icons/md";
 
 const ProfileModal = ({ onSelectImage, onModalCancel }) => {
   return (
