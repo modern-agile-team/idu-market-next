@@ -47,6 +47,7 @@ function tradeCompleteAPI(payload) {
     nickname,
   };
 
+  console.log(body);
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/api/purchase-list`,
     body
@@ -57,6 +58,7 @@ function* tradeComplete(action) {
   try {
     const result = yield call(tradeCompleteAPI, action.payload);
 
+    console.log(result);
     yield put({
       type: TRADE_COMPLETE_SUCCESS,
       payload: result.data,

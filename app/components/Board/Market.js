@@ -11,7 +11,6 @@ const Market = ({ categoryName }) => {
   let lastNum = 0;
 
   const getMoreData = async () => {
-    console.log(categoryName);
     isLoading = true;
     await axios
       .get(
