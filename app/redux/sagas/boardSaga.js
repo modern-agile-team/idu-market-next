@@ -22,6 +22,12 @@ import {
   BOARD_HIT_REQUEST,
   BOARD_HIT_SUCCESS,
   BOARD_HIT_FAILURE,
+  WATCHLIST_ADD_REQUEST,
+  WATCHLIST_ADD_SUCCESS,
+  WATCHLIST_ADD_FAILURE,
+  WATCHLIST_DELETE_REQUEST,
+  WATCHLIST_DELETE_SUCCESS,
+  WATCHLIST_DELETE_FAILURE,
 } from "../types";
 
 //Board Detial
@@ -220,6 +226,61 @@ function* boardHit(action) {
   }
 }
 
+//Board watchlist Add
+function WatchlistAddAPI(action) {
+  const studentId = action.studentId;
+
+  const body = {
+    boardNum: action.boardNum,
+    categoryName: action.categoryName,
+  };
+
+  return axios.post(`/api/watchlist/${studentId}`, body);
+}
+
+function* WatchlistAdd(action) {
+  try {
+    const result = yield call(WatchlistAddAPI, action.payload);
+
+    yield put({
+      type: WATCHLIST_ADD_SUCCESS,
+      payload: result.data,
+    });
+  } catch (e) {
+    yield put({
+      type: WATCHLIST_ADD_FAILURE,
+      payload: e.response,
+    });
+  }
+}
+
+//Board Delete
+function WatchlistDeleteAPI(action) {
+  const studentId = action.studentId;
+
+  return axios.delete(`/api/watchlist/${studentId}`, {
+    data: {
+      boardNum: action.boardNum,
+    },
+  });
+}
+
+function* WatchlistDelete(action) {
+  try {
+    const result = yield call(WatchlistDeleteAPI, action.payload);
+
+    yield put({
+      type: WATCHLIST_DELETE_SUCCESS,
+      payload: result.data,
+    });
+  } catch (e) {
+    yield put({
+      type: WATCHLIST_DELETE_FAILURE,
+      payload: e.response,
+    });
+  }
+}
+
 function* watchBoardWrite() {
   yield takeEvery(BOARD_WRITE_REQUEST, boardWrite);
 }
@@ -248,6 +309,14 @@ function* watchBoardHit() {
   yield takeEvery(BOARD_HIT_REQUEST, boardHit);
 }
 
+function* watchWatchlistAdd() {
+  yield takeEvery(WATCHLIST_ADD_REQUEST, WatchlistAdd);
+}
+
+function* watchWatchlistDelete() {
+  yield takeEvery(WATCHLIST_DELETE_REQUEST, WatchlistDelete);
+}
+
 //boardSaga() 여러 Saga 통합
 export default function* boardSaga() {
   yield all([
@@ -258,5 +327,7 @@ export default function* boardSaga() {
     fork(watchImageDelete),
     fork(watchBoardUpdate),
     fork(watchBoardHit),
+    fork(watchWatchlistAdd),
+    fork(watchWatchlistDelete),
   ]);
 }
