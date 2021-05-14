@@ -1,11 +1,9 @@
 .market {
   position: relative;
   width: 80%;
-  height: 100%;
   min-height: 340px;
   margin: 0 auto;
-  margin-top: 100px;
-  margin-bottom: 30px;
+  padding: 100px 0 30px 0;
   
   .container {
       display: flex;
@@ -120,7 +118,7 @@
   position: absolute;
   font-family: $Fredoka-font;
   left: 65px;
-  top: -70px;
+  top: 50px;
   outline: none;
   background-color: #fdfdfd;
   cursor: pointer;
@@ -149,7 +147,7 @@
 
 .market-search {
   position: absolute;
-  top: -50px;
+  top: 70px;
   right: 45px;
 
   .market-search-input {
@@ -292,6 +290,12 @@
     margin-right: 5px;
 }
 
+.empty-list-desc {
+    margin: 0 auto;
+    font-family: $Jua-font;
+    font-size: 1.2rem;
+}
+
 @media screen and (max-width: 1300px) { 
   .market-items { 
       width: 27%;
@@ -337,7 +341,7 @@
   .upload-btn {
       width: 50px;
       height: 50px;
-      top: -50px;
+      top: 70px;
 
       .upload-btn-icon {
           font-size: 2rem;
@@ -485,7 +489,6 @@
   }
 
   .upload-btn {
-      top: -50px;
       left: 20px;
       width: 40px;
       height: 40px;
@@ -562,10 +565,10 @@
   }
   
   .upload-btn {
-      top: -45px;
       left: 10px;
       width: 35px;
       height: 35px;
+      top: 75px;
 
       .upload-btn-icon {
           font-size: 1.2rem;

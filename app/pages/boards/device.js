@@ -21,7 +21,9 @@ const Device = () => {
           <AiOutlineArrowUp />
         </button>
         <BoardListTop categoryName="device" />
-        <Market categoryName="device" />
+        <div className="container">
+          <Market categoryName="device" />
+        </div>
       </section>
     </>
   );
