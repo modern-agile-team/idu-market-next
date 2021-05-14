@@ -180,6 +180,9 @@
       outline: none;
       cursor: pointer;
       z-index: 50;
+      &:hover {
+          color: $main-color-5;
+      }
   }
 }
 
