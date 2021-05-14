@@ -58,9 +58,7 @@ const Market = ({ categoryName }) => {
   }, [categoryName]);
 
   return (
-    <div className="container">
-      <MarketListItem productList={productList} categoryName={categoryName} />
-    </div>
+    <MarketListItem productList={productList} categoryName={categoryName} />
   );
 };
 

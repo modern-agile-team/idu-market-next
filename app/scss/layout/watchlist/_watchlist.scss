@@ -1,0 +1,89 @@
+.watchlist-add-box {
+    position: absolute;
+    top: 80px;
+    right: 80px;
+    padding: 8px 20px;
+    background-color: #efefef;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgb(255, 93, 93);
+
+        .watchlist-btn-add {
+            color: rgb(173, 5, 5);
+        }
+    }
+    
+    .watchlist-btn-add {
+        font-size: 1.2rem;
+        color: #999;
+    }
+}
+
+.watchlist-delete-box {
+    position: absolute;
+    top: 80px;
+    right: 80px;
+    padding: 8px 20px;
+    background-color: rgb(255, 93, 93);
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    
+    .watchlist-btn-delete {
+        font-size: 1.2rem;
+        color: rgb(173, 5, 5);
+    }
+}
+
+.watchlist-title {
+    text-align: center;
+    font-size: 1.8rem;
+    font-family: $Jua-font;
+    border-bottom: 2px solid $bg-color-2;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profile-move-btn {
+    position: absolute;
+    top: -50px;
+    font-size: 1rem;
+    padding: 3px 15px;
+    font-family: $Jua-font;
+    border: 2px solid $main-color-4;
+    border-radius: 8px;
+    margin-bottom: 20px; 
+
+    &:hover {
+        background: $main-color-1;
+    }
+}
+
+@media screen and (max-width: 767px){ 
+    .watchlist-add-box {
+        top: 90px;
+        padding: 5px 18px;
+    }
+}
+
+@media screen and (max-width: 480px){
+    .watchlist-title {
+        font-size: 1.4rem;
+        padding-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 360px){
+    .profile-move-btn {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

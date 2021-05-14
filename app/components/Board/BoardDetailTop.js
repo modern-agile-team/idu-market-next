@@ -9,14 +9,17 @@ import {
   BOARD_STATUS_REQUEST,
   IMAGE_DELETE_REQUEST,
 } from "../../redux/types";
+import WatchlistAddDelete from "../Watchlist/WatchlistAddDelete";
 
 const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
   const [tradeSentence, setTradeSentence] = useState("판매중");
   const [dropStatus, setDropStatus] = useState(false);
 
   const dispatch = useDispatch();
-  const { images } = useSelector((state) => state.board);
-  const studentId = useSelector((state) => state.auth.id);
+  const { images, isWatchList, studentId } = useSelector(
+    (state) => state.board
+  );
+  const { id } = useSelector((state) => state.auth);
 
   const router = useRouter();
 
@@ -116,7 +119,7 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
       )}
 
       <div className="detail-btn-box">
-        {boardDetail.studentId === studentId ? (
+        {boardDetail.studentId === id ? (
           <>
             <Link href={`/boards/${categoryName}/${num}/update`}>
               <a className="detail-btn-edit">수정</a>
@@ -127,9 +130,9 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
             <Link
               href={(function () {
                 if (categoryName === "purchase-list")
-                  return `/purchase-list/${studentId}`;
+                  return `/purchase-list/${boardDetail.studentId}`;
                 else if (categoryName === "sale-list")
-                  return `/sale-list/${studentId}`;
+                  return `/sale-list/${boardDetail.studentId}`;
                 else return `/boards/${categoryName}`;
               })()}
             >
@@ -141,7 +144,7 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
             <Link
               href={(function () {
                 if (categoryName === "watchlist")
-                  return `/watchlist/${studentId}`;
+                  return `/watchlist/${boardDetail.studentId}`;
                 else return `/boards/${categoryName}`;
               })()}
             >
@@ -174,11 +177,11 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
         <></>
       ) : (
         <>
-          {boardDetail.studentId === studentId ? (
+          {boardDetail.studentId === id ? (
             <div className="detail-trade-status-box">
               {boardDetail.status === 2 ? (
                 <Link
-                  href={`/boards/${categoryName}/${num}/${studentId}/complete`}
+                  href={`/boards/${categoryName}/${num}/${boardDetail.studentId}/complete`}
                 >
                   <a className="trade-complete-btn">거래완료</a>
                 </Link>
@@ -242,21 +245,24 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
         </>
       )}
 
-      {/* {categoryName === "free" ||
+      {categoryName === "free" ||
       categoryName === "notice" ||
       studentId.length === 0 ? (
         <></>
       ) : (
         <>
-          {boards.studentId === studentId ? (
-            <></>
-          ) : boards.isWatchList === 1 ? (
-            <WatchlistDeleteComponent />
+          {boardDetail.studentId !== id ? (
+            <WatchlistAddDelete
+              isWatchList={isWatchList}
+              categoryName={categoryName}
+              boardNum={boardDetail.num}
+              studentId={id}
+            />
           ) : (
-            <WatchlistAddComponent categoryName={categoryName} />
+            <></>
           )}
         </>
-      )} */}
+      )}
     </div>
   );
 };

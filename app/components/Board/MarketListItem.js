@@ -1,11 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { AiOutlineComment } from "react-icons/ai";
 
 const MarketListItem = ({ productList, categoryName, profile }) => {
-  const router = useRouter();
-
   return (
     <>
       {productList.map((board) => {
