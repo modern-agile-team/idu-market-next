@@ -20,6 +20,12 @@ import {
   BOARD_HIT_REQUEST,
   BOARD_HIT_SUCCESS,
   BOARD_HIT_FAILURE,
+  WATCHLIST_ADD_REQUEST,
+  WATCHLIST_ADD_SUCCESS,
+  WATCHLIST_ADD_FAILURE,
+  WATCHLIST_DELETE_REQUEST,
+  WATCHLIST_DELETE_SUCCESS,
+  WATCHLIST_DELETE_FAILURE,
 } from "../types";
 
 const initialState = {
@@ -44,6 +50,8 @@ const initialState = {
 
 const board = (state = initialState, action) => {
   switch (action.type) {
+    case WATCHLIST_DELETE_REQUEST:
+    case WATCHLIST_ADD_REQUEST:
     case BOARD_HIT_REQUEST:
     case BOARD_UPDATE_REQUEST:
     case IMAGE_DELETE_REQUEST:
@@ -154,7 +162,28 @@ const board = (state = initialState, action) => {
         msg: action.payload.msg,
         hit: action.payload.hit,
       };
-
+    case WATCHLIST_ADD_SUCCESS:
+      return {
+        ...state,
+        loading: true,
+        isWatchList: 1,
+        msg: action.payload.msg,
+      };
+    case WATCHLIST_DELETE_SUCCESS:
+      return {
+        ...state,
+        loading: true,
+        isWatchList: 0,
+        msg: action.payload.msg,
+      };
+    case WATCHLIST_DELETE_FAILURE:
+    case WATCHLIST_ADD_FAILURE:
+      return {
+        ...state,
+        loading: true,
+        isWatchList: null,
+        msg: action.payload.data.msg,
+      };
     default:
       return state;
   }

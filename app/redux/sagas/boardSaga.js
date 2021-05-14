@@ -227,15 +227,18 @@ function* boardHit(action) {
 }
 
 //Board watchlist Add
-function WatchlistAddAPI(action) {
-  const studentId = action.studentId;
+function WatchlistAddAPI(payload) {
+  const studentId = payload.studentId;
 
   const body = {
-    boardNum: action.boardNum,
-    categoryName: action.categoryName,
+    boardNum: payload.boardNum,
+    categoryName: payload.categoryName,
   };
 
-  return axios.post(`/api/watchlist/${studentId}`, body);
+  return axios.post(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/watchlist/${studentId}`,
+    body
+  );
 }
 
 function* WatchlistAdd(action) {
@@ -255,14 +258,17 @@ function* WatchlistAdd(action) {
 }
 
 //Board Delete
-function WatchlistDeleteAPI(action) {
-  const studentId = action.studentId;
+function WatchlistDeleteAPI(payload) {
+  const studentId = payload.studentId;
 
-  return axios.delete(`/api/watchlist/${studentId}`, {
-    data: {
-      boardNum: action.boardNum,
-    },
-  });
+  return axios.delete(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/watchlist/${studentId}`,
+    {
+      data: {
+        boardNum: payload.boardNum,
+      },
+    }
+  );
 }
 
 function* WatchlistDelete(action) {
