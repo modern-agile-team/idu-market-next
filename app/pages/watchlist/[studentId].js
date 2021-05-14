@@ -33,7 +33,7 @@ const Watchlist = () => {
           });
       }
     }
-  }, [studentId, id]);
+  }, []);
 
   return (
     <>
@@ -46,7 +46,11 @@ const Watchlist = () => {
           {`관심 목록 (${productList.length})`}
         </h1>
         <div className="container">
-          <MarketListItem productList={productList} profile />
+          {productList.length > 0 ? (
+            <MarketListItem productList={productList} profile />
+          ) : (
+            <h1 className="empty-list-desc">관심목록이 비어있습니다.</h1>
+          )}
         </div>
       </section>
     </>

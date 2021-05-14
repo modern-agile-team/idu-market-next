@@ -21,7 +21,9 @@ const Clothes = () => {
           <AiOutlineArrowUp />
         </button>
         <BoardListTop categoryName="clothes" />
-        <Market categoryName="clothes" />
+        <div className="container">
+          <Market categoryName="clothes" />
+        </div>
       </section>
     </>
   );
