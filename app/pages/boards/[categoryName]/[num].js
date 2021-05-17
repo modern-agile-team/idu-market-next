@@ -6,6 +6,7 @@ import {
   BOARD_HIT_REQUEST,
   COMMENT_GET_REQUEST,
 } from "../../../redux/types";
+
 import BoardBanner from "../../../components/Board/BoardBanner";
 import BoardDetailTop from "../../../components/Board/BoardDetailTop";
 import BoardDetailImage from "../../../components/Board/BoardDetailImage";
@@ -13,7 +14,7 @@ import BoardDetailContent from "../../../components/Board/BoardDetailContent";
 import Comment from "../../../components/Comment/Comment";
 import Head from "next/head";
 
-const BoardDetail = () => {
+const BoardDetailPage = () => {
   const router = useRouter();
   const { categoryName, num } = router.query;
 
@@ -93,4 +94,4 @@ const BoardDetail = () => {
   );
 };
 
-export default BoardDetail;
+export default BoardDetailPage;

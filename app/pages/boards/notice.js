@@ -4,7 +4,7 @@ import BoardBanner from "../../components/Board/BoardBanner";
 import Basic from "../../components/Board/Basic";
 import Head from "next/head";
 
-const Notice = () => {
+const BoardNoticePage = () => {
   return (
     <>
       <Head>
@@ -21,4 +21,4 @@ const Notice = () => {
   );
 };
 
-export default Notice;
+export default BoardNoticePage;

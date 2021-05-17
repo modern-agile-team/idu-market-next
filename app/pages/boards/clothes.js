@@ -5,7 +5,7 @@ import BoardBanner from "../../components/Board/BoardBanner";
 import Market from "../../components/Board/Market";
 import Head from "next/head";
 
-const Clothes = () => {
+const MarketClothesPage = () => {
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -29,4 +29,4 @@ const Clothes = () => {
   );
 };
 
-export default Clothes;
+export default MarketClothesPage;

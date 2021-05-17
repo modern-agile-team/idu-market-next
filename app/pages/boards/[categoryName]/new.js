@@ -4,7 +4,7 @@ import BoardBanner from "../../../components/Board/BoardBanner";
 import Editor from "../../../components/Editor/Editor";
 import Head from "next/head";
 
-const BoardNew = () => {
+const BoardNewPage = () => {
   const router = useRouter();
 
   return (
@@ -29,4 +29,4 @@ const BoardNew = () => {
   );
 };
 
-export default BoardNew;
+export default BoardNewPage;

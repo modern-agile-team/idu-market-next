@@ -8,7 +8,7 @@ import BoardBanner from "../../components/Board/BoardBanner";
 import ProfileImage from "../../components/profile/ProfileImage";
 import ProfileContent from "../../components/profile/ProfileContent";
 
-const Profile = () => {
+const ProfilePage = () => {
   const router = useRouter();
   const { studentId } = router.query;
 
@@ -52,4 +52,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default ProfilePage;

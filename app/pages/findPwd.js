@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Head from "next/head";
 
-const FindPwd = () => {
+const FindPwdPage = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [formValues, setFormValues] = useState({
     id: "",
@@ -118,4 +118,4 @@ const FindPwd = () => {
   );
 };
 
-export default FindPwd;
+export default FindPwdPage;

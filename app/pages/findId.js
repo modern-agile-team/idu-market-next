@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Head from "next/head";
 
-const FindId = () => {
+const FindIdPage = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [formValues, setFormValues] = useState({
     name: "",
@@ -119,4 +119,4 @@ const FindId = () => {
   );
 };
 
-export default FindId;
+export default FindIdPage;

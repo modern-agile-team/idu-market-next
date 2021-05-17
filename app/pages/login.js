@@ -6,7 +6,7 @@ import { LOGIN_CHECK_REQUEST } from "../redux/types";
 import axios from "axios";
 import Head from "next/head";
 
-const Login = () => {
+const LoginPage = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [formValues, setFormValues] = useState({
     id: "",
@@ -139,4 +139,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

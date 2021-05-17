@@ -7,7 +7,7 @@ import Head from "next/head";
 import BoardBanner from "../../components/Board/BoardBanner";
 import MarketListItem from "../../components/Board/MarketListItem";
 
-const Watchlist = () => {
+const WatchlistPage = () => {
   const [productList, setProductList] = useState([]);
 
   const router = useRouter();
@@ -58,4 +58,4 @@ const Watchlist = () => {
   );
 };
 
-export default Watchlist;
+export default WatchlistPage;

@@ -5,7 +5,7 @@ import BoardBanner from "../../components/Board/BoardBanner";
 import Market from "../../components/Board/Market";
 import Head from "next/head";
 
-const Device = () => {
+const MarketDevicePage = () => {
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -29,4 +29,4 @@ const Device = () => {
   );
 };
 
-export default Device;
+export default MarketDevicePage;

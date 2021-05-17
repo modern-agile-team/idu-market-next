@@ -4,12 +4,12 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import UpdateEditor from "../../../../components/Editor/UpdateEdtior";
 
-const Update = () => {
+const BoardUpdatePage = () => {
   const router = useRouter();
   return (
     <>
       <Head>
-        <title>IUAM | 수정</title>
+        <title>IUAM | 게시판 수정</title>
       </Head>
       <BoardBanner
         title={
@@ -28,4 +28,4 @@ const Update = () => {
   );
 };
 
-export default Update;
+export default BoardUpdatePage;

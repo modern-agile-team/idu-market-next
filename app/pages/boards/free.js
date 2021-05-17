@@ -4,7 +4,7 @@ import BoardBanner from "../../components/Board/BoardBanner";
 import Basic from "../../components/Board/Basic";
 import Head from "next/head";
 
-const Free = () => {
+const BoardFreePage = () => {
   return (
     <>
       <Head>
@@ -21,4 +21,4 @@ const Free = () => {
   );
 };
 
-export default Free;
+export default BoardFreePage;

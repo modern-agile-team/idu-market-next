@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import Head from "next/head";
 
-const Register = () => {
+const RegisterPage = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [formValues, setFormValues] = useState({
     id: "",
@@ -41,15 +41,8 @@ const Register = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
-    const {
-      id,
-      name,
-      nickname,
-      email,
-      psword,
-      pswordConfirm,
-      major,
-    } = formValues;
+    const { id, name, nickname, email, psword, pswordConfirm, major } =
+      formValues;
 
     const body = { id, name, nickname, email, psword, pswordConfirm, major };
 
@@ -297,4 +290,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterPage;
