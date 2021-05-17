@@ -24,7 +24,7 @@ const Watchlist = () => {
           .get(`${process.env.NEXT_PUBLIC_API_URL}/api/watchlist/${studentId}`)
           .then((response) => {
             if (response.data.success) {
-              const result = response.data.boards;
+              const result = response.data.watchLists;
               setProductList(result);
             }
           })
