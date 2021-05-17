@@ -3,10 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import { TRADE_COMMENT_GET_REQUEST } from "../../../../../redux/types";
-import TradeComplete from "../../../../../components/Trade/tradeComplete";
+import TradeCompleteComponent from "../../../../../components/Trade/TradeCompleteComponent";
 import BoardBanner from "../../../../../components/Board/BoardBanner";
 
-const complete = () => {
+const TradeComplete = () => {
   const router = useRouter();
   const { categoryName, num, studentId } = router.query;
 
@@ -53,7 +53,7 @@ const complete = () => {
       <BoardBanner title="Market" desc="complete" />
       <section className="trade-complete" id="trade-complete">
         <div className="container">
-          <TradeComplete
+          <TradeCompleteComponent
             buyers={buyers}
             nickname={nickname}
             categoryName={categoryName}
@@ -65,4 +65,4 @@ const complete = () => {
   );
 };
 
-export default complete;
+export default TradeComplete;

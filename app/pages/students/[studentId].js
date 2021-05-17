@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
-import BoardBanner from "../../components/Board/BoardBanner";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import Head from "next/head";
 import { PROFILE_GET_REQUEST } from "../../redux/types";
+import Head from "next/head";
+
+import BoardBanner from "../../components/Board/BoardBanner";
 import ProfileImage from "../../components/profile/ProfileImage";
 import ProfileContent from "../../components/profile/ProfileContent";
 

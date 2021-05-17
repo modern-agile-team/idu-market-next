@@ -3,16 +3,18 @@ import Link from "next/link";
 import { AiOutlineComment } from "react-icons/ai";
 
 const MarketListItem = ({ productList, categoryName, profile }) => {
-  console.log(productList);
   return (
     <>
       {productList.map((board) => {
         return (
-          <div className="market-items" key={board.num}>
+          <div
+            className="market-items"
+            key={profile ? board.boardNum : board.num}
+          >
             <Link
               href={
                 profile
-                  ? `/boards/${board.categoryName}/${board.num}`
+                  ? `/boards/${board.categoryName}/${board.boardNum}`
                   : `/boards/${categoryName}/${board.num}`
               }
             >

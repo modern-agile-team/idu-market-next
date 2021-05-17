@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { TRADE_COMPLETE_REQUEST } from "../../redux/types";
 
-const TradeComplete = ({ buyers, nickname, categoryName, num }) => {
+const TradeCompleteComponent = ({ buyers, nickname, categoryName, num }) => {
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -88,4 +88,4 @@ const TradeComplete = ({ buyers, nickname, categoryName, num }) => {
   );
 };
 
-export default TradeComplete;
+export default TradeCompleteComponent;
