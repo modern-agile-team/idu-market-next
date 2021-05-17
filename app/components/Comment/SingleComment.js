@@ -66,8 +66,9 @@ const SingleComment = ({ comment, categoryName, num }) => {
     e.preventDefault();
 
     const { content, categoryName, num, groupNum } = formValue;
+
     const body = {
-      content,
+      content: content.replace(/(?:\r\n|\r|\n)/g, " <br /> "),
       studentId: userId,
       categoryName,
       num,
@@ -103,16 +104,11 @@ const SingleComment = ({ comment, categoryName, num }) => {
   const onUpdate = (e) => {
     e.preventDefault();
 
-    const {
-      content,
-      categoryName,
-      num,
-      groupNum,
-      commentNum,
-    } = updateFormValue;
+    const { content, categoryName, num, groupNum, commentNum } =
+      updateFormValue;
 
     const body = {
-      content,
+      content: content.replace(/(?:\r\n|\r|\n)/g, " <br /> "),
       studentId: userId,
       categoryName,
       commentNum,

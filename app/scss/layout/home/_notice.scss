@@ -49,9 +49,13 @@
     right: 280px;
     font-size: 5rem;
     color: #000;
-    z-index: 100;
+    z-index: 99;
     cursor: pointer;
     user-select: none;
+
+    &:hover {
+        color: $main-color-2;
+    }
 }
   
 .left-arrow {
@@ -60,9 +64,13 @@
     left: 280px;
     font-size: 5rem;
     color: #000;
-    z-index: 100;
+    z-index: 99;
     cursor: pointer;
     user-select: none;
+
+    &:hover {
+        color: $main-color-2;
+    }
 }
 
 .slide-btns {

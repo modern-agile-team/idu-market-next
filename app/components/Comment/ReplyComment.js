@@ -32,16 +32,11 @@ const ReplyComment = ({ comment, categoryName, num, onDelete }) => {
   const onUpdate = (e) => {
     e.preventDefault();
 
-    const {
-      content,
-      categoryName,
-      num,
-      groupNum,
-      commentNum,
-    } = updateFormValue;
+    const { content, categoryName, num, groupNum, commentNum } =
+      updateFormValue;
 
     const body = {
-      content,
+      content: content.replace(/(?:\r\n|\r|\n)/g, " <br /> "),
       studentId: userId,
       categoryName,
       commentNum,
@@ -82,7 +77,7 @@ const ReplyComment = ({ comment, categoryName, num, onDelete }) => {
           </Link>
         </div>
         <div className="comment-content">
-          <span>{comment.content}</span>
+          <span dangerouslySetInnerHTML={{ __html: comment.content }}></span>
         </div>
         <div className="comment-comment-date">
           <span>{comment.inDate}</span>

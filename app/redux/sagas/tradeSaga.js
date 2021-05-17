@@ -40,11 +40,11 @@ function* tradeCommentGet(action) {
 //Trade Complete
 function tradeCompleteAPI(payload) {
   const boardNum = payload.boardNum;
-  const nickname = payload.nickname;
+  const studentId = payload.studentId;
 
   const body = {
     boardNum,
-    nickname,
+    studentId,
   };
 
   console.log(body);
