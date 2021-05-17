@@ -4,8 +4,9 @@ import { useDispatch } from "react-redux";
 //아이콘
 import { FaUserAlt, FaGraduationCap } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import axios from "axios";
 
-const ProfileUpdate = ({ formValues, profileList, studentId }) => {
+const ProfileUpdate = ({ profileList, studentId }) => {
   const [errorMsg, setErrorMsg] = useState("");
   const [changeFormValues, setChangeFormValues] = useState({});
 
@@ -59,12 +60,26 @@ const ProfileUpdate = ({ formValues, profileList, studentId }) => {
     } else if (majorNum.length === 0) {
       setErrorMsg("학과를 선택해주세요.");
     } else {
-      setErrorMsg("");
-      // dispatch({
-      //   type:
-      //   payload: body,
-      // });
-      console.log(body);
+      axios
+        .put(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/students/${studentId}`,
+          body
+        )
+        .then((response) => {
+          if (response.data.success) {
+            console.log(response.data);
+            setErrorMsg("");
+            alert("프로필이 수정되었습니다.");
+            router.push(`/${students}/${studentId}`);
+          }
+        })
+        .catch((err) => {
+          const response = err.response;
+
+          if (response.status === 409) {
+            setErrorMsg(response.data.msg);
+          }
+        });
     }
   };
 

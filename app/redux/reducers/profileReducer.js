@@ -2,9 +2,6 @@ import {
   PROFILE_GET_REQUEST,
   PROFILE_GET_SUCCESS,
   PROFILE_GET_FAILURE,
-  PROFILE_UPDATE_REQUEST,
-  PROFILE_UPDATE_SUCCESS,
-  PROFILE_UPDATE_FAILURE,
   PROFILE_IMAGE_UPDATE_REQUEST,
   PROFILE_IMAGE_UPDATE_SUCCESS,
   PROFILE_IMAGE_UPDATE_FAILURE,
@@ -18,7 +15,6 @@ const initialState = {
 
 const profile = (state = initialState, action) => {
   switch (action.type) {
-    case PROFILE_UPDATE_REQUEST:
     case PROFILE_IMAGE_UPDATE_REQUEST:
     case PROFILE_GET_REQUEST:
       return {
@@ -57,20 +53,6 @@ const profile = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        msg: action.payload.data.msg,
-      };
-
-    case PROFILE_UPDATE_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        msg: action.payload.msg,
-      };
-    case  PROFILE_UPDATE_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        profile: null,
         msg: action.payload.data.msg,
       };
     default:
