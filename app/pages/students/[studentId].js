@@ -5,8 +5,8 @@ import { PROFILE_GET_REQUEST } from "../../redux/types";
 import Head from "next/head";
 
 import BoardBanner from "../../components/Board/BoardBanner";
-import ProfileImage from "../../components/profile/ProfileImage";
-import ProfileContent from "../../components/profile/ProfileContent";
+import ProfileImage from "../../components/Profile/ProfileImage";
+import ProfileContent from "../../components/Profile/ProfileContent";
 
 const ProfilePage = () => {
   const router = useRouter();
