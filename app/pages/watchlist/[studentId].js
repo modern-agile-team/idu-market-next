@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import BoardBanner from "../../components/Board/BoardBanner";
 import Head from "next/head";
+
+import BoardBanner from "../../components/Board/BoardBanner";
 import MarketListItem from "../../components/Board/MarketListItem";
 
 const Watchlist = () => {

@@ -36,7 +36,6 @@ function boardDetailAPI(payload) {
   const num = payload.num;
   const studentId = payload.studentId;
 
-  console.log(payload);
   return axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${studentId}`
   );
@@ -45,7 +44,7 @@ function boardDetailAPI(payload) {
 function* boardDetail(action) {
   try {
     const result = yield call(boardDetailAPI, action.payload);
-    console.log(result);
+
     yield put({
       type: BOARD_DETAIL_SUCCESS,
       payload: result.data,
@@ -62,8 +61,6 @@ function* boardDetail(action) {
 function boardWriteAPI(payload) {
   const categoryName = payload.categoryName;
 
-  console.log(payload);
-
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`,
     payload
@@ -74,7 +71,6 @@ function* boardWrite(action) {
   try {
     const result = yield call(boardWriteAPI, action.payload);
 
-    console.log(result);
     yield put({
       type: BOARD_WRITE_SUCCESS,
       payload: result.data,
@@ -173,7 +169,6 @@ function boardUpdateAPI(payload) {
   const categoryName = payload.categoryName;
   const num = payload.num;
 
-  console.log(payload);
   return axios.put(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}`,
     payload
@@ -184,13 +179,11 @@ function* boardUpdate(action) {
   try {
     const result = yield call(boardUpdateAPI, action.payload);
 
-    console.log(result);
     yield put({
       type: BOARD_UPDATE_SUCCESS,
       payload: result.data,
     });
   } catch (e) {
-    console.log(e);
     yield put({
       type: BOARD_UPDATE_FAILURE,
       payload: e.response,
@@ -211,8 +204,6 @@ function boardHitAPI(payload) {
 function* boardHit(action) {
   try {
     const result = yield call(boardHitAPI, action.payload);
-
-    console.log(result);
 
     yield put({
       type: BOARD_HIT_SUCCESS,

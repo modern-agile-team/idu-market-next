@@ -12,11 +12,19 @@ const TradeComplete = ({ buyers, nickname, categoryName, num }) => {
       `${e.target.textContent}님으로 결정하시겠습니까?`
     );
 
+    let studentId = "";
+
+    buyers.map((buyer) => {
+      if (buyer.nickname === e.target.textContent) {
+        studentId = buyer.id;
+      }
+    });
+
     if (confirmBuyer) {
       const body = {
         categoryName,
         boardNum: num,
-        nickname: e.target.textContent,
+        studentId,
       };
 
       dispatch({

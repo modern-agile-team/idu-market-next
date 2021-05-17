@@ -1,6 +1,5 @@
 .board-detail-image {
   position: relative;
-  height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -105,9 +104,6 @@
 }
 
 @media screen and (max-width: 970px) {
-  .board-detail-image {
-    height: 500px;
-  }
   .detail-slide {
     .detail-image {
       width: 400px;
@@ -126,9 +122,6 @@
 }
 
 @media screen and (max-width: 767px) {
-  .board-detail-image {
-    height: 400px;
-  }
   .detail-slide {
     .detail-image {
       width: 320px;
@@ -148,9 +141,6 @@
 }
 
 @media screen and (max-width: 670px) {
-  .board-detail-image {
-    height: 350px;
-  }
   .detail-slide {
     .detail-image {
       width: 280px;
@@ -175,9 +165,6 @@
 }
 
 @media screen and (max-width: 480px) {
-  .board-detail-image {
-    height: 300px;
-  }
   .detail-slide {
     .detail-image {
       width: 250px;
@@ -203,9 +190,6 @@
 }
 
 @media screen and (max-width: 360px) {
-  .board-detail-image {
-    height: 250px;
-  }
   .detail-slide {
     .detail-image {
       width: 200px;
