@@ -107,7 +107,7 @@ const FindPwdPage = () => {
 
             <input
               type="submit"
-              value="Find ID"
+              value="Find Password"
               onClick={onSubmitHandler}
               className="form-submit"
             />
