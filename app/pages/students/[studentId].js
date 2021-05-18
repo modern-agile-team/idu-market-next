@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/router";
 import { PROFILE_GET_REQUEST } from "../../redux/types";
+import { useRouter } from "next/router";
 import Head from "next/head";
 
 import BoardBanner from "../../components/Board/BoardBanner";
