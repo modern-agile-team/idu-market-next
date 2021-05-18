@@ -33,7 +33,7 @@ export const HeaderMenuData = [
     title: "문의",
     subMenu: [
       {
-        title: "문의사항 접수",
+        title: "접수",
         path: "/questions",
       },
     ],
