@@ -58,7 +58,13 @@ const Market = ({ categoryName }) => {
   }, [categoryName]);
 
   return (
-    <MarketListItem productList={productList} categoryName={categoryName} />
+    <>
+      {productList.length > 0 ? (
+        <MarketListItem productList={productList} categoryName={categoryName} />
+      ) : (
+        <h1 className="empty-list-desc">거래 장터 목록이 비어있습니다.</h1>
+      )}
+    </>
   );
 };
 

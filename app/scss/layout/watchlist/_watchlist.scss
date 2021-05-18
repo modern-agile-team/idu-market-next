@@ -53,12 +53,11 @@
     justify-content: center;
 }
 .profile-move-btn {
-    font-size: 1rem;
-    padding: 5px 15px;
+    font-size: 1.2rem;
+    padding: 10px 20px;
     font-family: $Jua-font;
     border: 2px solid $main-color-4;
     border-radius: 8px;
-    margin-bottom: 20px; 
 
     &:hover {
         background: $main-color-1;
