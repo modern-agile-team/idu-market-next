@@ -45,13 +45,16 @@
         font-family: $Jua-font;
         text-align: center;
         font-weight: 400;
-        padding: 25px 40px;
+        margin: 0 5px;
+        padding: 25px 0;
+        width: 140px;
+        font-size: 1.2rem;
         cursor: pointer;
 
-        a {
-            font-family: $Jua-font;
-            padding: 25px 30px;
-        }
+        // a {
+        //     font-family: $Jua-font;
+        //     padding: 25px 30px;
+        // }
 
         &:hover {
             &::before {
@@ -91,7 +94,8 @@
             a {
                 font-family: $Jua-font;
                 font-size: 1rem;
-                padding: 10px 45px;
+                width: 100%;
+                // padding: 10px 45px;
                 white-space : nowrap;
                 font-weight: 400;
                 &:hover { 
@@ -162,7 +166,7 @@
 
     .header-nav.active {
         width: 38%;
-        height: 100%;
+        height: 92%;
         position: fixed;
         top: 65px;
         right: 0;
@@ -174,7 +178,7 @@
 
         .header-menu {
             width: 60%;
-            margin: 20px 0;
+            margin: 15px 0;
             padding: 10px;
             font-size: 1.2rem;
 

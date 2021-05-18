@@ -1,11 +1,16 @@
 export const HeaderMenuData = [
   {
-    title: "공지게시판",
-    path: "/boards/notice",
-  },
-  {
-    title: "자유게시판",
-    path: "/boards/free",
+    title: "게시판",
+    subMenu: [
+      {
+        title: "공지게시판",
+        path: "/boards/notice",
+      },
+      {
+        title: "자유게시판",
+        path: "/boards/free",
+      },
+    ],
   },
   {
     title: "거래 장터",
@@ -24,5 +29,13 @@ export const HeaderMenuData = [
       },
     ],
   },
-  
+  {
+    title: "문의",
+    subMenu: [
+      {
+        title: "문의사항 접수",
+        path: "/questions",
+      },
+    ],
+  },
 ];
