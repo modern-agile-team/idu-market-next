@@ -30,7 +30,7 @@ export const HeaderMenuData = [
     ],
   },
   {
-    title: "문의",
+    title: "문의사항",
     subMenu: [
       {
         title: "접수",

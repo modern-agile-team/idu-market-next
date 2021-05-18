@@ -17,6 +17,7 @@ const Basic = ({ categoryName }) => {
       .then((response) => {
         if (response.data.success) {
           const result = response.data.boards;
+          console.log(response.data);
           setBoardList(result);
         }
       })
