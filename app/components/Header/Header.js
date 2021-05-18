@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { HeaderMenuData } from "../../Data/HeaderMenuData";
-import DropMenu from "./DropMenu";
 import { useDispatch, useSelector } from "react-redux";
 
 import { FaBars } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 import { LOGOUT_REQUEST } from "../../redux/types";
+
+import { HeaderMenuData } from "../../Data/HeaderMenuData";
+import DropMenu from "./DropMenu";
 
 const Header = () => {
   const [sidebar, setSidebar] = useState(false);
