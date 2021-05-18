@@ -8,7 +8,7 @@ import Head from "next/head";
 import BoardBanner from "../../components/Board/BoardBanner";
 import MarketListItem from "../../components/Board/MarketListItem";
 
-const WatchlistPage = () => {
+const saleListPage = () => {
   const [productList, setProductList] = useState([]);
 
   const router = useRouter();
@@ -23,10 +23,10 @@ const WatchlistPage = () => {
         router.push("/");
       } else {
         axios
-          .get(`${process.env.NEXT_PUBLIC_API_URL}/api/watchlist/${studentId}`)
+          .get(`${process.env.NEXT_PUBLIC_API_URL}/api/sale-list/${studentId}`)
           .then((response) => {
             if (response.data.success) {
-              const result = response.data.watchLists;
+              const result = response.data.saleLists;
               setProductList(result);
             }
           })
@@ -40,21 +40,21 @@ const WatchlistPage = () => {
   return (
     <>
       <Head>
-        <title>IUAM | 관심 목록</title>
+        <title>IUAM | 판매 목록</title>
       </Head>
-      <BoardBanner title="Profile" desc="watchlist" />
+      <BoardBanner title="IUAM" desc="sale-list" />
       <section className="market" id="market">
         <Link href={`/students/${studentId}`}>
           <a className="profile-move-btn">Profile</a>
         </Link>
         <h1 className="watchlist-title">
-          {`관심 목록 (${productList.length})`}
+          {`판매 목록 (${productList.length})`}
         </h1>
         <div className="container">
           {productList.length > 0 ? (
             <MarketListItem productList={productList} profile />
           ) : (
-            <h1 className="empty-list-desc">관심목록이 비어있습니다.</h1>
+            <h1 className="empty-list-desc">판매 목록이 비어있습니다.</h1>
           )}
         </div>
       </section>
@@ -62,4 +62,4 @@ const WatchlistPage = () => {
   );
 };
 
-export default WatchlistPage;
+export default saleListPage;
