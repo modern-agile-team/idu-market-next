@@ -5,7 +5,7 @@ import Inquiry from "../../components/Service/Inquiry";
 const InqueryReceivePage = () => {
   return (
     <>
-      <BoardBanner title="Sevice" desc="inquiry" />
+      <BoardBanner title="Service" desc="inquiry" />
       <section className="service-inquiry" id="service-inquiry">
         <div className="container">
           <Inquiry />
