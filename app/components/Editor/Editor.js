@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { BOARD_WRITE_REQUEST } from "../../redux/types";
 import axios from "axios";
 import { modules, formats } from "./EditorConfig";
@@ -11,7 +10,16 @@ import EditorPost from "./EditorPost";
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
-  loading: () => <p>Loading ...</p>,
+  loading: () => (
+    <p
+      style={{
+        padding: "80px 0",
+        fontSize: "1.5rem",
+      }}
+    >
+      Loading ...
+    </p>
+  ),
 });
 
 const Editor = () => {
