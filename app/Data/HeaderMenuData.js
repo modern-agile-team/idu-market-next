@@ -33,8 +33,8 @@ export const HeaderMenuData = [
     title: "고객센터",
     subMenu: [
       {
-        title: "문의 접수",
-        path: "/inquries",
+        title: "문의사항 접수",
+        path: "/service/inquiry",
       },
     ],
   },
