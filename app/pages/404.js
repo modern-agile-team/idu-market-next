@@ -7,8 +7,8 @@ const Page404 = () => {
       <div className="container">
         <div className="nomatch-text-box">
           <p className="nomatch-404">404</p>
-          <p className="nomatch-p">Oops!</p>
-          <p className="nomatch-p">
+          <p className="nomatch-error">ERROR!</p>
+          <p className="nomatch-desc">
             해당 페이지가 존재하지 않거나 사용할 수 없습니다
           </p>
         </div>
