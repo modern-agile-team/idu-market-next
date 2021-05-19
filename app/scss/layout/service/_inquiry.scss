@@ -3,10 +3,68 @@
   padding: 100px 0 100px 0;
   
   .container {
-    width: 80%;
+    width:70%;
     margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  }
+}
+
+  .service-Inquiry-title {
+    width: 100%;
+    font-family: $Jua-font;
+    text-align: center;
+    font-size: 3rem;
+    padding-bottom: 10px;
+    border-bottom: 2px solid $main-color-2;
+    margin-bottom: 20px;
+  }
+  .service-Inquiry-desc {
+    margin-top: 20px;
+    font-family: $Montserrat-font;
+    text-align: center;
+    font-size: 1.2rem ;
+    border: 2px solid $main-color-1;
+    padding: 40px;
+
+    span {
+      color: $main-color-2;
+      margin: 0 3px;
+      font-weight: bold;
+    }
+  }
+
+.inquiry-form-group {
+  border: 1px solid #999;
+  padding: 20px 20px 50px 20px;
+
+  .write-title {
+    font-family: $Montserrat-font;
+    border-bottom: 1px solid #999;
+    margin-bottom: 20px;
+  }
+
+  .inquiry-content-area{
+    font-family: $Montserrat-font;
+    width: 100%;
+    // border-radius: 5px;
+    height: 300px;
+    resize: none;
+    outline: none;
+    border: 1px solid #999;
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  .inquiry-write-btn {
+    margin-top: 5px;
+    font-family: $Montserrat-font;
+    float: right;
+    background: $main-color-2;
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 5px 15px;
+    cursor: pointer;
+    &:hover {
+      background: $main-color-5
+    }
   }
 }
