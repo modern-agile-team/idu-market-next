@@ -163,7 +163,7 @@ const ProfileUpdate = ({ profileList, studentId }) => {
           </div>
           <p className="update-errmsg">{errorMsg}</p>
           <button className="update-btn" onClick={onUpdateProfile}>
-            Update
+            UPDATE
           </button>
         </div>
       ) : (
