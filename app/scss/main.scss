@@ -4,6 +4,9 @@
 //variables
 @import './helpers/variables';
 
+//404Page
+@import './page/404';
+
 //Header
 @import './layout/header';
 
@@ -41,5 +44,5 @@
 //Watchlist
 @import './layout/watchlist/watchlist';
 
-//404Page
-@import './page/page404';
+//Service
+@import './layout/service/inquiry';

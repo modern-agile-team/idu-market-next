@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
+import axios from "axios";
 
 //아이콘
 import { FaUserAlt, FaGraduationCap } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import axios from "axios";
+
+import { MajorData } from "../../Data/MajorData";
 
 const ProfileUpdate = ({ profileList, studentId }) => {
   const [errorMsg, setErrorMsg] = useState("");
   const [changeFormValues, setChangeFormValues] = useState({});
 
-  const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     setChangeFormValues({
@@ -70,12 +72,11 @@ const ProfileUpdate = ({ profileList, studentId }) => {
             console.log(response.data);
             setErrorMsg("");
             alert("프로필이 수정되었습니다.");
-            router.push(`/${students}/${studentId}`);
+            router.back();
           }
         })
         .catch((err) => {
           const response = err.response;
-
           if (response.status === 409) {
             setErrorMsg(response.data.msg);
           }
@@ -132,33 +133,11 @@ const ProfileUpdate = ({ profileList, studentId }) => {
               onChange={onChangeMajor}
               defaultalue=""
             >
-              <option value="">학과 선택 </option>
-              <option value="1">비서학과</option>
-              <option value="2">관광서비스경영학과</option>
-              <option value="3">휴먼사회복지학과</option>
-              <option value="4">비지니스영어과</option>
-              <option value="5">비즈니스중국어과</option>
-              <option value="6">비즈니스일본어과</option>
-              <option value="7">세무회계학과</option>
-              <option value="8">글로벌항공서비스학과</option>
-              <option value="9">건축학과</option>
-              <option value="10">토목공학과</option>
-              <option value="11">실내건축과</option>
-              <option value="12">디지털산업디자인학과</option>
-              <option value="13">시각디자인과</option>
-              <option value="14">주얼리디자인학과</option>
-              <option value="15">멀티미디어디자인학과</option>
-              <option value="16">정보통신공학과</option>
-              <option value="17">리빙세라믹디자인학과</option>
-              <option value="18">게임/vr디자인학과</option>
-              <option value="19">방송영상미디어학과</option>
-              <option value="20">방송뷰티학과</option>
-              <option value="21">기계자동화학과</option>
-              <option value="22">컴퓨터전자공학과</option>
-              <option value="23">산업경영공학과</option>
-              <option value="24">컴퓨터소프트웨어학과</option>
-              <option value="25">메카트로닉스공학과</option>
-              <option value="26">융합기계공학과</option>
+              {MajorData.map((major) => {
+                const { value, majorName } = major;
+
+                return <option value={value}>{majorName}</option>;
+              })}
             </select>
           </div>
           <p className="update-errmsg">{errorMsg}</p>

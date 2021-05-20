@@ -30,11 +30,11 @@ export const HeaderMenuData = [
     ],
   },
   {
-    title: "문의사항",
+    title: "고객센터",
     subMenu: [
       {
-        title: "접수",
-        path: "/questions",
+        title: "문의사항 접수",
+        path: "/service/inquiry",
       },
     ],
   },

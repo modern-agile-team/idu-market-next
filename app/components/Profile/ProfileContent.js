@@ -8,7 +8,6 @@ import {
 } from "react-icons/io";
 import { FaUserAlt, FaGraduationCap } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import { BiPencil } from "react-icons/bi";
 
 const ProfileContent = ({ authId, studentId, profileDetail }) => {
   const [openBtnBox, setOpenBtnBox] = useState(false);

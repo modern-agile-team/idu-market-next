@@ -63,6 +63,7 @@ const auth = (state = initialState, action) => {
         ...state,
         jwt: null,
         isLoading: false,
+        id: "",
         msg: "로그아웃에 성공하셨습니다.",
         email: "",
         name: "",
