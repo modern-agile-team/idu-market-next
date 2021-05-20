@@ -99,17 +99,13 @@ const RegisterPage = () => {
       <Head>
         <title>IUAM | 회원가입</title>
       </Head>
-      <section id="form-template" className="form-template">
-        <div className="container">
-          <RegisterForm
-            formValues={formValues}
-            onChange={onChange}
-            onSelectMajor={onSelectMajor}
-            onSubmit={onSubmit}
-            errorMsg={errorMsg}
-          />
-        </div>
-      </section>
+      <RegisterForm
+        formValues={formValues}
+        onChange={onChange}
+        onSelectMajor={onSelectMajor}
+        onSubmit={onSubmit}
+        errorMsg={errorMsg}
+      />
     </>
   );
 };

@@ -60,16 +60,12 @@ const LoginPage = () => {
       <Head>
         <title>IUAM | 로그인</title>
       </Head>
-      <section id="form-template" className="form-template">
-        <div className="container">
-          <LoginForm
-            formValues={formValues}
-            onChange={onChange}
-            onSubmit={onSubmit}
-            errorMsg={errorMsg}
-          />
-        </div>
-      </section>
+      <LoginForm
+        formValues={formValues}
+        onChange={onChange}
+        onSubmit={onSubmit}
+        errorMsg={errorMsg}
+      />
     </>
   );
 };

@@ -73,16 +73,12 @@ const PasswordResetPage = () => {
   return (
     <>
       <BoardBanner title="IUAM" desc="reset" />
-      <section id="form-template" className="form-template">
-        <div className="container">
-          <PasswordReset
-            formValues={formValues}
-            errorMsg={errorMsg}
-            onSubmit={onSubmit}
-            onChange={onChange}
-          />
-        </div>
-      </section>
+      <PasswordReset
+        formValues={formValues}
+        errorMsg={errorMsg}
+        onSubmit={onSubmit}
+        onChange={onChange}
+      />
     </>
   );
 };
