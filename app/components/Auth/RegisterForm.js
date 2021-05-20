@@ -5,8 +5,8 @@ import Link from "next/link";
 const RegisterForm = ({
   formValues,
   onChange,
-  onHandlerSelect,
-  onSubmitHandler,
+  onSelectMajor,
+  onSubmit,
   errorMsg,
 }) => {
   return (
@@ -17,7 +17,7 @@ const RegisterForm = ({
         <div className="select-field">
           <select
             className="select-major"
-            onChange={onHandlerSelect}
+            onChange={onSelectMajor}
             defaultalue=""
           >
             {MajorData.map((major) => {
@@ -148,7 +148,7 @@ const RegisterForm = ({
         <input
           type="submit"
           value="SignUp"
-          onClick={onSubmitHandler}
+          onClick={onSubmit}
           className="form-submit"
         />
 

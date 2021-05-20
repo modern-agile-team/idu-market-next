@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import Head from "next/head";
 
-import { MajorData } from "../Data/MajorData";
 import RegisterForm from "../components/Auth/RegisterForm";
 
 const RegisterPage = () => {
@@ -34,14 +32,14 @@ const RegisterPage = () => {
     });
   };
 
-  const onHandlerSelect = (e) => {
+  const onSelectMajor = (e) => {
     setFormValues({
       ...formValues,
       major: e.target.value,
     });
   };
 
-  const onSubmitHandler = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
 
     const { id, name, nickname, email, psword, pswordConfirm, major } =
@@ -106,8 +104,8 @@ const RegisterPage = () => {
           <RegisterForm
             formValues={formValues}
             onChange={onChange}
-            onHandlerSelect={onHandlerSelect}
-            onSubmitHandler={onSubmitHandler}
+            onSelectMajor={onSelectMajor}
+            onSubmit={onSubmit}
             errorMsg={errorMsg}
           />
         </div>
