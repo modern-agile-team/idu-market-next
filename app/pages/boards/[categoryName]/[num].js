@@ -6,13 +6,13 @@ import {
   BOARD_HIT_REQUEST,
   COMMENT_GET_REQUEST,
 } from "../../../redux/types";
+import Head from "next/head";
 
 import BoardBanner from "../../../components/Board/BoardBanner";
 import BoardDetailTop from "../../../components/Board/BoardDetailTop";
 import BoardDetailImage from "../../../components/Board/BoardDetailImage";
 import BoardDetailContent from "../../../components/Board/BoardDetailContent";
 import Comment from "../../../components/Comment/Comment";
-import Head from "next/head";
 
 const BoardDetailPage = () => {
   const router = useRouter();
