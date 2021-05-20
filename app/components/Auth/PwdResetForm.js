@@ -1,6 +1,6 @@
 import React from "react";
 
-const PasswordReset = ({ formValues, errorMsg, onSubmit, onChange }) => {
+const PwdResetForm = ({ formValues, errorMsg, onSubmit, onChange }) => {
   return (
     <section id="form-template" className="form-template">
       <div className="container">
@@ -82,4 +82,4 @@ const PasswordReset = ({ formValues, errorMsg, onSubmit, onChange }) => {
   );
 };
 
-export default PasswordReset;
+export default PwdResetForm;

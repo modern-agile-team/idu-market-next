@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 
-import PasswordReset from "../../../components/Auth/PasswordReset";
+import PwdResetForm from "../../../components/Auth/PwdResetForm";
 import BoardBanner from "../../../components/Board/BoardBanner";
 
 const PasswordResetPage = () => {
@@ -73,7 +73,7 @@ const PasswordResetPage = () => {
   return (
     <>
       <BoardBanner title="IUAM" desc="reset" />
-      <PasswordReset
+      <PwdResetForm
         formValues={formValues}
         errorMsg={errorMsg}
         onSubmit={onSubmit}
