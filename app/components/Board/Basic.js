@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
 import BoardListItem from "./BoardListItem";
+import BoardListTop from "./BoardListTop";
 
 const Basic = ({ categoryName }) => {
   const [pageNumber, setPageNumber] = useState(0);
@@ -58,11 +59,16 @@ const Basic = ({ categoryName }) => {
     });
 
   return (
-    <BoardListItem
-      displayBoardList={displayBoardList}
-      pageCount={pageCount}
-      changePage={changePage}
-    />
+    <section id="boardlist-common" className="boardlist-common">
+      <BoardListTop categoryName={categoryName} />
+      <div className="container">
+        <BoardListItem
+          displayBoardList={displayBoardList}
+          pageCount={pageCount}
+          changePage={changePage}
+        />
+      </div>
+    </section>
   );
 };
 

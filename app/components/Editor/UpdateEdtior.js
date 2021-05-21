@@ -237,7 +237,7 @@ const UpdateEditor = () => {
               modules={modules}
               formats={formats}
               onChange={handleEditor}
-              setContents={board.content}
+              defaultValue={board.content}
             />
           </div>
         </>

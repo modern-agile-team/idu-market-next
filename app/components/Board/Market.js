@@ -71,7 +71,7 @@ const Market = ({ categoryName }) => {
         <AiOutlineArrowUp />
       </button>
 
-      <BoardListTop categoryName="book" />
+      <BoardListTop categoryName={categoryName} />
 
       <div className="container">
         {productList.length > 0 ? (
