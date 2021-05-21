@@ -1,6 +1,9 @@
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { COMMENT_UPLOAD_REQUEST } from "../../redux/types";
+import {
+  COMMENT_UPLOAD_REQUEST,
+  NOTIFICATION_REQUEST,
+} from "../../redux/types";
 import SingleComment from "./SingleComment";
 
 const Comment = ({ comments, categoryName, num }) => {
@@ -11,7 +14,8 @@ const Comment = ({ comments, categoryName, num }) => {
   const resetValue = useRef(null);
 
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.auth.id);
+  const auth = useSelector((state) => state.auth);
+  const board = useSelector((state) => state.board);
 
   const onChange = (e) => {
     setFormValue({
@@ -27,10 +31,20 @@ const Comment = ({ comments, categoryName, num }) => {
 
     const body = {
       content: content.replace(/(?:\r\n|\r|\n)/g, " <br /> "),
-      studentId: userId,
+      studentId: auth.id,
       categoryName,
       num,
     };
+
+    const notification = {
+      notiCategoryNum: 0,
+      senderNickname: auth.nickname,
+      recipientNickname: board.nickname,
+      url: `https://idu-market.shop/boards/${categoryName}/${num}`,
+      num,
+    };
+
+    console.log(notification);
 
     if (body.content.length === 0) {
       alert("댓글이 비었습니다.");
@@ -40,11 +54,16 @@ const Comment = ({ comments, categoryName, num }) => {
         payload: body,
       });
 
+      dispatch({
+        type: NOTIFICATION_REQUEST,
+        payload: notification,
+      });
+
       resetValue.current.value = "";
 
       setFormValue({
         content: "",
-        studentId: userId,
+        studentId: auth.id,
       });
     }
   };
@@ -68,7 +87,7 @@ const Comment = ({ comments, categoryName, num }) => {
       <form className="detail-comment">
         <h1 className="comment-title">Write comments</h1>
         <div className="comment-submit-box">
-          {userId ? (
+          {auth.id ? (
             <>
               <textarea
                 ref={resetValue}
