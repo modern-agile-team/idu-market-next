@@ -44,8 +44,6 @@ const Comment = ({ comments, categoryName, num }) => {
       num,
     };
 
-    console.log(notification);
-
     if (body.content.length === 0) {
       alert("댓글이 비었습니다.");
     } else {
