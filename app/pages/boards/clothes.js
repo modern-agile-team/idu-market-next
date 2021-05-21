@@ -16,15 +16,7 @@ const MarketClothesPage = () => {
         <title>IUAM | 거래 장터</title>
       </Head>
       <BoardBanner title="Market" desc="clothes" />
-      <section className="market" id="market">
-        <button className="scroll-top-btn" onClick={scrollTop}>
-          <AiOutlineArrowUp />
-        </button>
-        <BoardListTop categoryName="clothes" />
-        <div className="container">
-          <Market categoryName="clothes" />
-        </div>
-      </section>
+      <Market categoryName="clothes" />
     </>
   );
 };

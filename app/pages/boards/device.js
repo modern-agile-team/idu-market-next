@@ -16,15 +16,7 @@ const MarketDevicePage = () => {
         <title>IUAM | 거래 장터</title>
       </Head>
       <BoardBanner title="Market" desc="device" />
-      <section className="market" id="market">
-        <button className="scroll-top-btn" onClick={scrollTop}>
-          <AiOutlineArrowUp />
-        </button>
-        <BoardListTop categoryName="device" />
-        <div className="container">
-          <Market categoryName="device" />
-        </div>
-      </section>
+      <Market categoryName="device" />
     </>
   );
 };

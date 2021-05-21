@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
-import MarketListItem from "./MarketListItem";
 import axios from "axios";
+
+import { AiOutlineArrowUp } from "react-icons/ai";
+
+import BoardListTop from "./BoardListTop";
+import MarketListItem from "./MarketListItem";
 
 const Market = ({ categoryName }) => {
   const [productList, setProductList] = useState([]);
@@ -48,6 +52,10 @@ const Market = ({ categoryName }) => {
     }
   };
 
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   useEffect(() => {
     getMoreData();
     window.addEventListener("scroll", handleScroll);
@@ -58,13 +66,24 @@ const Market = ({ categoryName }) => {
   }, [categoryName]);
 
   return (
-    <>
-      {productList.length > 0 ? (
-        <MarketListItem productList={productList} categoryName={categoryName} />
-      ) : (
-        <h1 className="empty-list-desc">거래 장터 목록이 비어있습니다.</h1>
-      )}
-    </>
+    <section className="market" id="market">
+      <button className="scroll-top-btn" onClick={scrollTop}>
+        <AiOutlineArrowUp />
+      </button>
+
+      <BoardListTop categoryName="book" />
+
+      <div className="container">
+        {productList.length > 0 ? (
+          <MarketListItem
+            productList={productList}
+            categoryName={categoryName}
+          />
+        ) : (
+          <h1 className="empty-list-desc">거래 장터 목록이 비어있습니다.</h1>
+        )}
+      </div>
+    </section>
   );
 };
 
