@@ -6,11 +6,16 @@ import {
   COMMENT_DELETE_REQUEST,
   COMMENT_GET_REQUEST,
   COMMENT_UPDATE_REQUEST,
+  NOTIFICATION_REQUEST,
   REPLY_UPLOAD_REQUEST,
 } from "../../redux/types";
 import ReplyComment from "./ReplyComment";
 
 const SingleComment = ({ comment, categoryName, num }) => {
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+  const board = useSelector((state) => state.board);
+
   const [openReply, setOpenReply] = useState(false);
   const [openUpdate, setOpenUpdate] = useState(false);
   const [formValue, setFormValue] = useState({
@@ -22,7 +27,7 @@ const SingleComment = ({ comment, categoryName, num }) => {
   });
   const [updateFormValue, setUpdateFormValue] = useState({
     content: comment.content,
-    studentId: userId,
+    studentId: auth.id,
     commentNum: comment.num,
     categoryName,
     num,
@@ -30,9 +35,6 @@ const SingleComment = ({ comment, categoryName, num }) => {
   });
 
   const resetValue = useRef(null);
-
-  const dispatch = useDispatch();
-  const userId = useSelector((state) => state.auth.id);
 
   const onChange = (e) => {
     setFormValue({
@@ -69,18 +71,31 @@ const SingleComment = ({ comment, categoryName, num }) => {
 
     const body = {
       content: content.replace(/(?:\r\n|\r|\n)/g, " <br /> "),
-      studentId: userId,
+      studentId: auth.id,
       categoryName,
       num,
       groupNum,
     };
 
+    const notification = {
+      notiCategoryNum: 1,
+      senderNickname: auth.nickname,
+      recipientNickname: board.nickname,
+      url: `https://idu-market.shop/boards/${categoryName}/${num}`,
+      num,
+    };
+
     if (body.content.length === 0) {
-      alert("댓글이 비었습니다.");
+      alert("댓글에 내용을 입력해주세요.");
     } else {
       dispatch({
         type: REPLY_UPLOAD_REQUEST,
         payload: body,
+      });
+
+      dispatch({
+        type: NOTIFICATION_REQUEST,
+        payload: notification,
       });
 
       setTimeout(() => {
@@ -109,7 +124,7 @@ const SingleComment = ({ comment, categoryName, num }) => {
 
     const body = {
       content: content.replace(/(?:\r\n|\r|\n)/g, " <br /> "),
-      studentId: userId,
+      studentId: auth.id,
       categoryName,
       commentNum,
       num,
@@ -117,7 +132,7 @@ const SingleComment = ({ comment, categoryName, num }) => {
     };
 
     if (body.content.length === 0) {
-      alert("댓글이 비었습니다.");
+      alert("댓글에 수정 할 내용을 입력해주세요.");
     } else {
       dispatch({
         type: COMMENT_UPDATE_REQUEST,
@@ -142,7 +157,7 @@ const SingleComment = ({ comment, categoryName, num }) => {
       commentNum: comment.num,
       categoryName,
       num,
-      studentId: userId,
+      studentId: auth.id,
       depth: comment.depth,
     };
     console.log(body);
@@ -202,7 +217,7 @@ const SingleComment = ({ comment, categoryName, num }) => {
               </>
             )}
 
-            {userId === comment.studentId && comment.hiddenFlag === 0 ? (
+            {auth.id === comment.studentId && comment.hiddenFlag === 0 ? (
               <div className="comment-update-box">
                 <button className="comment-update-icon" onClick={onOpenUpdate}>
                   <RiPencilLine />
@@ -240,7 +255,7 @@ const SingleComment = ({ comment, categoryName, num }) => {
 
             {openReply ? (
               <div className="comment-submit-box">
-                {userId ? (
+                {auth.id ? (
                   <>
                     <textarea
                       ref={resetValue}

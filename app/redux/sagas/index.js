@@ -4,6 +4,7 @@ import boardSaga from "./boardSaga";
 import commentSaga from "./commentSaga";
 import profileSaga from "./profileSaga";
 import tradeSaga from "./tradeSaga";
+import notificationSaga from "./notificationSaga";
 
 //제너레이터
 export default function* rootSaga() {
@@ -13,5 +14,6 @@ export default function* rootSaga() {
     fork(commentSaga),
     fork(tradeSaga),
     fork(profileSaga),
+    fork(notificationSaga),
   ]);
 }

@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 import auth from "./authReducer";
 import board from "./boardReducer";
 import comment from "./commentReducer";
+import notification from "./notificationReducer";
 import profile from "./profileReducer";
 import trade from "./tradeReducer";
 
@@ -11,4 +12,5 @@ export default combineReducers({
   comment: comment,
   trade: trade,
   profile: profile,
+  notification: notification,
 });
