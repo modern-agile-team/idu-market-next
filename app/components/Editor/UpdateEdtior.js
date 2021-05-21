@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import axios from "axios";
 import dynamic from "next/dynamic";
+
 import { BOARD_UPDATE_REQUEST } from "../../redux/types";
 import { modules, formats } from "./EditorConfig";
 import EditorImageUpload from "./EditorImageUpload";
@@ -16,7 +17,7 @@ const QuillNoSSRWrapper = dynamic(import("react-quill"), {
 const UpdateEditor = () => {
   const router = useRouter();
   const { categoryName, num } = router.query;
-  const { id, isAdmin } = useSelector((state) => state.auth);
+  const { id } = useSelector((state) => state.auth);
   const board = useSelector((state) => state.board);
 
   const [formValues, setFormValues] = useState({
