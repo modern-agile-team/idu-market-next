@@ -3,7 +3,10 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 
 import { IoMdNotifications } from "react-icons/io";
-import { NOTIFICATION_GET_REQUEST } from "../../redux/types";
+import {
+  NOTIFICATION_CHANGE_REQUEST,
+  NOTIFICATION_GET_REQUEST,
+} from "../../redux/types";
 
 const Notification = ({ studentId }) => {
   const [onNotification, setOnNotification] = useState(false);
@@ -40,7 +43,14 @@ const Notification = ({ studentId }) => {
   const onChangeFlag = (e) => {
     e.preventDefault();
 
-    console.log(e.target.getAttribute("num"));
+    const body = {
+      notificationNum: e.target.getAttribute("num"),
+    };
+
+    dispatch({
+      type: NOTIFICATION_CHANGE_REQUEST,
+      payload: body,
+    });
   };
 
   return (
@@ -84,18 +94,22 @@ const Notification = ({ studentId }) => {
                   }
                   key={noti.notificationNum}
                 >
-                  <Link href="/">
+                  <Link
+                    href={noti.url}
+                    num={noti.notificationNum}
+                    onClick={onChangeFlag}
+                  >
                     {(function () {
                       if (noti.notiCategoryNum === 0) {
                         return (
-                          <a num={noti.notificationNum} onClick={onChangeFlag}>
+                          <a>
                             <b>'{noti.boardTitle}'</b> 게시물에 댓글이
                             달렸습니다.
                           </a>
                         );
                       } else if (noti.notiCategoryNum === 1) {
                         return (
-                          <a num={noti.notificationNum} onClick={onChangeFlag}>
+                          <a>
                             <b>'{noti.boardTitle}'</b> 게시물에 답글이
                             달렸습니다.
                           </a>
@@ -103,7 +117,7 @@ const Notification = ({ studentId }) => {
                       }
 
                       return (
-                        <a num={noti.notificationNum} onClick={onChangeFlag}>
+                        <a>
                           <b>'{noti.boardTitle}'</b> 게시물 거래가 완료
                           되었습니다.
                         </a>

@@ -98,12 +98,12 @@ function* notificationPatch(action) {
     console.log(result);
 
     yield put({
-      type: NOTIFICATION_GET_SUCCESS,
+      type: NOTIFICATION_CHANGE_SUCCESS,
       payload: result.data,
     });
   } catch (e) {
     yield put({
-      type: NOTIFICATION_GET_FAILURE,
+      type: NOTIFICATION_CHANGE_FAILURE,
       payload: e.response,
     });
   }

@@ -56,19 +56,19 @@ const notification = (state = initialState, action) => {
         msg: action.payload.data.msg,
         notifications: [],
       };
+
     case NOTIFICATION_CHANGE_SUCCESS:
       return {
         ...state,
         loading: false,
         msg: action.payload.msg,
-        readFlag: action.payload.readFlag,
       };
+
     case NOTIFICATION_CHANGE_FAILURE:
       return {
         ...state,
         loading: false,
         msg: action.payload.data.msg,
-        readFlag: null,
       };
     default:
       return state;
