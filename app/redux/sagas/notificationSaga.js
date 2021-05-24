@@ -4,9 +4,12 @@ import {
   NOTIFICATION_REQUEST,
   NOTIFICATION_SUCCESS,
   NOTIFICATION_FAILURE,
+  NOTIFICATION_GET_REQUEST,
+  NOTIFICATION_GET_SUCCESS,
+  NOTIFICATION_GET_FAILURE,
 } from "../types";
 
-//Profile Get
+//Notification POST
 function notificationPostAPI(payload) {
   const notiCategoryNum = payload.notiCategoryNum;
   const senderNickname = payload.senderNickname;
@@ -47,10 +50,41 @@ function* notificationPost(action) {
   }
 }
 
+//Notification GET
+function notificationGetAPI(payload) {
+  console.log(body);
+
+  return axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/notification/${boardNum}`
+  );
+}
+
+function* notificationGet(action) {
+  try {
+    const result = yield call(notificationGetAPI, action.payload);
+
+    console.log(result);
+
+    yield put({
+      type: NOTIFICATION_GET_SUCCESS,
+      payload: result.data,
+    });
+  } catch (e) {
+    yield put({
+      type: NOTIFICATION_GET_FAILURE,
+      payload: e.response,
+    });
+  }
+}
+
 function* watchNotificationPost() {
   yield takeEvery(NOTIFICATION_REQUEST, notificationPost);
 }
 
+function* watchNotificationGet() {
+  yield takeEvery(NOTIFICATION_GET_REQUEST, notificationGet);
+}
+
 export default function* notificationSaga() {
-  yield all([fork(watchNotificationPost)]);
+  yield all([fork(watchNotificationPost), fork(watchNotificationGet)]);
 }
