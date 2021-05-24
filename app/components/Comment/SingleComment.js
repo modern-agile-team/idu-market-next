@@ -16,6 +16,8 @@ const SingleComment = ({ comment, categoryName, num }) => {
   const auth = useSelector((state) => state.auth);
   const board = useSelector((state) => state.board);
 
+  const { isAdmin } = useSelector((state) => state.auth);
+
   const [openReply, setOpenReply] = useState(false);
   const [openUpdate, setOpenUpdate] = useState(false);
   const [formValue, setFormValue] = useState({
@@ -191,7 +193,15 @@ const SingleComment = ({ comment, categoryName, num }) => {
                     className="comment-profile-img"
                   />
                   <Link href={`/students/${comment.studentId}`}>
-                    <a>{comment.nickname}</a>
+                    <a
+                      className={
+                        comment.nickname.length > 6
+                          ? "comment-nickname admin"
+                          : "comment-nickname"
+                      }
+                    >
+                      {comment.nickname}
+                    </a>
                   </Link>
                 </div>
                 <div className="comment-content">

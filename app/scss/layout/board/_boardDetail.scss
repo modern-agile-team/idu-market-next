@@ -162,6 +162,11 @@
     align-items: center;
     margin: 3px 0;
   }
+
+  &.admin {
+    color: green;
+  }
+  
 }
 
 .detail-edtior {

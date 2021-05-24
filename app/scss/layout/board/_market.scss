@@ -79,13 +79,13 @@
 
 .market-item-id {
   color: #999;
-  font-size: 1rem;
+  font-size: 0.8rem;
   margin: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  .shortId {
+  .board-nickname {
       color: #999;
       display: flex;
       justify-content: center;
@@ -94,16 +94,16 @@
       &:hover {
           color: $main-color-6; 
       }
-  }
-  .longId {
-      font-size: 0.8rem;
-      color: #999;
-      display: flex;
-      justify-content: center;
-      align-items: center;
 
-      &:hover {
-          color: $main-color-6; 
+      &.admin {
+        color: green;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+  
+        &:hover {
+            color: $main-color-6; 
+        }
       }
   }
 }

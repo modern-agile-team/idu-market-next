@@ -161,7 +161,8 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
             alt="프로필 이미지"
             className="detail-profile-img"
           />
-          &nbsp;{boardDetail.nickname}
+          &nbsp;
+          {boardDetail.nickname}
         </p>
         <p>
           <BsCalendar />

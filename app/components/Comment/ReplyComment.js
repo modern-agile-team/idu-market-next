@@ -17,7 +17,6 @@ const ReplyComment = ({ comment, categoryName, num, onDelete }) => {
 
   const userId = useSelector((state) => state.auth.id);
   const dispatch = useDispatch();
-
   const onUpdateChange = (e) => {
     setUpdateFormValue({
       ...updateFormValue,
@@ -73,7 +72,15 @@ const ReplyComment = ({ comment, categoryName, num, onDelete }) => {
             className="comment-profile-img"
           />
           <Link href={`/students/${comment.studentId}`}>
-            <a>{comment.nickname}</a>
+            <a
+              className={
+                comment.nickname.length > 6
+                  ? "comment-nickname admin"
+                  : "comment-nickname"
+              }
+            >
+              {comment.nickname}
+            </a>
           </Link>
         </div>
         <div className="comment-content">
