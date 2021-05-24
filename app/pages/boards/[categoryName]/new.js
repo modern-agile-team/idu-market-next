@@ -6,6 +6,7 @@ import Head from "next/head";
 
 const BoardNewPage = () => {
   const router = useRouter();
+  const { categoryName } = router.query;
 
   return (
     <>
@@ -22,7 +23,7 @@ const BoardNewPage = () => {
       />
       <section id="post-write" className="post-write">
         <div className="container">
-          <Editor />
+          <Editor categoryName={categoryName} />
         </div>
       </section>
     </>
