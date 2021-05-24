@@ -106,7 +106,10 @@
 
     .comment-nickname {
         &.admin {
-            color: green;
+            color: rgb(1, 153, 1);
+            &:hover {
+                color: rgb(1, 131, 1);
+            }
         }
     }
 }
