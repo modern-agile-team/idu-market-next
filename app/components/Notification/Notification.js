@@ -37,6 +37,12 @@ const Notification = ({ studentId }) => {
     setOnNotification(!onNotification);
   };
 
+  const onChangeFlag = (e) => {
+    e.preventDefault();
+
+    console.log(e.target.getAttribute("num"));
+  };
+
   return (
     <div className="header-notification">
       <IoMdNotifications
@@ -47,13 +53,16 @@ const Notification = ({ studentId }) => {
       />
 
       {notifications.length > 0 ? (
-        notifications.map((noti, index) => {
+        notifications.map((noti) => {
           let count = 0;
 
           if (noti.readFlag === 0) count++;
 
           return (
-            <div className="notification-nowatch-count" key={index}>
+            <div
+              className="notification-nowatch-count"
+              key={noti.notificationNum}
+            >
               {count}
             </div>
           );
@@ -65,7 +74,7 @@ const Notification = ({ studentId }) => {
       {onNotification ? (
         <ul className="notification-ul" ref={refEl}>
           {notifications.length > 0 ? (
-            notifications.map((noti, index) => {
+            notifications.map((noti) => {
               return (
                 <li
                   className={
@@ -73,20 +82,20 @@ const Notification = ({ studentId }) => {
                       ? "notification-li nowatch"
                       : "notification-li"
                   }
-                  key={index}
+                  key={noti.notificationNum}
                 >
-                  <Link href={noti.url}>
+                  <Link href="/">
                     {(function () {
                       if (noti.notiCategoryNum === 0) {
                         return (
-                          <a>
+                          <a num={noti.notificationNum} onClick={onChangeFlag}>
                             <b>'{noti.boardTitle}'</b> 게시물에 댓글이
                             달렸습니다.
                           </a>
                         );
                       } else if (noti.notiCategoryNum === 1) {
                         return (
-                          <a>
+                          <a num={noti.notificationNum} onClick={onChangeFlag}>
                             <b>'{noti.boardTitle}'</b> 게시물에 답글이
                             달렸습니다.
                           </a>
@@ -94,7 +103,7 @@ const Notification = ({ studentId }) => {
                       }
 
                       return (
-                        <a>
+                        <a num={noti.notificationNum} onClick={onChangeFlag}>
                           <b>'{noti.boardTitle}'</b> 게시물 거래가 완료
                           되었습니다.
                         </a>
