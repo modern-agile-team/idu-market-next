@@ -8,6 +8,7 @@ import { LOGOUT_REQUEST } from "../../redux/types";
 
 import { HeaderMenuData } from "../../Data/HeaderMenuData";
 import DropMenu from "./DropMenu";
+import Notification from "../Notification/Notification";
 
 const Header = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -53,6 +54,8 @@ const Header = () => {
 
           {auth.jwt ? (
             <>
+              <Notification studentId={auth.id} showSidebar={showSidebar} />
+
               <Link href={`/students/${auth.id}`} className="profile-icon-btn">
                 <img
                   src={auth.profilePath}

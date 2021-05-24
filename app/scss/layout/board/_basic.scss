@@ -32,7 +32,7 @@
 
     td {
         text-align: center;
-        padding: 10px 0;
+        padding: 10px 2px;
         border-bottom: 1.2px solid #222;
         font-family: $Montserrat-font;
     }
@@ -112,7 +112,11 @@
 
 .boardlist-common-nickname {
     &.admin {
-        color: green;
+        color: rgb(1, 153, 1);
+
+        &:hover {
+            color: rgb(2, 104, 2);
+        }
     }
 }
 
@@ -129,8 +133,11 @@
     }
 }
 
-/* 0 ~ 768px : 테블릿2 */
+/* 0 ~ 790px : 테블릿2 */
 @media screen and (max-width: 790px) {
+    .boardlist-common-tables {
+        width: 100%;
+    }
     .boardlist-common {
         width: 90%;
     }
@@ -230,8 +237,12 @@
         }
         td {
             padding: 3px 0px;
+            &:first-child {
+                font-size: 0.6rem;
+            }
             &:last-child {
-                width: 15%;
+                font-size: 0.6rem;
+                width: 12%;
             }
         }
     }

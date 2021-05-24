@@ -1,9 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  COMMENT_UPLOAD_REQUEST,
-  NOTIFICATION_REQUEST,
-} from "../../redux/types";
+import { COMMENT_UPLOAD_REQUEST } from "../../redux/types";
 import SingleComment from "./SingleComment";
 
 const Comment = ({ comments, categoryName, num }) => {
@@ -32,17 +29,15 @@ const Comment = ({ comments, categoryName, num }) => {
     const body = {
       content: content.replace(/(?:\r\n|\r|\n)/g, " <br /> "),
       studentId: auth.id,
+      senderNickname: auth.nickname,
+      recipientNickname: board.nickname,
+      notiCategoryNum: 0,
+      url: `https://idu-market.shop/boards/${categoryName}/${num}`,
       categoryName,
       num,
     };
 
-    const notification = {
-      notiCategoryNum: 0,
-      senderNickname: auth.nickname,
-      recipientNickname: board.nickname,
-      url: `https://idu-market.shop/boards/${categoryName}/${num}`,
-      num,
-    };
+    console.log(body);
 
     if (body.content.length === 0) {
       alert("댓글이 비었습니다.");
@@ -52,10 +47,10 @@ const Comment = ({ comments, categoryName, num }) => {
         payload: body,
       });
 
-      dispatch({
-        type: NOTIFICATION_REQUEST,
-        payload: notification,
-      });
+      // dispatch({
+      //   type: NOTIFICATION_REQUEST,
+      //   payload: notification,
+      // });
 
       resetValue.current.value = "";
 

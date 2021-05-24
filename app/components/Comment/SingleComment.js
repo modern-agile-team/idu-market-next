@@ -6,7 +6,6 @@ import {
   COMMENT_DELETE_REQUEST,
   COMMENT_GET_REQUEST,
   COMMENT_UPDATE_REQUEST,
-  NOTIFICATION_REQUEST,
   REPLY_UPLOAD_REQUEST,
 } from "../../redux/types";
 import ReplyComment from "./ReplyComment";
@@ -15,8 +14,6 @@ const SingleComment = ({ comment, categoryName, num }) => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const board = useSelector((state) => state.board);
-
-  const { isAdmin } = useSelector((state) => state.auth);
 
   const [openReply, setOpenReply] = useState(false);
   const [openUpdate, setOpenUpdate] = useState(false);
@@ -74,17 +71,13 @@ const SingleComment = ({ comment, categoryName, num }) => {
     const body = {
       content: content.replace(/(?:\r\n|\r|\n)/g, " <br /> "),
       studentId: auth.id,
-      categoryName,
-      num,
-      groupNum,
-    };
-
-    const notification = {
       notiCategoryNum: 1,
       senderNickname: auth.nickname,
       recipientNickname: board.nickname,
       url: `https://idu-market.shop/boards/${categoryName}/${num}`,
+      categoryName,
       num,
+      groupNum,
     };
 
     if (body.content.length === 0) {
@@ -93,11 +86,6 @@ const SingleComment = ({ comment, categoryName, num }) => {
       dispatch({
         type: REPLY_UPLOAD_REQUEST,
         payload: body,
-      });
-
-      dispatch({
-        type: NOTIFICATION_REQUEST,
-        payload: notification,
       });
 
       setTimeout(() => {

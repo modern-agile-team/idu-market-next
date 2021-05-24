@@ -96,13 +96,13 @@
       }
 
       &.admin {
-        color: green;
+        color: rgb(1, 153, 1);
         display: flex;
         justify-content: center;
         align-items: center;
   
         &:hover {
-            color: $main-color-6; 
+            color: rgb(1, 131, 1);
         }
       }
   }

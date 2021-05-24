@@ -22,9 +22,8 @@ const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ),
 });
 
-const Editor = () => {
+const Editor = ({ categoryName }) => {
   const router = useRouter();
-  const { categoryName } = router.query;
   const { id, isAdmin } = useSelector((state) => state.auth);
 
   const [formValues, setFormValues] = useState({
@@ -34,23 +33,28 @@ const Editor = () => {
     images: [],
     thumbnail: "",
     price: "",
-    categoryName: categoryName,
+    categoryName: "",
   });
   const [uploadImages, setUploadImages] = useState([]);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (id.length === 0) {
+    if (localStorage.getItem("jwt").length === 0) {
       alert("로그인한 유저만 접근할 수 있습니다.");
       router.back();
     } else {
+      setFormValues({
+        ...formValues,
+        categoryName,
+      });
+
       if (categoryName === "notice" && isAdmin !== 1) {
         alert("관리자만 접근할 수 있는 페이지 입니다.");
         router.back();
       }
     }
-  }, []);
+  }, [categoryName]);
 
   const onChange = (e) => {
     setFormValues({
@@ -131,6 +135,7 @@ const Editor = () => {
     e.preventDefault();
 
     console.log(formValues);
+
     if (categoryName === "free" || categoryName === "notice") {
       const { studentId, title, content, categoryName } = formValues;
 
