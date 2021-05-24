@@ -3,7 +3,6 @@ import Link from "next/link";
 import { AiOutlineComment } from "react-icons/ai";
 
 const MarketListItem = ({ productList, categoryName, profile }) => {
-  console.log(productList);
   return (
     <>
       {productList.map((board) => {

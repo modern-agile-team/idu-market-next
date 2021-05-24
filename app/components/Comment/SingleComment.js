@@ -6,7 +6,6 @@ import {
   COMMENT_DELETE_REQUEST,
   COMMENT_GET_REQUEST,
   COMMENT_UPDATE_REQUEST,
-  NOTIFICATION_REQUEST,
   REPLY_UPLOAD_REQUEST,
 } from "../../redux/types";
 import ReplyComment from "./ReplyComment";
@@ -15,8 +14,6 @@ const SingleComment = ({ comment, categoryName, num }) => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const board = useSelector((state) => state.board);
-
-  const { isAdmin } = useSelector((state) => state.auth);
 
   const [openReply, setOpenReply] = useState(false);
   const [openUpdate, setOpenUpdate] = useState(false);
