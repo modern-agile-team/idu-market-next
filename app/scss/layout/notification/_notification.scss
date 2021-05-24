@@ -22,7 +22,7 @@
   top: 60px;
   right: 50%;
   transform: translateX(50%);
-  width: 280px;
+  width: 320px;
   max-height: 400px;
   border: 1px solid #999;
   z-index: 200;
@@ -36,6 +36,11 @@
   background-color: $bg-color-2;
   padding: 20px;
   border-bottom: 1px solid rgb(153, 152, 152);
+  font-size: 0.8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
 
   &.nowatch {
     background-color: #fdfdfd;
@@ -52,11 +57,21 @@
 
   &:hover {
     font-weight: bold;
+    text-decoration: underline;
   }
+}
 
-  a {
-    padding: 20px 20px 20px 20px;
-  }
+.notification-nowatch-count {
+  text-align: center;
+  width: 18px;
+  height: 18px;
+  font-size: 0.5rem;
+  position: absolute;
+  top: 0;
+  right: 30px;
+  background-color: rgb(255, 21, 21);
+  color: #fff;
+  border-radius: 50%;
 }
 
 @media screen and (max-width: 1220px) { 
@@ -64,8 +79,15 @@
     margin-right: 0;
     margin: 10px 0;
   }
+
   .notification-ul { 
-    height: 200px;
+    max-height: 200px;
     top: 55px;
+  }
+
+  .notification-nowatch-count {
+    position: absolute;
+    top: 6px;
+    right: -8px;
   }
 }

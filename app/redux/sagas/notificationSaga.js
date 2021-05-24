@@ -24,8 +24,6 @@ function notificationPostAPI(payload) {
     url,
   };
 
-  console.log(body);
-
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/api/notification/${boardNum}`,
     body
@@ -35,8 +33,6 @@ function notificationPostAPI(payload) {
 function* notificationPost(action) {
   try {
     const result = yield call(notificationPostAPI, action.payload);
-
-    console.log(result);
 
     yield put({
       type: NOTIFICATION_SUCCESS,
@@ -52,10 +48,10 @@ function* notificationPost(action) {
 
 //Notification GET
 function notificationGetAPI(payload) {
-  console.log(body);
+  const studentId = payload.studentId;
 
   return axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/notification/${boardNum}`
+    `${process.env.NEXT_PUBLIC_API_URL}/api/notification/${studentId}`
   );
 }
 
