@@ -72,17 +72,13 @@ const SingleComment = ({ comment, categoryName, num }) => {
     const body = {
       content: content.replace(/(?:\r\n|\r|\n)/g, " <br /> "),
       studentId: auth.id,
-      categoryName,
-      num,
-      groupNum,
-    };
-
-    const notification = {
       notiCategoryNum: 1,
       senderNickname: auth.nickname,
       recipientNickname: board.nickname,
       url: `https://idu-market.shop/boards/${categoryName}/${num}`,
+      categoryName,
       num,
+      groupNum,
     };
 
     if (body.content.length === 0) {
@@ -91,11 +87,6 @@ const SingleComment = ({ comment, categoryName, num }) => {
       dispatch({
         type: REPLY_UPLOAD_REQUEST,
         payload: body,
-      });
-
-      dispatch({
-        type: NOTIFICATION_REQUEST,
-        payload: notification,
       });
 
       setTimeout(() => {

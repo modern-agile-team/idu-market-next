@@ -117,8 +117,10 @@
         text-align: right;
         transform: translateX(0);
         opacity: 0;
+        color: #222;
 
         &.show {
+            color: #222;
             animation: text 2s;
             opacity: 1;
         }

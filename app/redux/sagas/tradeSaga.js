@@ -41,10 +41,18 @@ function* tradeCommentGet(action) {
 function tradeCompleteAPI(payload) {
   const boardNum = payload.boardNum;
   const studentId = payload.studentId;
+  const senderNickname = payload.senderNickname;
+  const recipientNickname = payload.recipientNickname;
+  const notiCategoryNum = payload.notiCategoryNum;
+  const url = payload.url;
 
   const body = {
     boardNum,
     studentId,
+    senderNickname,
+    recipientNickname,
+    notiCategoryNum,
+    url,
   };
 
   console.log(body);

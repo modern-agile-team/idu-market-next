@@ -1,9 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  COMMENT_UPLOAD_REQUEST,
-  NOTIFICATION_REQUEST,
-} from "../../redux/types";
+import { COMMENT_UPLOAD_REQUEST } from "../../redux/types";
 import SingleComment from "./SingleComment";
 
 const Comment = ({ comments, categoryName, num }) => {

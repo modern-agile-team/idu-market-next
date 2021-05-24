@@ -155,9 +155,18 @@ function replyUploadAPI(payload) {
   const categoryName = payload.categoryName;
   const num = payload.num;
   const groupNum = payload.groupNum;
+  const senderNickname = payload.senderNickname;
+  const recipientNickname = payload.recipientNickname;
+  const notiCategoryNum = payload.notiCategoryNum;
+  const url = payload.url;
+
   const body = {
     studentId: payload.studentId,
     content: payload.content,
+    senderNickname,
+    recipientNickname,
+    notiCategoryNum,
+    url,
   };
 
   return axios.post(

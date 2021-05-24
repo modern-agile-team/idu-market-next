@@ -29,6 +29,7 @@
   overflow-y: scroll;
   box-shadow: 5px 5px 5px rgb(211, 211, 211);
   border-radius: 8px;
+  background-color: #fdfdfd;
 }
 
 .notification-li {
@@ -40,19 +41,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-
+  cursor: pointer;
 
   &.nowatch {
     background-color: #fdfdfd;
     border-bottom: 1px solid rgb(153, 152, 152);
-  }
-
-  &:nth-child(1) {
-    border-bottom: none;
-  }
-
-  &:nth-child(2) {
-    border-top: 1px solid rgb(153, 152, 152);
   }
 
   &:hover {

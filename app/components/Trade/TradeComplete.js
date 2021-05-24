@@ -1,15 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import {
-  NOTIFICATION_REQUEST,
-  TRADE_COMPLETE_REQUEST,
-} from "../../redux/types";
+import { TRADE_COMPLETE_REQUEST } from "../../redux/types";
 
 const TradeComplete = ({ buyers, nickname, categoryName, num }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const auth = useSelector((state) => state.auth);
   const board = useSelector((state) => state.board);
 
   const onConfirmTrade = (e) => {
@@ -27,27 +23,18 @@ const TradeComplete = ({ buyers, nickname, categoryName, num }) => {
 
     if (confirmBuyer) {
       const body = {
+        notiCategoryNum: 2,
+        senderNickname: board.nickname,
+        recipientNickname: e.target.textContent,
+        url: `https://idu-market.shop/boards/${categoryName}/${num}`,
         categoryName,
         boardNum: num,
         studentId,
       };
 
-      const notification = {
-        notiCategoryNum: 2,
-        senderNickname: board.nickname,
-        recipientNickname: e.target.textContent,
-        url: `https://idu-market.shop/boards/${categoryName}/${num}`,
-        num,
-      };
-
       dispatch({
         type: TRADE_COMPLETE_REQUEST,
         payload: body,
-      });
-
-      dispatch({
-        type: NOTIFICATION_REQUEST,
-        payload: notification,
       });
 
       alert("거래가 종료되었습니다.");
