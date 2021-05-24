@@ -103,6 +103,12 @@
             color: $main-color-5;
         }
     }
+
+    .comment-nickname {
+        &.admin {
+            color: green;
+        }
+    }
 }
 
 .comment-content {
