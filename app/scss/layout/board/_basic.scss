@@ -25,7 +25,7 @@
     .boardlist-common-title {
         text-align: center;
         width: 60%;
-        font-family: $Jua-font;
+        font-family: $Montserrat-font;
         word-wrap:break-word;
         word-break:break-all;
     }
@@ -34,7 +34,7 @@
         text-align: center;
         padding: 10px 0;
         border-bottom: 1.2px solid #222;
-        font-family: $Jua-font;
+        font-family: $Montserrat-font;
     }
 
     th {
@@ -53,7 +53,7 @@
         color: #222222;
         text-align: left;
         font-size: 1rem; 
-        font-family: $Jua-font;
+        font-family: $Montserrat-font;
 
         &:hover { 
             color: $main-color-6; 
@@ -110,6 +110,12 @@
     margin-right: 5px;
 }
 
+.boardlist-common-nickname {
+    &.admin {
+        color: green;
+    }
+}
+
 /* 0 ~ 1024 : 데스크탑3  */
 @media screen and (max-width: 1024px) {
     .boardlist-common-tables {
@@ -124,7 +130,7 @@
 }
 
 /* 0 ~ 768px : 테블릿2 */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 790px) {
     .boardlist-common {
         width: 90%;
     }
@@ -143,25 +149,13 @@
 @media screen and (max-width: 670px) {
     .boardlist-common {
         width: 95%;
-        height: 600px;
-    }
-    .boardlist-common-nickname {
-        font-size: 0.8rem;
+        height: 700px;
     }
     .boardlist-common-tables {
         width: 95%;
-        th {
-            padding: 6px;
-        }
-        td {
-            padding: 6px;
 
-            &:nth-child(1),
-            &:nth-child(4),
-            &:nth-child(3),
-            &:nth-child(5) {
-                font-size: 0.4rem;
-            }
+        a {
+            font-size: 0.8rem;
         }
      }
      .pagination-container {
@@ -169,29 +163,31 @@
      }
     
 }
+
+@media screen and (max-width: 530px) {
+    .boardlist-common {
+        width: 95%;
+        height: 800px;
+    }
+}
 /* 모바일 */
 @media screen and (max-width: 480px) {
     .boardlist-common {
         width: 95%;
-        height: 600px;
+        height: 700px;
         margin-top: 100px;
     }
     .boardlist-common-tables {
         .boardlist-common-title {
             width: 40%;
         }
-        td {
-            padding: 6px 0px;
-            &:last-child {
-                width: 15%;
-            }
-        }
-        .boardlist-common-nickname {
-            font-size: 0.7rem;
-        }
         a {
-            font-size: 0.8rem;
+            font-size: 0.6rem;
         }
+
+    }
+    .boardlist-common-td {
+        font-size: 0.6rem;
     }
     .pagination-container {
         bottom: 0px;
@@ -204,12 +200,16 @@
 }
 
 @media screen and (max-width: 410px) {
+    .boardlist-common {
+        height: 550px;
+    }
     .boardlist-common-tables {
         .boardlist-common-title {
             width: 40%;
         }
         .boardlist-common-td {
             width: 15%;
+            font-size: 0.6rem;
         }
         td {
             padding: 3px 0px;
