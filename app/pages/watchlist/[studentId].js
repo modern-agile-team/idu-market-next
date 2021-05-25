@@ -49,10 +49,10 @@ const WatchlistPage = () => {
           <a className="profile-move-btn">Profile</a>
         </Link>
         <h1 className="watchlist-title">
-          {`관심 목록 (${productList ? productList.length : 0})`}
+          {`관심 목록 (${productList.length})`}
         </h1>
         <div className="container">
-          {productList && productList.length > 0 ? (
+          {productList.length > 0 ? (
             <MarketListItem productList={productList} profile />
           ) : (
             <h1 className="empty-list-desc">관심목록이 비어있습니다.</h1>

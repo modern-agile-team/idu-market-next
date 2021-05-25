@@ -48,9 +48,11 @@ const saleListPage = () => {
         <Link href={`/students/${studentId}`}>
           <a className="profile-move-btn">Profile</a>
         </Link>
+
         <h1 className="watchlist-title">
           {`판매 목록 (${productList.length})`}
         </h1>
+
         <div className="container">
           {productList.length > 0 ? (
             <MarketListItem productList={productList} profile />
