@@ -50,10 +50,6 @@ const Market = ({ categoryName }) => {
     }
   };
 
-  // const scrollTop = () => {
-  //   window.scrollTo({ top: 0, behavior: "smooth" });
-  // };
-
   useEffect(() => {
     getMoreData();
     window.addEventListener("scroll", handleScroll);
