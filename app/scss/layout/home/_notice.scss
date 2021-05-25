@@ -11,7 +11,7 @@
     position: absolute;
     width: 280px;
     height: 280px;
-    top: 50px;
+    top: 40px;
     left: 20%;
     background: $main-color-3;
     border-radius: 50%;
@@ -31,7 +31,7 @@
 .notice-slide {
     transition: 1.5s ease;
     opacity: 0;
-    z-index: 99;
+    z-index: 10;
 
     &.active { 
         opacity: 1; 
@@ -94,7 +94,7 @@
  /* 0 ~ 1550 : 데스크탑1  */
  @media screen and (max-width: 1550px) {
     .notice-box {
-        left: 17%;
+        left: 16%;
         
         h1 { 
             font-size: 3rem;
@@ -137,11 +137,11 @@
     }
     
     .right-arrow { 
-        right: 50px;
+        right: 30px;
     }
 
     .left-arrow { 
-        left: 50px;
+        left: 30px;
     }
 }
 
@@ -224,14 +224,14 @@
     }
 
     .right-arrow {
-        right: 20px;
-        font-size: 3rem;
+        right: 10px;
+        font-size: 2.7rem;
         
     }
       
     .left-arrow {
-        left: 20px;
-        font-size: 3rem;
+        left: 10px;
+        font-size: 2.7rem;
     }
     
     .slide-btns {
@@ -246,6 +246,7 @@
 @media screen and (max-width: 480px){ 
     .home-notice { 
         height: 600px; 
+        padding-top: 50px;
     }
 
     .notice-slide {
@@ -256,13 +257,29 @@
     }
 
     .right-arrow {
-        top: 75%;
+        top: 78%;
         font-size: 2.2rem;
     }
       
     .left-arrow {
-        top: 75%;
+        top: 78%;
         font-size: 2.2rem;
+    }
+
+    .notice-box {
+        height: 100px;
+
+        .notice-title {
+            font-size: 3rem;
+        }
+    }
+
+    .notice-box {
+        height: 100px;
+
+        .notice-title {
+            font-size: 3rem;
+        }
     }
 }
 
@@ -275,10 +292,12 @@
         }
     }
     .right-arrow {
+        top: 76%;
         font-size: 1.5rem;
     }
 
     .left-arrow {
+        top: 76%;
         font-size: 1.5rem;
     }
 }

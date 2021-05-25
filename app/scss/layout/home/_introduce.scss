@@ -146,7 +146,7 @@
         }
 
         .intro-title {
-            font-size: 5rem;
+            font-size: 4rem;
             margin: 0 5px;
         }
     }
@@ -203,18 +203,12 @@
 /* 0 ~ 480px : 모바일1 */
 @media screen and (max-width: 480px){ 
     .home-introduce { 
-        height: 550px; 
+        height: 600px; 
     }
 
     .youtube-box { 
         height: 300px; 
         margin-top: 40px;
-    }
-
-    .intro-box {
-        .intro-title { 
-            font-size: 4rem;
-        }
     }
 
     .intro-box { 
