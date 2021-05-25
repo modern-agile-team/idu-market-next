@@ -28,7 +28,7 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
       setTradeSentence("판매중");
     } else if (boardDetail.status === 1) {
       setTradeSentence("예약중");
-    } else if (boardDetail.status === 2) {
+    } else {
       setTradeSentence("거래완료");
     }
   }, [boardDetail]);
@@ -220,9 +220,17 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
                           <IoMdArrowDropdown />
                         </>
                       );
+                    if (boardDetail.status === 3) {
+                      return (
+                        <>
+                          <span className="trade-status complete"></span>{" "}
+                          {tradeSentence}
+                        </>
+                      );
+                    }
                   })()}
 
-                  {dropStatus ? (
+                  {dropStatus && boardDetail.status !== 3 ? (
                     <ul className="detail-trade-status-drop">
                       <li value="판매중" onClick={onTradeSentenceChange}>
                         <span className="trade-status sale"></span>판매중
