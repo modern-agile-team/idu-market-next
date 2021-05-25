@@ -21,13 +21,24 @@
     border-spacing: 0;
     margin-top: 30px;
     
-
     .boardlist-common-title {
         text-align: center;
         width: 60%;
         font-family: $Montserrat-font;
         word-wrap:break-word;
         word-break:break-all;
+
+        a {
+            text-decoration: none;
+            color: #222222;
+            text-align: left;
+            font-size: 1rem; 
+            font-family: $Montserrat-font;
+    
+            &:hover { 
+                color: $main-color-6; 
+            }
+        }
     }
 
     td {
@@ -35,6 +46,11 @@
         padding: 10px 2px;
         border-bottom: 1.2px solid #222;
         font-family: $Montserrat-font;
+
+        &:first-child {
+            font-family: $Jua-font;
+            // font-weight: bold;
+        }
     }
 
     th {
@@ -46,18 +62,6 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-    }
-
-    a {
-        text-decoration: none;
-        color: #222222;
-        text-align: left;
-        font-size: 1rem; 
-        font-family: $Montserrat-font;
-
-        &:hover { 
-            color: $main-color-6; 
-        }
     }
 
     .boardlist-common-td {
@@ -111,11 +115,14 @@
 }
 
 .boardlist-common-nickname {
+    font-size: 0.85rem;
+    font-family: $Montserrat-font;
+
     &.admin {
-        color: rgb(1, 153, 1);
+        font-weight: bold;
 
         &:hover {
-            color: rgb(2, 104, 2);
+            color: $main-color-5;
         }
     }
 }
@@ -156,42 +163,45 @@
 @media screen and (max-width: 670px) {
     .boardlist-common {
         width: 95%;
-        height: 700px;
+        padding: 100px 0;
     }
     .boardlist-common-tables {
         width: 95%;
-
-        a {
-            font-size: 0.8rem;
+        .boardlist-common-title {
+            a {
+                font-size: 0.8rem;
+            }
         }
      }
      .pagination-container {
          bottom: 30px;
      }
     
+     .boardlist-common-nickname {
+         font-size: 0.7rem;
+     }
 }
 
 @media screen and (max-width: 530px) {
     .boardlist-common {
         width: 95%;
-        height: 800px;
+        padding: 100px 0 50px 0;
     }
 }
+
 /* 모바일 */
 @media screen and (max-width: 480px) {
     .boardlist-common {
         width: 95%;
-        height: 700px;
-        margin-top: 100px;
     }
     .boardlist-common-tables {
         .boardlist-common-title {
             width: 40%;
-        }
-        a {
-            font-size: 0.6rem;
-        }
 
+            a {
+                font-size: 0.6rem;
+            }
+        }
     }
     .boardlist-common-td {
         font-size: 0.6rem;
@@ -208,7 +218,6 @@
 
 @media screen and (max-width: 410px) {
     .boardlist-common {
-        height: 550px;
     }
     .boardlist-common-tables {
         .boardlist-common-title {
@@ -236,7 +245,8 @@
             width: 15%;
         }
         td {
-            padding: 3px 0px;
+            padding: 3px 2px;
+
             &:first-child {
                 font-size: 0.6rem;
             }
@@ -245,6 +255,10 @@
                 width: 12%;
             }
         }
+    }
+
+    .boardlist-common-nickname {
+        font-size: 0.5rem;
     }
    
 }

@@ -52,11 +52,13 @@
 }
 
 .notification-nowatch-count {
-  text-align: center;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 18px;
   height: 18px;
-  font-size: 0.5rem;
-  position: absolute;
+  font-size: 0.6rem;
   top: 0;
   right: 30px;
   background-color: rgb(255, 21, 21);

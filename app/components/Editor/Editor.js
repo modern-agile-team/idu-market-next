@@ -135,8 +135,6 @@ const Editor = ({ categoryName }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    console.log(formValues);
-
     if (categoryName === "free" || categoryName === "notice") {
       const { studentId, title, content, categoryName } = formValues;
 

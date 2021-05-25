@@ -2,8 +2,9 @@ export const modules = {
   toolbar: [
     [{ header: "1" }, { header: "2" }, { font: [] }],
     [{ size: [] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [{ align: [] }, { color: [] }],
+    ["bold", "italic", "underline", "strike"],
+    [{ align: [] }],
+    [{ color: [] }],
     [({ indent: "-1" }, { indent: "+1" })],
   ],
   clipboard: {
@@ -20,7 +21,8 @@ export const formats = [
   "italic",
   "underline",
   "strike",
-  "blockquote",
+  "color",
   "bullet",
+  "align",
   "indent",
 ];

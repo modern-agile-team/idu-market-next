@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
-import { useSelector } from "react-redux";
+
 import BoardListItem from "./BoardListItem";
 import BoardListTop from "./BoardListTop";
 
 const Basic = ({ categoryName }) => {
   const [pageNumber, setPageNumber] = useState(0);
   const [boardList, setBoardList] = useState([]);
-
-  const { isAdmin } = useSelector((state) => state.auth);
 
   const perPage = 10;
   const pageVisited = pageNumber * perPage;
@@ -53,7 +51,7 @@ const Basic = ({ categoryName }) => {
             <Link href={`/students/${boardItem.studentId}`}>
               <a
                 className={
-                  boardItem.nickname.length > 6
+                  boardItem.isAdmin === 1
                     ? "boardlist-common-nickname admin"
                     : "boardlist-common-nickname"
                 }

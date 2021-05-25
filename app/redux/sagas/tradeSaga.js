@@ -23,8 +23,6 @@ function* tradeCommentGet(action) {
   try {
     const result = yield call(tradeCommentGetAPI, action.payload);
 
-    console.log(result);
-
     yield put({
       type: TRADE_COMMENT_GET_SUCCESS,
       payload: result.data,
@@ -55,7 +53,6 @@ function tradeCompleteAPI(payload) {
     url,
   };
 
-  console.log(body);
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/api/purchase-list`,
     body
@@ -66,7 +63,6 @@ function* tradeComplete(action) {
   try {
     const result = yield call(tradeCompleteAPI, action.payload);
 
-    console.log(result);
     yield put({
       type: TRADE_COMPLETE_SUCCESS,
       payload: result.data,
