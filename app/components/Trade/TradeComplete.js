@@ -71,7 +71,6 @@ const TradeComplete = ({ buyers, nickname, categoryName, num }) => {
         {buyers && nickname ? (
           <>
             {buyers.map((buyer, index) => {
-              console.log(buyer);
               if (buyer.nickname !== nickname) {
                 return (
                   <div

@@ -22,6 +22,7 @@ const Articles = () => {
               </a>
             </Link>
           </div>
+
           <div className="article-item-box box2">
             <p className="article-item-icon">
               <GiClothes />
@@ -33,6 +34,7 @@ const Articles = () => {
               </a>
             </Link>
           </div>
+
           <div className="article-item-box box3">
             <p className="article-item-icon">
               <BsLaptop />

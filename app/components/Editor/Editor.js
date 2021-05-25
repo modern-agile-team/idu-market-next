@@ -99,7 +99,6 @@ const Editor = ({ categoryName }) => {
         .post(`${process.env.NEXT_PUBLIC_API_URL}/api/image`, formData)
         .then((response) => {
           if (response.data.success) {
-            console.log(response.data);
             setUploadImages(uploadImages.concat(response.data.images));
           }
         })

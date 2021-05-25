@@ -69,7 +69,6 @@ const ProfileUpdate = ({ profileList, studentId }) => {
         )
         .then((response) => {
           if (response.data.success) {
-            console.log(response.data);
             setErrorMsg("");
             alert("프로필이 수정되었습니다.");
             router.back();

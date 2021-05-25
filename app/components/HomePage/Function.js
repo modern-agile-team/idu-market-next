@@ -7,8 +7,6 @@ const Function = () => {
     const functionSection = document.querySelector("#home-function");
     const pageScrollY = window.scrollY;
 
-    console.log(pageScrollY);
-
     if (pageScrollY > functionSection.offsetTop / 3.5)
       setScrollActionFunction(true);
     else if (pageScrollY < functionSection.offsetTop / 4.5)

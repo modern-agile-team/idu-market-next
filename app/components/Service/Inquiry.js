@@ -41,7 +41,6 @@ const Inquiry = () => {
         .post(`${process.env.NEXT_PUBLIC_API_URL}/api/inquiry`, body)
         .then((response) => {
           if (response.data.success) {
-            console.log(response.data);
             alert("문의 접수가 완료되었습니다.");
           }
         })

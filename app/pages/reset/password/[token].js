@@ -51,12 +51,10 @@ const PasswordResetPage = () => {
         newPsword: psword,
       };
 
-      console.log(body);
       axios
         .patch(`${process.env.NEXT_PUBLIC_API_URL}/api/password`, body)
         .then((response) => {
           if (response.data.success) {
-            console.log(response.data);
             alert(`비밀번호 변경이 완료되었습니다.`);
             router.push("/login");
           }
