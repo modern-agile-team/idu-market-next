@@ -7,6 +7,7 @@ import {
   NOTIFICATION_CHANGE_REQUEST,
   NOTIFICATION_GET_REQUEST,
 } from "../../redux/types";
+import NotificationItem from "./NotificationItem";
 
 const Notification = ({ studentId }) => {
   const [onNotification, setOnNotification] = useState(false);
@@ -67,75 +68,29 @@ const Notification = ({ studentId }) => {
         onClick={onClick}
       />
 
-      <div className="notification-nowatch-count">
-        {(function () {
-          let count = 0;
-          notifications.forEach((el) => {
-            if (el.readFlag === 0) count++;
-          });
+      {(function () {
+        let count = 0;
 
-          return count;
-        })()}
-      </div>
+        notifications.forEach((el) => {
+          if (el.readFlag === 0) count++;
+        });
+
+        if (count !== 0)
+          return <div className="notification-nowatch-count">{count}</div>;
+
+        return <></>;
+      })()}
 
       {onNotification ? (
         <ul className="notification-ul" ref={refEl}>
           {notifications.length > 0 ? (
             notifications.map((noti, index) => {
               return (
-                <>
-                  {(function () {
-                    if (noti.notiCategoryNum === 0) {
-                      return (
-                        <li
-                          className={
-                            noti.readFlag === 0
-                              ? "notification-li nowatch"
-                              : "notification-li"
-                          }
-                          url={noti.url}
-                          num={noti.notificationNum}
-                          key={index}
-                          onClick={onChangeFlag}
-                        >
-                          <b>'{noti.boardTitle}'</b> 게시물에 댓글이 달렸습니다.
-                        </li>
-                      );
-                    } else if (noti.notiCategoryNum === 1) {
-                      return (
-                        <li
-                          className={
-                            noti.readFlag === 0
-                              ? "notification-li nowatch"
-                              : "notification-li"
-                          }
-                          num={noti.notificationNum}
-                          url={noti.url}
-                          onClick={onChangeFlag}
-                          key={index}
-                        >
-                          <b>'{noti.boardTitle}'</b> 게시물에 댓글이 달렸습니다.
-                        </li>
-                      );
-                    }
-
-                    return (
-                      <li
-                        className={
-                          noti.readFlag === 0
-                            ? "notification-li nowatch"
-                            : "notification-li"
-                        }
-                        url={noti.url}
-                        num={noti.notificationNum}
-                        onClick={onChangeFlag}
-                        key={index}
-                      >
-                        <b>'{noti.boardTitle}'</b> 게시물에 댓글이 달렸습니다.
-                      </li>
-                    );
-                  })()}
-                </>
+                <NotificationItem
+                  noti={noti}
+                  key={index}
+                  onChangeFlag={onChangeFlag}
+                />
               );
             })
           ) : (
