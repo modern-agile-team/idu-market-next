@@ -19,19 +19,23 @@ const BoardListItem = ({ displayBoardList, pageCount, changePage }) => {
         <tbody id="boardlist-common-body">{displayBoardList}</tbody>
       </table>
 
-      <div className="pagination-container">
-        <ReactPaginate
-          previousLabel={<FaAngleLeft />}
-          nextLabel={<FaAngleRight />}
-          pageCount={pageCount}
-          onPageChange={changePage}
-          containerClassName={"pagination-container"}
-          previousLinkClassName={"previousBtn"}
-          nextLinkClassName={"nextBtn"}
-          disabledClassName={"disabled"}
-          activeLinkClassName={"active"}
-        />
-      </div>
+      {displayBoardList.length > 0 ? (
+        <div className="pagination-container">
+          <ReactPaginate
+            previousLabel={<FaAngleLeft />}
+            nextLabel={<FaAngleRight />}
+            pageCount={pageCount}
+            onPageChange={changePage}
+            containerClassName={"pagination-container"}
+            previousLinkClassName={"previousBtn"}
+            nextLinkClassName={"nextBtn"}
+            disabledClassName={"disabled"}
+            activeLinkClassName={"active"}
+          />
+        </div>
+      ) : (
+        <></>
+      )}
     </>
   );
 };

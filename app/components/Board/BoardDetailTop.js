@@ -256,7 +256,7 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
 
       {categoryName === "free" ||
       categoryName === "notice" ||
-      studentId.length === 0 ? (
+      id.length === 0 ? (
         <></>
       ) : (
         <>

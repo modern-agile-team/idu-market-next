@@ -8,7 +8,7 @@ import {
   NOTIFICATION_GET_REQUEST,
 } from "../../redux/types";
 
-const Notification = ({ studentId, showSidebar }) => {
+const Notification = ({ studentId }) => {
   const [onNotification, setOnNotification] = useState(false);
 
   const dispatch = useDispatch();
@@ -54,6 +54,7 @@ const Notification = ({ studentId, showSidebar }) => {
       payload: body,
     });
 
+    setOnNotification(false);
     router.push(e.target.getAttribute("url"));
   };
 

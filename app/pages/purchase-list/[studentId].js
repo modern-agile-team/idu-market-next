@@ -17,11 +17,8 @@ const purchaseListPage = () => {
   const { id } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (id.length > 0) {
-      if (studentId !== id) {
-        alert("잘못된 접근입니다.");
-        router.back();
-      } else {
+    if (id && studentId) {
+      if (studentId === id) {
         axios
           .get(
             `${process.env.NEXT_PUBLIC_API_URL}/api/purchase-list/${studentId}`
@@ -33,11 +30,15 @@ const purchaseListPage = () => {
             }
           })
           .catch((e) => {
-            console.log(e);
+            const response = err.response;
+            console.log(response.data.msg);
           });
+      } else {
+        alert("잘못된 접근입니다.");
+        router.back();
       }
     }
-  }, []);
+  }, [id, studentId]);
 
   return (
     <>
@@ -49,9 +50,11 @@ const purchaseListPage = () => {
         <Link href={`/students/${studentId}`}>
           <a className="profile-move-btn">Profile</a>
         </Link>
+
         <h1 className="watchlist-title">
           {`구매 목록 (${productList.length})`}
         </h1>
+
         <div className="container">
           {productList.length > 0 ? (
             <MarketListItem productList={productList} profile />
