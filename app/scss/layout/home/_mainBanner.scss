@@ -34,7 +34,7 @@
     align-items: center;
     overflow: hidden;
 
-    a {
+    button {
         font-family: $Fredoka-font;
         position: absolute;
         left: 50%;
@@ -57,7 +57,7 @@
 
     }
     
-    &:hover a { 
+    &:hover button { 
         transform: translate(-50%, -50%) rotate(0); 
         color: #fdfdfd;
     }
