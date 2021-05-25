@@ -1,6 +1,10 @@
 .form-template {
     width: 100%;
-    padding: 150px 0 100px 0;
+    padding: 220px 0 200px 0;
+
+    &.register {
+        padding: 130px 0 70px 0;
+    }
 
     .container {
         width: 100%;

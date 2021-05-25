@@ -13,11 +13,11 @@
 
 .intro-box {
     position: absolute;
-    width: 200px;
+    width: 220px;
     height: 550px;
     padding-top: 20px;
     top: 50px;
-    left: 15%;
+    left: 17%;
     border-radius: 10px;
     background-color: $main-color-3;
     line-height: 60px;
@@ -65,7 +65,7 @@
 .intro-bottom-box {
     position: absolute;
     bottom: 25px;
-    right: 15%;
+    right: 17%;
     width: 300px;
     height: 300px;
     border-radius: 10px;
@@ -74,6 +74,9 @@
 
  /* 0 ~ 1550 : 데스크탑1  */
 @media screen and (max-width: 1550px) {
+    .intro-box {
+        left: 14%;
+    }
     .intro-bottom-box { 
         right: 10%; 
     }
@@ -91,7 +94,7 @@
     }
 
     .intro-bottom-box { 
-        right: 5%; 
+        right: 3%; 
     }
 }
 
@@ -103,12 +106,16 @@
         }
     }
 
-    .youtube-box { width: 700px; height: 450px; }
+    .youtube-box { 
+        width: 650px; 
+        height: 450px; 
+    }
 
     .intro-bottom-box {
         width: 200px;
         height: 200px;
         bottom: 80px;
+        right: 5%; 
     }
 }
 
@@ -139,13 +146,13 @@
         }
 
         .intro-title {
-            font-size: 5rem;
+            font-size: 4rem;
             margin: 0 5px;
         }
     }
 
     .youtube-box { 
-        width: 600px; 
+        width: 100%; 
         height: 400px;
         margin-top: 30px;
 
@@ -160,7 +167,9 @@
         }
     }
 
-    .intro-bottom-box { display: none; }
+    .intro-bottom-box { 
+        display: none; 
+    }
     
     .intro-btn {
         bottom: 40px;
@@ -174,11 +183,10 @@
 /* 0 ~ 670px : 테블릿3 */
 @media screen and (max-width: 670px){ 
     .home-introduce { 
-        height: 700px; 
+        height: 650px; 
     }
 
     .youtube-box {
-        width: 450px; 
         height: 350px;
         margin-top: 50px;
     }
@@ -199,20 +207,28 @@
     }
 
     .youtube-box { 
-        width: 330px; 
-        height: 220px; 
+        height: 300px; 
+        margin-top: 40px;
     }
 
-    .intro-box {
-        .intro-title { font-size: 4rem;}
+    .intro-box { 
+        height: 100px;
+
+        .intro-title {
+            font-size: 3rem;
+            margin: 0 5px;
+        }
     }
 }
 
 /* 0 ~ 360px : 모바일1 */
 @media screen and (max-width: 360px){
+    .home-introduce { 
+        height: 500px; 
+    }
+
     .youtube-box { 
-        width: 300px; 
-        height: 200px; 
+        height: 250px; 
     }
 }
 
