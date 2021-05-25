@@ -17,11 +17,8 @@ const WatchlistPage = () => {
   const { id } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (id.length > 0) {
-      if (studentId !== id) {
-        alert("잘못된 접근입니다.");
-        router.push("/");
-      } else {
+    if (id && studentId) {
+      if (id === studentId) {
         axios
           .get(`${process.env.NEXT_PUBLIC_API_URL}/api/watchlist/${studentId}`)
           .then((response) => {
@@ -30,12 +27,16 @@ const WatchlistPage = () => {
               setProductList(result);
             }
           })
-          .catch((e) => {
-            console.log(e);
+          .catch((err) => {
+            const response = err.response;
+            console.log(response.data.msg);
           });
+      } else {
+        alert("잘못된 접근입니다.");
+        router.back();
       }
     }
-  }, [id]);
+  }, [id, studentId]);
 
   return (
     <>
@@ -48,10 +49,10 @@ const WatchlistPage = () => {
           <a className="profile-move-btn">Profile</a>
         </Link>
         <h1 className="watchlist-title">
-          {`관심 목록 (${productList.length})`}
+          {`관심 목록 (${productList ? productList.length : 0})`}
         </h1>
         <div className="container">
-          {productList.length > 0 ? (
+          {productList && productList.length > 0 ? (
             <MarketListItem productList={productList} profile />
           ) : (
             <h1 className="empty-list-desc">관심목록이 비어있습니다.</h1>

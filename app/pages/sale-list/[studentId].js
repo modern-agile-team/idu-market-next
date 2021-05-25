@@ -10,7 +10,6 @@ import MarketListItem from "../../components/Board/MarketListItem";
 
 const saleListPage = () => {
   const [productList, setProductList] = useState([]);
-  const [validation, setValidation] = useState(false);
 
   const router = useRouter();
   const { studentId } = router.query;
@@ -31,7 +30,6 @@ const saleListPage = () => {
           .catch((err) => {
             const response = err.response;
             console.log(response.data.msg);
-            setValidation(false);
           });
       } else {
         alert("잘못된 접근입니다.");

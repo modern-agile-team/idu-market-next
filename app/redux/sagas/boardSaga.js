@@ -236,6 +236,8 @@ function* WatchlistAdd(action) {
   try {
     const result = yield call(WatchlistAddAPI, action.payload);
 
+    console.log(result);
+
     yield put({
       type: WATCHLIST_ADD_SUCCESS,
       payload: result.data,
