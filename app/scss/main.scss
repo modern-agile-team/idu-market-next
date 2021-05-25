@@ -24,28 +24,28 @@
 @import './layout/forms';
 
 //Board
-@import './layout/board/market';
-@import './layout/board/basic';
 @import './layout/board/boardBanner';
-@import './layout/board/boardWrite';
-@import './layout/board/boardDetail';
-@import './layout/board/boardDetailImage';
-
-//Comment
-@import './layout/board/comment';
-
-//TradeComplete
-@import './layout/trade/tradeComplete';
+@import './components/board/market';
+@import './components/board/basic';
+@import './components/board/boardDetail';
+@import './components/board/boardWrite';
+@import './components/board/boardDetailImage';
 
 //Profile
-@import './layout/profile/profile';
-@import './layout/profile/profileUpdate';
-
-//Watchlist
-@import './layout/watchlist/watchlist';
+@import './components/profile/profile';
+@import './components/profile/profileUpdate';
 
 //Service
-@import './layout/service/inquiry';
+@import './components/service/inquiry';
+
+//Comment
+@import './components/comment/comment';
+
+//TradeComplete
+@import './components/trade/tradeComplete';
+
+//Watchlist
+@import './components/watchlist/watchlist';
 
 //Notification
-@import './layout/notification/notification';
+@import './components/notification/notification';
