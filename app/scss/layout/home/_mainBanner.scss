@@ -49,20 +49,12 @@
         font-size: 1.3rem;
         transition: .5s transform;
         color: #fdfdfd;
+        cursor: pointer;
 
-        &:hover::after {
-            content: "↓";
-            position: absolute;
-            top: 110%;
-            left: 50%;
-            line-height: 50px;
-            transform: translate(-50%, -50%);
-            font-size: 3.5rem;
-            color: $main-color-8;
-            font-weight: bold;
-            border-radius: 50%;
-            animation: arrow 1.2s infinite ease;
+        &:hover {
+            animation: circle 1.5s infinite ease;
         }
+
     }
     
     &:hover a { 
@@ -254,9 +246,9 @@
     }
 }
 
-@keyframes arrow {
+@keyframes circle {
     0% { 
-        opacity: 0.2; 
+        opacity: 0.5; 
     }
     100% { 
         opacity: 1; 
