@@ -64,7 +64,7 @@ const MarketListItem = ({ productList, categoryName, profile }) => {
                   <Link href={`/students/${board.studentId}`}>
                     <a
                       className={
-                        board.nickname.length > 6
+                        board.isAdmin === 1
                           ? "board-nickname admin"
                           : "board-nickname"
                       }

@@ -16,10 +16,8 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
   const [dropStatus, setDropStatus] = useState(false);
 
   const dispatch = useDispatch();
-  const { images, isWatchList, studentId } = useSelector(
-    (state) => state.board
-  );
-  const { id } = useSelector((state) => state.auth);
+  const { images, isWatchList } = useSelector((state) => state.board);
+  const auth = useSelector((state) => state.auth);
 
   const router = useRouter();
 
@@ -119,7 +117,7 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
       )}
 
       <div className="detail-btn-box">
-        {boardDetail.studentId === id ? (
+        {boardDetail.studentId === auth.id ? (
           <>
             <Link href={`/boards/${categoryName}/${num}/update`}>
               <a className="detail-btn-edit">수정</a>
@@ -178,7 +176,7 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
         <></>
       ) : (
         <>
-          {boardDetail.studentId === id ? (
+          {boardDetail.studentId === auth.id ? (
             <div className="detail-trade-status-box">
               {boardDetail.status === 2 ? (
                 <Link
@@ -256,16 +254,16 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
 
       {categoryName === "free" ||
       categoryName === "notice" ||
-      id.length === 0 ? (
+      auth.id.length === 0 ? (
         <></>
       ) : (
         <>
-          {boardDetail.studentId !== id ? (
+          {boardDetail.studentId !== auth.id ? (
             <WatchlistAddDelete
               isWatchList={isWatchList}
               categoryName={categoryName}
               boardNum={boardDetail.num}
-              studentId={id}
+              studentId={auth.id}
             />
           ) : (
             <></>

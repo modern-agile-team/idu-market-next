@@ -150,7 +150,6 @@ const SingleComment = ({ comment, categoryName, num }) => {
       studentId: auth.id,
       depth: comment.depth,
     };
-    console.log(body);
 
     const deleteConfirm = window.confirm("댓글을 삭제하시겠습니까?");
 
@@ -192,7 +191,7 @@ const SingleComment = ({ comment, categoryName, num }) => {
                   <Link href={`/students/${comment.studentId}`}>
                     <a
                       className={
-                        comment.nickname.length > 6
+                        comment.isAdmin === 1
                           ? "comment-nickname admin"
                           : "comment-nickname"
                       }

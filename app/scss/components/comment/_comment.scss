@@ -84,7 +84,7 @@
     }
 }
 
-.comment-student-id{
+.comment-student-id {
     display: flex;
     align-items: center;
 
@@ -106,9 +106,8 @@
 
     .comment-nickname {
         &.admin {
-            color: rgb(1, 153, 1);
             &:hover {
-                color: rgb(1, 131, 1);
+                color: $main-color-5;
             }
         }
     }

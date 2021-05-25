@@ -47,11 +47,6 @@ const Comment = ({ comments, categoryName, num }) => {
         payload: body,
       });
 
-      // dispatch({
-      //   type: NOTIFICATION_REQUEST,
-      //   payload: notification,
-      // });
-
       resetValue.current.value = "";
 
       setFormValue({

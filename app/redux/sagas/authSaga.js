@@ -31,7 +31,6 @@ function loginCheckAPI(token) {
 function* loginCheck(action) {
   const result = yield call(loginCheckAPI, action.payload);
 
-  console.log(result);
   try {
     yield put({
       type: LOGIN_CHECK_SUCCESS,

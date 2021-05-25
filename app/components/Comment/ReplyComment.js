@@ -5,17 +5,18 @@ import Link from "next/link";
 import { COMMENT_GET_REQUEST, COMMENT_UPDATE_REQUEST } from "../../redux/types";
 
 const ReplyComment = ({ comment, categoryName, num, onDelete }) => {
+  const auth = useSelector((state) => state.auth);
+
   const [openUpdate, setOpenUpdate] = useState(false);
   const [updateFormValue, setUpdateFormValue] = useState({
     content: comment.content,
-    studentId: userId,
+    studentId: auth.id,
     commentNum: comment.num,
     categoryName,
     num,
     groupNum: comment.groupNum,
   });
 
-  const userId = useSelector((state) => state.auth.id);
   const dispatch = useDispatch();
   const onUpdateChange = (e) => {
     setUpdateFormValue({
@@ -36,7 +37,7 @@ const ReplyComment = ({ comment, categoryName, num, onDelete }) => {
 
     const body = {
       content: content.replace(/(?:\r\n|\r|\n)/g, " <br /> "),
-      studentId: userId,
+      studentId: auth.id,
       categoryName,
       commentNum,
       num,
@@ -74,7 +75,7 @@ const ReplyComment = ({ comment, categoryName, num, onDelete }) => {
           <Link href={`/students/${comment.studentId}`}>
             <a
               className={
-                comment.nickname.length > 6
+                comment.isAdmin === 1
                   ? "comment-nickname admin"
                   : "comment-nickname"
               }
@@ -110,7 +111,7 @@ const ReplyComment = ({ comment, categoryName, num, onDelete }) => {
           <></>
         )}
 
-        {userId === comment.studentId ? (
+        {auth.id === comment.studentId ? (
           <div className="comment-update-box">
             <button className="comment-update-icon" onClick={onOpenUpdate}>
               <RiPencilLine />
