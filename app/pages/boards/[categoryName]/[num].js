@@ -81,11 +81,8 @@ const BoardDetailPage = () => {
             categoryName={categoryName}
             num={num}
           />
-          {categoryName === "free" || categoryName === "notice" ? (
-            <></>
-          ) : (
-            <BoardDetailImage boardDetail={boardDetail} />
-          )}
+
+          <BoardDetailImage boardDetail={boardDetail} />
           <BoardDetailContent boardDetail={boardDetail} />
           <Comment comments={comments} categoryName={categoryName} num={num} />
         </div>
