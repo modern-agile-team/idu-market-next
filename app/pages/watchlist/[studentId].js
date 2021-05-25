@@ -35,7 +35,7 @@ const WatchlistPage = () => {
           });
       }
     }
-  }, []);
+  }, [id]);
 
   return (
     <>

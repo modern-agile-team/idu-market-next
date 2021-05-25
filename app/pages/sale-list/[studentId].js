@@ -10,6 +10,7 @@ import MarketListItem from "../../components/Board/MarketListItem";
 
 const saleListPage = () => {
   const [productList, setProductList] = useState([]);
+  const [validation, setValidation] = useState(false);
 
   const router = useRouter();
   const { studentId } = router.query;
@@ -17,11 +18,8 @@ const saleListPage = () => {
   const { id } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (id.length > 0) {
-      if (studentId !== id) {
-        alert("잘못된 접근입니다.");
-        router.push("/");
-      } else {
+    if (id && studentId) {
+      if (id === studentId) {
         axios
           .get(`${process.env.NEXT_PUBLIC_API_URL}/api/sale-list/${studentId}`)
           .then((response) => {
@@ -30,12 +28,17 @@ const saleListPage = () => {
               setProductList(result);
             }
           })
-          .catch((e) => {
-            console.log(e);
+          .catch((err) => {
+            const response = err.response;
+            console.log(response.data.msg);
+            setValidation(false);
           });
+      } else {
+        alert("잘못된 접근입니다.");
+        router.back();
       }
     }
-  }, []);
+  }, [id, studentId]);
 
   return (
     <>

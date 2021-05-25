@@ -45,7 +45,9 @@ const MarketListItem = ({ productList, categoryName, profile }) => {
                   <Link href={`/students/${board.sellerId}`}>
                     <a
                       className={
-                        board.sellerName.length > 6 ? "longId" : "shortId"
+                        board.sellerName.length > 6
+                          ? "board-nickname admin"
+                          : "board-nickname"
                       }
                     >
                       <img
