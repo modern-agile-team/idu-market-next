@@ -112,6 +112,7 @@
     }
 
     p {
+        margin-right: -25px;
         margin-top: -10px;
         position: relative;
         text-align: right;
@@ -176,7 +177,8 @@
         }
 
         p {
-            font-size: 0.8rem;
+            margin-right: -20px;
+            font-size: 0.7rem;
             margin-top: -5px;
         }
     }
@@ -190,7 +192,7 @@
 /* 0 ~ 480px : 모바일1 */
 @media screen and (max-width: 480px){
     .main-banner { 
-        padding: 340px 50px;
+        padding: 340px 35px;
     }
     
 
@@ -200,7 +202,9 @@
         }
 
         p { 
-            font-size: 0.6rem; 
+            margin-right: -15px;
+            font-size: 0.5rem; 
+            margin-top: -2px;
         }
     }
     .banner-start-btn {
@@ -220,6 +224,7 @@
         }
         
         p { 
+            margin-right: -10px;
             font-size: 0.2rem; 
         }
     }

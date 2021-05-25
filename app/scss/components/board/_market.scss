@@ -1,7 +1,7 @@
 .market {
   position: relative;
   width: 80%;
-  min-height: 340px;
+  min-height: 560px;
   margin: 0 auto;
   padding: 100px 0 90px 0;
   
@@ -267,7 +267,7 @@
 
 .empty-list-desc {
     margin: 0 auto;
-    margin-top: 20px;
+    margin-top: 100px;
     font-family: $Jua-font;
     font-size: 1.5rem;
 }
@@ -307,7 +307,7 @@
       right: 90px;
 
       .market-search-input {
-          width: 200px;
+          width: 250px;
       }
   }
   .upload-btn {
@@ -322,9 +322,6 @@
 }
 
 @media screen and (max-width: 768px) { 
-  .market { 
-      min-height: 220px;
-  }
   .market-items { 
       &:nth-child(2n-1) {
           margin-left: 8%;
@@ -348,7 +345,7 @@
   }
 
   .market-search {
-      right: 50px;
+      right: 30px;
 
       .market-search-input {
           width: 200px;
@@ -387,18 +384,12 @@
   .market-item-price {
       font-size: 0.9rem;
   }
-
-  .market-img-box-link {
-      img {
-          height: 200px;
-      }
-  }
 }
 
 @media screen and (max-width: 480px) {
   .market { 
       width: 80%;
-      min-height: 290px;
+      min-height: 450px;
   }
   .market-items { 
       width: 80%;
@@ -458,10 +449,11 @@
   }
   .market-img-box-link {
       img {
-          height: 230px;
+          height: 250px;
       }
   }
   .empty-list-desc {
+      margin-top: 60px;
       font-size: 1.2rem;
   }
 } 
@@ -502,6 +494,7 @@
   }
 
   .market-search {
+      right: 30px;
       .market-search-input {
           width: 150px;
           font-size: 0.9rem;

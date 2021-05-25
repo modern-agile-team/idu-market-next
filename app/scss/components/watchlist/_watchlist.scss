@@ -53,6 +53,7 @@
     justify-content: center;
 }
 .profile-move-btn {
+    display: inline-block;
     font-size: 1.2rem;
     padding: 10px 20px;
     font-family: $Jua-font;
@@ -69,6 +70,15 @@
         top: 90px;
         padding: 5px 18px;
     }
+    .watchlist-delete-box {
+        top: 90px;
+        padding: 5px 18px;
+    }
+    .profile-move-btn {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+        margin-bottom: 10px;
+    }
 }
 
 @media screen and (max-width: 480px){
@@ -76,11 +86,14 @@
         font-size: 1.4rem;
         padding-bottom: 10px;
     }
+    .profile-move-btn {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+    }
 }
 
 @media screen and (max-width: 360px){
     .profile-move-btn {
-        left: 50%;
-        transform: translateX(-50%);
+        margin-left: 10px;
     }
 }

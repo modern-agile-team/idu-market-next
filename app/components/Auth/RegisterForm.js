@@ -10,7 +10,7 @@ const RegisterForm = ({
   errorMsg,
 }) => {
   return (
-    <section id="form-template" className="form-template">
+    <section id="form-template" className="form-template register">
       <div className="container">
         <form className="form-field">
           <h1 className="form-title">SignUp</h1>
