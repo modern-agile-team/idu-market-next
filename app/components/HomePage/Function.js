@@ -4,10 +4,15 @@ const Function = () => {
   const [scrollActionFuntion, setScrollActionFunction] = useState(false);
 
   function handleScroll() {
+    const functionSection = document.querySelector("#home-function");
     const pageScrollY = window.scrollY;
 
-    if (pageScrollY > 250) setScrollActionFunction(true);
-    else setScrollActionFunction(false);
+    console.log(pageScrollY);
+
+    if (pageScrollY > functionSection.offsetTop / 3.5)
+      setScrollActionFunction(true);
+    else if (pageScrollY < functionSection.offsetTop / 4.5)
+      setScrollActionFunction(false);
   }
 
   useEffect(() => {

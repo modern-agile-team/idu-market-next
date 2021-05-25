@@ -118,10 +118,12 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            opacity: 1;
+            // opacity: 1;
             width: 100%;
 
-            .function-img { width: 70%; }
+            .function-img { 
+                width: 70%; 
+            }
 
             .function-desc { 
                 font-size: 1.2rem; 
@@ -130,19 +132,19 @@
         }
     }
 
-    .function-items.show {
-        .function-item.shopping { 
-            animation: none; 
-        }
+    // .function-items.show {
+    //     .function-item.shopping { 
+    //         animation: none; 
+    //     }
         
-        .function-item.communication {
-            animation: none; 
-        }
+    //     .function-item.communication {
+    //         animation: none; 
+    //     }
 
-        .function-item.information { 
-            animation: none; 
-        }
-    }
+    //     .function-item.information { 
+    //         animation: none; 
+    //     }
+    // }
 }
 
 /* 0 ~ 670px : 테블릿3 */
@@ -153,7 +155,9 @@
 
     .function-items {
         .function-item {
-            .function-desc { font-size: 1.1rem; }
+            .function-desc { 
+                font-size: 1.1rem; 
+            }
         }
     }
 }
