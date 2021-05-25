@@ -74,35 +74,6 @@
   }
 }
 
-.board-detail-content {
-  width: 100%;
-  padding: 20px;
-  border: 2px solid #999;
-  margin: 50px 0;
-  font-family: $Jua-font;
-  font-size: 1.1rem;
-  p {
-    font-family: $Jua-font;
-    font-size: 1.1rem;
-    em {
-      font-family: $Jua-font;
-      font-size: 1.1rem;
-    }
-    u {
-      font-family: $Jua-font;
-      font-size: 1.1rem;
-    }
-  }
-  h1 {
-    font-family: $Jua-font;
-    font-size: 2rem;
-  }
-  h2 {
-    font-family: $Jua-font;
-    font-size: 1.8rem;
-  }
-}
-
 @media screen and (max-width: 970px) {
   .detail-slide {
     .detail-image {

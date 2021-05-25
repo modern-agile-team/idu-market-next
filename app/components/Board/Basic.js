@@ -81,6 +81,11 @@ const Basic = ({ categoryName }) => {
           pageCount={pageCount}
           changePage={changePage}
         />
+        {boardList.length > 0 ? (
+          <></>
+        ) : (
+          <h1 className="empty-list-desc">게시물 목록이 비어있습니다.</h1>
+        )}
       </div>
     </section>
   );
