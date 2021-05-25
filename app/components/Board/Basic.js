@@ -21,7 +21,6 @@ const Basic = ({ categoryName }) => {
       .then((response) => {
         if (response.data.success) {
           const result = response.data.boards;
-          console.log(response.data);
           setBoardList(result);
         }
       })
@@ -43,12 +42,13 @@ const Basic = ({ categoryName }) => {
       return (
         <tr key={boardItem.num}>
           <td>{boardItem.num}</td>
+
           <td className="boardlist-common-title">
             <Link href={`/boards/${categoryName}/${boardItem.num}`}>
               <a>{boardItem.title}</a>
             </Link>
           </td>
-          {console.log(isAdmin)}
+
           <td>
             <Link href={`/students/${boardItem.studentId}`}>
               <a
@@ -62,9 +62,11 @@ const Basic = ({ categoryName }) => {
               </a>
             </Link>
           </td>
+
           <td className="boardlist-common-td">
             {boardItem.inDate.substring(0, 10)}
           </td>
+
           <td>{boardItem.hit}</td>
         </tr>
       );

@@ -131,7 +131,8 @@ const UpdateEditor = () => {
     e.preventDefault();
 
     if (categoryName === "free" || categoryName === "notice") {
-      const { studentId, title, content, categoryName, num } = formValues;
+      const { studentId, title, content, categoryName, num, images } =
+        formValues;
 
       const body = {
         studentId,
@@ -139,7 +140,7 @@ const UpdateEditor = () => {
         content,
         price: "",
         categoryName,
-        images: [],
+        images,
         num,
       };
 
@@ -179,8 +180,9 @@ const UpdateEditor = () => {
         num,
       };
 
+      //',' 제거
       while (true) {
-        let matcher = price.match(",");
+        const matcher = price.match(",");
 
         if (matcher) price = price.replace(",", "");
         else break;
@@ -231,17 +233,7 @@ const UpdateEditor = () => {
       </div>
 
       {categoryName === "free" || categoryName === "notice" ? (
-        <>
-          <div className="form-group">
-            <QuillNoSSRWrapper
-              name="content"
-              modules={modules}
-              formats={formats}
-              onChange={handleEditor}
-              defaultValue={board.content}
-            />
-          </div>
-        </>
+        <></>
       ) : (
         <>
           <div className="form-group price">
@@ -257,24 +249,24 @@ const UpdateEditor = () => {
             <span className="post-write-border"></span>
             <span className="price-won">원 (숫자만 입력)</span>
           </div>
-
-          <div className="form-group">
-            <QuillNoSSRWrapper
-              name="content"
-              modules={modules}
-              formats={formats}
-              onChange={handleEditor}
-              defaultValue={board.content}
-            />
-          </div>
-
-          <EditorImageUpload
-            handleImageUpload={handleImageUpload}
-            handleDelete={handleDelete}
-            uploadImages={uploadImages}
-          />
         </>
       )}
+
+      <div className="form-group">
+        <QuillNoSSRWrapper
+          name="content"
+          modules={modules}
+          formats={formats}
+          onChange={handleEditor}
+          defaultValue={board.content}
+        />
+      </div>
+
+      <EditorImageUpload
+        handleImageUpload={handleImageUpload}
+        handleDelete={handleDelete}
+        uploadImages={uploadImages}
+      />
 
       <EditorPost
         onSubmit={onSubmit}

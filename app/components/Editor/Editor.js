@@ -46,6 +46,7 @@ const Editor = ({ categoryName }) => {
     } else {
       setFormValues({
         ...formValues,
+        studentId: id,
         categoryName,
       });
 
@@ -54,7 +55,7 @@ const Editor = ({ categoryName }) => {
         router.back();
       }
     }
-  }, [categoryName]);
+  }, [categoryName, id]);
 
   const onChange = (e) => {
     setFormValues({
@@ -228,6 +229,12 @@ const Editor = ({ categoryName }) => {
               onChange={handleEditor}
             />
           </div>
+
+          <EditorImageUpload
+            handleImageUpload={handleImageUpload}
+            handleDelete={handleDelete}
+            uploadImages={uploadImages}
+          />
         </>
       ) : (
         <>
