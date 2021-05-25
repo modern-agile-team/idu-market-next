@@ -62,8 +62,6 @@ function* notificationGet(action) {
   try {
     const result = yield call(notificationGetAPI, action.payload);
 
-    console.log(result);
-
     yield put({
       type: NOTIFICATION_GET_SUCCESS,
       payload: result.data,
@@ -94,8 +92,6 @@ function notificationPatchAPI(payload) {
 function* notificationPatch(action) {
   try {
     const result = yield call(notificationPatchAPI, action.payload);
-
-    console.log(result);
 
     yield put({
       type: NOTIFICATION_CHANGE_SUCCESS,

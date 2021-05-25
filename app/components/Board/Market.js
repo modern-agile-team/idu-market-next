@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import { AiOutlineArrowUp } from "react-icons/ai";
-
 import BoardListTop from "./BoardListTop";
 import MarketListItem from "./MarketListItem";
 
@@ -52,9 +50,9 @@ const Market = ({ categoryName }) => {
     }
   };
 
-  const scrollTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  // const scrollTop = () => {
+  //   window.scrollTo({ top: 0, behavior: "smooth" });
+  // };
 
   useEffect(() => {
     getMoreData();
@@ -67,10 +65,6 @@ const Market = ({ categoryName }) => {
 
   return (
     <section className="market" id="market">
-      <button className="scroll-top-btn" onClick={scrollTop}>
-        <AiOutlineArrowUp />
-      </button>
-
       <BoardListTop categoryName={categoryName} />
 
       <div className="container">
