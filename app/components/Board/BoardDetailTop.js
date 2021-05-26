@@ -247,7 +247,13 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
               </ul>
             </div>
           ) : (
-            <div className="detail-trade-status-box no-auth">
+            <div
+              className={
+                auth.id.length === 0
+                  ? "detail-trade-status-box no-login"
+                  : "detail-trade-status-box no-auth"
+              }
+            >
               <ul>
                 <li className="detail-trade-status">
                   {(function () {

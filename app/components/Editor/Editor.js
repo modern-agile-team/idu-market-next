@@ -68,6 +68,7 @@ const Editor = ({ categoryName }) => {
   const handleImageUpload = async (e) => {
     const formData = new FormData();
     const fileImages = e.target.files;
+    console.log(fileImages);
     let imageValidation = false;
 
     if (Object.keys(fileImages).length > 5) {

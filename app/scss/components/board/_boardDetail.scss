@@ -110,6 +110,10 @@
     right: 150px;
   }
 
+  &.no-login {
+    right: 80px;
+  }
+
   .trade-complete-btn {
     width: 90px;
     position: absolute;
@@ -273,6 +277,10 @@
 
     &.no-auth {
       right: 120px;
+    }
+
+    &.no-login {
+      right: 60px;
     }
 
     .trade-complete-btn {

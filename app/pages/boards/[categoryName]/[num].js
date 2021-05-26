@@ -66,7 +66,7 @@ const BoardDetailPage = () => {
         },
       });
     }
-  }, [dispatch, categoryName, num]);
+  }, [dispatch, router]);
 
   return (
     <>
