@@ -35,7 +35,7 @@
   width: 100%;
   background-color: #fdfdfd;
   display: flex;
-  padding: 30px 10px;
+  padding: 20px 10px;
   border: 2px solid $main-color-2;
 
   .image-upload-label {
@@ -99,6 +99,11 @@
       }
     }
   }
+}
+
+.limit-desc {
+  font-family: $Jua-font;
+  margin-top: 5px;
 }
 
 .write-title {
