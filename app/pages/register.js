@@ -51,7 +51,7 @@ const RegisterPage = () => {
       setErrorMsg("빈 칸을 모두 입력하세요.");
     } else if (major.length === 0) {
       setErrorMsg("학과를 선택해주세요");
-    } else if (id.match(/^[a-zA-Z][a-zA-Z0-9]{5,12}$/) === null) {
+    } else if (id.match(/^[a-zA-Z][a-zA-Z0-9]{5,11}$/) === null) {
       setErrorMsg(
         "첫글자는 숫자를 입력할 수 없으며, 6~12자 제한을 지켜야 합니다."
       );
