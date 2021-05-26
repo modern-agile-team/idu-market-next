@@ -17,11 +17,7 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     const agent = window.navigator.userAgent.toLowerCase();
 
-    if (agent.indexOf("msie") !== -1) {
-      alert(
-        "IDU 마켓은 Chrome 브라우저에 최적화된 사이트입니다. Chrome 브라우저 사용을 권장합니다."
-      );
-    } else if (agent.indexOf("chrome") === -1) {
+    if (agent.indexOf("chrome") === -1) {
       alert(
         "IDU 마켓은 Chrome 브라우저에 최적화된 사이트입니다. Chrome 브라우저 사용을 권장합니다."
       );
