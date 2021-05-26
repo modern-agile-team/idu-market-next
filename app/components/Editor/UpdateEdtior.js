@@ -15,12 +15,8 @@ const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   loading: () => <Loading />,
 });
 
-const UpdateEditor = () => {
+const UpdateEditor = ({ categoryName, num, id, board }) => {
   const router = useRouter();
-  const { categoryName, num } = router.query;
-
-  const { id } = useSelector((state) => state.auth);
-  const board = useSelector((state) => state.board);
 
   const [formValues, setFormValues] = useState({
     studentId: id,
@@ -48,11 +44,6 @@ const UpdateEditor = () => {
       num,
     });
     setUploadImages(board.images);
-
-    if (board.studentId !== id) {
-      alert("잘못된 접근 방식입니다.");
-      router.back();
-    }
   }, []);
 
   const onChange = (e) => {
