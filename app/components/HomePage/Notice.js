@@ -49,10 +49,6 @@ const Notice = ({ slides }) => {
           className={currentImage === 1 ? "slide-btn active" : "slide-btn"}
           onClick={() => setCurrentImage(1)}
         />
-        <div
-          className={currentImage === 2 ? "slide-btn active" : "slide-btn"}
-          onClick={() => setCurrentImage(2)}
-        />
       </div>
     </section>
   );
