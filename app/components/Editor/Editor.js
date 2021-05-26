@@ -7,19 +7,11 @@ import axios from "axios";
 import { modules, formats } from "./EditorConfig";
 import EditorImageUpload from "./EditorImageUpload";
 import EditorPost from "./EditorPost";
+import Loading from "../Loading/Loading";
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
-  loading: () => (
-    <p
-      style={{
-        padding: "80px 0",
-        fontSize: "1.5rem",
-      }}
-    >
-      Loading ...
-    </p>
-  ),
+  loading: () => <Loading />,
 });
 
 const Editor = ({ categoryName }) => {
@@ -40,7 +32,7 @@ const Editor = ({ categoryName }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (localStorage.getItem("jwt").length === 0) {
+    if (!localStorage.getItem("jwt")) {
       alert("로그인한 유저만 접근할 수 있습니다.");
       router.back();
     } else {
