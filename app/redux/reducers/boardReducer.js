@@ -1,7 +1,4 @@
 import {
-  BOARD_WRITE_REQUEST,
-  BOARD_WRITE_SUCCESS,
-  BOARD_WRITE_FAILURE,
   BOARD_DETAIL_REQUEST,
   BOARD_DETAIL_SUCCESS,
   BOARD_DETAIL_FAILURE,
@@ -26,6 +23,9 @@ import {
   WATCHLIST_DELETE_REQUEST,
   WATCHLIST_DELETE_SUCCESS,
   WATCHLIST_DELETE_FAILURE,
+  TRADE_COMPLETE_REQUEST,
+  TRADE_COMPLETE_SUCCESS,
+  TRADE_COMPLETE_FAILURE,
 } from "../types";
 
 const initialState = {
@@ -50,6 +50,7 @@ const initialState = {
 
 const board = (state = initialState, action) => {
   switch (action.type) {
+    case TRADE_COMPLETE_REQUEST:
     case WATCHLIST_DELETE_REQUEST:
     case WATCHLIST_ADD_REQUEST:
     case BOARD_HIT_REQUEST:
@@ -58,25 +59,10 @@ const board = (state = initialState, action) => {
     case BOARD_DELETE_REQUEST:
     case BOARD_STATUS_REQUEST:
     case BOARD_DETAIL_REQUEST:
-    case BOARD_WRITE_REQUEST:
       return {
         ...state,
         isLoading: true,
         msg: "",
-      };
-
-    case BOARD_WRITE_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        msg: action.payload.msg,
-        num: action.payload.num,
-      };
-
-    case BOARD_WRITE_FAILURE:
-      return {
-        ...state,
-        msg: action.payload.data.msg,
       };
 
     case BOARD_DETAIL_SUCCESS:
@@ -162,6 +148,7 @@ const board = (state = initialState, action) => {
         msg: action.payload.msg,
         hit: action.payload.hit,
       };
+
     case WATCHLIST_ADD_SUCCESS:
       return {
         ...state,
@@ -169,6 +156,7 @@ const board = (state = initialState, action) => {
         isWatchList: 1,
         msg: action.payload.msg,
       };
+
     case WATCHLIST_DELETE_SUCCESS:
       return {
         ...state,
@@ -176,12 +164,28 @@ const board = (state = initialState, action) => {
         isWatchList: 0,
         msg: action.payload.msg,
       };
+
     case WATCHLIST_DELETE_FAILURE:
     case WATCHLIST_ADD_FAILURE:
       return {
         ...state,
         loading: true,
         isWatchList: null,
+        msg: action.payload.data.msg,
+      };
+
+    case TRADE_COMPLETE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        msg: action.payload.msg,
+        status: 3,
+      };
+
+    case TRADE_COMPLETE_FAILURE:
+      return {
+        ...state,
+        loading: false,
         msg: action.payload.data.msg,
       };
     default:

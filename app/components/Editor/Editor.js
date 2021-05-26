@@ -1,25 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { BOARD_WRITE_REQUEST } from "../../redux/types";
 import axios from "axios";
+
 import { modules, formats } from "./EditorConfig";
 import EditorImageUpload from "./EditorImageUpload";
 import EditorPost from "./EditorPost";
+import Loading from "../Loading/Loading";
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
-  loading: () => (
-    <p
-      style={{
-        padding: "80px 0",
-        fontSize: "1.5rem",
-      }}
-    >
-      Loading ...
-    </p>
-  ),
+  loading: () => <Loading />,
 });
 
 const Editor = ({ categoryName }) => {
@@ -37,10 +29,8 @@ const Editor = ({ categoryName }) => {
   });
   const [uploadImages, setUploadImages] = useState([]);
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
-    if (localStorage.getItem("jwt").length === 0) {
+    if (!localStorage.getItem("jwt")) {
       alert("로그인한 유저만 접근할 수 있습니다.");
       router.back();
     } else {
@@ -131,17 +121,18 @@ const Editor = ({ categoryName }) => {
     }
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     if (categoryName === "free" || categoryName === "notice") {
-      const { studentId, title, content, categoryName } = formValues;
+      const { studentId, title, content, categoryName, images } = formValues;
 
       const body = {
         studentId,
         title,
         content,
         categoryName,
+        images,
       };
 
       //유효성 검사
@@ -150,12 +141,21 @@ const Editor = ({ categoryName }) => {
       } else if (content === "") {
         alert("빈 본문입니다.");
       } else {
-        dispatch({
-          type: BOARD_WRITE_REQUEST,
-          payload: body,
-        });
-        alert("게시글 업로드에 성공하셨습니다.");
-        router.push(`/boards/${categoryName}`);
+        axios
+          .post(
+            `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`,
+            body
+          )
+          .then((response) => {
+            if (response.data.success) {
+              alert("게시글 업로드에 성공하셨습니다.");
+              router.push(`/boards/${categoryName}/${response.data.num}`);
+            }
+          })
+          .catch((err) => {
+            const response = err.response;
+            console.log(response.data.msg);
+          });
       }
     } else {
       const {
@@ -192,12 +192,21 @@ const Editor = ({ categoryName }) => {
       } else if (images.length === 0) {
         alert("1개 이상의 이미지 업로드를 해주시기 바랍니다.");
       } else {
-        dispatch({
-          type: BOARD_WRITE_REQUEST,
-          payload: body,
-        });
-        alert("게시글 업로드에 성공하셨습니다.");
-        router.push(`/boards/${categoryName}`);
+        axios
+          .post(
+            `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`,
+            body
+          )
+          .then((response) => {
+            if (response.data.success) {
+              alert("게시글 업로드에 성공하셨습니다.");
+              router.push(`/boards/${categoryName}/${response.data.num}`);
+            }
+          })
+          .catch((err) => {
+            const response = err.response;
+            console.log(response.data.msg);
+          });
       }
     }
   };

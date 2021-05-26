@@ -5,10 +5,9 @@ const Introduce = () => {
   const [scrollViewIntro, setScrollViewIntro] = useState(false);
 
   const handleScroll = () => {
-    const introduceSection = document.querySelector("#home-introduce");
     const pageScrollY = window.scrollY;
 
-    if (pageScrollY > introduceSection.offsetTop / 2.5) {
+    if (pageScrollY > 600) {
       setScrollViewIntro(true);
       setTimeout(() => setScrollViewYoutube(true), 300);
     } else {

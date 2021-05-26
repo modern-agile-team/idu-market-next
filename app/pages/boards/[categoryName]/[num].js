@@ -43,13 +43,6 @@ const BoardDetailPage = () => {
       });
     } else {
       dispatch({
-        type: BOARD_HIT_REQUEST,
-        payload: {
-          categoryName,
-          num,
-        },
-      });
-      dispatch({
         type: BOARD_DETAIL_REQUEST,
         payload: {
           categoryName: categoryName,
@@ -63,6 +56,13 @@ const BoardDetailPage = () => {
           categoryName,
           num,
           studentId: auth.id,
+        },
+      });
+      dispatch({
+        type: BOARD_HIT_REQUEST,
+        payload: {
+          categoryName,
+          num,
         },
       });
     }

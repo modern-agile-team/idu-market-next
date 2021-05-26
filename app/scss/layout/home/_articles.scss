@@ -1,7 +1,7 @@
 .home-articles {
     width: 100%;
     background-color: $bg-color-1;
-    padding: 80px 50px 150px 50px;
+    padding: 80px 20px 150px 20px;
     
     .container {
         width: 95%;
@@ -37,6 +37,7 @@
     align-items: center;
     flex-direction: column;
     border: 1px solid $main-color-4;
+    cursor: pointer;
     
     &:hover {
         box-shadow: 0 0 20px $main-color-4;
@@ -123,7 +124,7 @@
 /* 0 ~ 768px : 테블릿2 */
 @media screen and (max-width: 768px){ 
     .home-articles {
-        padding: 0 0 150px 0;
+        padding: 0;
         .container {
             width: 100%;
         }

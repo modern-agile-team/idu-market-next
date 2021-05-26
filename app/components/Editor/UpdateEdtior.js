@@ -8,15 +8,17 @@ import { BOARD_UPDATE_REQUEST } from "../../redux/types";
 import { modules, formats } from "./EditorConfig";
 import EditorImageUpload from "./EditorImageUpload";
 import EditorPost from "./EditorPost";
+import Loading from "../Loading/Loading";
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
-  loading: () => <p>Loading ...</p>,
+  loading: () => <Loading />,
 });
 
 const UpdateEditor = () => {
   const router = useRouter();
   const { categoryName, num } = router.query;
+
   const { id } = useSelector((state) => state.auth);
   const board = useSelector((state) => state.board);
 

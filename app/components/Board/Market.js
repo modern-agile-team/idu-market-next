@@ -3,6 +3,7 @@ import axios from "axios";
 
 import BoardListTop from "./BoardListTop";
 import MarketListItem from "./MarketListItem";
+import Loading from "../Loading/Loading";
 
 const Market = ({ categoryName }) => {
   const [productList, setProductList] = useState([]);
@@ -70,7 +71,7 @@ const Market = ({ categoryName }) => {
             categoryName={categoryName}
           />
         ) : (
-          <h1 className="empty-list-desc">거래 장터 목록이 비어있습니다.</h1>
+          <Loading />
         )}
       </div>
     </section>
