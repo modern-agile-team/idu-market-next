@@ -89,6 +89,7 @@
             a {
                 font-family: $Jua-font;
                 font-size: 1rem;
+                width: 100%;
                 padding: 12px 0;
                 white-space : nowrap;
                 font-weight: 400;
@@ -260,12 +261,6 @@
 
         .header-menu-drop{
             margin: 10px auto;
-
-            li  { 
-                a {
-                    padding: 10px 100px;
-                } 
-            }
         } 
     }
     .header-btn {
