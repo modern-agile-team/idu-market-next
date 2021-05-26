@@ -51,8 +51,10 @@ const RegisterPage = () => {
       setErrorMsg("빈 칸을 모두 입력하세요.");
     } else if (major.length === 0) {
       setErrorMsg("학과를 선택해주세요");
-    } else if (id.match(/^[1-2][0|9][0-9]{7}$/) === null) {
-      setErrorMsg("학번은 숫자 9자리만 입력가능합니다.");
+    } else if (id.match(/^[a-zA-Z][a-zA-Z0-9]{5,12}$/) === null) {
+      setErrorMsg(
+        "첫글자는 숫자를 입력할 수 없으며, 6~12자 제한을 지켜야 합니다."
+      );
     } else if (name.match(/^[가-힣]{2,6}$/) === null) {
       setErrorMsg("이름은 공백없이 한글만 입력해주세요 ");
     } else if (nickname.match(/^[a-zA-Z가-힣0-9]{2,10}$/) === null) {

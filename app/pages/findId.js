@@ -26,20 +26,24 @@ const FindIdPage = () => {
     const { name, email } = formValues;
     const body = { name, email };
 
-    axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/api/forgot-id`, body)
-      .then((response) => {
-        if (response.data.success) {
-          alert(response.data.msg);
-          router.push("/login");
-        }
-      })
-      .catch((err) => {
-        const response = err.response;
-        if (response.status === 400) {
-          setErrorMsg(response.data.msg);
-        }
-      });
+    if ([name, email].includes("")) {
+      setErrorMsg("빈 칸을 모두 입력하세요.");
+    } else {
+      axios
+        .post(`${process.env.NEXT_PUBLIC_API_URL}/api/forgot-id`, body)
+        .then((response) => {
+          if (response.data.success) {
+            alert(response.data.msg);
+            router.push("/login");
+          }
+        })
+        .catch((err) => {
+          const response = err.response;
+          if (response.status === 400) {
+            setErrorMsg(response.data.msg);
+          }
+        });
+    }
   };
 
   return (

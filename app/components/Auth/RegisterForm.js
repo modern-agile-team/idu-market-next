@@ -21,10 +21,14 @@ const RegisterForm = ({
               onChange={onSelectMajor}
               defaultalue=""
             >
-              {MajorData.map((major) => {
+              {MajorData.map((major, index) => {
                 const { value, majorName } = major;
 
-                return <option value={value}>{majorName}</option>;
+                return (
+                  <option value={value} key={index}>
+                    {majorName}
+                  </option>
+                );
               })}
             </select>
           </div>
@@ -43,7 +47,7 @@ const RegisterForm = ({
             <label
               className={formValues.id ? "input-label fix" : "input-label"}
             >
-              학번
+              아이디
             </label>
           </div>
 

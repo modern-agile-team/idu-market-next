@@ -4,6 +4,10 @@ export const MajorData = [
     majorName: "학과 선택",
   },
   {
+    value: "0",
+    majorName: "기타(졸업생, 외부인 등)",
+  },
+  {
     value: "1",
     majorName: "비서학과",
   },
