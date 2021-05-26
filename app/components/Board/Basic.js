@@ -4,6 +4,7 @@ import axios from "axios";
 
 import BoardListItem from "./BoardListItem";
 import BoardListTop from "./BoardListTop";
+import Loading from "../Loading/Loading";
 
 const Basic = ({ categoryName }) => {
   const [pageNumber, setPageNumber] = useState(0);
@@ -79,11 +80,7 @@ const Basic = ({ categoryName }) => {
           pageCount={pageCount}
           changePage={changePage}
         />
-        {boardList.length > 0 ? (
-          <></>
-        ) : (
-          <h1 className="empty-list-desc">게시물 목록이 비어있습니다.</h1>
-        )}
+        {boardList.length > 0 ? <></> : <Loading />}
       </div>
     </section>
   );
