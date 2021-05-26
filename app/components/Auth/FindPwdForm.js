@@ -22,7 +22,7 @@ const FindPwdForm = ({ formValues, onChange, errorMsg, onSubmit }) => {
             <label
               className={formValues.id ? "input-label fix" : "input-label"}
             >
-              학번
+              아이디
             </label>
           </div>
 

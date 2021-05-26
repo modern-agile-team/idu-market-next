@@ -132,10 +132,14 @@ const ProfileUpdate = ({ profileList, studentId }) => {
               onChange={onChangeMajor}
               defaultalue=""
             >
-              {MajorData.map((major) => {
+              {MajorData.map((major, index) => {
                 const { value, majorName } = major;
 
-                return <option value={value}>{majorName}</option>;
+                return (
+                  <option value={value} key={index}>
+                    {majorName}
+                  </option>
+                );
               })}
             </select>
           </div>
