@@ -127,15 +127,17 @@ const Editor = ({ categoryName }) => {
     e.preventDefault();
 
     if (categoryName === "free" || categoryName === "notice") {
-      const { studentId, title, content, categoryName } = formValues;
+      const { studentId, title, content, categoryName, images } = formValues;
 
       const body = {
         studentId,
         title,
         content,
         categoryName,
+        images,
       };
 
+      console.log(body);
       //유효성 검사
       if (title === "") {
         alert("타이틀을 적어주세요.");

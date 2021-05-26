@@ -37,6 +37,7 @@
     align-items: center;
     flex-direction: column;
     border: 1px solid $main-color-4;
+    cursor: pointer;
     
     &:hover {
         box-shadow: 0 0 20px $main-color-4;
