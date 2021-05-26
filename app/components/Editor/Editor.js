@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { BOARD_WRITE_REQUEST } from "../../redux/types";
 import axios from "axios";
+
 import { modules, formats } from "./EditorConfig";
 import EditorImageUpload from "./EditorImageUpload";
 import EditorPost from "./EditorPost";
@@ -28,8 +28,6 @@ const Editor = ({ categoryName }) => {
     categoryName: "",
   });
   const [uploadImages, setUploadImages] = useState([]);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!localStorage.getItem("jwt")) {
@@ -123,7 +121,7 @@ const Editor = ({ categoryName }) => {
     }
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     if (categoryName === "free" || categoryName === "notice") {
@@ -137,19 +135,27 @@ const Editor = ({ categoryName }) => {
         images,
       };
 
-      console.log(body);
       //유효성 검사
       if (title === "") {
         alert("타이틀을 적어주세요.");
       } else if (content === "") {
         alert("빈 본문입니다.");
       } else {
-        dispatch({
-          type: BOARD_WRITE_REQUEST,
-          payload: body,
-        });
-        alert("게시글 업로드에 성공하셨습니다.");
-        router.push(`/boards/${categoryName}`);
+        axios
+          .post(
+            `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`,
+            body
+          )
+          .then((response) => {
+            if (response.data.success) {
+              alert("게시글 업로드에 성공하셨습니다.");
+              router.push(`/boards/${categoryName}/${response.data.num}`);
+            }
+          })
+          .catch((err) => {
+            const response = err.response;
+            console.log(response.data.msg);
+          });
       }
     } else {
       const {
@@ -186,12 +192,21 @@ const Editor = ({ categoryName }) => {
       } else if (images.length === 0) {
         alert("1개 이상의 이미지 업로드를 해주시기 바랍니다.");
       } else {
-        dispatch({
-          type: BOARD_WRITE_REQUEST,
-          payload: body,
-        });
-        alert("게시글 업로드에 성공하셨습니다.");
-        router.push(`/boards/${categoryName}`);
+        axios
+          .post(
+            `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`,
+            body
+          )
+          .then((response) => {
+            if (response.data.success) {
+              alert("게시글 업로드에 성공하셨습니다.");
+              router.push(`/boards/${categoryName}/${response.data.num}`);
+            }
+          })
+          .catch((err) => {
+            const response = err.response;
+            console.log(response.data.msg);
+          });
       }
     }
   };

@@ -1,10 +1,13 @@
+import React, { useEffect } from "react";
+
 import Head from "next/head";
 import MainBanner from "../components/HomePage/MainBanner";
 import Function from "../components/HomePage/Function";
 import Introduce from "../components/HomePage/Introduce";
 import Notice from "../components/HomePage/Notice";
-import { SliderData } from "../Data/NoticeSliderData";
 import Articles from "../components/HomePage/Articles";
+
+import { SliderData } from "../Data/NoticeSliderData";
 
 export default function Home() {
   return (

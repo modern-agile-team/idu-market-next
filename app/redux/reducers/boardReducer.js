@@ -1,7 +1,4 @@
 import {
-  BOARD_WRITE_REQUEST,
-  BOARD_WRITE_SUCCESS,
-  BOARD_WRITE_FAILURE,
   BOARD_DETAIL_REQUEST,
   BOARD_DETAIL_SUCCESS,
   BOARD_DETAIL_FAILURE,
@@ -62,25 +59,10 @@ const board = (state = initialState, action) => {
     case BOARD_DELETE_REQUEST:
     case BOARD_STATUS_REQUEST:
     case BOARD_DETAIL_REQUEST:
-    case BOARD_WRITE_REQUEST:
       return {
         ...state,
         isLoading: true,
         msg: "",
-      };
-
-    case BOARD_WRITE_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        msg: action.payload.msg,
-        num: action.payload.num,
-      };
-
-    case BOARD_WRITE_FAILURE:
-      return {
-        ...state,
-        msg: action.payload.data.msg,
       };
 
     case BOARD_DETAIL_SUCCESS:
