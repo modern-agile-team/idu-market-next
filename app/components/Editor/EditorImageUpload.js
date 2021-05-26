@@ -38,7 +38,7 @@ const EditorImageUpload = ({
             })}
         </div>
       </div>
-      <p className="limit-desc">이미지 사용 제한: 4MB 이상, GIF 파일</p>
+      <p className="limit-desc">이미지 사용 제한: 5MB 이상, GIF 파일</p>
     </>
   );
 };

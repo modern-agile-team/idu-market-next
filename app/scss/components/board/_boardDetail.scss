@@ -106,6 +106,10 @@
   text-align: center;
   margin-right: 10px;
 
+  &.no-auth {
+    right: 150px;
+  }
+
   .trade-complete-btn {
     width: 90px;
     position: absolute;
@@ -266,6 +270,10 @@
     right: 200px;
     top: 95px;
     margin-right: 0;
+
+    &.no-auth {
+      right: 120px;
+    }
 
     .trade-complete-btn {
       padding: 3px 8px;

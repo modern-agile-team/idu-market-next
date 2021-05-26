@@ -247,7 +247,43 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
               </ul>
             </div>
           ) : (
-            <></>
+            <div className="detail-trade-status-box no-auth">
+              <ul>
+                <li className="detail-trade-status">
+                  {(function () {
+                    if (boardDetail.status === 0)
+                      return (
+                        <>
+                          <span className="trade-status sale"></span>{" "}
+                          {tradeSentence}
+                        </>
+                      );
+                    if (boardDetail.status === 1)
+                      return (
+                        <>
+                          <span className="trade-status reservation"></span>{" "}
+                          {tradeSentence}
+                        </>
+                      );
+                    if (boardDetail.status === 2)
+                      return (
+                        <>
+                          <span className="trade-status complete"></span>{" "}
+                          {tradeSentence}
+                        </>
+                      );
+                    if (boardDetail.status === 3) {
+                      return (
+                        <>
+                          <span className="trade-status complete"></span>{" "}
+                          {tradeSentence}
+                        </>
+                      );
+                    }
+                  })()}
+                </li>
+              </ul>
+            </div>
           )}
         </>
       )}
