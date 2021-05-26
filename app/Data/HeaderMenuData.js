@@ -27,6 +27,10 @@ export const HeaderMenuData = [
         title: "의류",
         path: "/boards/clothes",
       },
+      {
+        title: "기타",
+        path: "/boards/etc",
+      },
     ],
   },
   {
