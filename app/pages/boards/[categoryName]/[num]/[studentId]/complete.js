@@ -24,7 +24,8 @@ const TradeCompletePage = () => {
     if (
       categoryName === "book" ||
       categoryName === "device" ||
-      categoryName === "clothes"
+      categoryName === "clothes" ||
+      categoryName === "etc"
     ) {
       if (status === 0 || status === 1) {
         alert("거래 완료 상태가 아닙니다.");
