@@ -25,7 +25,7 @@ const TradeComplete = ({ buyers, nickname, categoryName, num }) => {
       const body = {
         notiCategoryNum: 2,
         senderNickname: board.nickname,
-        recipientNickname: e.target.textContent,
+        recipientNicknames: [e.target.textContent],
         url: `https://idu-market.shop/boards/${categoryName}/${num}`,
         categoryName,
         boardNum: num,

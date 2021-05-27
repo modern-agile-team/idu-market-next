@@ -73,7 +73,7 @@ const SingleComment = ({ comment, categoryName, num }) => {
       studentId: auth.id,
       notiCategoryNum: 1,
       senderNickname: auth.nickname,
-      recipientNickname: board.nickname,
+      recipientNicknames: [board.nickname, comment.nickname],
       url: `https://idu-market.shop/boards/${categoryName}/${num}`,
       categoryName,
       num,
