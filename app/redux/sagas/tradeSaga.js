@@ -40,7 +40,7 @@ function tradeCompleteAPI(payload) {
   const boardNum = payload.boardNum;
   const studentId = payload.studentId;
   const senderNickname = payload.senderNickname;
-  const recipientNickname = payload.recipientNickname;
+  const recipientNicknames = payload.recipientNicknames;
   const notiCategoryNum = payload.notiCategoryNum;
   const url = payload.url;
 
@@ -48,7 +48,7 @@ function tradeCompleteAPI(payload) {
     boardNum,
     studentId,
     senderNickname,
-    recipientNickname,
+    recipientNicknames,
     notiCategoryNum,
     url,
   };

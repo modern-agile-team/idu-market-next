@@ -30,7 +30,7 @@ const Comment = ({ comments, categoryName, num }) => {
       content: content.replace(/(?:\r\n|\r|\n)/g, " <br /> "),
       studentId: auth.id,
       senderNickname: auth.nickname,
-      recipientNickname: board.nickname,
+      recipientNicknames: [board.nickname],
       notiCategoryNum: 0,
       url: `https://idu-market.shop/boards/${categoryName}/${num}`,
       categoryName,
