@@ -17,7 +17,7 @@ export const MajorData = [
   },
   {
     value: "3",
-    majorName: "휴먼사회복지학과",
+    majorName: "사회복지학과",
   },
   {
     value: "4",

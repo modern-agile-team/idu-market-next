@@ -169,6 +169,8 @@ function replyUploadAPI(payload) {
     url,
   };
 
+  console.log(body);
+
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${groupNum}`,
     body

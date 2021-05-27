@@ -68,7 +68,6 @@ const Editor = ({ categoryName }) => {
   const handleImageUpload = async (e) => {
     const formData = new FormData();
     const fileImages = e.target.files;
-    console.log(fileImages);
     let imageValidation = false;
 
     if (Object.keys(fileImages).length > 5) {
@@ -90,7 +89,13 @@ const Editor = ({ categoryName }) => {
         .post(`${process.env.NEXT_PUBLIC_API_URL}/api/image`, formData)
         .then((response) => {
           if (response.data.success) {
-            setUploadImages(uploadImages.concat(response.data.images));
+            const images = [];
+
+            response.data.images.forEach((image) => {
+              images.push(image.slice(0, image.length - 11));
+            });
+
+            setUploadImages(uploadImages.concat(images));
           }
         })
         .catch((err) => {

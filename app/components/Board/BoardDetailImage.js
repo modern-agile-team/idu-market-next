@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 
 const BoardDetailImage = ({ boardDetail }) => {
+  console.log(boardDetail);
+
   const [currentImage, setCurrentImage] = useState(0);
   const SLIDES_LENGTH = boardDetail.images.length;
 

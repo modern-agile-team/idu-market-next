@@ -88,7 +88,13 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
         .post(`${process.env.NEXT_PUBLIC_API_URL}/api/image`, formData)
         .then((response) => {
           if (response.data.success) {
-            setUploadImages(uploadImages.concat(response.data.images));
+            const images = [];
+
+            response.data.images.forEach((image) => {
+              images.push(image.slice(0, image.length - 11));
+            });
+
+            setUploadImages(uploadImages.concat(images));
           }
         })
         .catch((err) => {
