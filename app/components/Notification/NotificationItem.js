@@ -24,13 +24,11 @@ const NotificationItem = ({ noti, index, onChangeFlag }) => {
             <>
               {noti.boardTitle.length > 10 ? (
                 <>
-                  <b>'{noti.boardTitle.slice(0, 10)}...'</b> 게시물에 댓글이
+                  '{noti.boardTitle.slice(0, 10)}... '게시물에 댓글이
                   달렸습니다.
                 </>
               ) : (
-                <>
-                  <b>'{noti.boardTitle}'</b> 게시물에 댓글이 달렸습니다.
-                </>
+                <>'{noti.boardTitle}' 게시물에 댓글이 달렸습니다.</>
               )}
             </>
           );
@@ -39,13 +37,11 @@ const NotificationItem = ({ noti, index, onChangeFlag }) => {
             <>
               {noti.boardTitle.length > 10 ? (
                 <>
-                  <b>'{noti.boardTitle.slice(0, 10)}...'</b> 게시물에 답글이
+                  '{noti.boardTitle.slice(0, 10)}...' 게시물에 답글이
                   달렸습니다.
                 </>
               ) : (
-                <>
-                  <b>'{noti.boardTitle}'</b> 게시물에 답글이 달렸습니다.
-                </>
+                <>'{noti.boardTitle}' 게시물에 답글이 달렸습니다.</>
               )}
             </>
           );
@@ -54,13 +50,11 @@ const NotificationItem = ({ noti, index, onChangeFlag }) => {
             <>
               {noti.boardTitle.length > 10 ? (
                 <>
-                  <b>'{noti.boardTitle.slice(0, 10)}...'</b> 게시물 거래가
+                  '{noti.boardTitle.slice(0, 10)}...' 게시물 거래가
                   종료되었습니다.
                 </>
               ) : (
-                <>
-                  <b>'{noti.boardTitle}'</b> 게시물 거래가 종료되었습니다.
-                </>
+                <>'{noti.boardTitle}' 게시물 거래가 종료되었습니다.</>
               )}
             </>
           );
