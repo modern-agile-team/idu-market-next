@@ -54,7 +54,7 @@ const Header = () => {
 
           {auth.jwt ? (
             <>
-              <Notification studentId={auth.id} showSidebar={showSidebar} />
+              <Notification studentId={auth.id} setSidebar={setSidebar} />
 
               <Link href={`/students/${auth.id}`} className="profile-icon-btn">
                 <img
