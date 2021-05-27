@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -8,6 +8,7 @@ import { modules, formats } from "./EditorConfig";
 import EditorImageUpload from "./EditorImageUpload";
 import EditorPost from "./EditorPost";
 import Loading from "../Loading/Loading";
+import { IMAGE_DELETE_REQUEST } from "../../redux/types";
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
@@ -16,6 +17,8 @@ const QuillNoSSRWrapper = dynamic(import("react-quill"), {
 
 const Editor = ({ categoryName }) => {
   const router = useRouter();
+
+  const dispatch = useDispatch();
   const { id, isAdmin } = useSelector((state) => state.auth);
 
   const [formValues, setFormValues] = useState({
@@ -62,6 +65,16 @@ const Editor = ({ categoryName }) => {
   };
 
   const handleDelete = (index) => {
+    const body = {
+      url: [],
+    };
+
+    body.url = [uploadImages[index]];
+
+    dispatch({
+      type: IMAGE_DELETE_REQUEST,
+      payload: body,
+    });
     setUploadImages(uploadImages.filter((_, i) => i !== index));
   };
 
