@@ -1,6 +1,6 @@
 export const modules = {
   toolbar: [
-    [{ header: "1" }, { header: "2" }, { font: [] }],
+    [{ header: "1" }, { header: "2" }],
     [{ size: [] }],
     ["bold", "italic", "underline", "strike"],
     [{ align: [] }],
@@ -15,7 +15,6 @@ export const modules = {
 
 export const formats = [
   "header",
-  "font",
   "size",
   "bold",
   "italic",

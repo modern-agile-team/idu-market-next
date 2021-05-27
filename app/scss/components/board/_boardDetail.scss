@@ -220,14 +220,64 @@
       font-size: 1.1rem;
     }
   }
+
   h1 {
     font-family: $Montserrat-font;
     font-size: 2rem;
   }
   h2 {
     font-family: $Montserrat-font;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
+
+  //글씨 크기
+  .ql-size-huge {
+    font-size: 2.5rem;
+  }
+  .ql-size-small {
+    font-size: 0.75rem;
+  }
+  .ql-size-large {
+    font-size: 1.5rem;
+  }
+
+  //정렬
+  .ql-align-right {
+    text-align: right;
+  }
+  .ql-align-center {
+    text-align: center;
+  }
+  .ql-align-justify {
+    text-align: justify;
+  }
+
+  //들여쓰기
+  .ql-indent-1 {
+    padding-left: 3em;
+  }
+  .ql-indent-2 {
+    padding-left: 6em;
+  }
+  .ql-indent-3 {
+    padding-left: 9em;
+  }
+  .ql-indent-4 {
+    padding-left: 12em;
+  }
+  .ql-indent-5 {
+    padding-left: 15em;
+  }
+  .ql-indent-6 {
+    padding-left: 18em;
+  }
+  .ql-indent-7 {
+    padding-left: 21em;
+  }
+  .ql-indent-8 {
+    padding-left: 24em;
+  }
+
 }
 
 @media screen and (max-width: 1220px) {
