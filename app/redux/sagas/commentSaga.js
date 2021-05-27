@@ -50,7 +50,7 @@ function commentUploadAPI(payload) {
   const categoryName = payload.categoryName;
   const num = payload.num;
   const senderNickname = payload.senderNickname;
-  const recipientNickname = payload.recipientNickname;
+  const recipientNicknames = payload.recipientNicknames;
   const notiCategoryNum = payload.notiCategoryNum;
   const url = payload.url;
 
@@ -58,7 +58,7 @@ function commentUploadAPI(payload) {
     studentId: payload.studentId,
     content: payload.content,
     senderNickname,
-    recipientNickname,
+    recipientNicknames,
     notiCategoryNum,
     url,
   };
@@ -156,7 +156,7 @@ function replyUploadAPI(payload) {
   const num = payload.num;
   const groupNum = payload.groupNum;
   const senderNickname = payload.senderNickname;
-  const recipientNickname = payload.recipientNickname;
+  const recipientNicknames = payload.recipientNicknames;
   const notiCategoryNum = payload.notiCategoryNum;
   const url = payload.url;
 
@@ -164,7 +164,7 @@ function replyUploadAPI(payload) {
     studentId: payload.studentId,
     content: payload.content,
     senderNickname,
-    recipientNickname,
+    recipientNicknames,
     notiCategoryNum,
     url,
   };

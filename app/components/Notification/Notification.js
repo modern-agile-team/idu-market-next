@@ -9,8 +9,8 @@ import {
 } from "../../redux/types";
 import NotificationItem from "./NotificationItem";
 
-const Notification = ({ studentId }) => {
-  const [onNotification, setOnNotification] = useState(false);
+const Notification = ({ studentId, setSidebar }) => {
+  const [notification, setNotification] = useState(false);
 
   const dispatch = useDispatch();
   const { notifications } = useSelector((state) => state.notification);
@@ -30,23 +30,24 @@ const Notification = ({ studentId }) => {
 
     const menuClickEvent = (e) => {
       if (refEl.current !== null && !refEl.current.contains(e.target))
-        setOnNotification(!onNotification);
+        setNotification(!notification);
     };
 
-    if (onNotification) window.addEventListener("click", menuClickEvent);
+    if (notification) window.addEventListener("click", menuClickEvent);
+
     return () => window.removeEventListener("click", menuClickEvent);
-  }, [onNotification]);
+  }, [notification]);
 
-  const onClick = (e) => {
+  const onHandleNotification = (e) => {
     e.preventDefault();
-
-    setOnNotification(!onNotification);
+    setNotification(!notification);
   };
 
   const onChangeFlag = (e) => {
     e.preventDefault();
 
     const body = {
+      studentId,
       notificationNum: e.target.getAttribute("num"),
     };
 
@@ -55,7 +56,9 @@ const Notification = ({ studentId }) => {
       payload: body,
     });
 
-    setOnNotification(false);
+    setNotification(false);
+    setSidebar(false);
+
     router.push(e.target.getAttribute("url"));
   };
 
@@ -63,9 +66,9 @@ const Notification = ({ studentId }) => {
     <div className="header-notification">
       <IoMdNotifications
         className={
-          onNotification ? "notification-icon focus" : "notification-icon"
+          notification ? "notification-icon focus" : "notification-icon"
         }
-        onClick={onClick}
+        onClick={onHandleNotification}
       />
 
       {(function () {
@@ -81,7 +84,7 @@ const Notification = ({ studentId }) => {
         return <></>;
       })()}
 
-      {onNotification ? (
+      {notification ? (
         <ul className="notification-ul" ref={refEl}>
           {notifications.length > 0 ? (
             notifications.map((noti, index) => {

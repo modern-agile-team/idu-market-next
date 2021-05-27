@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import axios from "axios";
 import dynamic from "next/dynamic";
 
-import { BOARD_UPDATE_REQUEST } from "../../redux/types";
+import { BOARD_UPDATE_REQUEST, IMAGE_DELETE_REQUEST } from "../../redux/types";
 import { modules, formats } from "./EditorConfig";
 import EditorImageUpload from "./EditorImageUpload";
 import EditorPost from "./EditorPost";
@@ -61,6 +61,17 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
   };
 
   const handleDelete = (index) => {
+    const body = {
+      url: [],
+    };
+
+    body.url = [uploadImages[index]];
+
+    dispatch({
+      type: IMAGE_DELETE_REQUEST,
+      payload: body,
+    });
+
     setUploadImages(uploadImages.filter((_, i) => i !== index));
   };
 
@@ -88,7 +99,13 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
         .post(`${process.env.NEXT_PUBLIC_API_URL}/api/image`, formData)
         .then((response) => {
           if (response.data.success) {
-            setUploadImages(uploadImages.concat(response.data.images));
+            const images = [];
+
+            response.data.images.forEach((image) => {
+              images.push(image.slice(0, image.length - 11));
+            });
+
+            setUploadImages(uploadImages.concat(images));
           }
         })
         .catch((err) => {
