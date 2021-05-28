@@ -28,9 +28,6 @@ import {
   WATCHLIST_DELETE_REQUEST,
   WATCHLIST_DELETE_SUCCESS,
   WATCHLIST_DELETE_FAILURE,
-  TRADE_COMPLETE_REQUEST,
-  TRADE_COMPLETE_SUCCESS,
-  TRADE_COMPLETE_FAILURE,
 } from "../types";
 
 //Board Detial
@@ -281,46 +278,6 @@ function* WatchlistDelete(action) {
   }
 }
 
-//Trade Complete
-function tradeCompleteAPI(payload) {
-  const boardNum = payload.boardNum;
-  const studentId = payload.studentId;
-  const senderNickname = payload.senderNickname;
-  const recipientNicknames = payload.recipientNicknames;
-  const notiCategoryNum = payload.notiCategoryNum;
-  const url = payload.url;
-
-  const body = {
-    boardNum,
-    studentId,
-    senderNickname,
-    recipientNicknames,
-    notiCategoryNum,
-    url,
-  };
-
-  return axios.post(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/purchase-list`,
-    body
-  );
-}
-
-function* tradeComplete(action) {
-  try {
-    const result = yield call(tradeCompleteAPI, action.payload);
-
-    yield put({
-      type: TRADE_COMPLETE_SUCCESS,
-      payload: result.data,
-    });
-  } catch (e) {
-    yield put({
-      type: TRADE_COMPLETE_FAILURE,
-      payload: e.response,
-    });
-  }
-}
-
 function* watchBoardWrite() {
   yield takeEvery(BOARD_WRITE_REQUEST, boardWrite);
 }
@@ -357,10 +314,6 @@ function* watchWatchlistDelete() {
   yield takeEvery(WATCHLIST_DELETE_REQUEST, WatchlistDelete);
 }
 
-function* watchTradeComplete() {
-  yield takeEvery(TRADE_COMPLETE_REQUEST, tradeComplete);
-}
-
 //boardSaga() 여러 Saga 통합
 export default function* boardSaga() {
   yield all([
@@ -373,6 +326,5 @@ export default function* boardSaga() {
     fork(watchBoardHit),
     fork(watchWatchlistAdd),
     fork(watchWatchlistDelete),
-    fork(watchTradeComplete),
   ]);
 }

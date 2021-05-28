@@ -173,22 +173,6 @@ const board = (state = initialState, action) => {
         isWatchList: null,
         msg: action.payload.data.msg,
       };
-
-    case TRADE_COMPLETE_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        msg: action.payload.msg,
-        status: 3,
-      };
-
-    case TRADE_COMPLETE_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        msg: action.payload.data.msg,
-      };
-
     default:
       return state;
   }
