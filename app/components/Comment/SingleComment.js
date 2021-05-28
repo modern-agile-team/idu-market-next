@@ -238,7 +238,10 @@ const SingleComment = ({ comment, categoryName, num }) => {
                   className="comment-content-area update"
                   onChange={onUpdateChange}
                   placeholder="Comment"
-                  defaultValue={comment.content.replace(/[<]br [/][>]/gi, "\n")}
+                  defaultValue={comment.content.replace(
+                    /[<]br [/][>]\s{1}/gi,
+                    "\n"
+                  )}
                 />
 
                 <button
