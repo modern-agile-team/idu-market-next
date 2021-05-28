@@ -188,6 +188,7 @@ const board = (state = initialState, action) => {
         loading: false,
         msg: action.payload.data.msg,
       };
+
     default:
       return state;
   }

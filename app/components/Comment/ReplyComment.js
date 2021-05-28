@@ -100,7 +100,7 @@ const ReplyComment = ({ comment, categoryName, num, onDelete }) => {
               className="comment-content-area update"
               onChange={onUpdateChange}
               placeholder="Comment"
-              defaultValue={comment.content}
+              defaultValue={comment.content.replace(/[<]br [/][>]/gi, "\n")}
             />
 
             <button className="comment-submit-btn update" onClick={onUpdate}>
