@@ -1,10 +1,9 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import axios from "axios";
 
 const TradeComplete = ({ buyers, nickname, categoryName, num }) => {
-  const dispatch = useDispatch();
   const router = useRouter();
   const board = useSelector((state) => state.board);
 
@@ -35,7 +34,6 @@ const TradeComplete = ({ buyers, nickname, categoryName, num }) => {
         .post(`${process.env.NEXT_PUBLIC_API_URL}/api/purchase-list`, body)
         .then((response) => {
           if (response.data.success) {
-            console.log(response.data);
             alert("거래가 종료되었습니다.");
             router.back();
           }

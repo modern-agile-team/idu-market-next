@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { IoMdArrowDropdown } from "react-icons/io";
-import { BsCalendar, BsTag } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Link from "next/link";
+
 import {
   BOARD_DELETE_REQUEST,
   BOARD_STATUS_REQUEST,
   IMAGE_DELETE_REQUEST,
 } from "../../redux/types";
 import WatchlistAddDelete from "../Watchlist/WatchlistAddDelete";
+import { IoMdArrowDropdown } from "react-icons/io";
+import { BsCalendar, BsTag } from "react-icons/bs";
 
 const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
   const [tradeSentence, setTradeSentence] = useState("판매중");

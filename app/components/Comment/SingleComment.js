@@ -58,7 +58,6 @@ const SingleComment = ({ comment, categoryName, num }) => {
   };
 
   const onOpenUpdate = () => {
-    console.log(updateFormValue);
     setOpenUpdate(!openUpdate);
     if (openReply) {
       setOpenReply(false);
