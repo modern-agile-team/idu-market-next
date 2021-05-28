@@ -23,9 +23,6 @@ import {
   WATCHLIST_DELETE_REQUEST,
   WATCHLIST_DELETE_SUCCESS,
   WATCHLIST_DELETE_FAILURE,
-  TRADE_COMPLETE_REQUEST,
-  TRADE_COMPLETE_SUCCESS,
-  TRADE_COMPLETE_FAILURE,
 } from "../types";
 
 const initialState = {
@@ -50,7 +47,6 @@ const initialState = {
 
 const board = (state = initialState, action) => {
   switch (action.type) {
-    case TRADE_COMPLETE_REQUEST:
     case WATCHLIST_DELETE_REQUEST:
     case WATCHLIST_ADD_REQUEST:
     case BOARD_HIT_REQUEST:
@@ -171,21 +167,6 @@ const board = (state = initialState, action) => {
         ...state,
         loading: true,
         isWatchList: null,
-        msg: action.payload.data.msg,
-      };
-
-    case TRADE_COMPLETE_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        msg: action.payload.msg,
-        status: 3,
-      };
-
-    case TRADE_COMPLETE_FAILURE:
-      return {
-        ...state,
-        loading: false,
         msg: action.payload.data.msg,
       };
     default:

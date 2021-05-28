@@ -29,7 +29,7 @@ const purchaseListPage = () => {
               setProductList(result);
             }
           })
-          .catch((e) => {
+          .catch((err) => {
             const response = err.response;
             console.log(response.data.msg);
           });

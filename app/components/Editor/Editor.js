@@ -102,13 +102,7 @@ const Editor = ({ categoryName }) => {
         .post(`${process.env.NEXT_PUBLIC_API_URL}/api/image`, formData)
         .then((response) => {
           if (response.data.success) {
-            const images = [];
-
-            response.data.images.forEach((image) => {
-              images.push(image.slice(0, image.length - 11));
-            });
-
-            setUploadImages(uploadImages.concat(images));
+            setUploadImages(uploadImages.concat(response.data.images));
           }
         })
         .catch((err) => {

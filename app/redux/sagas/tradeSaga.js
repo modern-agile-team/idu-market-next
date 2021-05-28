@@ -4,9 +4,6 @@ import {
   TRADE_COMMENT_GET_REQUEST,
   TRADE_COMMENT_GET_SUCCESS,
   TRADE_COMMENT_GET_FAILURE,
-  TRADE_COMPLETE_REQUEST,
-  TRADE_COMPLETE_SUCCESS,
-  TRADE_COMPLETE_FAILURE,
 } from "../types";
 
 //Trade Comment Get
@@ -35,54 +32,10 @@ function* tradeCommentGet(action) {
   }
 }
 
-//Trade Complete
-function tradeCompleteAPI(payload) {
-  const boardNum = payload.boardNum;
-  const studentId = payload.studentId;
-  const senderNickname = payload.senderNickname;
-  const recipientNicknames = payload.recipientNicknames;
-  const notiCategoryNum = payload.notiCategoryNum;
-  const url = payload.url;
-
-  const body = {
-    boardNum,
-    studentId,
-    senderNickname,
-    recipientNicknames,
-    notiCategoryNum,
-    url,
-  };
-
-  return axios.post(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/purchase-list`,
-    body
-  );
-}
-
-function* tradeComplete(action) {
-  try {
-    const result = yield call(tradeCompleteAPI, action.payload);
-
-    yield put({
-      type: TRADE_COMPLETE_SUCCESS,
-      payload: result.data,
-    });
-  } catch (e) {
-    yield put({
-      type: TRADE_COMPLETE_FAILURE,
-      payload: e.response,
-    });
-  }
-}
-
 function* watchTradeCommentGet() {
   yield takeEvery(TRADE_COMMENT_GET_REQUEST, tradeCommentGet);
 }
 
-function* watchTradeComplete() {
-  yield takeEvery(TRADE_COMPLETE_REQUEST, tradeComplete);
-}
-
 export default function* tradeSaga() {
-  yield all([fork(watchTradeCommentGet), fork(watchTradeComplete)]);
+  yield all([fork(watchTradeCommentGet)]);
 }

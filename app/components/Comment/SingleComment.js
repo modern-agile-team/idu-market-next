@@ -24,6 +24,7 @@ const SingleComment = ({ comment, categoryName, num }) => {
     num,
     groupNum: comment.groupNum,
   });
+
   const [updateFormValue, setUpdateFormValue] = useState({
     content: comment.content,
     studentId: auth.id,
@@ -106,7 +107,7 @@ const SingleComment = ({ comment, categoryName, num }) => {
     }
   };
 
-  const onUpdate = (e) => {
+  const onUpdate = async (e) => {
     e.preventDefault();
 
     const { content, categoryName, num, groupNum, commentNum } =
@@ -124,7 +125,7 @@ const SingleComment = ({ comment, categoryName, num }) => {
     if (body.content.length === 0) {
       alert("댓글에 수정 할 내용을 입력해주세요.");
     } else {
-      dispatch({
+      await dispatch({
         type: COMMENT_UPDATE_REQUEST,
         payload: body,
       });
@@ -236,7 +237,10 @@ const SingleComment = ({ comment, categoryName, num }) => {
                   className="comment-content-area update"
                   onChange={onUpdateChange}
                   placeholder="Comment"
-                  defaultValue={comment.content}
+                  defaultValue={comment.content.replace(
+                    /[<]br [/][>]\s{1}/gi,
+                    "\n"
+                  )}
                 />
 
                 <button

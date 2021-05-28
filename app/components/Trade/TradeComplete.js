@@ -1,10 +1,9 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { TRADE_COMPLETE_REQUEST } from "../../redux/types";
+import axios from "axios";
 
 const TradeComplete = ({ buyers, nickname, categoryName, num }) => {
-  const dispatch = useDispatch();
   const router = useRouter();
   const board = useSelector((state) => state.board);
 
@@ -27,18 +26,22 @@ const TradeComplete = ({ buyers, nickname, categoryName, num }) => {
         senderNickname: board.nickname,
         recipientNicknames: [e.target.textContent],
         url: `https://idu-market.shop/boards/${categoryName}/${num}`,
-        categoryName,
         boardNum: num,
         studentId,
       };
 
-      dispatch({
-        type: TRADE_COMPLETE_REQUEST,
-        payload: body,
-      });
-
-      alert("거래가 종료되었습니다.");
-      router.back();
+      axios
+        .post(`${process.env.NEXT_PUBLIC_API_URL}/api/purchase-list`, body)
+        .then((response) => {
+          if (response.data.success) {
+            alert("거래가 종료되었습니다.");
+            router.back();
+          }
+        })
+        .catch((err) => {
+          const response = err.response;
+          alert(response.data.msg);
+        });
     }
   };
   return (
