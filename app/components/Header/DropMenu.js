@@ -32,7 +32,7 @@ const DropMenu = ({ item, showSidebar }) => {
         ) : (
           <>{item.title}</>
         )}
-        <ul className="header-menu-drop">
+        <ul className={dropMenu ? "header-menu-drop" : "header-menu-drop none"}>
           {dropMenu &&
             item.subMenu.map((item, index) => {
               return (

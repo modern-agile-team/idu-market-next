@@ -1,15 +1,11 @@
 export const modules = {
   toolbar: [
-    [{ header: "1" }, { header: "2" }, { font: [] }],
+    [{ header: "1" }, { header: "2" }],
     [{ size: [] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [
-      { list: "ordered" },
-      { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" },
-    ],
-    ["clean"],
+    ["bold", "italic", "underline", "strike"],
+    [{ align: [] }],
+    [{ color: [] }],
+    [({ indent: "-1" }, { indent: "+1" })],
   ],
   clipboard: {
     // toggle to add extra line breaks when pasting HTML:
@@ -19,14 +15,13 @@ export const modules = {
 
 export const formats = [
   "header",
-  "font",
   "size",
   "bold",
   "italic",
   "underline",
   "strike",
-  "blockquote",
-  "list",
+  "color",
   "bullet",
+  "align",
   "indent",
 ];

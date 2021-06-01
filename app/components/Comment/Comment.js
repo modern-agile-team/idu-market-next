@@ -11,7 +11,8 @@ const Comment = ({ comments, categoryName, num }) => {
   const resetValue = useRef(null);
 
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.auth.id);
+  const auth = useSelector((state) => state.auth);
+  const board = useSelector((state) => state.board);
 
   const onChange = (e) => {
     setFormValue({
@@ -25,10 +26,13 @@ const Comment = ({ comments, categoryName, num }) => {
 
     const { content } = formValue;
 
-    console.log(content);
     const body = {
       content: content.replace(/(?:\r\n|\r|\n)/g, " <br /> "),
-      studentId: userId,
+      studentId: auth.id,
+      senderNickname: auth.nickname,
+      recipientNicknames: [board.nickname],
+      notiCategoryNum: 0,
+      url: `https://idu-market.shop/boards/${categoryName}/${num}`,
       categoryName,
       num,
     };
@@ -45,7 +49,7 @@ const Comment = ({ comments, categoryName, num }) => {
 
       setFormValue({
         content: "",
-        studentId: userId,
+        studentId: auth.id,
       });
     }
   };
@@ -69,7 +73,7 @@ const Comment = ({ comments, categoryName, num }) => {
       <form className="detail-comment">
         <h1 className="comment-title">Write comments</h1>
         <div className="comment-submit-box">
-          {userId ? (
+          {auth.id ? (
             <>
               <textarea
                 ref={resetValue}

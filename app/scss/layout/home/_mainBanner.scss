@@ -34,7 +34,7 @@
     align-items: center;
     overflow: hidden;
 
-    a {
+    button {
         font-family: $Fredoka-font;
         position: absolute;
         left: 50%;
@@ -49,23 +49,15 @@
         font-size: 1.3rem;
         transition: .5s transform;
         color: #fdfdfd;
+        cursor: pointer;
 
-        &:hover::after {
-            content: "↓";
-            position: absolute;
-            top: 110%;
-            left: 50%;
-            line-height: 50px;
-            transform: translate(-50%, -50%);
-            font-size: 3.5rem;
-            color: $main-color-8;
-            font-weight: bold;
-            border-radius: 50%;
-            animation: arrow 1.2s infinite ease;
+        &:hover {
+            animation: circle 1.5s infinite ease;
         }
+
     }
     
-    &:hover a { 
+    &:hover button { 
         transform: translate(-50%, -50%) rotate(0); 
         color: #fdfdfd;
     }
@@ -112,13 +104,16 @@
     }
 
     p {
+        margin-right: -25px;
         margin-top: -10px;
         position: relative;
         text-align: right;
         transform: translateX(0);
         opacity: 0;
+        color: #222;
 
         &.show {
+            color: #222;
             animation: text 2s;
             opacity: 1;
         }
@@ -174,7 +169,8 @@
         }
 
         p {
-            font-size: 0.8rem;
+            margin-right: -20px;
+            font-size: 0.7rem;
             margin-top: -5px;
         }
     }
@@ -188,7 +184,7 @@
 /* 0 ~ 480px : 모바일1 */
 @media screen and (max-width: 480px){
     .main-banner { 
-        padding: 340px 50px;
+        padding: 340px 35px;
     }
     
 
@@ -198,7 +194,9 @@
         }
 
         p { 
-            font-size: 0.6rem; 
+            margin-right: -15px;
+            font-size: 0.5rem; 
+            margin-top: -2px;
         }
     }
     .banner-start-btn {
@@ -218,6 +216,7 @@
         }
         
         p { 
+            margin-right: -10px;
             font-size: 0.2rem; 
         }
     }
@@ -247,9 +246,9 @@
     }
 }
 
-@keyframes arrow {
+@keyframes circle {
     0% { 
-        opacity: 0.2; 
+        opacity: 0.5; 
     }
     100% { 
         opacity: 1; 

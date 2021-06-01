@@ -3,16 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import {
   BOARD_DETAIL_REQUEST,
+  BOARD_HIT_REQUEST,
   COMMENT_GET_REQUEST,
 } from "../../../redux/types";
+import Head from "next/head";
+
 import BoardBanner from "../../../components/Board/BoardBanner";
 import BoardDetailTop from "../../../components/Board/BoardDetailTop";
 import BoardDetailImage from "../../../components/Board/BoardDetailImage";
 import BoardDetailContent from "../../../components/Board/BoardDetailContent";
 import Comment from "../../../components/Comment/Comment";
-import Head from "next/head";
 
-const BoardDetail = () => {
+const BoardDetailPage = () => {
   const router = useRouter();
   const { categoryName, num } = router.query;
 
@@ -56,8 +58,15 @@ const BoardDetail = () => {
           studentId: auth.id,
         },
       });
+      dispatch({
+        type: BOARD_HIT_REQUEST,
+        payload: {
+          categoryName,
+          num,
+        },
+      });
     }
-  }, [dispatch, categoryName, num]);
+  }, [dispatch, router]);
 
   return (
     <>
@@ -72,11 +81,8 @@ const BoardDetail = () => {
             categoryName={categoryName}
             num={num}
           />
-          {categoryName === "free" || categoryName === "notice" ? (
-            <></>
-          ) : (
-            <BoardDetailImage boardDetail={boardDetail} />
-          )}
+
+          <BoardDetailImage boardDetail={boardDetail} />
           <BoardDetailContent boardDetail={boardDetail} />
           <Comment comments={comments} categoryName={categoryName} num={num} />
         </div>
@@ -85,4 +91,4 @@ const BoardDetail = () => {
   );
 };
 
-export default BoardDetail;
+export default BoardDetailPage;

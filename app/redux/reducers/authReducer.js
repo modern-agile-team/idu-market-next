@@ -16,6 +16,7 @@ const initialState = {
   profilePath: "",
   isAdmin: "",
   msg: "",
+  nickname: "",
 };
 
 const auth = (state = initialState, action) => {
@@ -36,6 +37,7 @@ const auth = (state = initialState, action) => {
         profilePath: action.payload.auth.profilePath,
         isAdmin: action.payload.auth.isAdmin,
         msg: action.payload.auth.msg,
+        nickname: action.payload.auth.nickname,
       };
 
     case LOGIN_CHECK_FAILURE:
@@ -49,6 +51,7 @@ const auth = (state = initialState, action) => {
         profilePath: "",
         isAdmin: "",
         msg: "",
+        nickname: "",
       };
 
     case LOGOUT_REQUEST:
@@ -63,11 +66,13 @@ const auth = (state = initialState, action) => {
         ...state,
         jwt: null,
         isLoading: false,
+        id: "",
         msg: "로그아웃에 성공하셨습니다.",
         email: "",
         name: "",
         profilePath: "",
         isAdmin: "",
+        nickname: "",
       };
 
     default:

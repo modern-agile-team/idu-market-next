@@ -31,16 +31,22 @@ const BoardDetailImage = ({ boardDetail }) => {
       ) : (
         <></>
       )}
-      <div className="detail-arrow-box">
-        <BsChevronCompactLeft
-          className="detail-left-arrow"
-          onClick={prevSlide}
-        />
-        <BsChevronCompactRight
-          className="detail-right-arrow"
-          onClick={nextSlide}
-        />
-      </div>
+
+      {boardDetail.images.length > 0 ? (
+        <div className="detail-arrow-box">
+          <BsChevronCompactLeft
+            className="detail-left-arrow"
+            onClick={prevSlide}
+          />
+          <BsChevronCompactRight
+            className="detail-right-arrow"
+            onClick={nextSlide}
+          />
+        </div>
+      ) : (
+        <></>
+      )}
+
       <div className="detail-slide-btns">
         {boardDetail.images ? (
           boardDetail.images.map((_, index) => {

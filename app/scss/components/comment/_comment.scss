@@ -18,7 +18,7 @@
     margin-top: 10px;
     
     .comment-content-area {
-        font-family: $Jua-font;
+        font-family: $Montserrat-font;
         width: 100%;
         border-radius: 5px;
         height: 60px;
@@ -84,7 +84,7 @@
     }
 }
 
-.comment-student-id{
+.comment-student-id {
     display: flex;
     align-items: center;
 
@@ -101,6 +101,15 @@
 
         &:hover {
             color: $main-color-5;
+        }
+    }
+
+    .comment-nickname {
+        &.admin {
+            color: $main-color-5;
+            &:hover {
+                color: $main-color-9;
+            }
         }
     }
 }
@@ -140,7 +149,7 @@
 .comment-update-box {
     position: absolute;
     right: 0;
-    top: 20px;
+    top: 10px;
 
     .comment-delete-icon {
         font-size: 1.5rem;

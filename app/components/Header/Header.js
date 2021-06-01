@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { HeaderMenuData } from "../../Data/HeaderMenuData";
-import DropMenu from "./DropMenu";
 import { useDispatch, useSelector } from "react-redux";
 
 import { FaBars } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 import { LOGOUT_REQUEST } from "../../redux/types";
 
+import { HeaderMenuData } from "../../Data/HeaderMenuData";
+import DropMenu from "./DropMenu";
+import Notification from "../Notification/Notification";
+
 const Header = () => {
   const [sidebar, setSidebar] = useState(false);
 
-  const router = useRouter();
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
 
@@ -54,15 +54,15 @@ const Header = () => {
 
           {auth.jwt ? (
             <>
+              <Notification studentId={auth.id} setSidebar={setSidebar} />
+
               <Link href={`/students/${auth.id}`} className="profile-icon-btn">
-                {/* <a className="profile-icon-btn"> */}
-                <div
+                <img
+                  src={auth.profilePath}
+                  alt="프로필 이미지"
                   className="profile-icon-box"
                   onClick={() => setSidebar(!sidebar)}
-                >
-                  <img src={auth.profilePath} alt="프로필 이미지" />
-                </div>
-                {/* </a> */}
+                />
               </Link>
 
               <Link href="/login">

@@ -49,9 +49,18 @@ function* commentGet(action) {
 function commentUploadAPI(payload) {
   const categoryName = payload.categoryName;
   const num = payload.num;
+  const senderNickname = payload.senderNickname;
+  const recipientNicknames = payload.recipientNicknames;
+  const notiCategoryNum = payload.notiCategoryNum;
+  const url = payload.url;
+
   const body = {
     studentId: payload.studentId,
     content: payload.content,
+    senderNickname,
+    recipientNicknames,
+    notiCategoryNum,
+    url,
   };
 
   return axios.post(
@@ -63,7 +72,7 @@ function commentUploadAPI(payload) {
 function* commentUpload(action) {
   try {
     const result = yield call(commentUploadAPI, action.payload);
-    console.log(result);
+
     yield put({
       type: COMMENT_UPLOAD_SUCCESS,
       payload: result.data,
@@ -146,9 +155,18 @@ function replyUploadAPI(payload) {
   const categoryName = payload.categoryName;
   const num = payload.num;
   const groupNum = payload.groupNum;
+  const senderNickname = payload.senderNickname;
+  const recipientNicknames = payload.recipientNicknames;
+  const notiCategoryNum = payload.notiCategoryNum;
+  const url = payload.url;
+
   const body = {
     studentId: payload.studentId,
     content: payload.content,
+    senderNickname,
+    recipientNicknames,
+    notiCategoryNum,
+    url,
   };
 
   return axios.post(

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import FindPwdForm from "../components/Auth/FindPwdForm";
 
-const FindPwd = () => {
+const FindPwdPage = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [formValues, setFormValues] = useState({
     id: "",
@@ -20,27 +20,31 @@ const FindPwd = () => {
     });
   };
 
-  const onSubmitHandler = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
 
     const { id, email } = formValues;
     const body = { id, email };
 
-    axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/api/forgot-password`, body)
-      .then((response) => {
-        if (response.data.success) {
-          alert(response.data.msg);
-          router.push("/login");
-        }
-      })
-      .catch((err) => {
-        const response = err.response;
-        console.log(response);
-        if (response.status === 400) {
-          setErrorMsg(response.data.msg);
-        }
-      });
+    if ([id, email].includes("")) {
+      setErrorMsg("빈 칸을 모두 입력하세요.");
+    } else {
+      axios
+        .post(`${process.env.NEXT_PUBLIC_API_URL}/api/forgot-password`, body)
+        .then((response) => {
+          if (response.data.success) {
+            alert(response.data.msg);
+            router.push("/login");
+          }
+        })
+        .catch((err) => {
+          const response = err.response;
+          console.log(response);
+          if (response.status === 400) {
+            setErrorMsg(response.data.msg);
+          }
+        });
+    }
   };
 
   return (
@@ -48,74 +52,14 @@ const FindPwd = () => {
       <Head>
         <title>IUAM | 비밀번호 찾기</title>
       </Head>
-      <section id="form-template" className="form-template">
-        <div className="container">
-          <form className="form-field">
-            <h1 className="form-title">Find Password</h1>
-
-            <div className="text-field">
-              <input
-                type="text"
-                name="id"
-                onChange={onChange}
-                className="input-text"
-                autoComplete="on"
-              />
-              <span
-                className={formValues.id ? "input-border fill" : "input-border"}
-              />
-              <label
-                className={formValues.id ? "input-label fix" : "input-label"}
-              >
-                학번
-              </label>
-            </div>
-
-            <div className="text-field">
-              <input
-                type="text"
-                name="email"
-                onChange={onChange}
-                className="input-text"
-                autoComplete="on"
-              />
-              <span
-                className={
-                  formValues.email ? "input-border fill" : "input-border"
-                }
-              />
-              <label
-                className={formValues.email ? "input-label fix" : "input-label"}
-              >
-                이메일
-              </label>
-            </div>
-
-            <p className="form-errmsg">{errorMsg}</p>
-
-            <div className="form-search">
-              <p>
-                <Link href="/login">
-                  <a>로그인</a>
-                </Link>
-                <span> / </span>
-                <Link href="/register">
-                  <a>회원가입</a>
-                </Link>
-              </p>
-            </div>
-
-            <input
-              type="submit"
-              value="Find ID"
-              onClick={onSubmitHandler}
-              className="form-submit"
-            />
-          </form>
-        </div>
-      </section>
+      <FindPwdForm
+        formValues={formValues}
+        onChange={onChange}
+        onSubmit={onSubmit}
+        errorMsg={errorMsg}
+      />
     </>
   );
 };
 
-export default FindPwd;
+export default FindPwdPage;

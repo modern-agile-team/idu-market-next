@@ -1,48 +1,49 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import Link from "next/link";
+
+import {
+  BOARD_DELETE_REQUEST,
+  BOARD_STATUS_REQUEST,
+  IMAGE_DELETE_REQUEST,
+} from "../../redux/types";
+import WatchlistAddDelete from "../Watchlist/WatchlistAddDelete";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { BsCalendar, BsTag } from "react-icons/bs";
-import { useDispatch, useSelector } from "react-redux";
-import Link from "next/link";
-import { BOARD_STATUS_REQUEST } from "../../redux/types";
 
 const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
   const [tradeSentence, setTradeSentence] = useState("판매중");
   const [dropStatus, setDropStatus] = useState(false);
 
   const dispatch = useDispatch();
-  const boards = useSelector((state) => state.boards);
-  const studentId = useSelector((state) => state.auth.id);
+  const { images, isWatchList } = useSelector((state) => state.board);
+  const auth = useSelector((state) => state.auth);
+
+  const router = useRouter();
 
   useEffect(() => {
     if (boardDetail.status === 0) {
       setTradeSentence("판매중");
     } else if (boardDetail.status === 1) {
       setTradeSentence("예약중");
-    } else if (boardDetail.status === 2) {
+    } else {
       setTradeSentence("거래완료");
     }
   }, [boardDetail]);
 
   const deleteImage = () => {
-    // const imgList = [];
-    // const body = {
-    //   url: [],
-    // };
-    // let data = boardDetail.content;
-    // while (true) {
-    //   const matcher = data.match("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>");
-    //   if (matcher) {
-    //     data = data.replace(matcher[0], "");
-    //   } else break;
-    //   imgList.push(matcher[1]);
-    // }
-    // body.url = [...imgList];
-    // if (body.url.length > 0) {
-    //   dispatch({
-    //     type: IMAGE_DELETE_REQUEST,
-    //     payload: body,
-    //   });
-    // }
+    const body = {
+      url: [],
+    };
+
+    body.url = [...images];
+    if (body.url.length > 0) {
+      dispatch({
+        type: IMAGE_DELETE_REQUEST,
+        payload: body,
+      });
+    }
   };
 
   const onTradeSentenceChange = (e) => {
@@ -89,19 +90,21 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
   const onDelete = (e) => {
     e.preventDefault();
 
-    // const confirm = window.confirm("정말 게시물을 삭제하시겠습니까?");
+    const confirm = window.confirm("정말 게시물을 삭제하시겠습니까?");
 
-    // if (confirm) {
-    //   deleteImage();
+    if (confirm) {
+      deleteImage();
 
-    //   dispatch({
-    //     type: BOARD_DELETE_REQUEST,
-    //     payload: {
-    //       categoryName,
-    //       num,
-    //     },
-    //   });
-    // }
+      dispatch({
+        type: BOARD_DELETE_REQUEST,
+        payload: {
+          categoryName,
+          num,
+        },
+      });
+
+      router.push(`/boards/${categoryName}`);
+    }
   };
 
   return (
@@ -115,7 +118,7 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
       )}
 
       <div className="detail-btn-box">
-        {boardDetail.studentId === studentId ? (
+        {boardDetail.studentId === auth.id ? (
           <>
             <Link href={`/boards/${categoryName}/${num}/update`}>
               <a className="detail-btn-edit">수정</a>
@@ -126,9 +129,9 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
             <Link
               href={(function () {
                 if (categoryName === "purchase-list")
-                  return `/purchase-list/${studentId}`;
+                  return `/purchase-list/${boardDetail.studentId}`;
                 else if (categoryName === "sale-list")
-                  return `/sale-list/${studentId}`;
+                  return `/sale-list/${boardDetail.studentId}`;
                 else return `/boards/${categoryName}`;
               })()}
             >
@@ -140,7 +143,7 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
             <Link
               href={(function () {
                 if (categoryName === "watchlist")
-                  return `/watchlist/${studentId}`;
+                  return `/watchlist/${boardDetail.studentId}`;
                 else return `/boards/${categoryName}`;
               })()}
             >
@@ -157,7 +160,8 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
             alt="프로필 이미지"
             className="detail-profile-img"
           />
-          &nbsp;{boardDetail.nickname}
+          &nbsp;
+          {boardDetail.nickname}
         </p>
         <p>
           <BsCalendar />
@@ -173,11 +177,11 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
         <></>
       ) : (
         <>
-          {boardDetail.studentId === studentId ? (
+          {boardDetail.studentId === auth.id ? (
             <div className="detail-trade-status-box">
               {boardDetail.status === 2 ? (
                 <Link
-                  href={`/boards/${categoryName}/${num}/${studentId}/complete`}
+                  href={`/boards/${categoryName}/${num}/${boardDetail.studentId}/complete`}
                 >
                   <a className="trade-complete-btn">거래완료</a>
                 </Link>
@@ -215,9 +219,17 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
                           <IoMdArrowDropdown />
                         </>
                       );
+                    if (boardDetail.status === 3) {
+                      return (
+                        <>
+                          <span className="trade-status complete"></span>{" "}
+                          {tradeSentence}
+                        </>
+                      );
+                    }
                   })()}
 
-                  {dropStatus ? (
+                  {dropStatus && boardDetail.status !== 3 ? (
                     <ul className="detail-trade-status-drop">
                       <li value="판매중" onClick={onTradeSentenceChange}>
                         <span className="trade-status sale"></span>판매중
@@ -236,26 +248,71 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
               </ul>
             </div>
           ) : (
-            <></>
+            <div
+              className={
+                auth.id.length === 0
+                  ? "detail-trade-status-box no-login"
+                  : "detail-trade-status-box no-auth"
+              }
+            >
+              <ul>
+                <li className="detail-trade-status">
+                  {(function () {
+                    if (boardDetail.status === 0)
+                      return (
+                        <>
+                          <span className="trade-status sale"></span>{" "}
+                          {tradeSentence}
+                        </>
+                      );
+                    if (boardDetail.status === 1)
+                      return (
+                        <>
+                          <span className="trade-status reservation"></span>{" "}
+                          {tradeSentence}
+                        </>
+                      );
+                    if (boardDetail.status === 2)
+                      return (
+                        <>
+                          <span className="trade-status complete"></span>{" "}
+                          {tradeSentence}
+                        </>
+                      );
+                    if (boardDetail.status === 3) {
+                      return (
+                        <>
+                          <span className="trade-status complete"></span>{" "}
+                          {tradeSentence}
+                        </>
+                      );
+                    }
+                  })()}
+                </li>
+              </ul>
+            </div>
           )}
         </>
       )}
 
-      {/* {categoryName === "free" ||
+      {categoryName === "free" ||
       categoryName === "notice" ||
-      studentId.length === 0 ? (
+      auth.id.length === 0 ? (
         <></>
       ) : (
         <>
-          {boards.studentId === studentId ? (
-            <></>
-          ) : boards.isWatchList === 1 ? (
-            <WatchlistDeleteComponent />
+          {boardDetail.studentId !== auth.id ? (
+            <WatchlistAddDelete
+              isWatchList={isWatchList}
+              categoryName={categoryName}
+              boardNum={boardDetail.num}
+              studentId={auth.id}
+            />
           ) : (
-            <WatchlistAddComponent categoryName={categoryName} />
+            <></>
           )}
         </>
-      )} */}
+      )}
     </div>
   );
 };

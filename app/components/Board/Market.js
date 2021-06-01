@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
-import MarketListItem from "./MarketListItem";
 import axios from "axios";
+
+import BoardListTop from "./BoardListTop";
+import MarketListItem from "./MarketListItem";
+import Loading from "../Loading/Loading";
 
 const Market = ({ categoryName }) => {
   const [productList, setProductList] = useState([]);
@@ -11,7 +14,6 @@ const Market = ({ categoryName }) => {
   let lastNum = 0;
 
   const getMoreData = async () => {
-    console.log(categoryName);
     isLoading = true;
     await axios
       .get(
@@ -59,9 +61,20 @@ const Market = ({ categoryName }) => {
   }, [categoryName]);
 
   return (
-    <div className="container">
-      <MarketListItem productList={productList} categoryName={categoryName} />
-    </div>
+    <section className="market" id="market">
+      <BoardListTop categoryName={categoryName} />
+
+      <div className="container">
+        {productList.length > 0 ? (
+          <MarketListItem
+            productList={productList}
+            categoryName={categoryName}
+          />
+        ) : (
+          <Loading />
+        )}
+      </div>
+    </section>
   );
 };
 

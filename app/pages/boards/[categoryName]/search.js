@@ -8,7 +8,7 @@ import BoardListItem from "../../../components/Board/BoardListItem";
 import BoardBanner from "../../../components/Board/BoardBanner";
 import Head from "next/head";
 
-const Search = () => {
+const BoardSearchPage = () => {
   const [pageNumber, setPageNumber] = useState(0);
   const [boardList, setBoardList] = useState([]);
 
@@ -116,4 +116,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default BoardSearchPage;

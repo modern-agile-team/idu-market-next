@@ -1,20 +1,20 @@
 import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { AiOutlineComment } from "react-icons/ai";
 
 const MarketListItem = ({ productList, categoryName, profile }) => {
-  const router = useRouter();
-
   return (
     <>
       {productList.map((board) => {
         return (
-          <div className="market-items" key={board.num}>
+          <div
+            className="market-items"
+            key={profile ? board.boardNum : board.num}
+          >
             <Link
               href={
                 profile
-                  ? `/boards/${board.categoryName}/${board.num}`
+                  ? `/boards/${board.categoryName}/${board.boardNum}`
                   : `/boards/${categoryName}/${board.num}`
               }
             >
@@ -45,7 +45,9 @@ const MarketListItem = ({ productList, categoryName, profile }) => {
                   <Link href={`/students/${board.sellerId}`}>
                     <a
                       className={
-                        board.sellerName.length > 6 ? "longId" : "shortId"
+                        board.sellerName.length > 6
+                          ? "board-nickname admin"
+                          : "board-nickname"
                       }
                     >
                       <img
@@ -62,7 +64,9 @@ const MarketListItem = ({ productList, categoryName, profile }) => {
                   <Link href={`/students/${board.studentId}`}>
                     <a
                       className={
-                        board.nickname.length > 6 ? "longId" : "shortId"
+                        board.isAdmin === 1
+                          ? "board-nickname admin"
+                          : "board-nickname"
                       }
                     >
                       <img

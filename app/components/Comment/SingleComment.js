@@ -11,6 +11,10 @@ import {
 import ReplyComment from "./ReplyComment";
 
 const SingleComment = ({ comment, categoryName, num }) => {
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+  const board = useSelector((state) => state.board);
+
   const [openReply, setOpenReply] = useState(false);
   const [openUpdate, setOpenUpdate] = useState(false);
   const [formValue, setFormValue] = useState({
@@ -20,9 +24,10 @@ const SingleComment = ({ comment, categoryName, num }) => {
     num,
     groupNum: comment.groupNum,
   });
+
   const [updateFormValue, setUpdateFormValue] = useState({
     content: comment.content,
-    studentId: userId,
+    studentId: auth.id,
     commentNum: comment.num,
     categoryName,
     num,
@@ -30,9 +35,6 @@ const SingleComment = ({ comment, categoryName, num }) => {
   });
 
   const resetValue = useRef(null);
-
-  const dispatch = useDispatch();
-  const userId = useSelector((state) => state.auth.id);
 
   const onChange = (e) => {
     setFormValue({
@@ -66,16 +68,21 @@ const SingleComment = ({ comment, categoryName, num }) => {
     e.preventDefault();
 
     const { content, categoryName, num, groupNum } = formValue;
+
     const body = {
-      content,
-      studentId: userId,
+      content: content.replace(/(?:\r\n|\r|\n)/g, " <br /> "),
+      studentId: auth.id,
+      notiCategoryNum: 1,
+      senderNickname: auth.nickname,
+      recipientNicknames: [board.nickname, comment.nickname],
+      url: `https://idu-market.shop/boards/${categoryName}/${num}`,
       categoryName,
       num,
       groupNum,
     };
 
     if (body.content.length === 0) {
-      alert("댓글이 비었습니다.");
+      alert("댓글에 내용을 입력해주세요.");
     } else {
       dispatch({
         type: REPLY_UPLOAD_REQUEST,
@@ -100,20 +107,15 @@ const SingleComment = ({ comment, categoryName, num }) => {
     }
   };
 
-  const onUpdate = (e) => {
+  const onUpdate = async (e) => {
     e.preventDefault();
 
-    const {
-      content,
-      categoryName,
-      num,
-      groupNum,
-      commentNum,
-    } = updateFormValue;
+    const { content, categoryName, num, groupNum, commentNum } =
+      updateFormValue;
 
     const body = {
-      content,
-      studentId: userId,
+      content: content.replace(/(?:\r\n|\r|\n)/g, " <br /> "),
+      studentId: auth.id,
       categoryName,
       commentNum,
       num,
@@ -121,9 +123,9 @@ const SingleComment = ({ comment, categoryName, num }) => {
     };
 
     if (body.content.length === 0) {
-      alert("댓글이 비었습니다.");
+      alert("댓글에 수정 할 내용을 입력해주세요.");
     } else {
-      dispatch({
+      await dispatch({
         type: COMMENT_UPDATE_REQUEST,
         payload: body,
       });
@@ -146,10 +148,9 @@ const SingleComment = ({ comment, categoryName, num }) => {
       commentNum: comment.num,
       categoryName,
       num,
-      studentId: userId,
+      studentId: auth.id,
       depth: comment.depth,
     };
-    console.log(body);
 
     const deleteConfirm = window.confirm("댓글을 삭제하시겠습니까?");
 
@@ -189,7 +190,15 @@ const SingleComment = ({ comment, categoryName, num }) => {
                     className="comment-profile-img"
                   />
                   <Link href={`/students/${comment.studentId}`}>
-                    <a>{comment.nickname}</a>
+                    <a
+                      className={
+                        comment.isAdmin === 1
+                          ? "comment-nickname admin"
+                          : "comment-nickname"
+                      }
+                    >
+                      {comment.nickname}
+                    </a>
                   </Link>
                 </div>
                 <div className="comment-content">
@@ -206,7 +215,7 @@ const SingleComment = ({ comment, categoryName, num }) => {
               </>
             )}
 
-            {userId === comment.studentId && comment.hiddenFlag === 0 ? (
+            {auth.id === comment.studentId && comment.hiddenFlag === 0 ? (
               <div className="comment-update-box">
                 <button className="comment-update-icon" onClick={onOpenUpdate}>
                   <RiPencilLine />
@@ -228,7 +237,10 @@ const SingleComment = ({ comment, categoryName, num }) => {
                   className="comment-content-area update"
                   onChange={onUpdateChange}
                   placeholder="Comment"
-                  defaultValue={comment.content}
+                  defaultValue={comment.content.replace(
+                    /[<]br [/][>]\s{1}/gi,
+                    "\n"
+                  )}
                 />
 
                 <button
@@ -244,7 +256,7 @@ const SingleComment = ({ comment, categoryName, num }) => {
 
             {openReply ? (
               <div className="comment-submit-box">
-                {userId ? (
+                {auth.id ? (
                   <>
                     <textarea
                       ref={resetValue}

@@ -4,8 +4,9 @@ import BoardBanner from "../../../components/Board/BoardBanner";
 import Editor from "../../../components/Editor/Editor";
 import Head from "next/head";
 
-const New = () => {
+const BoardNewPage = () => {
   const router = useRouter();
+  const { categoryName } = router.query;
 
   return (
     <>
@@ -22,11 +23,11 @@ const New = () => {
       />
       <section id="post-write" className="post-write">
         <div className="container">
-          <Editor />
+          <Editor categoryName={categoryName} />
         </div>
       </section>
     </>
   );
 };
 
-export default New;
+export default BoardNewPage;

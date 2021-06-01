@@ -4,6 +4,11 @@
 //variables
 @import './helpers/variables';
 
+//404Page
+@import './page/404';
+
+//loading
+@import './components/loading/loading';
 //Header
 @import './layout/header';
 
@@ -21,12 +26,28 @@
 @import './layout/forms';
 
 //Board
-@import './layout/board/market';
-@import './layout/board/basic';
 @import './layout/board/boardBanner';
-@import './layout/board/boardWrite';
-@import './layout/board/boardDetail';
-@import './layout/board/boardDetailImage';
+@import './components/board/market';
+@import './components/board/basic';
+@import './components/board/boardDetail';
+@import './components/board/boardWrite';
+@import './components/board/boardDetailImage';
+
+//Profile
+@import './components/profile/profile';
+@import './components/profile/profileUpdate';
+
+//Service
+@import './components/service/inquiry';
 
 //Comment
-@import './layout/board/comment';
+@import './components/comment/comment';
+
+//TradeComplete
+@import './components/trade/tradeComplete';
+
+//Watchlist
+@import './components/watchlist/watchlist';
+
+//Notification
+@import './components/notification/notification';

@@ -1,0 +1,97 @@
+.header-notification {
+  position: relative;
+}
+
+.notification-icon {
+  font-size: 2.1rem;
+  margin-right: 40px;
+  cursor: pointer;
+  border: 2px solid #222;
+  border-radius: 50%;
+  padding: 4px;
+
+  &.focus {
+    background-color: $main-color-1;
+    border: 2px solid $main-color-2;
+    color: $main-color-9;
+  }
+}
+
+.notification-ul {
+  position: absolute;
+  top: 60px;
+  right: 50%;
+  transform: translateX(50%);
+  width: 340px;
+  max-height: 400px;
+  border: 1px solid #999;
+  z-index: 200;
+  overflow-y: scroll;
+  box-shadow: 5px 5px 5px rgb(211, 211, 211);
+  border-radius: 8px;
+  background-color: #fdfdfd;
+}
+
+.notification-li {
+  font-family: $Thasadith-font;
+  background-color: #faf0e8;
+  padding: 20px 12px;
+  border-bottom: 1px solid rgb(153, 152, 152);
+  font-size: 0.8rem;
+  cursor: pointer;
+
+  &.nowatch {
+    background-color: #fdfdfd;
+    border-bottom: 1px solid rgb(153, 152, 152);
+  }
+
+  &:hover {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+}
+
+.notification-nowatch-count {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  font-size: 0.8rem;
+  top: 0;
+  right: 30px;
+  background-color: rgb(255, 21, 21);
+  color: #fff;
+  border-radius: 50%;
+}
+
+.notification-status {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: rgb(156, 156, 156);
+  border-radius: 50%;
+  margin-right: 5px;
+  &.nowatch {
+    background-color: rgb(2, 175, 2);
+  }
+}
+
+@media screen and (max-width: 1220px) { 
+  .notification-icon {
+    margin-right: 0;
+    margin: 10px 0;
+  }
+
+  .notification-ul { 
+    max-height: 200px;
+    top: 55px;
+  }
+
+  .notification-nowatch-count {
+    position: absolute;
+    top: 6px;
+    right: -8px;
+  }
+}

@@ -1,6 +1,5 @@
 .board-detail-image {
   position: relative;
-  height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,7 +16,7 @@
   }
 
   .detail-image {
-    width: 600px;
+    width: 450px;
   }
 }
 
@@ -27,7 +26,7 @@
   right: -28%;
   font-size: 5rem;
   color: #000;
-  z-index: 100;
+  z-index: 99;
   cursor: pointer;
   user-select: none;
 
@@ -42,7 +41,7 @@
   left: -28%;
   font-size: 5rem;
   color: #000;
-  z-index: 100;
+  z-index: 99;
   cursor: pointer;
   user-select: none;
   &:hover {
@@ -75,42 +74,10 @@
   }
 }
 
-.board-detail-content {
-  width: 100%;
-  padding: 20px;
-  border: 2px solid #999;
-  margin: 50px 0;
-  font-family: $Jua-font;
-  font-size: 1.1rem;
-  p {
-    font-family: $Jua-font;
-    font-size: 1.1rem;
-    em {
-      font-family: $Jua-font;
-      font-size: 1.1rem;
-    }
-    u {
-      font-family: $Jua-font;
-      font-size: 1.1rem;
-    }
-  }
-  h1 {
-    font-family: $Jua-font;
-    font-size: 2rem;
-  }
-  h2 {
-    font-family: $Jua-font;
-    font-size: 1.8rem;
-  }
-}
-
 @media screen and (max-width: 970px) {
-  .board-detail-image {
-    height: 500px;
-  }
   .detail-slide {
     .detail-image {
-      width: 500px;
+      width: 400px;
     }
   }
 
@@ -126,12 +93,9 @@
 }
 
 @media screen and (max-width: 767px) {
-  .board-detail-image {
-    height: 400px;
-  }
   .detail-slide {
     .detail-image {
-      width: 400px;
+      width: 320px;
     }
   }
   .detail-right-arrow {
@@ -148,12 +112,9 @@
 }
 
 @media screen and (max-width: 670px) {
-  .board-detail-image {
-    height: 350px;
-  }
   .detail-slide {
     .detail-image {
-      width: 320px;
+      width: 280px;
     }
   }
   .detail-right-arrow {
@@ -175,12 +136,9 @@
 }
 
 @media screen and (max-width: 480px) {
-  .board-detail-image {
-    height: 300px;
-  }
   .detail-slide {
     .detail-image {
-      width: 260px;
+      width: 250px;
     }
   }
 
@@ -203,12 +161,9 @@
 }
 
 @media screen and (max-width: 360px) {
-  .board-detail-image {
-    height: 250px;
-  }
   .detail-slide {
     .detail-image {
-      width: 230px;
+      width: 200px;
     }
   }
 

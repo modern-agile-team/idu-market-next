@@ -1,0 +1,17 @@
+.loader {
+  margin: 15% auto;
+  height: 80px;
+  width: 80px;
+  border: 6px solid rgb(202, 202, 202);
+  border: {
+    right-color: $main-color-5;
+    top-color: $main-color-5;
+    radius: 100%;
+  }
+  animation: spins 1s infinite linear;
+}
+
+@keyframes spins {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(359deg); }
+}

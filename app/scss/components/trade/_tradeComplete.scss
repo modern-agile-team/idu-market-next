@@ -1,0 +1,53 @@
+.trade-complete {
+    width: 100%;
+    padding: 100px 0;
+    
+    .container {
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+.trade-buyer-number {
+    font-family: $Jua-font;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 80px;
+    font-size: 1.8rem;
+    border-bottom: 2px solid $bg-color-2;
+    padding-bottom: 20px;
+
+    p {
+        font-family: $Jua-font;
+        font-size: 1.2rem;
+    }
+}
+
+.trade-buyer-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .trade-buyer {
+        margin-bottom: 30px;
+        border: 2px solid #222;
+        font-family: $Jua-font;
+        cursor: pointer;
+        padding: 10px 30px;
+        font-size: 1.3rem;
+        border-radius: 8px;
+        transition: transform .5s ease;
+
+        &:hover {
+            transform: translateY(-8px);
+            color: $main-color-5;
+            border: 2px solid $main-color-5;
+        }
+    }
+}

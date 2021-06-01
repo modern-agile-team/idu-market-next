@@ -1,21 +1,24 @@
-import React, { useCallback, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import Link from "next/link";
-import { BOARD_WRITE_REQUEST } from "../../redux/types";
 import axios from "axios";
+
 import { modules, formats } from "./EditorConfig";
-import { RiDeleteBin6Line } from "react-icons/ri";
+import EditorImageUpload from "./EditorImageUpload";
+import EditorPost from "./EditorPost";
+import Loading from "../Loading/Loading";
+import { IMAGE_DELETE_REQUEST } from "../../redux/types";
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
-  loading: () => <p>Loading ...</p>,
+  loading: () => <Loading />,
 });
 
-const Editor = () => {
+const Editor = ({ categoryName }) => {
   const router = useRouter();
-  const { categoryName } = router.query;
+
+  const dispatch = useDispatch();
   const { id, isAdmin } = useSelector((state) => state.auth);
 
   const [formValues, setFormValues] = useState({
@@ -25,11 +28,27 @@ const Editor = () => {
     images: [],
     thumbnail: "",
     price: "",
-    categoryName: categoryName,
+    categoryName: "",
   });
   const [uploadImages, setUploadImages] = useState([]);
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    if (!localStorage.getItem("jwt")) {
+      alert("로그인한 유저만 접근할 수 있습니다.");
+      router.back();
+    } else {
+      setFormValues({
+        ...formValues,
+        studentId: id,
+        categoryName,
+      });
+
+      if (categoryName === "notice" && isAdmin !== 1) {
+        alert("관리자만 접근할 수 있는 페이지 입니다.");
+        router.back();
+      }
+    }
+  }, [categoryName, id]);
 
   const onChange = (e) => {
     setFormValues({
@@ -46,7 +65,16 @@ const Editor = () => {
   };
 
   const handleDelete = (index) => {
-    console.log(index);
+    const body = {
+      url: [],
+    };
+
+    body.url = [uploadImages[index]];
+
+    dispatch({
+      type: IMAGE_DELETE_REQUEST,
+      payload: body,
+    });
     setUploadImages(uploadImages.filter((_, i) => i !== index));
   };
 
@@ -75,12 +103,6 @@ const Editor = () => {
         .then((response) => {
           if (response.data.success) {
             setUploadImages(uploadImages.concat(response.data.images));
-            if (uploadImages.length === 0) {
-              setFormValues({
-                ...formValues,
-                thumbnail: response.data.images[0],
-              });
-            }
           }
         })
         .catch((err) => {
@@ -106,23 +128,24 @@ const Editor = () => {
       }
       setFormValues({
         ...formValues,
-        images,
+        images: images,
+        thumbnail: images[0],
       });
     }
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(formValues);
 
     if (categoryName === "free" || categoryName === "notice") {
-      const { studentId, title, content, categoryName } = formValues;
+      const { studentId, title, content, categoryName, images } = formValues;
 
       const body = {
         studentId,
         title,
         content,
         categoryName,
+        images,
       };
 
       //유효성 검사
@@ -131,12 +154,21 @@ const Editor = () => {
       } else if (content === "") {
         alert("빈 본문입니다.");
       } else {
-        dispatch({
-          type: BOARD_WRITE_REQUEST,
-          payload: body,
-        });
-        alert("게시글 업로드에 성공하셨습니다.");
-        router.push(`/boards/${categoryName}`);
+        axios
+          .post(
+            `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`,
+            body
+          )
+          .then((response) => {
+            if (response.data.success) {
+              alert("게시글 업로드에 성공하셨습니다.");
+              router.push(`/boards/${categoryName}/${response.data.num}`);
+            }
+          })
+          .catch((err) => {
+            const response = err.response;
+            console.log(response.data.msg);
+          });
       }
     } else {
       const {
@@ -173,12 +205,21 @@ const Editor = () => {
       } else if (images.length === 0) {
         alert("1개 이상의 이미지 업로드를 해주시기 바랍니다.");
       } else {
-        dispatch({
-          type: BOARD_WRITE_REQUEST,
-          payload: body,
-        });
-        alert("게시글 업로드에 성공하셨습니다.");
-        router.push(`/boards/${categoryName}`);
+        axios
+          .post(
+            `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`,
+            body
+          )
+          .then((response) => {
+            if (response.data.success) {
+              alert("게시글 업로드에 성공하셨습니다.");
+              router.push(`/boards/${categoryName}/${response.data.num}`);
+            }
+          })
+          .catch((err) => {
+            const response = err.response;
+            console.log(response.data.msg);
+          });
       }
     }
   };
@@ -207,6 +248,12 @@ const Editor = () => {
               onChange={handleEditor}
             />
           </div>
+
+          <EditorImageUpload
+            handleImageUpload={handleImageUpload}
+            handleDelete={handleDelete}
+            uploadImages={uploadImages}
+          />
         </>
       ) : (
         <>
@@ -232,51 +279,19 @@ const Editor = () => {
             />
           </div>
 
-          <div className="image-upload-box">
-            <label htmlFor="image-upload" className="image-upload-label">
-              <input
-                id="image-upload"
-                type="file"
-                multiple
-                accept="image/jpg,image/png,image/jpeg,image/gif"
-                onChange={handleImageUpload}
-                style={{ display: "none" }}
-              />
-              이미지 업로드 CLICK
-            </label>
-
-            <div className="image-preview-box">
-              {uploadImages &&
-                uploadImages.map((el, index) => {
-                  return (
-                    <div key={index} className="image-preview">
-                      <img src={`${el}`} alt="미리보기" />
-                      <div
-                        className="delete-image-btn"
-                        onClick={() => handleDelete(index)}
-                      >
-                        <RiDeleteBin6Line />
-                      </div>
-                    </div>
-                  );
-                })}
-            </div>
-          </div>
+          <EditorImageUpload
+            handleImageUpload={handleImageUpload}
+            handleDelete={handleDelete}
+            uploadImages={uploadImages}
+          />
         </>
       )}
 
-      <div className="post-btn-box">
-        <button
-          className="post-write-btn"
-          onClick={onSubmit}
-          onMouseDown={onMouseDown}
-        >
-          Upload
-        </button>
-        <Link href={`/boards/${categoryName}`}>
-          <a className="post-cancel-btn">Cancel</a>
-        </Link>
-      </div>
+      <EditorPost
+        onSubmit={onSubmit}
+        onMouseDown={onMouseDown}
+        categoryName={categoryName}
+      />
     </form>
   );
 };

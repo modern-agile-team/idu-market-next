@@ -5,19 +5,19 @@ import Link from "next/link";
 import { COMMENT_GET_REQUEST, COMMENT_UPDATE_REQUEST } from "../../redux/types";
 
 const ReplyComment = ({ comment, categoryName, num, onDelete }) => {
+  const auth = useSelector((state) => state.auth);
+
   const [openUpdate, setOpenUpdate] = useState(false);
   const [updateFormValue, setUpdateFormValue] = useState({
     content: comment.content,
-    studentId: userId,
+    studentId: auth.id,
     commentNum: comment.num,
     categoryName,
     num,
     groupNum: comment.groupNum,
   });
 
-  const userId = useSelector((state) => state.auth.id);
   const dispatch = useDispatch();
-
   const onUpdateChange = (e) => {
     setUpdateFormValue({
       ...updateFormValue,
@@ -32,17 +32,12 @@ const ReplyComment = ({ comment, categoryName, num, onDelete }) => {
   const onUpdate = (e) => {
     e.preventDefault();
 
-    const {
-      content,
-      categoryName,
-      num,
-      groupNum,
-      commentNum,
-    } = updateFormValue;
+    const { content, categoryName, num, groupNum, commentNum } =
+      updateFormValue;
 
     const body = {
-      content,
-      studentId: userId,
+      content: content.replace(/(?:\r\n|\r|\n)/g, " <br /> "),
+      studentId: auth.id,
       categoryName,
       commentNum,
       num,
@@ -78,11 +73,19 @@ const ReplyComment = ({ comment, categoryName, num, onDelete }) => {
             className="comment-profile-img"
           />
           <Link href={`/students/${comment.studentId}`}>
-            <a>{comment.nickname}</a>
+            <a
+              className={
+                comment.isAdmin === 1
+                  ? "comment-nickname admin"
+                  : "comment-nickname"
+              }
+            >
+              {comment.nickname}
+            </a>
           </Link>
         </div>
         <div className="comment-content">
-          <span>{comment.content}</span>
+          <span dangerouslySetInnerHTML={{ __html: comment.content }}></span>
         </div>
         <div className="comment-comment-date">
           <span>{comment.inDate}</span>
@@ -97,7 +100,7 @@ const ReplyComment = ({ comment, categoryName, num, onDelete }) => {
               className="comment-content-area update"
               onChange={onUpdateChange}
               placeholder="Comment"
-              defaultValue={comment.content}
+              defaultValue={comment.content.replace(/[<]br [/][>]/gi, "\n")}
             />
 
             <button className="comment-submit-btn update" onClick={onUpdate}>
@@ -108,7 +111,7 @@ const ReplyComment = ({ comment, categoryName, num, onDelete }) => {
           <></>
         )}
 
-        {userId === comment.studentId ? (
+        {auth.id === comment.studentId ? (
           <div className="comment-update-box">
             <button className="comment-update-icon" onClick={onOpenUpdate}>
               <RiPencilLine />

@@ -1,9 +1,9 @@
 .header{
     position: fixed;
     width: 100%;
-    height: 65px;
     background: $bg-color-1;
     z-index: 100;
+    border-bottom: 1px solid $main-color-1;
 
     .container {
         padding: 0 15px;
@@ -45,24 +45,21 @@
         position: relative;
         font-family: $Jua-font;
         text-align: center;
-        font-weight: 400;
-        padding: 25px 40px;
+        margin: 0 5px;
+        padding: 20px 0;
+        width: 140px;
+        font-size: 1.2rem;
         cursor: pointer;
-
-        a {
-            font-family: $Jua-font;
-            padding: 25px 30px;
-        }
 
         &:hover {
             &::before {
                 position: absolute;
-                bottom: 5px;
+                bottom: -2px;
                 left: 50%;
                 transform: translateX(-50%);
                 content: "";
                 height: 2.5px;
-                width: 110px;
+                width: 130px;
                 background-color: #222;
             }
         }
@@ -71,7 +68,7 @@
     .header-menu-drop {
         position: absolute;
         width: 100%;
-        top: 70px;
+        top: 75px;
         left: 0;
         z-index: 10;
         text-align: center;
@@ -85,14 +82,15 @@
             justify-content: center;
             align-items: center;
 
-            &:last-child {
-                border-bottom: none; 
+            &:first-child {
+                border-top: 1px solid  #b8b6b6;
             }
 
             a {
                 font-family: $Jua-font;
                 font-size: 1rem;
-                padding: 10px 45px;
+                width: 100%;
+                padding: 12px 0;
                 white-space : nowrap;
                 font-weight: 400;
                 &:hover { 
@@ -103,22 +101,15 @@
     }
 }
 
-
-
 .profile-icon-box {
     width: 40px;
     height: 30px;
     cursor: pointer;
-
+    border-radius: 50%;
+    border: 2px solid $main-color-5;
+    margin: 0 5px;
     &:hover {
         transform: scale(1.1);
-    }
-
-    img {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        border: 2px solid $main-color-5;
     }
 }
 
@@ -167,8 +158,8 @@
     }
 
     .header-nav.active {
-        width: 40%;
-        height: 92vh;
+        width: 38%;
+        height: 92%;
         position: fixed;
         top: 65px;
         right: 0;
@@ -176,11 +167,12 @@
         justify-content: center;
         flex-direction: column;
         background: rgba(241, 241, 241, 0.97);
+        z-index: 100;
 
         .header-menu {
             width: 60%;
-            margin: 15px 0;
-            padding: 10px;
+            margin: 20px 0;
+            padding: 5px;
             font-size: 1.2rem;
 
             a {
@@ -199,12 +191,12 @@
 
         .header-menu-drop {
             position: static;
-            margin: 15px auto;
+            margin: 0 auto;
+            margin-top: 10px;
 
-            li  { 
-                a {
-                    padding: 10px 140px;
-                } 
+            &.none {
+                height: 0;
+                margin: 0;
             }
         }
     }
@@ -228,7 +220,7 @@
     }
 
     .profile-icon-box {
-        margin: 30px 0 15px 0;
+        margin: 20px 0;
         width: 30px;
         height: 30px;
     }
@@ -269,12 +261,6 @@
 
         .header-menu-drop{
             margin: 10px auto;
-
-            li  { 
-                a {
-                    padding: 10px 100px;
-                } 
-            }
         } 
     }
     .header-btn {
