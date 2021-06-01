@@ -115,5 +115,15 @@
 <br/>
 <br/>
 
+## 📄 협업(Projects Board, PR, issue, API 명세)
+![협업1](https://user-images.githubusercontent.com/64779472/120282431-0b762400-c2f5-11eb-8155-f8029bb3f02a.PNG)
+
+<br />
+
+![협업2](https://user-images.githubusercontent.com/64779472/120282433-0dd87e00-c2f5-11eb-97b3-0c8c737c9e90.PNG)
+
+<br/>
+<br/>
+
 ## 🖼 기술 아키텍처
 ![image](https://user-images.githubusercontent.com/75289370/120154720-1c5a6300-c22b-11eb-8639-a28a115521fc.png)
