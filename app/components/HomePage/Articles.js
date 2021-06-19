@@ -7,7 +7,7 @@ import { FaArrowCircleRight } from "react-icons/fa";
 
 const Articles = () => {
   return (
-    <section id="home-articles " className="home-articles">
+    <section id="home-articles" className="home-articles">
       <div className="container">
         <h1 className="article-title">ARTICLES</h1>
         <div className="article-box">
