@@ -275,6 +275,7 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
         onSubmit={onSubmit}
         onMouseDown={onMouseDown}
         categoryName={categoryName}
+        num={num}
       />
     </form>
   );
