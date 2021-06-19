@@ -16,8 +16,6 @@ const QuillNoSSRWrapper = dynamic(import("react-quill"), {
 });
 
 const UpdateEditor = ({ categoryName, num, id, board }) => {
-  const router = useRouter();
-
   const [formValues, setFormValues] = useState({
     studentId: id,
     title: "",
@@ -31,6 +29,7 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
   const [uploadImages, setUploadImages] = useState([]);
 
   const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     setFormValues({
@@ -276,6 +275,7 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
         onSubmit={onSubmit}
         onMouseDown={onMouseDown}
         categoryName={categoryName}
+        num={num}
       />
     </form>
   );

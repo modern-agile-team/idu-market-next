@@ -20,11 +20,11 @@ const BoardDetailPage = () => {
 
   const boardDetail = useSelector((state) => state.board);
   const { comments } = useSelector((state) => state.comment);
-  const auth = useSelector((state) => state.auth);
+  const { id } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (auth.id.length === 0) {
+    if (id.length === 0) {
       dispatch({
         type: BOARD_DETAIL_REQUEST,
         payload: {
@@ -47,7 +47,7 @@ const BoardDetailPage = () => {
         payload: {
           categoryName: categoryName,
           num: num,
-          studentId: auth.id,
+          studentId: id,
         },
       });
       dispatch({
@@ -55,7 +55,7 @@ const BoardDetailPage = () => {
         payload: {
           categoryName,
           num,
-          studentId: auth.id,
+          studentId: id,
         },
       });
       dispatch({
@@ -66,7 +66,7 @@ const BoardDetailPage = () => {
         },
       });
     }
-  }, [dispatch, router]);
+  }, [dispatch, categoryName, num, id]);
 
   return (
     <>
