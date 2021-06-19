@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Head from "next/head";
 
@@ -7,18 +7,17 @@ import Market from "../../components/Board/Market";
 
 const MarketDevicePage = () => {
   const [productList, setProductList] = useState([]);
+  const lastNum = useRef(0);
+  const lastCount = useRef(9);
 
-  const LAST_COUNT = 9;
   const categoryName = "device";
-
   let isLoading = false;
-  let lastNum = 0;
 
   const getMoreData = async () => {
     isLoading = true;
     await axios
       .get(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}?lastNum=${lastNum}`
+        `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}?lastNum=${lastNum.current}`
       )
       .then((response) => {
         if (response.data.success) {
@@ -27,7 +26,7 @@ const MarketDevicePage = () => {
           if (result.length < 10) {
             window.removeEventListener("scroll", handleScroll);
           } else {
-            lastNum = result[LAST_COUNT].num;
+            lastNum.current = result[lastCount.current].num;
           }
           setProductList((prev) => [...prev, ...result]);
         }
