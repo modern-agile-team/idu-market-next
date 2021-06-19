@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import BoardBanner from "../../../../components/Board/BoardBanner";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import UpdateEditor from "../../../../components/Editor/UpdateEdtior";
 import { useSelector } from "react-redux";
+import UpdateEditor from "../../../../components/Editor/UpdateEdtior";
+import BoardBanner from "../../../../components/Board/BoardBanner";
 
 const BoardUpdatePage = () => {
   const router = useRouter();
