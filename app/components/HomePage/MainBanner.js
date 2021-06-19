@@ -4,9 +4,8 @@ const MainBanner = () => {
   const onScroll = (e) => {
     e.preventDefault();
 
-    const introduceSection = document.querySelector("#home-introduce");
-
-    window.scrollTo({ top: introduceSection.offsetTop - 60 });
+    const articlesSection = document.querySelector("#home-articles");
+    window.scrollTo({ top: articlesSection.offsetTop });
   };
 
   return (
