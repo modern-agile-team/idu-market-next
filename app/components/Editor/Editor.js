@@ -69,7 +69,7 @@ const Editor = ({ categoryName }) => {
       url: [],
     };
 
-    body.url = [uploadImages[index]];
+    body.url = [uploadImages[index].url];
 
     dispatch({
       type: IMAGE_DELETE_REQUEST,
@@ -83,6 +83,14 @@ const Editor = ({ categoryName }) => {
     const fileImages = e.target.files;
     let imageValidation = false;
 
+    formData.append(
+      "params",
+      JSON.stringify({
+        basepath: "/boards",
+        autorename: true,
+      })
+    );
+
     if (Object.keys(fileImages).length > 5) {
       alert("업로드 하실 수 있는 이미지의 최대 개수는 5개입니다.");
     } else {
@@ -92,17 +100,32 @@ const Editor = ({ categoryName }) => {
           break;
         } else {
           imageValidation = true;
-          formData.append("upload", fileImages[i]);
+          formData.append("files", fileImages[i]);
         }
       }
     }
 
     if (imageValidation) {
+      const headers = {
+        Authorization: process.env.NEXT_PUBLIC_IMAGE_SECRET_KEY,
+      };
+
       await axios
-        .post(`${process.env.NEXT_PUBLIC_API_URL}/api/image`, formData)
+        .post(
+          `https://api-image.cloud.toast.com/image/v2.0/appkeys/${process.env.NEXT_PUBLIC_IMAGE_KEY}/images`,
+          formData,
+          { headers: headers }
+        )
         .then((response) => {
-          if (response.data.success) {
-            setUploadImages(uploadImages.concat(response.data.images));
+          console.log(response);
+          if (response.data.header.isSuccessful) {
+            response.data.successes.forEach((el) => {
+              const data = {
+                id: el.id,
+                url: el.url,
+              };
+              setUploadImages((prev) => [...prev, data]);
+            });
           }
         })
         .catch((err) => {
@@ -114,7 +137,7 @@ const Editor = ({ categoryName }) => {
   const onMouseDown = (e) => {
     e.preventDefault();
 
-    const images = [];
+    let images = [];
 
     if (uploadImages.length === 0) {
       setFormValues({
@@ -124,12 +147,18 @@ const Editor = ({ categoryName }) => {
       });
     } else {
       for (let i = 0; i < uploadImages.length; i++) {
-        images.push(uploadImages[i]);
+        images = [
+          ...images,
+          {
+            id: uploadImages[i].id,
+            url: uploadImages[i].url,
+          },
+        ];
       }
       setFormValues({
         ...formValues,
         images: images,
-        thumbnail: images[0],
+        thumbnail: images[0].url,
       });
     }
   };
@@ -191,6 +220,7 @@ const Editor = ({ categoryName }) => {
         images,
       };
 
+      console.log(body);
       //유효성 검사
       if (title === "") {
         alert("타이틀을 적어주세요.");
