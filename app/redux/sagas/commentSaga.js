@@ -25,7 +25,13 @@ function CommentGetAPI(payload) {
   const studentId = payload.studentId;
 
   return axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${studentId}`
+    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${studentId}`,
+    {
+      headers: {
+        "api-key":
+          "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+      },
+    }
   );
 }
 
@@ -62,10 +68,16 @@ function commentUploadAPI(payload) {
     notiCategoryNum,
     url,
   };
+  const headers = {
+    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+  };
 
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}`,
-    body
+    body,
+    {
+      headers: headers,
+    }
   );
 }
 
@@ -96,9 +108,16 @@ function commentUpdateAPI(payload) {
     content: payload.content,
   };
 
+  const headers = {
+    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+  };
+
   return axios.patch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${commentNum}`,
-    body
+    body,
+    {
+      headers: headers,
+    }
   );
 }
 
@@ -124,6 +143,10 @@ function commentDeleteAPI(payload) {
   const num = payload.num;
   const commentNum = payload.commentNum;
 
+  const headers = {
+    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+  };
+
   return axios.delete(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${commentNum}`,
     {
@@ -131,6 +154,9 @@ function commentDeleteAPI(payload) {
         studentId: payload.studentId,
         depth: payload.depth,
       },
+    },
+    {
+      headers: headers,
     }
   );
 }
@@ -169,9 +195,16 @@ function replyUploadAPI(payload) {
     url,
   };
 
+  const headers = {
+    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+  };
+
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${groupNum}`,
-    body
+    body,
+    {
+      headers: headers,
+    }
   );
 }
 

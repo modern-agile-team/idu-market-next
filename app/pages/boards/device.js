@@ -17,7 +17,13 @@ const MarketDevicePage = () => {
     isLoading = true;
     await axios
       .get(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}?lastNum=${lastNum.current}`
+        `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}?lastNum=${lastNum.current}`,
+        {
+          headers: {
+            "api-key":
+              "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+          },
+        }
       )
       .then((response) => {
         if (response.data.success) {

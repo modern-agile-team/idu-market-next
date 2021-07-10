@@ -50,9 +50,15 @@ const PasswordResetPage = () => {
         id,
         newPsword: psword,
       };
+      const headers = {
+        "api-key":
+          "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+      };
 
       axios
-        .patch(`${process.env.NEXT_PUBLIC_API_URL}/api/password`, body)
+        .patch(`${process.env.NEXT_PUBLIC_API_URL}/api/password`, body, {
+          headers: headers,
+        })
         .then((response) => {
           if (response.data.success) {
             alert(`비밀번호 변경이 완료되었습니다.`);

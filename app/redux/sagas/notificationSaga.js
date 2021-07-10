@@ -14,7 +14,13 @@ function notificationGetAPI(payload) {
   const studentId = payload.studentId;
 
   return axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/notification/${studentId}`
+    `${process.env.NEXT_PUBLIC_API_URL}/api/notification/${studentId}`,
+    {
+      headers: {
+        "api-key":
+          "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+      },
+    }
   );
 }
 
@@ -43,9 +49,16 @@ function notificationPatchAPI(payload) {
     notificationNum,
   };
 
+  const headers = {
+    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+  };
+
   return axios.patch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/notification/${studentId}`,
-    body
+    body,
+    {
+      headers: headers,
+    }
   );
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import {
@@ -15,6 +15,8 @@ import BoardDetailContent from "../../../components/Board/BoardDetailContent";
 import Comment from "../../../components/Comment/Comment";
 
 const BoardDetailPage = () => {
+  const [currentImage, setCurrentImage] = useState(0);
+
   const router = useRouter();
   const { categoryName, num } = router.query;
 
@@ -23,8 +25,10 @@ const BoardDetailPage = () => {
   const { id } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
+  const SLIDES_LENGTH = boardDetail.images.length;
+
   useEffect(() => {
-    if (id.length === 0) {
+    if (!id.length) {
       dispatch({
         type: BOARD_DETAIL_REQUEST,
         payload: {
@@ -68,6 +72,14 @@ const BoardDetailPage = () => {
     }
   }, [dispatch, categoryName, num, id]);
 
+  const nextSlide = () => {
+    setCurrentImage(currentImage === SLIDES_LENGTH - 1 ? 0 : currentImage + 1);
+  };
+
+  const prevSlide = () => {
+    setCurrentImage(currentImage === 0 ? SLIDES_LENGTH - 1 : currentImage - 1);
+  };
+
   return (
     <>
       <Head>
@@ -82,7 +94,12 @@ const BoardDetailPage = () => {
             num={num}
           />
 
-          <BoardDetailImage boardDetail={boardDetail} />
+          <BoardDetailImage
+            boardDetail={boardDetail}
+            currentImage={currentImage}
+            nextSlide={nextSlide}
+            prevSlide={prevSlide}
+          />
           <BoardDetailContent boardDetail={boardDetail} />
           <Comment comments={comments} categoryName={categoryName} num={num} />
         </div>

@@ -21,7 +21,13 @@ const purchaseListPage = () => {
       if (studentId === id) {
         axios
           .get(
-            `${process.env.NEXT_PUBLIC_API_URL}/api/purchase-list/${studentId}`
+            `${process.env.NEXT_PUBLIC_API_URL}/api/purchase-list/${studentId}`,
+            {
+              headers: {
+                "api-key":
+                  "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+              },
+            }
           )
           .then((response) => {
             if (response.data.success) {

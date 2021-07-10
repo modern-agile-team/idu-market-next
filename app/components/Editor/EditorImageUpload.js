@@ -26,7 +26,7 @@ const EditorImageUpload = ({
             uploadImages.map((el, index) => {
               return (
                 <div key={index} className="image-preview">
-                  <img src={`${el}`} alt="미리보기" />
+                  <img src={`${el.url}`} alt="미리보기" />
                   <div
                     className="delete-image-btn"
                     onClick={() => handleDelete(index)}

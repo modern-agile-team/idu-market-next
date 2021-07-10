@@ -1,18 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 
-const BoardDetailImage = ({ boardDetail }) => {
-  const [currentImage, setCurrentImage] = useState(0);
-  const SLIDES_LENGTH = boardDetail.images.length;
-
-  const nextSlide = () => {
-    setCurrentImage(currentImage === SLIDES_LENGTH - 1 ? 0 : currentImage + 1);
-  };
-
-  const prevSlide = () => {
-    setCurrentImage(currentImage === 0 ? SLIDES_LENGTH - 1 : currentImage - 1);
-  };
-
+const BoardDetailImage = ({
+  boardDetail,
+  currentImage,
+  nextSlide,
+  prevSlide,
+}) => {
   return (
     <section className="board-detail-image">
       {boardDetail.images ? (
