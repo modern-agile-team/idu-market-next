@@ -1,0 +1,3 @@
+User-agent: *
+Allow:/
+Sitemap:https://idu-market.shop/sitemap.xml
