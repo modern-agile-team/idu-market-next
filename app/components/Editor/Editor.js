@@ -29,6 +29,7 @@ const Editor = ({ categoryName }) => {
     thumbnail: "",
     price: "",
     categoryName: "",
+    fileId: [],
   });
   const [uploadImages, setUploadImages] = useState([]);
 
@@ -68,7 +69,7 @@ const Editor = ({ categoryName }) => {
     const body = {
       url: [],
     };
-
+    console.log(body.url);
     body.url = [uploadImages[index].url];
 
     dispatch({
@@ -138,6 +139,7 @@ const Editor = ({ categoryName }) => {
     e.preventDefault();
 
     let images = [];
+    let fileId = [];
 
     if (uploadImages.length === 0) {
       setFormValues({
@@ -147,17 +149,13 @@ const Editor = ({ categoryName }) => {
       });
     } else {
       for (let i = 0; i < uploadImages.length; i++) {
-        images = [
-          ...images,
-          {
-            id: uploadImages[i].id,
-            url: uploadImages[i].url,
-          },
-        ];
+        images = [...images, uploadImages[i].url];
+        fileId = [...fileId, uploadImages[i].id];
       }
       setFormValues({
         ...formValues,
-        images: images,
+        images,
+        fileId,
         thumbnail: images[0].url,
       });
     }
@@ -167,7 +165,8 @@ const Editor = ({ categoryName }) => {
     e.preventDefault();
 
     if (categoryName === "free" || categoryName === "notice") {
-      const { studentId, title, content, categoryName, images } = formValues;
+      const { studentId, title, content, categoryName, images, fileId } =
+        formValues;
 
       const body = {
         studentId,
@@ -175,6 +174,7 @@ const Editor = ({ categoryName }) => {
         content,
         categoryName,
         images,
+        fileId,
       };
 
       //유효성 검사
@@ -183,10 +183,18 @@ const Editor = ({ categoryName }) => {
       } else if (content === "") {
         alert("빈 본문입니다.");
       } else {
+        const headers = {
+          "api-key":
+            "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+        };
+
         axios
           .post(
             `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`,
-            body
+            body,
+            {
+              headers: headers,
+            }
           )
           .then((response) => {
             if (response.data.success) {
@@ -208,6 +216,7 @@ const Editor = ({ categoryName }) => {
         price,
         categoryName,
         images,
+        fileId,
       } = formValues;
 
       const body = {
@@ -218,6 +227,12 @@ const Editor = ({ categoryName }) => {
         price,
         categoryName,
         images,
+        fileId,
+      };
+
+      const headers = {
+        "api-key":
+          "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
       };
 
       console.log(body);
@@ -238,9 +253,13 @@ const Editor = ({ categoryName }) => {
         axios
           .post(
             `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`,
-            body
+            body,
+            {
+              headers: headers,
+            }
           )
           .then((response) => {
+            console.log("123");
             if (response.data.success) {
               alert("게시글 업로드에 성공하셨습니다.");
               router.push(`/boards/${categoryName}/${response.data.num}`);
@@ -248,6 +267,7 @@ const Editor = ({ categoryName }) => {
           })
           .catch((err) => {
             const response = err.response;
+            console.log(response.data);
             console.log(response.data.msg);
           });
       }

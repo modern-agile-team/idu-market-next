@@ -29,8 +29,15 @@ const FindPwdPage = () => {
     if ([id, email].includes("")) {
       setErrorMsg("빈 칸을 모두 입력하세요.");
     } else {
+      const headers = {
+        "api-key":
+          "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+      };
+
       axios
-        .post(`${process.env.NEXT_PUBLIC_API_URL}/api/forgot-password`, body)
+        .post(`${process.env.NEXT_PUBLIC_API_URL}/api/forgot-password`, body, {
+          headers: headers,
+        })
         .then((response) => {
           if (response.data.success) {
             alert(response.data.msg);

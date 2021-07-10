@@ -37,7 +37,13 @@ function boardDetailAPI(payload) {
   const studentId = payload.studentId;
 
   return axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${studentId}`
+    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${studentId}`,
+    {
+      headers: {
+        "api-key":
+          "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+      },
+    }
   );
 }
 
@@ -60,10 +66,15 @@ function* boardDetail(action) {
 //BoardNew
 function boardWriteAPI(payload) {
   const categoryName = payload.categoryName;
+  const headers = {
+    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+  };
+  console.log(`12`);
 
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`,
-    payload
+    payload,
+    { headers }
   );
 }
 
@@ -90,9 +101,16 @@ function boardStatusAPI(payload) {
   const body = {
     status: payload.status,
   };
+  const headers = {
+    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+  };
+
   return axios.patch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/status`,
-    body
+    body,
+    {
+      headers: headers,
+    }
   );
 }
 
@@ -117,9 +135,15 @@ function boardDeleteAPI(payload) {
   const categoryName = payload.categoryName;
   const num = payload.num;
 
+  const headers = {
+    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+  };
+
   return axios.delete(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}`,
-    payload
+    {
+      headers: headers,
+    }
   );
 }
 
@@ -141,11 +165,23 @@ function* boardDelete(action) {
 
 //Image Delete
 function imageDeleteAPI(payload) {
-  return axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/image`, {
-    data: {
-      url: payload.url,
+  const fileId = payload.fileId;
+  console.log(fileId);
+  const headers = {
+    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+  };
+
+  return axios.delete(
+    `https://api-image.cloud.toast.com/image/v2.0/appkeys/${process.env.NEXT_PUBLIC_API_URL}/images/async`,
+    {
+      data: {
+        url: payload.url,
+      },
     },
-  });
+    {
+      headers: headers,
+    }
+  );
 }
 
 function* imageDelete(action) {
@@ -169,9 +205,16 @@ function boardUpdateAPI(payload) {
   const categoryName = payload.categoryName;
   const num = payload.num;
 
+  const headers = {
+    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+  };
+
   return axios.put(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}`,
-    payload
+    payload,
+    {
+      headers: headers,
+    }
   );
 }
 
@@ -196,8 +239,13 @@ function boardHitAPI(payload) {
   const categoryName = payload.categoryName;
   const num = payload.num;
 
+  const headers = {
+    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+  };
+
   return axios.patch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}`
+    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}`,
+    { headers: headers }
   );
 }
 
@@ -225,10 +273,16 @@ function WatchlistAddAPI(payload) {
     boardNum: payload.boardNum,
     categoryName: payload.categoryName,
   };
+  const headers = {
+    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+  };
 
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/api/watchlist/${studentId}`,
-    body
+    body,
+    {
+      headers: headers,
+    }
   );
 }
 
@@ -252,12 +306,19 @@ function* WatchlistAdd(action) {
 function WatchlistDeleteAPI(payload) {
   const studentId = payload.studentId;
 
+  const headers = {
+    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+  };
+
   return axios.delete(
     `${process.env.NEXT_PUBLIC_API_URL}/api/watchlist/${studentId}`,
     {
       data: {
         boardNum: payload.boardNum,
       },
+    },
+    {
+      headers: headers,
     }
   );
 }

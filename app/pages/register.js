@@ -77,8 +77,15 @@ const RegisterPage = () => {
     } else if (psword !== pswordConfirm) {
       setErrorMsg("비밀번호가 일치하지 않습니다.");
     } else {
+      const headers = {
+        "api-key":
+          "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+      };
+
       axios
-        .post(`${process.env.NEXT_PUBLIC_API_URL}/api/student`, body)
+        .post(`${process.env.NEXT_PUBLIC_API_URL}/api/student`, body, {
+          headers: headers,
+        })
         .then((response) => {
           if (response.data.success) {
             alert(

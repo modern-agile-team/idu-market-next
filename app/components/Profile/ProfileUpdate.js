@@ -62,10 +62,18 @@ const ProfileUpdate = ({ profileList, studentId }) => {
     } else if (majorNum.length === 0) {
       setErrorMsg("학과를 선택해주세요.");
     } else {
+      const headers = {
+        "api-key":
+          "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+      };
+
       axios
         .put(
           `${process.env.NEXT_PUBLIC_API_URL}/api/students/${studentId}`,
-          body
+          body,
+          {
+            headers: headers,
+          }
         )
         .then((response) => {
           if (response.data.success) {

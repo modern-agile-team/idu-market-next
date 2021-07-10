@@ -33,10 +33,19 @@ const LoginPage = () => {
     e.preventDefault();
 
     const { id, psword } = formValues;
-    const body = { id, psword };
+    const body = {
+      id,
+      psword,
+    };
+    console.log(body);
+    const headers = {
+      "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+    };
 
     axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/api/jwt`, body)
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/api/jwt`, body, {
+        headers: headers,
+      })
       .then((response) => {
         if (response.data.success) {
           localStorage.setItem("jwt", response.data.jwt);
