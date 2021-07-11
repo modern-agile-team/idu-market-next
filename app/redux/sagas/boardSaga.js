@@ -236,6 +236,7 @@ function boardHitAPI(payload) {
 
   return axios.patch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}`,
+    {},
     { headers }
   );
 }
