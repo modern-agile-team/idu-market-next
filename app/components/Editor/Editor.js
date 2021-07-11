@@ -70,7 +70,7 @@ const Editor = ({ categoryName }) => {
     const body = {
       url: [],
     };
-    body.url = [uploadImages[index].url];
+    body.url = [uploadImages[index]];
 
     dispatch({
       type: IMAGE_DELETE_REQUEST,
@@ -144,6 +144,7 @@ const Editor = ({ categoryName }) => {
       setFormValues({
         ...formValues,
         images: [],
+        fileId: [],
         thumbnail: "",
       });
     } else {
@@ -162,6 +163,7 @@ const Editor = ({ categoryName }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    const headers = { "api-key": API_KEY };
 
     if (categoryName === "free" || categoryName === "notice") {
       const { studentId, title, content, categoryName, images, fileId } =
@@ -182,18 +184,11 @@ const Editor = ({ categoryName }) => {
       } else if (content === "") {
         alert("빈 본문입니다.");
       } else {
-        const headers = {
-          "api-key":
-            API_KEY,
-        };
-
         axios
           .post(
             `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`,
             body,
-            {
-              headers: headers,
-            }
+            { headers }
           )
           .then((response) => {
             if (response.data.success) {
@@ -203,7 +198,7 @@ const Editor = ({ categoryName }) => {
           })
           .catch((err) => {
             const response = err.response;
-            console.log(response.data.msg);
+            console.log(response.data);
           });
       }
     } else {
@@ -227,11 +222,6 @@ const Editor = ({ categoryName }) => {
         categoryName,
         images,
         fileId,
-      };
-
-      const headers = {
-        "api-key":
-          API_KEY,
       };
 
       //유효성 검사
