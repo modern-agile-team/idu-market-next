@@ -7,6 +7,7 @@ import Head from "next/head";
 
 import BoardBanner from "../../components/Board/BoardBanner";
 import MarketListItem from "../../components/Board/MarketListItem";
+import { API_KEY } from "../../Data/API_KEY";
 
 const WatchlistPage = () => {
   const [productList, setProductList] = useState([]);
@@ -22,12 +23,7 @@ const WatchlistPage = () => {
         axios
           .get(
             `${process.env.NEXT_PUBLIC_API_URL}/api/watchlist/${studentId}`,
-            {
-              headers: {
-                "api-key":
-                  "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
-              },
-            }
+            { headers: { "api-key": API_KEY } }
           )
           .then((response) => {
             if (response.data.success) {

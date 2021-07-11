@@ -9,6 +9,7 @@ import EditorImageUpload from "./EditorImageUpload";
 import EditorPost from "./EditorPost";
 import Loading from "../Loading/Loading";
 import { IMAGE_DELETE_REQUEST } from "../../redux/types";
+import { API_KEY } from "../../Data/API_KEY";
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
@@ -69,7 +70,6 @@ const Editor = ({ categoryName }) => {
     const body = {
       url: [],
     };
-    console.log(body.url);
     body.url = [uploadImages[index].url];
 
     dispatch({
@@ -115,10 +115,9 @@ const Editor = ({ categoryName }) => {
         .post(
           `https://api-image.cloud.toast.com/image/v2.0/appkeys/${process.env.NEXT_PUBLIC_IMAGE_KEY}/images`,
           formData,
-          { headers: headers }
+          { headers }
         )
         .then((response) => {
-          console.log(response);
           if (response.data.header.isSuccessful) {
             response.data.successes.forEach((el) => {
               const data = {
@@ -156,7 +155,7 @@ const Editor = ({ categoryName }) => {
         ...formValues,
         images,
         fileId,
-        thumbnail: images[0].url,
+        thumbnail: images[0],
       });
     }
   };
@@ -185,7 +184,7 @@ const Editor = ({ categoryName }) => {
       } else {
         const headers = {
           "api-key":
-            "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+            API_KEY,
         };
 
         axios
@@ -232,10 +231,9 @@ const Editor = ({ categoryName }) => {
 
       const headers = {
         "api-key":
-          "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+          API_KEY,
       };
 
-      console.log(body);
       //유효성 검사
       if (title === "") {
         alert("타이틀을 적어주세요.");
@@ -254,12 +252,9 @@ const Editor = ({ categoryName }) => {
           .post(
             `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`,
             body,
-            {
-              headers: headers,
-            }
+            { headers }
           )
           .then((response) => {
-            console.log("123");
             if (response.data.success) {
               alert("게시글 업로드에 성공하셨습니다.");
               router.push(`/boards/${categoryName}/${response.data.num}`);
@@ -268,7 +263,6 @@ const Editor = ({ categoryName }) => {
           .catch((err) => {
             const response = err.response;
             console.log(response.data);
-            console.log(response.data.msg);
           });
       }
     }

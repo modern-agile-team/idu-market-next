@@ -152,7 +152,7 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
         ...formValues,
         images,
         fileId,
-        thumbnail: images[0].url,
+        thumbnail: images[0],
       });
     }
   };
@@ -161,7 +161,7 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
     e.preventDefault();
 
     if (categoryName === "free" || categoryName === "notice") {
-      const { studentId, title, content, categoryName, num, images } =
+      const { studentId, title, content, categoryName, num, images, fileId } =
         formValues;
 
       const body = {

@@ -3,6 +3,7 @@ import axios from "axios";
 import BoardBanner from "../../components/Board/BoardBanner";
 import Basic from "../../components/Board/Basic";
 import Head from "next/head";
+import { API_KEY } from "../../Data/API_KEY";
 
 const BoardFreePage = () => {
   const [pageNumber, setPageNumber] = useState(0);
@@ -15,12 +16,9 @@ const BoardFreePage = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`, {
-        headers: {
-          "api-key":
-            "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
-        },
-      })
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`, 
+        { headers: { "api-key": API_KEY } }
+      )
       .then((response) => {
         if (response.data.success) {
           const result = response.data.boards;

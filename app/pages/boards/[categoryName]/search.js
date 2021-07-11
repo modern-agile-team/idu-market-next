@@ -6,6 +6,7 @@ import BoardListTop from "../../../components/Board/BoardListTop";
 import MarketListItem from "../../../components/Board/MarketListItem";
 import BoardListItem from "../../../components/Board/BoardListItem";
 import BoardBanner from "../../../components/Board/BoardBanner";
+import { API_KEY } from "../../../Data/API_KEY";
 import Head from "next/head";
 
 const BoardSearchPage = () => {
@@ -22,7 +23,8 @@ const BoardSearchPage = () => {
   useEffect(() => {
     axios
       .get(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/search?categoryName=${categoryName}&content=${content}`
+        `${process.env.NEXT_PUBLIC_API_URL}/api/search?categoryName=${categoryName}&content=${content}`,
+        { headers: { "api-key": API_KEY } }
       )
       .then((response) => {
         if (response.data.success) {
