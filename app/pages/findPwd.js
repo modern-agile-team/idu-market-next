@@ -3,6 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import FindPwdForm from "../components/Auth/FindPwdForm";
+import { API_KEY } from "../Data/API_KEY";
 
 const FindPwdPage = () => {
   const [errorMsg, setErrorMsg] = useState("");
@@ -31,7 +32,7 @@ const FindPwdPage = () => {
     } else {
       const headers = {
         "api-key":
-          "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+        API_KEY,
       };
 
       axios

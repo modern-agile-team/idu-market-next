@@ -1,5 +1,6 @@
 import axios from "axios";
 import { all, fork, put, takeEvery, call } from "redux-saga/effects";
+import { API_KEY } from "../../Data/API_KEY";
 import {
   COMMENT_GET_REQUEST,
   COMMENT_GET_SUCCESS,
@@ -29,7 +30,7 @@ function CommentGetAPI(payload) {
     {
       headers: {
         "api-key":
-          "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+          API_KEY,
       },
     }
   );
@@ -69,7 +70,7 @@ function commentUploadAPI(payload) {
     url,
   };
   const headers = {
-    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+    "api-key": API_KEY,
   };
 
   return axios.post(
@@ -109,7 +110,7 @@ function commentUpdateAPI(payload) {
   };
 
   const headers = {
-    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+    "api-key": API_KEY,
   };
 
   return axios.patch(
@@ -144,7 +145,7 @@ function commentDeleteAPI(payload) {
   const commentNum = payload.commentNum;
 
   const headers = {
-    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+    "api-key": API_KEY,
   };
 
   return axios.delete(
@@ -196,7 +197,7 @@ function replyUploadAPI(payload) {
   };
 
   const headers = {
-    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+    "api-key": API_KEY,
   };
 
   return axios.post(

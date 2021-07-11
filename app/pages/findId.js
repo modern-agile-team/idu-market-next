@@ -3,6 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import FindIdForm from "../components/Auth/FindIdForm";
+import { API_KEY } from "../Data/API_KEY";
 
 const FindIdPage = () => {
   const [errorMsg, setErrorMsg] = useState("");
@@ -30,8 +31,7 @@ const FindIdPage = () => {
       setErrorMsg("빈 칸을 모두 입력하세요.");
     } else {
       const headers = {
-        "api-key":
-          "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+        "api-key": API_KEY,
       };
 
       axios

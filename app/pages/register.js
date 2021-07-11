@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import Head from "next/head";
 
 import RegisterForm from "../components/Auth/RegisterForm";
+import { API_KEY } from "../Data/API_KEY";
 
 const RegisterPage = () => {
   const [errorMsg, setErrorMsg] = useState("");
@@ -78,8 +79,7 @@ const RegisterPage = () => {
       setErrorMsg("비밀번호가 일치하지 않습니다.");
     } else {
       const headers = {
-        "api-key":
-          "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+        "api-key": API_KEY,
       };
 
       axios

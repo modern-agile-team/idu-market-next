@@ -1,5 +1,6 @@
 import axios from "axios";
 import { all, fork, put, takeEvery, call } from "redux-saga/effects";
+import { API_KEY } from "../../Data/API_KEY";
 import {
   BOARD_WRITE_REQUEST,
   BOARD_WRITE_SUCCESS,
@@ -29,7 +30,6 @@ import {
   WATCHLIST_DELETE_SUCCESS,
   WATCHLIST_DELETE_FAILURE,
 } from "../types";
-import { API_KEY } from "../../Data/API_KEY";
 
 //Board Detial
 function boardDetailAPI(payload) {
@@ -67,7 +67,7 @@ function* boardDetail(action) {
 function boardWriteAPI(payload) {
   const categoryName = payload.categoryName;
   const headers = {
-    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+    "api-key": API_KEY,
   };
 
   return axios.post(
@@ -101,7 +101,7 @@ function boardStatusAPI(payload) {
     status: payload.status,
   };
   const headers = {
-    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+    "api-key": API_KEY,
   };
 
   return axios.patch(
@@ -133,7 +133,7 @@ function boardDeleteAPI(payload) {
   const num = payload.num;
 
   const headers = {
-    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+    "api-key": API_KEY,
   };
 
   return axios.delete(
@@ -163,7 +163,7 @@ function imageDeleteAPI(payload) {
   const fileId = payload.fileId;
   console.log(fileId);
   const headers = {
-    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+    "api-key": API_KEY,
   };
 
   return axios.delete(
@@ -199,7 +199,7 @@ function boardUpdateAPI(payload) {
   const num = payload.num;
 
   const headers = {
-    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+    "api-key": API_KEY,
   };
 
   return axios.put(
@@ -231,7 +231,7 @@ function boardHitAPI(payload) {
   const num = payload.num;
 
   const headers = {
-    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+    "api-key": API_KEY,
   };
 
   return axios.patch(
@@ -265,7 +265,7 @@ function WatchlistAddAPI(payload) {
     categoryName: payload.categoryName,
   };
   const headers = {
-    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+    "api-key": API_KEY,
   };
 
   return axios.post(
@@ -296,7 +296,7 @@ function WatchlistDeleteAPI(payload) {
   const studentId = payload.studentId;
 
   const headers = {
-    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+    "api-key": API_KEY,
   };
 
   return axios.delete(

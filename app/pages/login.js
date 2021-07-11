@@ -6,6 +6,7 @@ import axios from "axios";
 import Head from "next/head";
 
 import LoginForm from "../components/Auth/LoginForm";
+import { API_KEY } from "../Data/API_KEY";
 
 const LoginPage = () => {
   const [errorMsg, setErrorMsg] = useState("");
@@ -39,7 +40,7 @@ const LoginPage = () => {
     };
     console.log(body);
     const headers = {
-      "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+      "api-key": API_KEY,
     };
 
     axios
