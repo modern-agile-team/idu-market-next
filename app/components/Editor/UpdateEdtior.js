@@ -45,11 +45,15 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
       fileId: board.fileId,
     });
 
-    setUploadImages([{ id: board.fileId[0], url: board.images[0] }]);
-    for (let i = 1; i < board.images.length; i++) {
-      setUploadImages([...uploadImages, { id: board.fileId[i], url: board.images[i] }]);
+    if (board.fileId.length) {
+      setUploadImages([{ id: board.fileId[0], url: board.images[0] }]);
+      for (let i = 1; i < board.images.length; i++) {
+        setUploadImages([
+          ...uploadImages,
+          { id: board.fileId[i], url: board.images[i] },
+        ]);
+      }
     }
-    
   }, []);
 
   const onChange = (e) => {
