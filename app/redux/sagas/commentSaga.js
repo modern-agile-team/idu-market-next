@@ -27,12 +27,7 @@ function CommentGetAPI(payload) {
 
   return axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${studentId}`,
-    {
-      headers: {
-        "api-key":
-          API_KEY,
-      },
-    }
+    { headers: { "api-key": API_KEY } }
   );
 }
 
@@ -76,9 +71,7 @@ function commentUploadAPI(payload) {
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}`,
     body,
-    {
-      headers: headers,
-    }
+    { headers }
   );
 }
 
@@ -116,9 +109,7 @@ function commentUpdateAPI(payload) {
   return axios.patch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${commentNum}`,
     body,
-    {
-      headers: headers,
-    }
+    { headers }
   );
 }
 
@@ -156,9 +147,7 @@ function commentDeleteAPI(payload) {
         depth: payload.depth,
       },
     },
-    {
-      headers: headers,
-    }
+    { headers }
   );
 }
 
@@ -203,9 +192,7 @@ function replyUploadAPI(payload) {
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${groupNum}`,
     body,
-    {
-      headers: headers,
-    }
+    { headers }
   );
 }
 

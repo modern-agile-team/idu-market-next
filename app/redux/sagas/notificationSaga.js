@@ -18,8 +18,7 @@ function notificationGetAPI(payload) {
     `${process.env.NEXT_PUBLIC_API_URL}/api/notification/${studentId}`,
     {
       headers: {
-        "api-key":
-          API_KEY,
+        "api-key": API_KEY,
       },
     }
   );

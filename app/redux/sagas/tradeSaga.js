@@ -16,8 +16,7 @@ function tradeCommentGetAPI(payload) {
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/comments`,
     {
       headers: {
-        "api-key":
-        API_KEY,
+        "api-key": API_KEY,
       },
     }
   );

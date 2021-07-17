@@ -19,8 +19,7 @@ function profileGetAPI(payload) {
     `${process.env.NEXT_PUBLIC_API_URL}/api/students/${studentId}`,
     {
       headers: {
-        "api-key":
-          API_KEY,
+        "api-key": API_KEY,
       },
     }
   );
