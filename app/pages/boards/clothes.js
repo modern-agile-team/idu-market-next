@@ -4,6 +4,7 @@ import Head from "next/head";
 
 import BoardBanner from "../../components/Board/BoardBanner";
 import Market from "../../components/Board/Market";
+import { API_KEY } from "../../Data/API_KEY";
 
 const MarketClothesPage = () => {
   const [productList, setProductList] = useState([]);
@@ -18,12 +19,7 @@ const MarketClothesPage = () => {
     await axios
       .get(
         `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}?lastNum=${lastNum.current}`,
-        {
-          headers: {
-            "api-key":
-              "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
-          },
-        }
+        { headers: { "api-key": API_KEY } }
       )
       .then((response) => {
         if (response.data.success) {

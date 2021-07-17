@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 import PwdResetForm from "../../../components/Auth/PwdResetForm";
 import BoardBanner from "../../../components/Board/BoardBanner";
+import { API_KEY } from "../../../Data/API_KEY";
 
 const PasswordResetPage = () => {
   const [errorMsg, setErrorMsg] = useState("");
@@ -50,10 +51,7 @@ const PasswordResetPage = () => {
         id,
         newPsword: psword,
       };
-      const headers = {
-        "api-key":
-          "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
-      };
+      const headers = { "api-key": API_KEY };
 
       axios
         .patch(`${process.env.NEXT_PUBLIC_API_URL}/api/password`, body, {

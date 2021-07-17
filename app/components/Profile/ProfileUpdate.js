@@ -7,6 +7,7 @@ import { FaUserAlt, FaGraduationCap } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
 import { MajorData } from "../../Data/MajorData";
+import { API_KEY } from "../../Data/API_KEY";
 
 const ProfileUpdate = ({ profileList, studentId }) => {
   const [errorMsg, setErrorMsg] = useState("");
@@ -62,10 +63,7 @@ const ProfileUpdate = ({ profileList, studentId }) => {
     } else if (majorNum.length === 0) {
       setErrorMsg("학과를 선택해주세요.");
     } else {
-      const headers = {
-        "api-key":
-          "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
-      };
+      const headers = { "api-key": API_KEY };
 
       axios
         .put(

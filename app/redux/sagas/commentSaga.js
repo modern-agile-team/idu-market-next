@@ -1,5 +1,6 @@
 import axios from "axios";
 import { all, fork, put, takeEvery, call } from "redux-saga/effects";
+import { API_KEY } from "../../Data/API_KEY";
 import {
   COMMENT_GET_REQUEST,
   COMMENT_GET_SUCCESS,
@@ -26,12 +27,7 @@ function CommentGetAPI(payload) {
 
   return axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${studentId}`,
-    {
-      headers: {
-        "api-key":
-          "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
-      },
-    }
+    { headers: { "api-key": API_KEY } }
   );
 }
 
@@ -69,15 +65,13 @@ function commentUploadAPI(payload) {
     url,
   };
   const headers = {
-    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+    "api-key": API_KEY,
   };
 
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}`,
     body,
-    {
-      headers: headers,
-    }
+    { headers }
   );
 }
 
@@ -109,15 +103,13 @@ function commentUpdateAPI(payload) {
   };
 
   const headers = {
-    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+    "api-key": API_KEY,
   };
 
   return axios.patch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${commentNum}`,
     body,
-    {
-      headers: headers,
-    }
+    { headers }
   );
 }
 
@@ -144,7 +136,7 @@ function commentDeleteAPI(payload) {
   const commentNum = payload.commentNum;
 
   const headers = {
-    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+    "api-key": API_KEY,
   };
 
   return axios.delete(
@@ -154,9 +146,7 @@ function commentDeleteAPI(payload) {
         studentId: payload.studentId,
         depth: payload.depth,
       },
-    },
-    {
-      headers: headers,
+      headers,
     }
   );
 }
@@ -196,15 +186,13 @@ function replyUploadAPI(payload) {
   };
 
   const headers = {
-    "api-key": "$2b$10$nyN6CixuxfAV3XOU5yo8DuHYLE9/28UOQF2zpv.SZzITt3WQX8U/C",
+    "api-key": API_KEY,
   };
 
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${groupNum}`,
     body,
-    {
-      headers: headers,
-    }
+    { headers }
   );
 }
 

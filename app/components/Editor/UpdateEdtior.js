@@ -44,7 +44,16 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
       num,
       fileId: board.fileId,
     });
-    setUploadImages(board.images);
+
+    if (board.fileId.length) {
+      setUploadImages([{ id: board.fileId[0], url: board.images[0] }]);
+      for (let i = 1; i < board.images.length; i++) {
+        setUploadImages([
+          ...uploadImages,
+          { id: board.fileId[i], url: board.images[i] },
+        ]);
+      }
+    }
   }, []);
 
   const onChange = (e) => {
@@ -111,7 +120,7 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
         .post(
           `https://api-image.cloud.toast.com/image/v2.0/appkeys/${process.env.NEXT_PUBLIC_IMAGE_KEY}/images`,
           formData,
-          { headers: headers }
+          { headers }
         )
         .then((response) => {
           if (response.data.header.isSuccessful) {
@@ -141,6 +150,7 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
       setFormValues({
         ...formValues,
         images: [],
+        fileId: [],
         thumbnail: "",
       });
     } else {
@@ -152,7 +162,7 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
         ...formValues,
         images,
         fileId,
-        thumbnail: images[0].url,
+        thumbnail: images[0],
       });
     }
   };
@@ -161,7 +171,7 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
     e.preventDefault();
 
     if (categoryName === "free" || categoryName === "notice") {
-      const { studentId, title, content, categoryName, num, images } =
+      const { studentId, title, content, categoryName, num, images, fileId } =
         formValues;
 
       const body = {
