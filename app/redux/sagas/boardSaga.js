@@ -172,8 +172,8 @@ function imageDeleteAPI(payload) {
       data: {
         url: payload.url,
       },
-    },
-    { headers }
+      headers,
+    }
   );
 }
 
@@ -306,8 +306,8 @@ function WatchlistDeleteAPI(payload) {
       data: {
         boardNum: payload.boardNum,
       },
-    },
-    { headers }
+      headers,
+    }
   );
 }
 

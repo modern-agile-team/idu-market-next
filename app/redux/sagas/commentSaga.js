@@ -146,8 +146,8 @@ function commentDeleteAPI(payload) {
         studentId: payload.studentId,
         depth: payload.depth,
       },
-    },
-    { headers }
+      headers,
+    }
   );
 }
 
