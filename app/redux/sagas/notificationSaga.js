@@ -1,5 +1,6 @@
 import axios from "axios";
 import { all, fork, put, takeEvery, call } from "redux-saga/effects";
+import { API_KEY } from "../../Data/API_KEY";
 import {
   NOTIFICATION_GET_REQUEST,
   NOTIFICATION_GET_SUCCESS,
@@ -14,7 +15,12 @@ function notificationGetAPI(payload) {
   const studentId = payload.studentId;
 
   return axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/notification/${studentId}`
+    `${process.env.NEXT_PUBLIC_API_URL}/api/notification/${studentId}`,
+    {
+      headers: {
+        "api-key": API_KEY,
+      },
+    }
   );
 }
 
@@ -43,9 +49,16 @@ function notificationPatchAPI(payload) {
     notificationNum,
   };
 
+  const headers = {
+    "api-key": API_KEY,
+  };
+
   return axios.patch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/notification/${studentId}`,
-    body
+    body,
+    {
+      headers: headers,
+    }
   );
 }
 

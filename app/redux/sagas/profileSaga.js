@@ -1,5 +1,6 @@
 import axios from "axios";
 import { all, fork, put, takeEvery, call, delay } from "redux-saga/effects";
+import { API_KEY } from "../../Data/API_KEY";
 import {
   PROFILE_GET_REQUEST,
   PROFILE_GET_SUCCESS,
@@ -15,7 +16,12 @@ function profileGetAPI(payload) {
   const studentId = payload;
 
   return axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/students/${studentId}`
+    `${process.env.NEXT_PUBLIC_API_URL}/api/students/${studentId}`,
+    {
+      headers: {
+        "api-key": API_KEY,
+      },
+    }
   );
 }
 
@@ -41,9 +47,16 @@ function profileImageUpdateAPI(payload) {
     profilePath: payload.profilePath,
   };
 
+  const headers = {
+    "api-key": API_KEY,
+  };
+
   return axios.patch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/students/${studentId}`,
-    body
+    body,
+    {
+      headers: headers,
+    }
   );
 }
 

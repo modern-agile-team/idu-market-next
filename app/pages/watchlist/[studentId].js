@@ -7,6 +7,7 @@ import Head from "next/head";
 
 import BoardBanner from "../../components/Board/BoardBanner";
 import MarketListItem from "../../components/Board/MarketListItem";
+import { API_KEY } from "../../Data/API_KEY";
 
 const WatchlistPage = () => {
   const [productList, setProductList] = useState([]);
@@ -20,7 +21,10 @@ const WatchlistPage = () => {
     if (id && studentId) {
       if (id === studentId) {
         axios
-          .get(`${process.env.NEXT_PUBLIC_API_URL}/api/watchlist/${studentId}`)
+          .get(
+            `${process.env.NEXT_PUBLIC_API_URL}/api/watchlist/${studentId}`,
+            { headers: { "api-key": API_KEY } }
+          )
           .then((response) => {
             if (response.data.success) {
               const result = response.data.watchLists;

@@ -1,42 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
-import axios from "axios";
 
 import BoardListItem from "./BoardListItem";
 import BoardListTop from "./BoardListTop";
 import Loading from "../Loading/Loading";
 
-const Basic = ({ categoryName }) => {
-  const [pageNumber, setPageNumber] = useState(0);
-  const [boardList, setBoardList] = useState([]);
-
-  const perPage = 10;
-  const pageVisited = pageNumber * perPage;
-  const pageCount = Math.ceil(boardList.length / perPage);
-
-  useEffect(() => {
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`)
-      .then((response) => {
-        if (response.data.success) {
-          const result = response.data.boards;
-          setBoardList(result);
-        }
-      })
-      .catch((err) => {
-        const response = err.response;
-        if (response.status === 400) {
-          alert(response.data.msg);
-        }
-      });
-  }, [categoryName]);
-
-  const changePage = ({ selected }) => {
-    setPageNumber(selected);
-  };
-
+const Basic = ({
+  categoryName,
+  changePage,
+  boardList,
+  perPage,
+  pageVisited,
+  pageCount,
+}) => {
   const displayBoardList = boardList
-    .slice(pageVisited, pageVisited + perPage)
+    .slice(pageVisited, pageVisited + perPage.current)
     .map((boardItem) => {
       return (
         <tr key={boardItem.num}>

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { all, fork, put, takeEvery, call } from "redux-saga/effects";
+import { API_KEY } from "../../Data/API_KEY";
 import {
   COMMENT_GET_REQUEST,
   COMMENT_GET_SUCCESS,
@@ -25,7 +26,8 @@ function CommentGetAPI(payload) {
   const studentId = payload.studentId;
 
   return axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${studentId}`
+    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${studentId}`,
+    { headers: { "api-key": API_KEY } }
   );
 }
 
@@ -62,10 +64,14 @@ function commentUploadAPI(payload) {
     notiCategoryNum,
     url,
   };
+  const headers = {
+    "api-key": API_KEY,
+  };
 
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}`,
-    body
+    body,
+    { headers }
   );
 }
 
@@ -96,9 +102,14 @@ function commentUpdateAPI(payload) {
     content: payload.content,
   };
 
+  const headers = {
+    "api-key": API_KEY,
+  };
+
   return axios.patch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${commentNum}`,
-    body
+    body,
+    { headers }
   );
 }
 
@@ -124,6 +135,10 @@ function commentDeleteAPI(payload) {
   const num = payload.num;
   const commentNum = payload.commentNum;
 
+  const headers = {
+    "api-key": API_KEY,
+  };
+
   return axios.delete(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${commentNum}`,
     {
@@ -131,6 +146,7 @@ function commentDeleteAPI(payload) {
         studentId: payload.studentId,
         depth: payload.depth,
       },
+      headers,
     }
   );
 }
@@ -169,9 +185,14 @@ function replyUploadAPI(payload) {
     url,
   };
 
+  const headers = {
+    "api-key": API_KEY,
+  };
+
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${groupNum}`,
-    body
+    body,
+    { headers }
   );
 }
 

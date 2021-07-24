@@ -3,6 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import FindIdForm from "../components/Auth/FindIdForm";
+import { API_KEY } from "../Data/API_KEY";
 
 const FindIdPage = () => {
   const [errorMsg, setErrorMsg] = useState("");
@@ -29,8 +30,14 @@ const FindIdPage = () => {
     if ([name, email].includes("")) {
       setErrorMsg("빈 칸을 모두 입력하세요.");
     } else {
+      const headers = {
+        "api-key": API_KEY,
+      };
+
       axios
-        .post(`${process.env.NEXT_PUBLIC_API_URL}/api/forgot-id`, body)
+        .post(`${process.env.NEXT_PUBLIC_API_URL}/api/forgot-id`, body, {
+          headers: headers,
+        })
         .then((response) => {
           if (response.data.success) {
             alert(response.data.msg);

@@ -43,6 +43,7 @@ const initialState = {
   categoryName: "",
   profilePath: "",
   images: [],
+  fileId: [],
 };
 
 const board = (state = initialState, action) => {
@@ -81,6 +82,7 @@ const board = (state = initialState, action) => {
         categoryName: action.payload.board.categoryName,
         profilePath: action.payload.board.profilePath,
         images: action.payload.images,
+        fileId: action.payload.fileId,
       };
 
     case BOARD_DETAIL_FAILURE:
@@ -100,6 +102,7 @@ const board = (state = initialState, action) => {
         isWatchList: "",
         msg: "",
         images: [],
+        fileId: [],
       };
 
     case BOARD_STATUS_SUCCESS:

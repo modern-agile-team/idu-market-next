@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 import PwdResetForm from "../../../components/Auth/PwdResetForm";
 import BoardBanner from "../../../components/Board/BoardBanner";
+import { API_KEY } from "../../../Data/API_KEY";
 
 const PasswordResetPage = () => {
   const [errorMsg, setErrorMsg] = useState("");
@@ -50,9 +51,12 @@ const PasswordResetPage = () => {
         id,
         newPsword: psword,
       };
+      const headers = { "api-key": API_KEY };
 
       axios
-        .patch(`${process.env.NEXT_PUBLIC_API_URL}/api/password`, body)
+        .patch(`${process.env.NEXT_PUBLIC_API_URL}/api/password`, body, {
+          headers: headers,
+        })
         .then((response) => {
           if (response.data.success) {
             alert(`비밀번호 변경이 완료되었습니다.`);
