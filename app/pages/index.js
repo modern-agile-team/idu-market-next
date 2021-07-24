@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import Head from "next/head";
 import MainBanner from "../components/HomePage/MainBanner";
