@@ -32,7 +32,7 @@ const Introduce = () => {
           <iframe
             className="intro-youtube"
             title="iuam intro youtube"
-            src="https://www.youtube.com/embed/irNoOTfgz1g"
+            src="https://www.youtube.com/embed/f6bLhqHekY8"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
             allowFullScreen
           />
