@@ -10,6 +10,7 @@ const Articles = () => {
     const footerOffsetTop = document.querySelector("#footer").offsetTop;
     const noticeOffsetTop = document.querySelector("#home-notice").offsetTop;
 
+    console.log(e);
     if (e.deltaY >= 100) {
       window.scrollTo({ top: footerOffsetTop });
     } else {
