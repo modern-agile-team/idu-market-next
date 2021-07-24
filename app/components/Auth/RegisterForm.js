@@ -47,7 +47,10 @@ const RegisterForm = ({
             <label
               className={formValues.id ? "input-label fix" : "input-label"}
             >
-              아이디
+              아이디{" "}
+              <label className="psword-text">
+                (영문으로 시작, 6자 이상, 한글 불가)
+              </label>
             </label>
           </div>
 
