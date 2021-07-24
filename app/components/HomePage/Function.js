@@ -9,7 +9,7 @@ const Function = () => {
     const pageScrollY = window.scrollY;
 
     if (pageScrollY > 600) setScrollActionFunction(true);
-    else setScrollActionFunction(false);
+    else if (pageScrollY === 0) setScrollActionFunction(false);
   };
 
   const onWheel = (e) => {
