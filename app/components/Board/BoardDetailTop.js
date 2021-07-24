@@ -17,7 +17,7 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
   const [dropStatus, setDropStatus] = useState(false);
 
   const dispatch = useDispatch();
-  const { images, isWatchList } = useSelector((state) => state.board);
+  const { images, isWatchList, fileId } = useSelector((state) => state.board);
   const auth = useSelector((state) => state.auth);
 
   const router = useRouter();
@@ -33,17 +33,12 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
   }, [boardDetail]);
 
   const deleteImage = () => {
-    const body = {
-      url: [],
-    };
-
-    body.url = [...images];
-    if (body.url.length > 0) {
-      dispatch({
-        type: IMAGE_DELETE_REQUEST,
-        payload: body,
-      });
-    }
+    dispatch({
+      type: IMAGE_DELETE_REQUEST,
+      payload: {
+        fileId,
+      },
+    });
   };
 
   const onTradeSentenceChange = (e) => {
@@ -100,6 +95,7 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
         payload: {
           categoryName,
           num,
+          fileId,
         },
       });
 
