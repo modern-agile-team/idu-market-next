@@ -1,4 +1,5 @@
 import React from "react";
+import { IoArrowDownCircleOutline } from "react-icons/io5";
 
 const MainBanner = () => {
   const onScroll = (e) => {
@@ -8,8 +9,22 @@ const MainBanner = () => {
     window.scrollTo({ top: articlesSection.offsetTop });
   };
 
+  const onNextSection = () => {
+    const functionOffsetTop =
+      document.querySelector("#home-function").offsetTop;
+    window.scrollTo({ top: functionOffsetTop });
+  };
+
+  const onWheel = (e) => {
+    const functionOffsetTop =
+      document.querySelector("#home-function").offsetTop;
+    if (e.deltaY >= 100) {
+      window.scrollTo({ top: functionOffsetTop });
+    }
+  };
+
   return (
-    <section id="main-banner" className="main-banner">
+    <section onWheel={onWheel} id="main-banner" className="main-banner">
       <div className="banner-title">
         <h1>
           <span>Idu</span> Used Article Marke<em>t</em>
@@ -29,6 +44,10 @@ const MainBanner = () => {
         />
         <button onClick={onScroll}>START</button>
       </div>
+
+      <button className="next-section-btn" onClick={onNextSection}>
+        <IoArrowDownCircleOutline></IoArrowDownCircleOutline>
+      </button>
     </section>
   );
 };

@@ -6,8 +6,28 @@ import { BsLaptop } from "react-icons/bs";
 import { FaArrowCircleRight } from "react-icons/fa";
 
 const Articles = () => {
+  const onWheel = (e) => {
+    const footerOffsetTop = document.querySelector("#footer").offsetTop;
+    const noticeOffsetTop = document.querySelector("#home-notice").offsetTop;
+    const articlesOffsetTop =
+      document.querySelector("#home-articles").offsetTop;
+    const pageScrollY = window.scrollY;
+
+    if (Math.floor(pageScrollY) === 3578) {
+      if (e.deltaY < 100) {
+        window.scrollTo({ top: articlesOffsetTop });
+      }
+    } else {
+      if (e.deltaY >= 100) {
+        window.scrollTo({ top: footerOffsetTop });
+      } else {
+        window.scrollTo({ top: noticeOffsetTop });
+      }
+    }
+  };
+
   return (
-    <section id="home-articles" className="home-articles">
+    <section onWheel={onWheel} id="home-articles" className="home-articles">
       <div className="container">
         <h1 className="article-title">ARTICLES</h1>
         <div className="article-box">

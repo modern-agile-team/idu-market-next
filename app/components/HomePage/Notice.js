@@ -16,8 +16,21 @@ const Notice = ({ slides }) => {
 
   if (!Array.isArray(slides) || SLIDES_LENGTH <= 0) return null;
 
+  const onWheel = (e) => {
+    const articlesOffsetTop =
+      document.querySelector("#home-articles").offsetTop;
+    const introduceOffsetTop =
+      document.querySelector("#home-introduce").offsetTop;
+
+    if (e.deltaY >= 100) {
+      window.scrollTo({ top: articlesOffsetTop });
+    } else {
+      window.scrollTo({ top: introduceOffsetTop });
+    }
+  };
+
   return (
-    <section id="home-notice" className="home-notice">
+    <section onWheel={onWheel} id="home-notice" className="home-notice">
       <div className="notice-box">
         <h1 className="notice-title">NOTICE</h1>
       </div>

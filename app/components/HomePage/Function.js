@@ -1,25 +1,38 @@
 import React, { useEffect, useState } from "react";
+import { IoArrowDownCircleOutline } from "react-icons/io5";
 
 const Function = () => {
   const [scrollActionFuntion, setScrollActionFunction] = useState(false);
-  const offsetTop = document.querySelector("#home-function").offsetTop;
 
   const handleScroll = () => {
+    const offsetTop = document.querySelector("#home-function").offsetTop;
     const pageScrollY = window.scrollY;
     if (pageScrollY > offsetTop / 2) setScrollActionFunction(true);
     else setScrollActionFunction(false);
   };
 
+  const onWheel = (e) => {
+    const MainBannerOffsetTop =
+      document.querySelector("#main-banner").offsetTop;
+    const introduceOffsetTop =
+      document.querySelector("#home-introduce").offsetTop;
+
+    if (e.deltaY >= 100) {
+      window.scrollTo({ top: introduceOffsetTop });
+    } else {
+      window.scrollTo({ top: MainBannerOffsetTop });
+    }
+  };
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
-    <section id="home-function" className="home-function">
+    <section onWheel={onWheel} id="home-function" className="home-function">
       <div className="container">
         <div className={"function-items"}>
           <div className="function-desc-box">

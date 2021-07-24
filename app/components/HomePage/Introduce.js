@@ -16,6 +16,18 @@ const Introduce = () => {
     }
   };
 
+  const onWheel = (e) => {
+    const functionOffsetTop =
+      document.querySelector("#home-function").offsetTop;
+    const noticeOffsetTop = document.querySelector("#home-notice").offsetTop;
+
+    if (e.deltaY >= 100) {
+      window.scrollTo({ top: noticeOffsetTop });
+    } else {
+      window.scrollTo({ top: functionOffsetTop });
+    }
+  };
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
 
@@ -23,12 +35,15 @@ const Introduce = () => {
   }, []);
 
   return (
-    <section id="home-introduce" className="home-introduce">
+    <section onWheel={onWheel} id="home-introduce" className="home-introduce">
       <div className="container">
         <div className={scrollViewIntro ? "intro-box show" : "intro-box"}>
           <h1 className="intro-title">INTRO</h1>
         </div>
-        <div className={scrollViewYoutube ? "youtube-box show" : "youtube-box"}>
+        <div
+          onWheel={onWheel}
+          className={scrollViewYoutube ? "youtube-box show" : "youtube-box"}
+        >
           <iframe
             className="intro-youtube"
             title="iuam intro youtube"

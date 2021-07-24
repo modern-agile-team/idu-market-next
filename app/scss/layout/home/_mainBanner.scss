@@ -90,7 +90,7 @@
 
     span,
     em {
-      color: $main-color-2;
+      color: $main-color-7;
     }
 
     em {
@@ -117,6 +117,18 @@
       opacity: 1;
     }
   }
+}
+
+.next-section-btn {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3rem;
+  background-color: transparent;
+  color: #d4bfae;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 /* 0 ~ 960 : 테블릿1  */
