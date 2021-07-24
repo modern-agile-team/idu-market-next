@@ -1,7 +1,7 @@
 .home-articles {
   width: 100%;
   background-color: $bg-color-1;
-  padding: 80px 20px 170px 20px;
+  padding: 80px 20px 70px 20px;
 
   .container {
     width: 95%;
@@ -16,7 +16,7 @@
 .article-box {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 
@@ -38,6 +38,7 @@
   flex-direction: column;
   border: 1px solid $main-color-4;
   cursor: pointer;
+  margin: 0 30px;
 
   &:hover {
     box-shadow: 0 0 20px $main-color-4;
@@ -85,7 +86,7 @@
 
   &.box2 {
     position: relative;
-    top: 60px;
+    top: -30px;
   }
 
   &.box3 {

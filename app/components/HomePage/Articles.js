@@ -9,20 +9,11 @@ const Articles = () => {
   const onWheel = (e) => {
     const footerOffsetTop = document.querySelector("#footer").offsetTop;
     const noticeOffsetTop = document.querySelector("#home-notice").offsetTop;
-    const articlesOffsetTop =
-      document.querySelector("#home-articles").offsetTop;
-    const pageScrollY = window.scrollY;
 
-    if (Math.floor(pageScrollY) === 3578) {
-      if (e.deltaY < 100) {
-        window.scrollTo({ top: articlesOffsetTop });
-      }
+    if (e.deltaY >= 100) {
+      window.scrollTo({ top: footerOffsetTop });
     } else {
-      if (e.deltaY >= 100) {
-        window.scrollTo({ top: footerOffsetTop });
-      } else {
-        window.scrollTo({ top: noticeOffsetTop });
-      }
+      window.scrollTo({ top: noticeOffsetTop });
     }
   };
 

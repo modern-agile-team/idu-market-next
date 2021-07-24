@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { IoArrowDownCircleOutline } from "react-icons/io5";
 
 const Function = () => {
   const [scrollActionFuntion, setScrollActionFunction] = useState(false);
+  const ref = useRef();
 
   const handleScroll = () => {
-    const offsetTop = document.querySelector("#home-function").offsetTop;
     const pageScrollY = window.scrollY;
-    if (pageScrollY > offsetTop / 2) setScrollActionFunction(true);
+
+    if (pageScrollY > 600) setScrollActionFunction(true);
     else setScrollActionFunction(false);
   };
 
@@ -32,7 +33,12 @@ const Function = () => {
   }, []);
 
   return (
-    <section onWheel={onWheel} id="home-function" className="home-function">
+    <section
+      ref={ref}
+      onWheel={onWheel}
+      id="home-function"
+      className="home-function"
+    >
       <div className="container">
         <div className={"function-items"}>
           <div className="function-desc-box">
