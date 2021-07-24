@@ -49,7 +49,7 @@ const RegisterForm = ({
             >
               아이디{" "}
               <label className="psword-text">
-                (영문으로 시작, 6자 이상, 한글 불가)
+                (영문 대소문자 6자 이상, 특수문자 불가)
               </label>
             </label>
           </div>
