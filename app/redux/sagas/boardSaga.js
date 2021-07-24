@@ -161,17 +161,17 @@ function* boardDelete(action) {
 //Image Delete
 function imageDeleteAPI(payload) {
   const fileId = payload.fileId;
-  console.log(fileId);
+  const fileIds = fileId.join();
+  console.log(fileIds);
+  console.log(payload);
   const headers = {
     "api-key": API_KEY,
+    Authorization: process.env.NEXT_PUBLIC_IMAGE_SECRET_KEY,
   };
 
   return axios.delete(
-    `https://api-image.cloud.toast.com/image/v2.0/appkeys/${process.env.NEXT_PUBLIC_API_URL}/images/async`,
+    `https://api-image.cloud.toast.com/image/v2.0/appkeys/${process.env.NEXT_PUBLIC_IMAGE_KEY}/images/async?fileIds=${fileIds}`,
     {
-      data: {
-        url: payload.url,
-      },
       headers,
     }
   );

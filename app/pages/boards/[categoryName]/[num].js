@@ -52,6 +52,7 @@ const BoardDetailPage = () => {
           categoryName: categoryName,
           num: num,
           studentId: id,
+          fileId: boardDetail.fileId,
         },
       });
       dispatch({
