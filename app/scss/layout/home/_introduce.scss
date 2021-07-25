@@ -1,86 +1,55 @@
 .home-introduce {
   width: 100%;
-  height: 860px;
+  height: 100vh;
   background-color: $bg-color-1;
 
   .container {
-    position: relative;
-    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
     height: 100%;
-    margin: 0 auto;
-  }
-}
-
-.intro-box {
-  position: absolute;
-  width: 220px;
-  height: 550px;
-  padding-top: 20px;
-  top: 50px;
-  left: 17%;
-  border-radius: 10px;
-  background-color: $main-color-3;
-  line-height: 60px;
-  opacity: 0;
-
-  &.show {
-    opacity: 1;
-    animation: box 1.2s;
-  }
-
-  .intro-title {
-    text-align: center;
-    font-family: $Thasadith-font;
-    font-size: 4.5rem;
-    color: #fdfdfd;
   }
 }
 
 .youtube-box {
-  position: absolute;
-  width: 850px;
-  height: 500px;
-  top: 52%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 450px;
   z-index: 99;
-  opacity: 1;
+  opacity: 0;
+  transition: opacity 0.7s;
 
   .intro-youtube {
-    opacity: 0;
+    opacity: 1;
     width: 100%;
     height: 100%;
-    border: 4px solid $main-color-1;
-    box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+    border: 1px solid $main-color-5;
   }
 
   &.show {
-    .intro-youtube {
-      animation: fadeIn 1.2s;
-      opacity: 1;
-    }
+    opacity: 1;
   }
 }
 
-.intro-bottom-box {
-  position: absolute;
-  bottom: 25px;
-  right: 17%;
-  width: 300px;
-  height: 300px;
-  border-radius: 10px;
-  background-color: $main-color-3;
+.intro-desc-box {
+  margin-bottom: 50px;
+  h5 {
+    text-align: center;
+    font-family: $Fredoka-font;
+    font-size: 1.2rem;
+    margin-bottom: -7px;
+    color: $main-color-7;
+  }
+  h2 {
+    font-family: $Jua-font;
+    font-size: 2.7rem;
+    color: rgb(46, 46, 46);
+  }
 }
 
 /* 0 ~ 1550 : 데스크탑1  */
 @media screen and (max-width: 1550px) {
-  .intro-box {
-    left: 14%;
-  }
-  .intro-bottom-box {
-    right: 10%;
-  }
-
   .youtube-box {
     width: 750px;
     height: 450px;
@@ -89,65 +58,23 @@
 
 /* 0 ~ 1220 : 데스크탑2  */
 @media screen and (max-width: 1220px) {
-  .intro-box {
-    left: 5%;
-  }
-
-  .intro-bottom-box {
-    right: 3%;
-  }
 }
 
 /* 0 ~ 960 : 테블릿1  */
 @media screen and (max-width: 960px) {
-  .home-introduce {
-    .container {
-      width: 100%;
-    }
-  }
-
   .youtube-box {
     width: 650px;
     height: 450px;
-  }
-
-  .intro-bottom-box {
-    width: 200px;
-    height: 200px;
-    bottom: 80px;
-    right: 5%;
   }
 }
 
 /* 0 ~ 768px : 테블릿2 */
 @media screen and (max-width: 768px) {
   .home-introduce {
-    height: 800px;
+    // height: 800px;
 
     .container {
       padding: 0 10px;
-    }
-  }
-
-  .intro-box {
-    width: 100%;
-    height: 120px;
-    left: 0;
-    top: 0;
-    padding-top: 0;
-    border-radius: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 1;
-
-    &.show {
-      animation: none;
-    }
-
-    .intro-title {
-      font-size: 4rem;
-      margin: 0 5px;
     }
   }
 
@@ -166,18 +93,6 @@
       }
     }
   }
-
-  .intro-bottom-box {
-    display: none;
-  }
-
-  .intro-btn {
-    bottom: 40px;
-    width: 45px;
-    height: 45px;
-    font-size: 1.8rem;
-    line-height: 45px;
-  }
 }
 
 /* 0 ~ 670px : 테블릿3 */
@@ -190,14 +105,6 @@
     height: 350px;
     margin-top: 50px;
   }
-
-  .intro-btn {
-    font-size: 1.6rem;
-    width: 35px;
-    height: 35px;
-    line-height: 35px;
-    bottom: 150px;
-  }
 }
 
 /* 0 ~ 480px : 모바일1 */
@@ -209,15 +116,6 @@
   .youtube-box {
     height: 300px;
     margin-top: 40px;
-  }
-
-  .intro-box {
-    height: 100px;
-
-    .intro-title {
-      font-size: 3rem;
-      margin: 0 5px;
-    }
   }
 }
 

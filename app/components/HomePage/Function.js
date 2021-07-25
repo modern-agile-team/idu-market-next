@@ -40,11 +40,9 @@ const Function = () => {
       className="home-function"
     >
       <div className="container">
-        <div className={"function-items"}>
+        <div className="function-items">
           <div className="function-desc-box">
-            <h1>
-              <span>I</span>du Market
-            </h1>
+            <h1>Idu Market</h1>
             <h2>인덕대학교 학생들을 위한 중고마켓 서비스</h2>
             <p>
               아이두 마켓은 인덕대학교 학생들을 위한 중고거래 커뮤니케이션 등을

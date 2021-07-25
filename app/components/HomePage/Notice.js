@@ -31,9 +31,9 @@ const Notice = ({ slides }) => {
 
   return (
     <section onWheel={onWheel} id="home-notice" className="home-notice">
-      <div className="notice-box">
+      {/* <div className="notice-box">
         <h1 className="notice-title">NOTICE</h1>
-      </div>
+      </div> */}
 
       <BsChevronCompactLeft className="left-arrow" onClick={prevSlide} />
       <BsChevronCompactRight className="right-arrow" onClick={nextSlide} />
