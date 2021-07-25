@@ -8,6 +8,7 @@ import Notice from "../components/HomePage/Notice";
 import Articles from "../components/HomePage/Articles";
 
 import { SliderData } from "../Data/NoticeSliderData";
+import Circles from "../components/HomePage/Circles";
 
 export default function Home() {
   useEffect(() => {
@@ -25,6 +26,7 @@ export default function Home() {
       </Head>
       <MainBanner></MainBanner>
       <Function></Function>
+      <Circles />
       <Introduce></Introduce>
       <Notice slides={SliderData}></Notice>
       <Articles />

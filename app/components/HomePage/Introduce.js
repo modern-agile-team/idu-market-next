@@ -2,29 +2,27 @@ import React, { useState, useEffect } from "react";
 
 const Introduce = () => {
   const [scrollViewYoutube, setScrollViewYoutube] = useState(false);
-  const [scrollViewIntro, setScrollViewIntro] = useState(false);
 
   const handleScroll = () => {
     const pageScrollY = window.scrollY;
 
-    if (pageScrollY >= 1300) {
-      setScrollViewIntro(true);
+    console.log(pageScrollY);
+
+    if (pageScrollY >= 1800) {
       setTimeout(() => setScrollViewYoutube(true), 300);
     } else {
       setScrollViewYoutube(false);
-      setScrollViewIntro(false);
     }
   };
 
   const onWheel = (e) => {
-    const functionOffsetTop =
-      document.querySelector("#home-function").offsetTop;
     const noticeOffsetTop = document.querySelector("#home-notice").offsetTop;
+    const circlesOffsetTop = document.querySelector("#home-circles").offsetTop;
 
     if (e.deltaY >= 100) {
       window.scrollTo({ top: noticeOffsetTop });
     } else {
-      window.scrollTo({ top: functionOffsetTop });
+      window.scrollTo({ top: circlesOffsetTop });
     }
   };
 

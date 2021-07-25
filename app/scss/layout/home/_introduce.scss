@@ -97,10 +97,6 @@
 
 /* 0 ~ 670px : 테블릿3 */
 @media screen and (max-width: 670px) {
-  .home-introduce {
-    height: 650px;
-  }
-
   .youtube-box {
     height: 350px;
     margin-top: 50px;
@@ -109,10 +105,6 @@
 
 /* 0 ~ 480px : 모바일1 */
 @media screen and (max-width: 480px) {
-  .home-introduce {
-    height: 600px;
-  }
-
   .youtube-box {
     height: 300px;
     margin-top: 40px;
@@ -121,10 +113,6 @@
 
 /* 0 ~ 360px : 모바일1 */
 @media screen and (max-width: 360px) {
-  .home-introduce {
-    height: 500px;
-  }
-
   .youtube-box {
     height: 250px;
   }

@@ -6,17 +6,19 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 50px 0 0 0;
+  // padding: 50px 0 0 0;
   background: $bg-color-1;
 }
 
 .banner-start-btn {
-  position: relative;
+  position: absolute;
   font-size: 1.4rem;
-  margin-top: 130px;
   font-family: $Fredoka-font;
   cursor: pointer;
   display: none;
+  left: 50%;
+  top: 70%;
+  transform: translateX(-50%);
   background-color: $bg-color-2;
   padding: 10px 20px;
   border-radius: 5px;
@@ -175,8 +177,6 @@
   }
   .banner-start-btn {
     font-size: 1rem;
-    margin-top: 130px;
-    margin-left: 20px;
   }
 }
 
@@ -195,9 +195,6 @@
   }
   .banner-start-btn {
     font-size: 0.8rem;
-    margin-top: 70px;
-    margin-bottom: -100px;
-    margin-left: 20px;
     padding: 5px 10px;
   }
 }

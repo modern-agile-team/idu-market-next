@@ -8,18 +8,17 @@ const Function = () => {
   const handleScroll = () => {
     const pageScrollY = window.scrollY;
 
-    if (pageScrollY > 600) setScrollActionFunction(true);
+    if (pageScrollY >= 400) setScrollActionFunction(true);
     else if (pageScrollY === 0) setScrollActionFunction(false);
   };
 
   const onWheel = (e) => {
     const MainBannerOffsetTop =
       document.querySelector("#main-banner").offsetTop;
-    const introduceOffsetTop =
-      document.querySelector("#home-introduce").offsetTop;
+    const circlesOffsetTop = document.querySelector("#home-circles").offsetTop;
 
     if (e.deltaY >= 100) {
-      window.scrollTo({ top: introduceOffsetTop });
+      window.scrollTo({ top: circlesOffsetTop });
     } else {
       window.scrollTo({ top: MainBannerOffsetTop });
     }
