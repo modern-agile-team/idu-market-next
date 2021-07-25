@@ -45,9 +45,9 @@ const MainBanner = () => {
         <button onClick={onScroll}>START</button>
       </div>
 
-      <button className="next-section-btn" onClick={onNextSection}>
-        <IoArrowDownCircleOutline></IoArrowDownCircleOutline>
-      </button>
+      <div className="animation-scroll-box">
+        <div className="circle"></div>
+      </div>
     </section>
   );
 };

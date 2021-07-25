@@ -173,10 +173,6 @@
 
 /* 0 ~ 768px : 테블릿2 */
 @media screen and (max-width: 768px) {
-  .home-notice {
-    height: 800px;
-  }
-
   .notice-box {
     top: 0;
     left: 0;
@@ -211,10 +207,6 @@
 
 /* 0 ~ 670px : 테블릿2 */
 @media screen and (max-width: 670px) {
-  .home-notice {
-    height: 700px;
-  }
-
   .notice-slide {
     .notice-image {
       width: 450px;
@@ -243,7 +235,6 @@
 /* 0 ~ 480px : 모바일1 */
 @media screen and (max-width: 480px) {
   .home-notice {
-    height: 600px;
     padding-top: 50px;
   }
 

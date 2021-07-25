@@ -119,16 +119,27 @@
   }
 }
 
-.next-section-btn {
+.animation-scroll-box {
   position: absolute;
-  bottom: 3%;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 3rem;
-  background-color: transparent;
-  color: #d4bfae;
-  border-radius: 50%;
-  cursor: pointer;
+  bottom: 3%;
+  width: 35px;
+  height: 55px;
+  border: 2px solid $bg-color-3;
+  border-radius: 30px;
+
+  .circle {
+    position: absolute;
+    left: 50%;
+    top: 10px;
+    transform: translate(-50%, 0);
+    width: 8px;
+    height: 8px;
+    background-color: $bg-color-3;
+    border-radius: 50%;
+    animation: scroll-circle 1.5s infinite;
+  }
 }
 
 /* 0 ~ 960 : 테블릿1  */
@@ -243,5 +254,15 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes scroll-circle {
+  0% {
+    transform: translate(-50%, 0);
+  }
+
+  100% {
+    transform: translate(-50%, 300%);
   }
 }
