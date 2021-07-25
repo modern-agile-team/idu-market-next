@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { IoArrowDownCircleOutline } from "react-icons/io5";
 
-const MainBanner = () => {
+const MainBanner = ({ nextSectionOffset, getOffsetTop }) => {
+  const [touchStartPageY, setTouchStartPageY] = useState(0);
+  const [touchEndPageY, setTouchEndPageY] = useState(0);
+
+  const ref = useRef();
+
   const onScroll = (e) => {
     e.preventDefault();
 
@@ -8,8 +14,39 @@ const MainBanner = () => {
     window.scrollTo({ top: articlesSection.offsetTop });
   };
 
+  const onWheel = (e) => {
+    if (e.deltaY >= 100) {
+      window.scrollTo({ top: nextSectionOffset });
+    }
+  };
+
+  const onTouchScreenStart = (e) => {
+    setTouchStartPageY(e.changedTouches[0].pageY);
+  };
+
+  const onTouchScreenEnd = (e) => {
+    setTouchEndPageY(e.changedTouches[0].pageY);
+
+    if (touchStartPageY && touchEndPageY) {
+      if (touchStartPageY >= touchEndPageY) {
+        window.scrollTo({ top: nextSectionOffset });
+      }
+    }
+  };
+
+  useEffect(() => {
+    getOffsetTop(ref.current.offsetTop);
+  });
+
   return (
-    <section id="main-banner" className="main-banner">
+    <section
+      ref={ref}
+      onWheel={onWheel}
+      onTouchEnd={onTouchScreenEnd}
+      onTouchStart={onTouchScreenStart}
+      id="main-banner"
+      className="main-banner"
+    >
       <div className="banner-title">
         <h1>
           <span>Idu</span> Used Article Marke<em>t</em>
@@ -28,6 +65,10 @@ const MainBanner = () => {
           alt="배너 이미지"
         />
         <button onClick={onScroll}>START</button>
+      </div>
+
+      <div className="animation-scroll-box">
+        <div className="circle"></div>
       </div>
     </section>
   );

@@ -1,209 +1,203 @@
 .home-function {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  // background-color: $bg-color-2;
+
+  .container {
     width: 100%;
-    height: 320px;
-    background-color: $bg-color-2;
-    
-    .container {
-        width: 80%;
-        height: 100%;
-        margin: 0 auto;
-    }
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
 }
 
 .function-items {
-    height: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    overflow: hidden;
-    padding-bottom: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 
-    .function-item {
-        width: 200px;
-        height: 200px;
-        opacity: 0;
+  .function-desc-box {
+    max-width: 33%;
+    padding: 0 30px;
 
-        .function-img { 
-            width: 100%; 
-        }
-
-        .function-desc {
-            font-family: 'Fredoka One', cursive;
-            text-align: center;
-            color: $main-color-9;
-            font-size: 1.5rem;
-        }
+    h1 {
+      font-family: $Fredoka-font;
+      font-size: 2rem;
+      color: $main-color-7;
     }
-}
 
-.function-items.show {
-    .function-item { 
-        opacity: 1; 
-
-        &.shopping { 
-            animation: slide 1s; 
-        }
-
-        &.communication { 
-            animation: slide 1.4s; 
-        }
-
-        &.information { 
-            animation: slide 1.8s; 
-        }
+    h2 {
+      font-family: $Jua-font;
+      color: rgb(46, 46, 46);
+      font-size: 3rem;
     }
-}
 
+    p {
+      font-family: $Jua-font;
+      font-size: 1.4rem;
+      // color: $main-color-7;
+      color: rgb(145, 145, 145);
+    }
+  }
+
+  .function-item {
+    width: 32%;
+    opacity: 0;
+
+    &.show {
+      opacity: 1;
+      animation: slide 1.2s;
+    }
+
+    .function-img {
+      width: 100%;
+      border-radius: 50px;
+    }
+
+    .function-item-desc {
+      font-family: "Fredoka One", cursive;
+      text-align: center;
+      color: $main-color-9;
+      font-size: 1.5rem;
+    }
+  }
+}
 
 //반응형
-/* 0 ~ 1220 : 데스크탑2  */
-@media screen and (max-width: 1220px) {
-    #home-function { 
-        height: 300px; 
-        .container {
-            padding-bottom: 30px;
-        }
-    }
-    .function-items {
-        padding-bottom: 0;
+/* 0 ~ 1400 : 데스크탑2  */
+@media screen and (max-width: 1400px) {
+  .function-items {
+    .function-desc-box {
+      max-width: 35%;
 
-        .function-item {
-            width: 180px;
+      h1 {
+        font-size: 2rem;
+      }
 
-            .function-desc { 
-                font-size: 1.2rem; 
-            }
-        }
+      h2 {
+        font-size: 2.5rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+      }
     }
+
+    .function-item {
+      width: 40%;
+    }
+  }
 }
 
 /* 0 ~ 960 : 테블릿1  */
-@media screen and (max-width: 960px) {
-    #home-function { 
-        height: 280px;
+@media screen and (max-width: 1100px) {
+  .function-items {
+    .function-desc-box {
+      max-width: 40%;
 
-        .container { 
-            width: 100%; 
-            padding-bottom: 0;
-        }
+      h1 {
+        font-size: 1.7rem;
+      }
+
+      h2 {
+        font-size: 2.2rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+      }
     }
 
-    .function-items {
-        .function-item {
-            width: 150px;
-
-            .function-desc { 
-                font-size: 1rem; 
-            }
-        }
+    .function-item {
+      width: 40%;
     }
+  }
 }
 
-
 /* 0 ~ 768px : 테블릿2 */
-@media screen and (max-width: 768px){
-    #home-function { 
-        height: 300px;
-        background: $bg-color-2;
+@media screen and (max-width: 860px) {
+  .function-items {
+    flex-direction: column;
 
-        .container { 
-            padding: 20px 0; 
-        }
-    }
-    .function-items {
-        width: 100%;
+    .function-desc-box {
+      max-width: 60%;
+      margin-bottom: 30px;
+      padding: 0;
+      h1 {
+        font-size: 1.7rem;
+        text-align: center;
+      }
 
-        .function-item {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            // opacity: 1;
-            width: 100%;
+      h2 {
+        font-size: 2.2rem;
+        text-align: center;
+      }
 
-            .function-img { 
-                width: 70%; 
-            }
-
-            .function-desc { 
-                font-size: 1.2rem; 
-                margin-top: 10px;
-            }
-        }
+      p {
+        font-size: 1.2rem;
+      }
     }
 
-    // .function-items.show {
-    //     .function-item.shopping { 
-    //         animation: none; 
-    //     }
-        
-    //     .function-item.communication {
-    //         animation: none; 
-    //     }
-
-    //     .function-item.information { 
-    //         animation: none; 
-    //     }
-    // }
+    .function-item {
+      width: 60%;
+    }
+  }
 }
 
 /* 0 ~ 670px : 테블릿3 */
 @media screen and (max-width: 670px) {
-    #home-function { 
-        height: 250px; 
+  .function-items {
+    .function-desc-box {
+      max-width: 67%;
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1.1rem;
+      }
     }
 
-    .function-items {
-        .function-item {
-            .function-desc { 
-                font-size: 1.1rem; 
-            }
-        }
+    .function-item {
+      width: 70%;
     }
+  }
 }
 
-/* 0 ~ 480px : 모바일1 */
-@media screen and (max-width: 480px) {
-    #home-function { 
-        height: 240px;
-        
-        .container {
-            padding: 0;
-        }
-    }
-    .function-items {
-        .function-item {
-            
-            .function-desc { 
-                font-size: 0.8rem;
-            }
+@media screen and (max-width: 500px) {
+  .function-items {
+    .function-desc-box {
+      max-width: 65%;
+      h1 {
+        font-size: 1.2rem;
+      }
 
-            &.shopping { 
-                border-right: none; 
-            }
+      h2 {
+        font-size: 1.5rem;
+      }
 
-            &.communication { 
-                border-right: none; 
-            }
-        }
+      p {
+        font-size: 1rem;
+      }
     }
+  }
 }
 
 //애니메이션
 @keyframes slide {
-    from { 
-        transform: translateY(300px); 
-    }
-    to { 
-        transform: translateY(0); 
-    }
-}
-
-@keyframes slide2 {
-    from { 
-        transform: translateX(-300px); 
-    }
-    to { 
-        transform: translateX(0); 
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
