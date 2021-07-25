@@ -40,8 +40,8 @@ const Function = ({ prevSectionOffset, nextSectionOffset, getOffsetTop }) => {
             <h1>Idu Market</h1>
             <h2>인덕대학교 학생들을 위한 중고마켓 서비스</h2>
             <p>
-              아이두 마켓은 인덕대학교 학생들을 위한 중고거래 커뮤니케이션 등을
-              할 수 있는 서비스를 제공하고 있습니다.
+              아이두 마켓은 인덕대학교 학생들을 위한 중고거래 커뮤니케이션 등의
+              서비스를 제공하고 있습니다.
             </p>
           </div>
           <div

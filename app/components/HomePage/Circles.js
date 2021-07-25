@@ -27,10 +27,11 @@ const Circles = ({ prevSectionOffset, nextSectionOffset, getOffsetTop }) => {
           <div className="circles-desc-box">
             <h1>Idu Market</h1>
             <h2>
-              인덕대학교 전문 개발동아리 <span>우아한 애자일</span>
+              전문 개발 동아리
+              <br /> 우아한 애자일
             </h2>
             <p>
-              아이두 마켓은 우아한 애자일에서 개발되었으며 현재도 인덕대학교
+              아이두 마켓은 우아한 애자일에서 개발했으며 현재도 인덕대학교
               학생들을 위해 새로운 서비스를 개발중입니다.
             </p>
           </div>

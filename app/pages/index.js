@@ -1,14 +1,15 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 import Head from "next/head";
 import MainBanner from "../components/HomePage/MainBanner";
 import Function from "../components/HomePage/Function";
+import Circles from "../components/HomePage/Circles";
 import Introduce from "../components/HomePage/Introduce";
 import Notice from "../components/HomePage/Notice";
 import Articles from "../components/HomePage/Articles";
 
 import { SliderData } from "../Data/NoticeSliderData";
-import Circles from "../components/HomePage/Circles";
 
 export default function Home() {
   const [mainBannerOffsetTop, setMainBannerOffsetTop] = useState();

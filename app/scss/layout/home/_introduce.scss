@@ -38,7 +38,7 @@
   h5 {
     text-align: center;
     font-family: $Fredoka-font;
-    font-size: 1.2rem;
+    font-size: 2rem;
     margin-bottom: -7px;
     color: $main-color-7;
   }
@@ -111,6 +111,9 @@
     margin-top: 40px;
   }
   .intro-desc-box {
+    h5 {
+      font-size: 1.2rem;
+    }
     h2 {
       font-size: 2rem;
     }
