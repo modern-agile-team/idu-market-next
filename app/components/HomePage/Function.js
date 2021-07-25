@@ -59,7 +59,9 @@ const Function = ({ prevSectionOffset, nextSectionOffset, getOffsetTop }) => {
         <div className="function-items">
           <div className="function-desc-box">
             <h1>Idu Market</h1>
-            <h2>인덕대학교 학생들을 위한 중고마켓 서비스</h2>
+            <h2>
+              인덕대학교 <br /> 중고마켓 서비스
+            </h2>
             <p>
               아이두 마켓은 인덕대학교 학생들을 위한 중고거래 커뮤니케이션 등의
               서비스를 제공하고 있습니다.
