@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 
-const Notice = ({ slides }) => {
+const Notice = ({ slides, getOffsetTop }) => {
   const SLIDES_LENGTH = slides.length;
 
   const [currentImage, setCurrentImage] = useState(0);
+  const ref = useRef();
 
   const nextSlide = () => {
     setCurrentImage(currentImage === SLIDES_LENGTH - 1 ? 0 : currentImage + 1);
@@ -29,8 +30,17 @@ const Notice = ({ slides }) => {
     }
   };
 
+  useEffect(() => {
+    getOffsetTop(ref.current.offsetTop);
+  }, []);
+
   return (
-    <section onWheel={onWheel} id="home-notice" className="home-notice">
+    <section
+      ref={ref}
+      onWheel={onWheel}
+      id="home-notice"
+      className="home-notice"
+    >
       {/* <div className="notice-box">
         <h1 className="notice-title">NOTICE</h1>
       </div> */}

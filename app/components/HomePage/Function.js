@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 
-const Function = ({ prevSectionOffset, nextSectionOffset }) => {
+const Function = ({ prevSectionOffset, nextSectionOffset, getOffsetTop }) => {
   const [scrollActionFuntion, setScrollActionFunction] = useState(false);
   const ref = useRef();
 
@@ -20,6 +20,7 @@ const Function = ({ prevSectionOffset, nextSectionOffset }) => {
   };
 
   useEffect(() => {
+    getOffsetTop(ref.current.offsetTop);
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);

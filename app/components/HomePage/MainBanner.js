@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { IoArrowDownCircleOutline } from "react-icons/io5";
 
-const MainBanner = ({ nextSectionOffset }) => {
+const MainBanner = ({ nextSectionOffset, getOffsetTop }) => {
+  const ref = useRef();
+
   const onScroll = (e) => {
     e.preventDefault();
 
@@ -15,8 +17,17 @@ const MainBanner = ({ nextSectionOffset }) => {
     }
   };
 
+  useEffect(() => {
+    getOffsetTop(ref.current.offsetTop);
+  });
+
   return (
-    <section onWheel={onWheel} id="main-banner" className="main-banner">
+    <section
+      ref={ref}
+      onWheel={onWheel}
+      id="main-banner"
+      className="main-banner"
+    >
       <div className="banner-title">
         <h1>
           <span>Idu</span> Used Article Marke<em>t</em>

@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import { BsBookHalf } from "react-icons/bs";
 import { GiClothes } from "react-icons/gi";
 import { BsLaptop } from "react-icons/bs";
 import { FaArrowCircleRight } from "react-icons/fa";
 
-const Articles = ({ prevSectionOffset, nextSectionOffset }) => {
+const Articles = ({
+  prevSectionOffset,
+  nextSectionOffset,
+  getOffsetTop,
+  getFooterOffsetTop,
+}) => {
+  const ref = useRef();
   const onWheel = (e) => {
     if (e.deltaY >= 100) {
       window.scrollTo({ top: nextSectionOffset });
@@ -14,8 +20,17 @@ const Articles = ({ prevSectionOffset, nextSectionOffset }) => {
     }
   };
 
+  useEffect(() => {
+    getOffsetTop(ref.current.offsetTop);
+    getFooterOffsetTop(ref.current.parentNode.parentNode.lastChild.offsetTop);
+  }, []);
   return (
-    <section onWheel={onWheel} id="home-articles" className="home-articles">
+    <section
+      ref={ref}
+      onWheel={onWheel}
+      id="home-articles"
+      className="home-articles"
+    >
       <div className="container">
         <h1 className="article-title">ARTICLES</h1>
         <div className="article-box">

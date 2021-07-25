@@ -11,18 +11,16 @@ import { SliderData } from "../Data/NoticeSliderData";
 import Circles from "../components/HomePage/Circles";
 
 export default function Home() {
-  const MainBannerOffsetTop = document.querySelector("#main-banner").offsetTop;
-  const functionOffsetTop = document.querySelector("#home-function").offsetTop;
-  const circlesOffsetTop = document.querySelector("#home-circles").offsetTop;
-  const introduceOffsetTop =
-    document.querySelector("#home-introduce").offsetTop;
-  const articlesOffsetTop = document.querySelector("#home-articles").offsetTop;
-  const noticeOffsetTop = document.querySelector("#home-notice").offsetTop;
-  const footerOffsetTop = document.querySelector("#footer").offsetTop;
+  const [mainBannerOffsetTop, setMainBannerOffsetTop] = useState();
+  const [functionOffsetTop, setFunctionOffsetTop] = useState();
+  const [circlesOffsetTop, setCirclesOffsetTop] = useState();
+  const [introduceOffsetTop, setIntroduceOffsetTop] = useState();
+  const [noticeOffsetTop, setNoticeOffsetTop] = useState();
+  const [articlesOffsetTop, setArticlesOffsetTop] = useState();
+  const [footerOffsetTop, setFooterOffsetTop] = useState();
 
   useEffect(() => {
     const body = document.body;
-
     body.style.overflow = "hidden";
 
     return () => (body.style.overflow = "");
@@ -34,27 +32,36 @@ export default function Home() {
         <title>IUAM | 홈 화면</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <MainBanner nextSectionOffset={functionOffsetTop}></MainBanner>
+      <MainBanner
+        getOffsetTop={(offset) => setMainBannerOffsetTop(offset)}
+        nextSectionOffset={functionOffsetTop ? functionOffsetTop : undefined}
+      />
       <Function
-        prevSectionOffset={MainBannerOffsetTop}
-        nextSectionOffset={circlesOffsetTop}
+        getOffsetTop={(offset) => setFunctionOffsetTop(offset)}
+        nextSectionOffset={circlesOffsetTop ? circlesOffsetTop : undefined}
+        prevSectionOffset={introduceOffsetTop ? mainBannerOffsetTop : undefined}
       />
       <Circles
-        prevSectionOffset={functionOffsetTop}
-        nextSectionOffset={introduceOffsetTop}
+        getOffsetTop={(offset) => setCirclesOffsetTop(offset)}
+        nextSectionOffset={introduceOffsetTop ? introduceOffsetTop : undefined}
+        prevSectionOffset={functionOffsetTop ? functionOffsetTop : undefined}
       />
       <Introduce
-        prevSectionOffset={circlesOffsetTop}
-        nextSectionOffset={noticeOffsetTop}
+        getOffsetTop={(offset) => setIntroduceOffsetTop(offset)}
+        nextSectionOffset={noticeOffsetTop ? noticeOffsetTop : undefined}
+        prevSectionOffset={circlesOffsetTop ? circlesOffsetTop : undefined}
       />
       <Notice
         slides={SliderData}
-        prevSectionOffset={introduceOffsetTop}
-        nextSectionOffset={articlesOffsetTop}
+        getOffsetTop={(offset) => setNoticeOffsetTop(offset)}
+        nextSectionOffset={articlesOffsetTop ? articlesOffsetTop : undefined}
+        prevSectionOffset={introduceOffsetTop ? introduceOffsetTop : undefined}
       />
       <Articles
-        prevSectionOffset={noticeOffsetTop}
-        nextSectionOffset={footerOffsetTop}
+        getOffsetTop={(offset) => setArticlesOffsetTop(offset)}
+        getFooterOffsetTop={(target) => setFooterOffsetTop(target)}
+        nextSectionOffset={footerOffsetTop ? footerOffsetTop : undefined}
+        prevSectionOffset={noticeOffsetTop ? noticeOffsetTop : undefined}
       />
     </div>
   );

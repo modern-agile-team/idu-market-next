@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
-const Circles = ({ prevSectionOffset, nextSectionOffset }) => {
+const Circles = ({ prevSectionOffset, nextSectionOffset, getOffsetTop }) => {
+  const ref = useRef();
   const onWheel = (e) => {
     if (e.deltaY >= 100) {
       window.scrollTo({ top: nextSectionOffset });
@@ -9,8 +10,11 @@ const Circles = ({ prevSectionOffset, nextSectionOffset }) => {
     }
   };
 
+  useEffect(() => {
+    getOffsetTop(ref.current.offsetTop);
+  }, []);
   return (
-    <section id="home-circles" onWheel={onWheel}>
+    <section ref={ref} id="home-circles" onWheel={onWheel}>
       <div className="container">
         <div className="circle-items">
           <div className="circle-item">
