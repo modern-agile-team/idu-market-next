@@ -1,26 +1,21 @@
 import React, { useEffect, useState, useRef } from "react";
-import { IoArrowDownCircleOutline } from "react-icons/io5";
 
-const Function = () => {
+const Function = ({ prevSectionOffset, nextSectionOffset }) => {
   const [scrollActionFuntion, setScrollActionFunction] = useState(false);
   const ref = useRef();
 
   const handleScroll = () => {
     const pageScrollY = window.scrollY;
 
-    if (pageScrollY >= 400) setScrollActionFunction(true);
+    if (pageScrollY >= 300) setScrollActionFunction(true);
     else if (pageScrollY === 0) setScrollActionFunction(false);
   };
 
   const onWheel = (e) => {
-    const MainBannerOffsetTop =
-      document.querySelector("#main-banner").offsetTop;
-    const circlesOffsetTop = document.querySelector("#home-circles").offsetTop;
-
     if (e.deltaY >= 100) {
-      window.scrollTo({ top: circlesOffsetTop });
+      window.scrollTo({ top: nextSectionOffset });
     } else {
-      window.scrollTo({ top: MainBannerOffsetTop });
+      window.scrollTo({ top: prevSectionOffset });
     }
   };
 

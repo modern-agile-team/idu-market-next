@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useRef } from "react";
 import { SiNotion } from "react-icons/si";
 import Link from "next/link";
 
 const Footer = () => {
+  const ref = useRef();
+  const onWheel = (e) => {
+    const pageScrollY = window.scrollY;
+    if (e.deltaY < 100) {
+      window.scrollTo({ top: pageScrollY - ref.current.clientHeight });
+    }
+  };
+
   const thisYear = () => {
     const year = new Date().getFullYear();
     return year;
   };
 
   return (
-    <section id="footer" className="footer">
+    <section ref={ref} onWheel={onWheel} id="footer" className="footer">
       <div className="container">
         <Link href="/">
           <a className="footer-title">

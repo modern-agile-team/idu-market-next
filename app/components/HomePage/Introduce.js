@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-const Introduce = () => {
+const Introduce = ({ prevSectionOffset, nextSectionOffset }) => {
   const [scrollViewYoutube, setScrollViewYoutube] = useState(false);
 
   const handleScroll = () => {
     const pageScrollY = window.scrollY;
 
-    console.log(pageScrollY);
-
-    if (pageScrollY >= 1800) {
+    if (pageScrollY >= 1500) {
       setTimeout(() => setScrollViewYoutube(true), 300);
     } else {
       setScrollViewYoutube(false);
@@ -16,13 +14,10 @@ const Introduce = () => {
   };
 
   const onWheel = (e) => {
-    const noticeOffsetTop = document.querySelector("#home-notice").offsetTop;
-    const circlesOffsetTop = document.querySelector("#home-circles").offsetTop;
-
     if (e.deltaY >= 100) {
-      window.scrollTo({ top: noticeOffsetTop });
+      window.scrollTo({ top: nextSectionOffset });
     } else {
-      window.scrollTo({ top: circlesOffsetTop });
+      window.scrollTo({ top: prevSectionOffset });
     }
   };
 

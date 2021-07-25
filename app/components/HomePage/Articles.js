@@ -5,15 +5,12 @@ import { GiClothes } from "react-icons/gi";
 import { BsLaptop } from "react-icons/bs";
 import { FaArrowCircleRight } from "react-icons/fa";
 
-const Articles = () => {
+const Articles = ({ prevSectionOffset, nextSectionOffset }) => {
   const onWheel = (e) => {
-    const footerOffsetTop = document.querySelector("#footer").offsetTop;
-    const noticeOffsetTop = document.querySelector("#home-notice").offsetTop;
-
     if (e.deltaY >= 100) {
-      window.scrollTo({ top: footerOffsetTop });
+      window.scrollTo({ top: nextSectionOffset });
     } else {
-      window.scrollTo({ top: noticeOffsetTop });
+      window.scrollTo({ top: prevSectionOffset });
     }
   };
 

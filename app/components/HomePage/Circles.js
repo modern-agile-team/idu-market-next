@@ -1,16 +1,11 @@
 import React from "react";
 
-const Circles = () => {
+const Circles = ({ prevSectionOffset, nextSectionOffset }) => {
   const onWheel = (e) => {
-    const functionOffsetTop =
-      document.querySelector("#home-function").offsetTop;
-    const introduceOffsetTop =
-      document.querySelector("#home-introduce").offsetTop;
-
     if (e.deltaY >= 100) {
-      window.scrollTo({ top: introduceOffsetTop });
+      window.scrollTo({ top: nextSectionOffset });
     } else {
-      window.scrollTo({ top: functionOffsetTop });
+      window.scrollTo({ top: prevSectionOffset });
     }
   };
 
