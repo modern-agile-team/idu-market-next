@@ -1,7 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const Circles = ({ prevSectionOffset, nextSectionOffset, getOffsetTop }) => {
+  const [touchStartPageY, setTouchStartPageY] = useState(0);
+  const [touchEndPageY, setTouchEndPageY] = useState(0);
+
   const ref = useRef();
+
   const onWheel = (e) => {
     if (e.deltaY >= 100) {
       window.scrollTo({ top: nextSectionOffset });
@@ -10,11 +14,34 @@ const Circles = ({ prevSectionOffset, nextSectionOffset, getOffsetTop }) => {
     }
   };
 
+  const onTouchScreenStart = (e) => {
+    setTouchStartPageY(e.changedTouches[0].pageY);
+  };
+
+  const onTouchScreenEnd = (e) => {
+    setTouchEndPageY(e.changedTouches[0].pageY);
+
+    if (touchStartPageY && touchEndPageY) {
+      if (touchStartPageY >= touchEndPageY) {
+        window.scrollTo({ top: nextSectionOffset });
+      } else {
+        window.scrollTo({ top: prevSectionOffset });
+      }
+    }
+  };
+
   useEffect(() => {
     getOffsetTop(ref.current.offsetTop);
   }, []);
+
   return (
-    <section ref={ref} id="home-circles" onWheel={onWheel}>
+    <section
+      ref={ref}
+      id="home-circles"
+      onWheel={onWheel}
+      onTouchEnd={onTouchScreenEnd}
+      onTouchStart={onTouchScreenStart}
+    >
       <div className="container">
         <div className="circle-items">
           <div className="circle-item">

@@ -1,10 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 
-const Notice = ({ slides, getOffsetTop }) => {
+const Notice = ({
+  slides,
+  getOffsetTop,
+  nextSectionOffset,
+  prevSectionOffset,
+}) => {
   const SLIDES_LENGTH = slides.length;
 
   const [currentImage, setCurrentImage] = useState(0);
+  const [touchStartPageY, setTouchStartPageY] = useState(0);
+  const [touchEndPageY, setTouchEndPageY] = useState(0);
+
   const ref = useRef();
 
   const nextSlide = () => {
@@ -17,16 +25,27 @@ const Notice = ({ slides, getOffsetTop }) => {
 
   if (!Array.isArray(slides) || SLIDES_LENGTH <= 0) return null;
 
-  const onWheel = (e) => {
-    const articlesOffsetTop =
-      document.querySelector("#home-articles").offsetTop;
-    const introduceOffsetTop =
-      document.querySelector("#home-introduce").offsetTop;
+  const onTouchScreenStart = (e) => {
+    setTouchStartPageY(e.changedTouches[0].pageY);
+  };
 
+  const onTouchScreenEnd = (e) => {
+    setTouchEndPageY(e.changedTouches[0].pageY);
+
+    if (touchStartPageY && touchEndPageY) {
+      if (touchStartPageY >= touchEndPageY) {
+        window.scrollTo({ top: nextSectionOffset });
+      } else {
+        window.scrollTo({ top: prevSectionOffset });
+      }
+    }
+  };
+
+  const onWheel = (e) => {
     if (e.deltaY >= 100) {
-      window.scrollTo({ top: articlesOffsetTop });
+      window.scrollTo({ top: nextSectionOffset });
     } else {
-      window.scrollTo({ top: introduceOffsetTop });
+      window.scrollTo({ top: prevSectionOffset });
     }
   };
 
@@ -40,11 +59,9 @@ const Notice = ({ slides, getOffsetTop }) => {
       onWheel={onWheel}
       id="home-notice"
       className="home-notice"
+      onTouchEnd={onTouchScreenEnd}
+      onTouchStart={onTouchScreenStart}
     >
-      {/* <div className="notice-box">
-        <h1 className="notice-title">NOTICE</h1>
-      </div> */}
-
       <BsChevronCompactLeft className="left-arrow" onClick={prevSlide} />
       <BsChevronCompactRight className="right-arrow" onClick={nextSlide} />
 

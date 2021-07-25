@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 
 const Introduce = ({ prevSectionOffset, nextSectionOffset, getOffsetTop }) => {
   const [scrollViewYoutube, setScrollViewYoutube] = useState(false);
+  const [touchStartPageY, setTouchStartPageY] = useState(0);
+  const [touchEndPageY, setTouchEndPageY] = useState(0);
 
   const ref = useRef();
   const handleScroll = () => {
@@ -13,7 +15,23 @@ const Introduce = ({ prevSectionOffset, nextSectionOffset, getOffsetTop }) => {
       setScrollViewYoutube(false);
     }
   };
-  //1874 2208
+
+  const onTouchScreenStart = (e) => {
+    setTouchStartPageY(e.changedTouches[0].pageY);
+  };
+
+  const onTouchScreenEnd = (e) => {
+    setTouchEndPageY(e.changedTouches[0].pageY);
+
+    if (touchStartPageY && touchEndPageY) {
+      if (touchStartPageY >= touchEndPageY) {
+        window.scrollTo({ top: nextSectionOffset });
+      } else {
+        window.scrollTo({ top: prevSectionOffset });
+      }
+    }
+  };
+
   const onWheel = (e) => {
     if (e.deltaY >= 100) {
       window.scrollTo({ top: nextSectionOffset });
@@ -33,6 +51,8 @@ const Introduce = ({ prevSectionOffset, nextSectionOffset, getOffsetTop }) => {
     <section
       ref={ref}
       onWheel={onWheel}
+      onTouchStart={onTouchScreenStart}
+      onTouchEnd={onTouchScreenEnd}
       id="home-introduce"
       className="home-introduce"
     >

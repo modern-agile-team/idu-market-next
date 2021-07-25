@@ -1,7 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { IoArrowDownCircleOutline } from "react-icons/io5";
 
 const MainBanner = ({ nextSectionOffset, getOffsetTop }) => {
+  const [touchStartPageY, setTouchStartPageY] = useState(0);
+  const [touchEndPageY, setTouchEndPageY] = useState(0);
+
   const ref = useRef();
 
   const onScroll = (e) => {
@@ -17,6 +20,20 @@ const MainBanner = ({ nextSectionOffset, getOffsetTop }) => {
     }
   };
 
+  const onTouchScreenStart = (e) => {
+    setTouchStartPageY(e.changedTouches[0].pageY);
+  };
+
+  const onTouchScreenEnd = (e) => {
+    setTouchEndPageY(e.changedTouches[0].pageY);
+
+    if (touchStartPageY && touchEndPageY) {
+      if (touchStartPageY >= touchEndPageY) {
+        window.scrollTo({ top: nextSectionOffset });
+      }
+    }
+  };
+
   useEffect(() => {
     getOffsetTop(ref.current.offsetTop);
   });
@@ -25,6 +42,8 @@ const MainBanner = ({ nextSectionOffset, getOffsetTop }) => {
     <section
       ref={ref}
       onWheel={onWheel}
+      onTouchEnd={onTouchScreenEnd}
+      onTouchStart={onTouchScreenStart}
       id="main-banner"
       className="main-banner"
     >

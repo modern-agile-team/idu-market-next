@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { BsBookHalf } from "react-icons/bs";
 import { GiClothes } from "react-icons/gi";
@@ -11,7 +11,26 @@ const Articles = ({
   getOffsetTop,
   getFooterOffsetTop,
 }) => {
+  const [touchStartPageY, setTouchStartPageY] = useState(0);
+  const [touchEndPageY, setTouchEndPageY] = useState(0);
   const ref = useRef();
+
+  const onTouchScreenStart = (e) => {
+    setTouchStartPageY(e.changedTouches[0].pageY);
+  };
+
+  const onTouchScreenEnd = (e) => {
+    setTouchEndPageY(e.changedTouches[0].pageY);
+
+    if (touchStartPageY && touchEndPageY) {
+      if (touchStartPageY >= touchEndPageY) {
+        window.scrollTo({ top: nextSectionOffset });
+      } else {
+        window.scrollTo({ top: prevSectionOffset });
+      }
+    }
+  };
+
   const onWheel = (e) => {
     if (e.deltaY >= 100) {
       window.scrollTo({ top: nextSectionOffset });
@@ -30,6 +49,8 @@ const Articles = ({
       onWheel={onWheel}
       id="home-articles"
       className="home-articles"
+      onTouchEnd={onTouchScreenEnd}
+      onTouchStart={onTouchScreenStart}
     >
       <div className="container">
         <h1 className="article-title">ARTICLES</h1>
