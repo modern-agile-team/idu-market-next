@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const Introduce = ({ }) => {
+const Introduce = ({}) => {
   const [scrollViewYoutube, setScrollViewYoutube] = useState(false);
 
   const handleScroll = () => {
@@ -20,10 +20,8 @@ const Introduce = ({ }) => {
   }, []);
 
   return (
-    <section
-      id="home-introduce"
-      className="home-introduce"
-    >
+    <section id="home-introduce" className="home-introduce">
+      <div className="bg-box"></div>
       <div className="container">
         <div className="intro-desc-box">
           <h5>Idu Market</h5>
