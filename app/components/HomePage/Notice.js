@@ -1,19 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 
-const Notice = ({
-  slides,
-  getOffsetTop,
-  nextSectionOffset,
-  prevSectionOffset,
-}) => {
+const Notice = ({ slides }) => {
   const SLIDES_LENGTH = slides.length;
 
   const [currentImage, setCurrentImage] = useState(0);
-  const [touchStartPageY, setTouchStartPageY] = useState(0);
-  const [touchEndPageY, setTouchEndPageY] = useState(0);
-
-  const ref = useRef();
 
   const nextSlide = () => {
     setCurrentImage(currentImage === SLIDES_LENGTH - 1 ? 0 : currentImage + 1);
@@ -25,43 +16,8 @@ const Notice = ({
 
   if (!Array.isArray(slides) || SLIDES_LENGTH <= 0) return null;
 
-  const onTouchScreenStart = (e) => {
-    setTouchStartPageY(e.changedTouches[0].pageY);
-  };
-
-  const onTouchScreenEnd = (e) => {
-    setTouchEndPageY(e.changedTouches[0].pageY);
-
-    if (touchStartPageY && touchEndPageY) {
-      if (touchStartPageY >= touchEndPageY) {
-        window.scrollTo({ top: nextSectionOffset });
-      } else {
-        window.scrollTo({ top: prevSectionOffset });
-      }
-    }
-  };
-
-  const onWheel = (e) => {
-    if (e.deltaY >= 100) {
-      window.scrollTo({ top: nextSectionOffset });
-    } else {
-      window.scrollTo({ top: prevSectionOffset });
-    }
-  };
-
-  useEffect(() => {
-    getOffsetTop(ref.current.offsetTop);
-  }, []);
-
   return (
-    <section
-      ref={ref}
-      onWheel={onWheel}
-      id="home-notice"
-      className="home-notice"
-      onTouchEnd={onTouchScreenEnd}
-      onTouchStart={onTouchScreenStart}
-    >
+    <section id="home-notice" className="home-notice">
       <BsChevronCompactLeft className="left-arrow" onClick={prevSlide} />
       <BsChevronCompactRight className="right-arrow" onClick={nextSlide} />
 

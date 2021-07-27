@@ -1,11 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 
-const Function = ({ prevSectionOffset, nextSectionOffset, getOffsetTop }) => {
+const Function = () => {
   const [scrollActionFuntion, setScrollActionFunction] = useState(false);
-  const [touchStartPageY, setTouchStartPageY] = useState(0);
-  const [touchEndPageY, setTouchEndPageY] = useState(0);
-
-  const ref = useRef();
 
   const handleScroll = () => {
     const pageScrollY = window.scrollY;
@@ -14,32 +10,7 @@ const Function = ({ prevSectionOffset, nextSectionOffset, getOffsetTop }) => {
     else if (pageScrollY === 0) setScrollActionFunction(false);
   };
 
-  const onWheel = (e) => {
-    if (e.deltaY >= 100) {
-      window.scrollTo({ top: nextSectionOffset });
-    } else {
-      window.scrollTo({ top: prevSectionOffset });
-    }
-  };
-
-  const onTouchScreenStart = (e) => {
-    setTouchStartPageY(e.changedTouches[0].pageY);
-  };
-
-  const onTouchScreenEnd = (e) => {
-    setTouchEndPageY(e.changedTouches[0].pageY);
-
-    if (touchStartPageY && touchEndPageY) {
-      if (touchStartPageY >= touchEndPageY) {
-        window.scrollTo({ top: nextSectionOffset });
-      } else {
-        window.scrollTo({ top: prevSectionOffset });
-      }
-    }
-  };
-
   useEffect(() => {
-    getOffsetTop(ref.current.offsetTop);
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -47,14 +18,7 @@ const Function = ({ prevSectionOffset, nextSectionOffset, getOffsetTop }) => {
   }, []);
 
   return (
-    <section
-      ref={ref}
-      onWheel={onWheel}
-      onTouchStart={onTouchScreenStart}
-      onTouchEnd={onTouchScreenEnd}
-      id="home-function"
-      className="home-function"
-    >
+    <section id="home-function" className="home-function">
       <div className="container">
         <div className="function-items">
           <div className="function-desc-box">
