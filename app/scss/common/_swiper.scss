@@ -36,14 +36,13 @@
   margin-right: auto;
 }
 
-.swiper-button-next {
-  &::after {
-    color: #3c332e;
+.swiper-pagination-bullet {
+  height: 30px;
+  &.swiper-pagination-bullet-active-main {
+    background-color: $main-color-2;
   }
 }
 
-.swiper-button-prev {
-  &::after {
-    color: #3c332e;
-  }
+.swiper-pagination-bullets-dynamic {
+  bottom: 0% !important;
 }
