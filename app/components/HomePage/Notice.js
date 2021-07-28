@@ -1,95 +1,120 @@
 import React, { useState, useRef, useEffect } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 
-const Notice = ({
-  slides,
-  getOffsetTop,
-  nextSectionOffset,
-  prevSectionOffset,
-}) => {
+import SwiperCore, { Autoplay, Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/swiper.min.css";
+import "swiper/components/pagination/pagination.min.css";
+import "swiper/components/navigation/navigation.min.css";
+
+SwiperCore.use([Autoplay, Pagination]);
+
+const Notice = ({ slides }) => {
   const SLIDES_LENGTH = slides.length;
 
-  const [currentImage, setCurrentImage] = useState(0);
-  const [touchStartPageY, setTouchStartPageY] = useState(0);
-  const [touchEndPageY, setTouchEndPageY] = useState(0);
-
-  const ref = useRef();
-
-  const nextSlide = () => {
-    setCurrentImage(currentImage === SLIDES_LENGTH - 1 ? 0 : currentImage + 1);
-  };
-
-  const prevSlide = () => {
-    setCurrentImage(currentImage === 0 ? SLIDES_LENGTH - 1 : currentImage - 1);
-  };
-
-  if (!Array.isArray(slides) || SLIDES_LENGTH <= 0) return null;
-
-  const onTouchScreenStart = (e) => {
-    setTouchStartPageY(e.changedTouches[0].pageY);
-  };
-
-  const onTouchScreenEnd = (e) => {
-    setTouchEndPageY(e.changedTouches[0].pageY);
-
-    if (touchStartPageY && touchEndPageY) {
-      if (touchStartPageY >= touchEndPageY) {
-        window.scrollTo({ top: nextSectionOffset });
-      } else {
-        window.scrollTo({ top: prevSectionOffset });
-      }
-    }
-  };
-
-  const onWheel = (e) => {
-    if (e.deltaY >= 100) {
-      window.scrollTo({ top: nextSectionOffset });
-    } else {
-      window.scrollTo({ top: prevSectionOffset });
-    }
-  };
-
-  useEffect(() => {
-    getOffsetTop(ref.current.offsetTop);
-  }, []);
-
   return (
-    <section
-      ref={ref}
-      onWheel={onWheel}
-      id="home-notice"
-      className="home-notice"
-      onTouchEnd={onTouchScreenEnd}
-      onTouchStart={onTouchScreenStart}
-    >
-      <BsChevronCompactLeft className="left-arrow" onClick={prevSlide} />
-      <BsChevronCompactRight className="right-arrow" onClick={nextSlide} />
-
-      {slides.map((slide, index) => {
-        return (
-          <div
-            className={
-              index === currentImage ? "notice-slide active" : "notice-slide"
-            }
-            key={index}
-          >
-            {index === currentImage && (
-              <img src={slide.image} alt={slide.alt} className="notice-image" />
-            )}
+    <section id="home-notice" className="home-notice">
+      <Swiper
+        spaceBetween={1}
+        autoplay={{ delay: 7000 }}
+        spaceBetween={40}
+        loop={true}
+        pagination={{ dynamicBullets: true }}
+      >
+        <SwiperSlide>
+          <div className="slide-container">
+            <div className="slide-notice-container">
+              <div className="backgorund-container">
+                <h1>QnA 01</h1>
+              </div>
+              <div className="chat-container">
+                <div className="chat1-img">
+                  <img
+                    src="https://wooahan-agile.s3.ap-northeast-2.amazonaws.com/HomePage/noticeChat/chat3.png"
+                    alt=""
+                  />
+                </div>
+                <div className="chat2-img">
+                  <img
+                    src="https://wooahan-agile.s3.ap-northeast-2.amazonaws.com/HomePage/noticeChat/chat4.png"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
           </div>
-        );
-      })}
-
-      <div className="slide-btns">
-        <div
-          className={currentImage === 0 ? "slide-btn active" : "slide-btn"}
-          onClick={() => setCurrentImage(0)}
-        />
-        <div
-          className={currentImage === 1 ? "slide-btn active" : "slide-btn"}
-          onClick={() => setCurrentImage(1)}
-        />
-      </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="slide-container">
+            <div className="slide-notice-container">
+              <div className="backgorund-container">
+                <h1>QnA 02</h1>
+              </div>
+              <div className="chat-container">
+                <div className="chat1-img">
+                  <img
+                    src="https://wooahan-agile.s3.ap-northeast-2.amazonaws.com/HomePage/noticeChat/chat1.png"
+                    alt=""
+                  />
+                </div>
+                <div className="chat2-img">
+                  <img
+                    src="https://wooahan-agile.s3.ap-northeast-2.amazonaws.com/HomePage/noticeChat/chat2.png"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="slide-container">
+            <div className="slide-notice-container">
+              <div className="backgorund-container">
+                <h1>QnA 03</h1>
+              </div>
+              <div className="chat-container">
+                <div className="chat1-img">
+                  <img
+                    src="https://wooahan-agile.s3.ap-northeast-2.amazonaws.com/HomePage/noticeChat/chat5.png"
+                    alt=""
+                  />
+                </div>
+                <div className="chat2-img">
+                  <img
+                    src="https://wooahan-agile.s3.ap-northeast-2.amazonaws.com/HomePage/noticeChat/chat6.png"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="slide-container">
+            <div className="slide-notice-container">
+              <div className="backgorund-container">
+                <h1>QnA 04</h1>
+              </div>
+              <div className="chat-container">
+                <div className="chat1-img">
+                  <img
+                    src="https://wooahan-agile.s3.ap-northeast-2.amazonaws.com/HomePage/noticeChat/chat7.png"
+                    alt=""
+                  />
+                </div>
+                <div className="chat2-img">
+                  <img
+                    src="https://wooahan-agile.s3.ap-northeast-2.amazonaws.com/HomePage/noticeChat/chat8.png"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </SwiperSlide>
+      </Swiper>
     </section>
   );
 };
