@@ -37,9 +37,22 @@
 }
 
 .swiper-pagination-bullet {
-  height: 30px;
+  span {
+    width: 12px;
+    height: 12px;
+  }
   &.swiper-pagination-bullet-active-main {
-    background-color: $main-color-2;
+    background-color: $main-color-7;
+    width: 12px;
+    height: 12px;
+  }
+  &.swiper-pagination-bullet-active-prev {
+    width: 11px;
+    height: 11px;
+  }
+  &.swiper-pagination-bullet-active-next {
+    width: 11px;
+    height: 11px;
   }
 }
 

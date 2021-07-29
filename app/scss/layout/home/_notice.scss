@@ -60,14 +60,18 @@
   position: relative;
   width: 800px;
   left: -100px;
-  animation: slideQnA 5s linear infinite;
+  transform: translateY(-12%);
+  opacity: 0;
+  animation: slideQnA 7s linear infinite;
 }
 
 .chat2-img {
   position: relative;
   left: 100px;
   width: 800px;
-  animation: slideQnA 5s 0.7s linear infinite;
+  transform: translateY(-12%);
+  opacity: 0;
+  animation: slideQnA 7s 0.7s linear infinite;
 }
 
 @media screen and (max-width: 1050px) {
@@ -159,8 +163,16 @@
     opacity: 0;
   }
 
-  20% {
+  5% {
     transform: translateY(0);
     opacity: 1;
+  }
+  75% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-12%);
+    opacity: 0;
   }
 }

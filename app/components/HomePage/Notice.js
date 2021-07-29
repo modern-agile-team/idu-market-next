@@ -17,7 +17,6 @@ const Notice = ({ slides }) => {
     <section id="home-notice" className="home-notice">
       <Swiper
         spaceBetween={1}
-        autoplay={{ delay: 7000 }}
         spaceBetween={40}
         loop={true}
         pagination={{ dynamicBullets: true }}
