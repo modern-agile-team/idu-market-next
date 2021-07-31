@@ -4,13 +4,13 @@
   min-height: 560px;
   margin: 0 auto;
   padding: 100px 0 90px 0;
-  
+
   .container {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      flex-wrap: wrap;
-      padding-top: 40px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 40px;
   }
 }
 
@@ -24,15 +24,15 @@
   flex-direction: column;
   border: 1px solid $main-color-4;
   border-radius: 5px;
-  transition: .3s transform;
+  transition: 0.3s transform;
   padding: 5px;
 
   &:nth-child(4n-3) {
-      margin-left: 4%;
+    margin-left: 4%;
   }
 
   &:hover {
-      transform: translateY(-8px);
+    transform: translateY(-8px);
   }
 }
 
@@ -43,16 +43,15 @@
   padding-bottom: 5px;
   border-bottom: 1px solid $main-color-6;
 
-
   .market-img-box {
-      display: flex;
-      justify-content: center;
+    display: flex;
+    justify-content: center;
   }
 
   img {
-      border-radius: 5px;
-      width: 100%;
-      height: 230px;
+    border-radius: 5px;
+    width: 100%;
+    height: 230px;
   }
 }
 
@@ -67,7 +66,7 @@
   text-align: center;
 
   &:hover {
-      color: $main-color-7
+    color: $main-color-7;
   }
 }
 
@@ -86,31 +85,31 @@
   align-items: center;
 
   .board-nickname {
-      color: #999;
+    color: #999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      color: $main-color-6;
+    }
+
+    &.admin {
+      color: #222;
       display: flex;
       justify-content: center;
       align-items: center;
 
       &:hover {
-          color: $main-color-6; 
+        color: $main-color-6;
       }
-
-      &.admin {
-        color: #222;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-  
-        &:hover {
-            color: $main-color-6;
-        }
-      }
+    }
   }
 }
 
 .market-item-date {
   color: #999;
-  font-size: .8rem;
+  font-size: 0.8rem;
   float: right;
 }
 
@@ -118,30 +117,43 @@
   position: absolute;
   font-family: $Fredoka-font;
   left: 65px;
-  top: 50px;
+  top: 70px;
   outline: none;
-  background-color: #fdfdfd;
+  background-color: rgb(238, 238, 238);
   cursor: pointer;
   text-align: center;
-  border-radius: 50%;
-  border: 3px solid $main-color-3;
-  width: 70px;
-  height: 70px;
+  //   border: 1px solid $main-color-3;
+  width: 130px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 2px;
+  color: $main-color-4;
+
+  p {
+    font-family: $Montserrat-font;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-left: 10px;
+  }
 
   .upload-btn-icon {
-      font-size: 3rem;
-      color: $main-color-3;
+    font-size: 2rem;
+    color: $main-color-4;
+    // border: 1px solid #fff;
+    border-radius: 50%;
   }
 
   &:hover {
-      border: 3px solid $main-color-5;
+    background-color: $bg-color-2;
+    // border: 2px solid $main-color-5;
   }
 
-  &:hover .upload-btn-icon{
-      color: $main-color-5;
+  &:hover .upload-btn-icon,
+  &:hover p {
+    color: $main-color-5;
+    // border: 2px solid $main-color-5;
   }
 }
 
@@ -151,100 +163,82 @@
   right: 45px;
 
   .market-search-input {
-      font-family: $Montserrat-font;
-      position: relative;
-      width: 300px;
-      border: none;
-      border-bottom: 2px solid #999;
-      outline: none;
-      height: 40px;
-      padding: 0 30px 0 5px;
-      background-color: transparent;
+    font-family: $Montserrat-font;
+    position: relative;
+    width: 300px;
+    border: 1px solid rgb(187, 187, 187);
+    // border-bottom: 2px solid #999;
+    border-radius: 4px;
+    outline: none;
+    height: 40px;
+    padding: 0 40px 0 15px;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
 
-      &:focus ~ .input-label {
-          top: -5px;
-          color: $main-color-2;
-      }
-  
-      &:focus ~ .input-border::before {
-          width: 100%;
-      }
+    // &:focus ~ .input-label {
+    //   top: -5px;
+    //   color: $main-color-2;
+    // }
+
+    // &:focus ~ .input-border::before {
+    //   width: 100%;
+    // }
   }
 
   .markget-search-btn {
-      position: absolute;
-      font-size: 1.5rem;
-      background-color: transparent;
-      right: 0;
-      outline: none;
-      cursor: pointer;
-      z-index: 50;
-      &:hover {
-          color: $main-color-5;
-      }
+    position: absolute;
+    font-size: 1rem;
+    background-color: transparent;
+    right: 15px;
+    top: 10px;
+    outline: none;
+    cursor: pointer;
+    z-index: 50;
+    &:hover {
+      color: $main-color-5;
+    }
   }
 }
 
-.input-border {
-  &::before {
-      content: '';
-      position: absolute;
-      top: 38px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background-color: $main-color-4;
-      transition: 1s;
-  }
+// .input-label {
+//   font-family: $Montserrat-font;
+//   position: absolute;
+//   top: 50%;
+//   left: 5px;
+//   color: #adadad;
+//   transform: translateY(-50%);
+//   font-size: 16px;
+//   pointer-events: none;
+//   transition: 0.5s top;
+// }
 
-  &.fill::before {
-      width: 100%;
-  }
-}
-
-.input-label {
-  font-family: $Montserrat-font;
-  position: absolute;
-  top: 50%;
-  left: 5px;
-  color: #adadad;
-  transform: translateY(-50%);
-  font-size: 16px;
-  pointer-events: none;
-  transition: .5s top;
-  
-  &.fix {
-      top: -5px;
-      color: $main-color-4;
-  }
-}
-
-.market-loading{
+.market-loading {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  border:0;
+  border: 0;
   width: 80px;
-  padding:0px;
+  padding: 0px;
   margin-top: -70px;
   margin-left: calc(50% - 40px);
   margin-left: -webkit-calc(50% - 40px);
   margin-left: -moz-calc(50% - 40px);
 
   .spin {
-      height: 60px;
-      width: 60px;
-      border-radius: 50%;
-      border:dashed 5px $main-color-9;
-      animation: spin 3s infinite linear;
-      margin-bottom: 15px;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    border: dashed 5px $main-color-9;
+    animation: spin 3s infinite linear;
+    margin-bottom: 15px;
   }
 
   .market-loading-msg {
-      font-family: $Montserrat-font;
-      font-size: 1.2rem;
-      font-weight: bold;
+    font-family: $Montserrat-font;
+    font-size: 1.2rem;
+    font-weight: bold;
   }
 }
 
@@ -259,205 +253,225 @@
 }
 
 .board-profile-img {
-    width: 20px;
-    border-radius: 50%;
-    border: 1px solid $main-color-5;
-    margin-right: 5px;
+  width: 20px;
+  border-radius: 50%;
+  border: 1px solid $main-color-5;
+  margin-right: 5px;
 }
 
 .empty-list-desc {
-    margin: 0 auto;
-    margin-top: 100px;
-    font-family: $Jua-font;
-    font-size: 1.5rem;
+  margin: 0 auto;
+  margin-top: 100px;
+  font-family: $Jua-font;
+  font-size: 1.5rem;
 }
 
-@media screen and (max-width: 1300px) { 
-  .market-items { 
-      width: 27%;
+@media screen and (max-width: 1300px) {
+  .market-items {
+    width: 27%;
 
-      &:nth-child(4n-3) {
-          margin-left: 2%;
-      }
+    &:nth-child(4n-3) {
+      margin-left: 2%;
+    }
 
-      &:nth-child(3n-2) {
-          margin-left: 7%;
-      }
+    &:nth-child(3n-2) {
+      margin-left: 7%;
+    }
   }
 
   .market-item-title {
-      width: 200px;
+    width: 200px;
   }
 }
 
-@media screen and (max-width: 970px) { 
-  .market-items { 
-      width: 40%;
+@media screen and (max-width: 970px) {
+  .market-items {
+    width: 40%;
 
-      &:nth-child(3n-2) {
-          margin-left: 2%;
-      }
+    &:nth-child(3n-2) {
+      margin-left: 2%;
+    }
 
-      &:nth-child(2n-1) {
-          margin-left: 8%;
-      }
+    &:nth-child(2n-1) {
+      margin-left: 8%;
+    }
   }
 
   .market-search {
-      right: 90px;
+    right: 90px;
 
-      .market-search-input {
-          width: 250px;
-      }
+    .market-search-input {
+      width: 250px;
+    }
   }
   .upload-btn {
-      width: 50px;
-      height: 50px;
-      top: 70px;
+    // width: 50px;
+    // height: 50px;
+    top: 70px;
 
-      .upload-btn-icon {
-          font-size: 2rem;
-      }
+    .upload-btn-icon {
+      font-size: 2rem;
+    }
   }
 }
 
-@media screen and (max-width: 768px) { 
-  .market-items { 
-      &:nth-child(2n-1) {
-          margin-left: 8%;
-      }
+@media screen and (max-width: 768px) {
+  .market-items {
+    &:nth-child(2n-1) {
+      margin-left: 8%;
+    }
   }
 
   .market-item-title {
-      width: 210px;
+    width: 210px;
   }
 
   .market-item-price {
-      left: 32%;
+    left: 32%;
   }
-  
+
   .market-item-id {
-      left: 37%;
+    left: 37%;
   }
-  
+
   .market-item-date {
-      left: 32%;
+    left: 32%;
   }
 
   .market-search {
-      right: 30px;
+    right: 30px;
 
-      .market-search-input {
-          width: 200px;
-      }
+    .market-search-input {
+      width: 200px;
+    }
   }
-  
-  .upload-btn {
-      right: 40px;
-      width: 50px;
-      height: 50px;
 
-      .upload-btn-icon {
-          font-size: 2rem;
-      }
+  .upload-btn {
+    // right: 40px;
+    left: 20px;
+
+    .upload-btn-icon {
+      font-size: 2rem;
+    }
   }
 }
-@media screen and (max-width: 670px) { 
+@media screen and (max-width: 670px) {
   .market {
-      width: 90%;
-      min-height: 450px;
+    width: 90%;
+    min-height: 450px;
   }
 
-  .market-items { 
-      width: 45%;
-      margin-bottom: 4%;
+  .market-items {
+    width: 45%;
+    margin-bottom: 4%;
 
-      &:nth-child(2n-1) {
-          margin-left: 4%;
-      }
+    &:nth-child(2n-1) {
+      margin-left: 4%;
+    }
   }
 
   .market-item-title {
-      width: 175px;
-      font-size: 1rem;
+    width: 175px;
+    font-size: 1rem;
   }
 
   .market-item-price {
-      font-size: 0.9rem;
+    font-size: 0.9rem;
+  }
+
+  .upload-btn {
+    width: 120px;
+    height: 40px;
+    p {
+      font-size: 1rem;
+    }
+    .upload-btn-icon {
+      font-size: 1.5rem;
+    }
   }
 }
 
 @media screen and (max-width: 480px) {
-  .market { 
-      width: 80%;
-      min-height: 450px;
+  .market {
+    width: 80%;
+    min-height: 450px;
   }
-  .market-items { 
-      width: 80%;
-      margin: 3%;
+  .market-items {
+    width: 80%;
+    margin: 3%;
 
-      &:nth-child(n) {
-          margin-left: 10%;
-      }
+    &:nth-child(n) {
+      margin-left: 10%;
+    }
   }
 
   .market-item-price {
-      left: 38%;
+    left: 38%;
   }
-  
+
   .market-item-id {
-      left: 36%;
+    left: 36%;
   }
-  
+
   .market-item-date {
-      left: 37%;
+    left: 37%;
   }
 
   .market-search {
-      right: 10px;
+    left: 50%;
+    right: 0;
+    transform: translateX(-50%);
+    top: 40px;
+    width: 80%;
 
-      .market-search-input {
-          width: 180px;
-      }
+    .market-search-input {
+      width: 100%;
+    }
 
-      .markget-search-btn { 
-          font-size: 1.2rem;
-          top: 10px;
-      }
+    .markget-search-btn {
+      font-size: 1.2rem;
+      top: 10px;
+    }
   }
 
   .upload-btn {
-      left: 20px;
-      width: 40px;
-      height: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 90px;
+    width: 80%;
+    height: 50px;
 
-      .upload-btn-icon {
-          font-size: 1.5rem;
-      }
+    p {
+      font-size: 1.2rem;
+    }
+
+    .upload-btn-icon {
+      font-size: 2rem;
+    }
   }
 
   .market-item-title {
-      width: 200px;
-      font-size: 1.2rem;
+    width: 200px;
+    font-size: 1.2rem;
   }
 
   .market-item-price {
-      font-size: 1rem;
+    font-size: 1rem;
   }
-  
+
   .search-null-desc {
-      font-size: 1rem;
+    font-size: 1rem;
   }
   .market-img-box-link {
-      img {
-          height: 250px;
-      }
+    img {
+      height: 250px;
+    }
   }
   .empty-list-desc {
-      margin-top: 60px;
-      font-size: 1.2rem;
+    margin-top: 60px;
+    font-size: 1.2rem;
   }
-} 
+}
 
 @media screen and (max-width: 360px) {
   .market {
@@ -465,55 +479,31 @@
   }
 
   .market-item-title {
-      width: 200px;
-      font-size: 1rem;
-      margin: 10px 0 5px 0;
+    width: 200px;
+    font-size: 1rem;
+    margin: 10px 0 5px 0;
   }
 
   .market-item-price {
-      font-size: 0.8rem;
+    font-size: 0.8rem;
   }
 
   .market-item-id {
-      margin: 5px;
-      font-size: 0.8rem;
+    margin: 5px;
+    font-size: 0.8rem;
   }
 
   .market-item-date {
-      font-size: 0.7rem;
-  }
-  
-  .upload-btn {
-      left: 10px;
-      width: 35px;
-      height: 35px;
-      top: 75px;
-
-      .upload-btn-icon {
-          font-size: 1.2rem;
-      }
-  }
-
-  .market-search {
-      right: 30px;
-      .market-search-input {
-          width: 150px;
-          font-size: 0.9rem;
-      }
-
-      .markget-search-btn { 
-          font-size: 1rem;
-          top: 10px;
-      }
+    font-size: 0.7rem;
   }
 }
 
 @keyframes arrow-top {
   0% {
-      transform: translateY(0);
+    transform: translateY(0);
   }
 
   100% {
-      transform: translateY(-20px);
+    transform: translateY(-20px);
   }
 }
