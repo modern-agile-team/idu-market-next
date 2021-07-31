@@ -28,50 +28,52 @@ const BoardDetailPage = () => {
   const SLIDES_LENGTH = boardDetail.images.length;
 
   useEffect(() => {
-    if (!id.length) {
-      dispatch({
-        type: BOARD_DETAIL_REQUEST,
-        payload: {
-          categoryName,
-          num,
-          studentId: "not-login",
-        },
-      });
-      dispatch({
-        type: COMMENT_GET_REQUEST,
-        payload: {
-          categoryName,
-          num,
-          studentId: "not-login",
-        },
-      });
-    } else {
-      dispatch({
-        type: BOARD_DETAIL_REQUEST,
-        payload: {
-          categoryName: categoryName,
-          num: num,
-          studentId: id,
-          fileId: boardDetail.fileId,
-        },
-      });
-      dispatch({
-        type: COMMENT_GET_REQUEST,
-        payload: {
-          categoryName,
-          num,
-          studentId: id,
-        },
-      });
-      dispatch({
-        type: BOARD_HIT_REQUEST,
-        payload: {
-          categoryName,
-          num,
-        },
-      });
+    if (categoryName && num) {
+      if (!id) {
+        dispatch({
+          type: BOARD_DETAIL_REQUEST,
+          payload: {
+            categoryName,
+            num,
+            studentId: "not-login",
+          },
+        });
+        dispatch({
+          type: COMMENT_GET_REQUEST,
+          payload: {
+            categoryName,
+            num,
+            studentId: "not-login",
+          },
+        });
+      } else {
+        dispatch({
+          type: BOARD_DETAIL_REQUEST,
+          payload: {
+            categoryName: categoryName,
+            num: num,
+            studentId: id,
+            fileId: boardDetail.fileId,
+          },
+        });
+        dispatch({
+          type: COMMENT_GET_REQUEST,
+          payload: {
+            categoryName,
+            num,
+            studentId: id,
+          },
+        });
+        dispatch({
+          type: BOARD_HIT_REQUEST,
+          payload: {
+            categoryName,
+            num,
+          },
+        });
+      }
     }
-  }, [dispatch, router.pathname]);
+  }, [dispatch, router.pathname, categoryName, num]);
 
   const nextSlide = () => {
     setCurrentImage(currentImage === SLIDES_LENGTH - 1 ? 0 : currentImage + 1);
