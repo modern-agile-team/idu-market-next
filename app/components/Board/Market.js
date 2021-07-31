@@ -6,7 +6,7 @@ import Loading from "../Loading/Loading";
 const Market = ({ categoryName, productList }) => {
   return (
     <section className="market" id="market">
-      <BoardListTop categoryName={categoryName} />
+      <BoardListTop boardType="market" categoryName={categoryName} />
 
       <div className="container">
         {productList.length > 0 ? (
