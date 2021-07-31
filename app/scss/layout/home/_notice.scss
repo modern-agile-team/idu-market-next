@@ -1,6 +1,6 @@
 .home-notice {
   width: 100%;
-  padding: 150px 0;
+  padding: 200px 0;
   position: relative;
   display: flex;
   justify-content: center;
@@ -113,6 +113,11 @@
     h1 {
       font-size: 3rem;
     }
+  }
+}
+@media screen and (max-width: 670px) {
+  .home-notice {
+    padding: 150px 0;
   }
 }
 

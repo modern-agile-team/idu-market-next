@@ -148,6 +148,9 @@
 
 /* 0 ~ 670px : 테블릿3 */
 @media screen and (max-width: 670px) {
+  .home-function {
+    padding: 150px 0;
+  }
   .function-items {
     .function-desc-box {
       max-width: 67%;
