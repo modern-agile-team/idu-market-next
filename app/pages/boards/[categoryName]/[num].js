@@ -71,7 +71,7 @@ const BoardDetailPage = () => {
         },
       });
     }
-  }, [dispatch, categoryName, num, id]);
+  }, [dispatch, router.pathname]);
 
   const nextSlide = () => {
     setCurrentImage(currentImage === SLIDES_LENGTH - 1 ? 0 : currentImage + 1);
