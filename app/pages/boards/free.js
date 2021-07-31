@@ -4,6 +4,7 @@ import BoardBanner from "../../components/Board/BoardBanner";
 import Basic from "../../components/Board/Basic";
 import Head from "next/head";
 import { API_KEY } from "../../Data/API_KEY";
+import { useRouter } from "next/router";
 
 const BoardFreePage = () => {
   const [pageNumber, setPageNumber] = useState(0);
@@ -14,11 +15,13 @@ const BoardFreePage = () => {
   const pageCount = Math.ceil(boardList.length / perPage.current);
   const categoryName = "free";
 
+  const router = useRouter();
+
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`, 
-        { headers: { "api-key": API_KEY } }
-      )
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`, {
+        headers: { "api-key": API_KEY },
+      })
       .then((response) => {
         if (response.data.success) {
           const result = response.data.boards;
@@ -31,7 +34,7 @@ const BoardFreePage = () => {
           alert(response.data.msg);
         }
       });
-  }, [categoryName]);
+  }, [categoryName, router.pathname]);
 
   const changePage = ({ selected }) => {
     setPageNumber(selected);
