@@ -162,8 +162,6 @@ function* boardDelete(action) {
 function imageDeleteAPI(payload) {
   const fileId = payload.fileId;
   const fileIds = fileId.join();
-  console.log(fileIds);
-  console.log(payload);
   const headers = {
     "api-key": API_KEY,
     Authorization: process.env.NEXT_PUBLIC_IMAGE_SECRET_KEY,
