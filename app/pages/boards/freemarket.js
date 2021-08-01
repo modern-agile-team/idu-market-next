@@ -1,21 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Head from "next/head";
-import { useRouter } from "next/router";
 
 import BoardBanner from "../../components/Board/BoardBanner";
 import Market from "../../components/Board/Market";
 import { API_KEY } from "../../Data/API_KEY";
 
-const MarketDevicePage = () => {
+const MarketFreePage = () => {
   const [productList, setProductList] = useState([]);
   const lastNum = useRef(0);
   const lastCount = useRef(9);
 
-  const categoryName = "device";
-  let isLoading = false;
+  const categoryName = "freemarket";
 
-  const router = useRouter();
+  let isLoading = false;
 
   const getMoreData = async () => {
     isLoading = true;
@@ -63,7 +61,7 @@ const MarketDevicePage = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [categoryName, router.pathname]);
+  }, [categoryName]);
 
   return (
     <>
@@ -76,4 +74,4 @@ const MarketDevicePage = () => {
   );
 };
 
-export default MarketDevicePage;
+export default MarketFreePage;

@@ -38,7 +38,6 @@ const LoginPage = () => {
       id,
       psword,
     };
-    console.log(body);
     const headers = {
       "api-key": API_KEY,
     };
