@@ -16,11 +16,6 @@ class MyDocument extends Document {
             name="description"
             content="인덕대학교 학생들을 위한 중고 마켓 서비스(IUAM)"
           />
-          <meta
-            name="keywords"
-            content="인덕대, 인덕대학교, 중고마켓, IUAM, 장터, 마켓, 중고, IDU, IDU마켓, 인덕, 대학생, 대학교, 시장, 거래, 플랫폼, 웹사이트, 웹, 앱, 우아한애자일, 우애, idu used article market, market, 자유게시판, 공지게시판, iuam"
-          />
-          <meta name="robots" content="index,follow" />
 
           {/* 웹 사이트 등록 (구글, 네이버) */}
           <meta
