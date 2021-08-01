@@ -4,7 +4,7 @@ import { BiEditAlt } from "react-icons/bi";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const BoardListTop = ({ categoryName }) => {
+const BoardListTop = ({ categoryName, boardType }) => {
   const router = useRouter();
 
   const [formValues, setFormValues] = useState({
@@ -24,6 +24,7 @@ const BoardListTop = ({ categoryName }) => {
       <Link href={`/boards/${categoryName}/new`}>
         <a className="upload-btn">
           <BiEditAlt className="upload-btn-icon" />
+          <p>{boardType === "market" ? "물품 등록" : "글쓰기"}</p>
         </a>
       </Link>
       <div className="market-search">
@@ -32,15 +33,8 @@ const BoardListTop = ({ categoryName }) => {
           name="content"
           className="market-search-input"
           onChange={onChange}
+          placeholder="Search"
         />
-        <span
-          className={formValues.content ? "input-border fill" : "input-border"}
-        />
-        <label
-          className={formValues.content ? "input-label fix" : "input-label"}
-        >
-          Search
-        </label>
         <Link
           href={`/boards/${categoryName}/search?content=${formValues.content}`}
           className="markget-search-btn"

@@ -1,7 +1,6 @@
 .home-articles {
   width: 100%;
-  // height: 100vh;
-  padding: 150px 0;
+  padding: 200px 0;
   background-color: $bg-color-1;
 
   .container {
@@ -108,17 +107,15 @@
 /* 0 ~ 768px : 테블릿2 */
 @media screen and (max-width: 768px) {
   .home-articles {
-    height: 100vh;
     .container {
       width: 100%;
-      padding: 70px 0 0 0;
+      padding: 0;
     }
   }
 
   .article-box {
     flex-direction: column;
     padding: 0 20px;
-    margin-bottom: 30px;
   }
 
   .article-title {
@@ -130,7 +127,6 @@
     height: 120px;
     color: $main-color-7;
     font-size: 4rem;
-    padding-top: 20px;
     margin: 0;
   }
 
@@ -173,6 +169,11 @@
     &.box3 {
       top: 0;
     }
+  }
+}
+@media screen and (max-width: 670px) {
+  .home-articles {
+    padding: 150px 0;
   }
 }
 

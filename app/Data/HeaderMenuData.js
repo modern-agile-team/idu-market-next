@@ -28,6 +28,10 @@ export const HeaderMenuData = [
         path: "/boards/clothes",
       },
       {
+        title: "무료나눔",
+        path: "/boards/freemarket",
+      },
+      {
         title: "기타",
         path: "/boards/etc",
       },

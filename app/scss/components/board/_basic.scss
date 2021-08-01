@@ -1,264 +1,261 @@
 .boardlist-common {
-    position: relative;
-    width: 80%;
-    padding: 120px 0 50px 0;
-    margin: 0 auto;
-    min-height: 560px;
+  position: relative;
+  width: 80%;
+  padding: 120px 0 50px 0;
+  margin: 0 auto;
+  min-height: 560px;
 
-    .container {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-}
-
-
-/* 테이블 */
-.boardlist-common-tables {
-    width: 90%;
-    border-spacing: 0;
-    margin-top: 30px;
-    
-    .boardlist-common-title {
-        text-align: center;
-        width: 60%;
-        font-family: $Montserrat-font;
-        word-wrap:break-word;
-        word-break:break-all;
-
-        a {
-            text-decoration: none;
-            color: #222222;
-            text-align: left;
-            font-size: 1rem; 
-            font-family: $Montserrat-font;
-    
-            &:hover { 
-                color: $main-color-6; 
-            }
-        }
-    }
-
-    td {
-        text-align: center;
-        padding: 10px 2px;
-        border-bottom: 1.2px solid #222;
-        font-family: $Montserrat-font;
-
-        &:first-child {
-            font-family: $Jua-font;
-            // font-weight: bold;
-        }
-    }
-
-    th {
-        padding: 10px 0;
-        border-top: 2px solid #cfac8c;
-        border-bottom: 2px solid #cfac8c;
-        font-family: $Jua-font;
-        font-size: 1.1rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .boardlist-common-td {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-}
-
-
-/* 페이지버튼 */
-.pagination-container {
+  .container {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    font-size: 1.3rem;
-    outline: none;
-    margin-top: 20px;
+    flex-direction: column;
+  }
+}
+
+/* 테이블 */
+.boardlist-common-tables {
+  width: 90%;
+  border-spacing: 0;
+  margin-top: 30px;
+
+  .boardlist-common-title {
+    text-align: center;
+    width: 60%;
+    font-family: $Montserrat-font;
+    word-wrap: break-word;
+    word-break: break-all;
 
     a {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #222222;
-        height: 40px;
-        width: 40px;
-        text-decoration: none;
-        font-family: $Jua-font;
-        outline: none;
-        cursor: pointer;
-    }
+      text-decoration: none;
+      color: #222222;
+      text-align: left;
+      font-size: 1rem;
+      font-family: $Montserrat-font;
 
-    a.active {
-        background-color: #c97f4e;
-        color: #fff;
-        border-radius: 20px;
+      &:hover {
+        color: $main-color-6;
+      }
     }
+  }
 
-    a.disabled {
-        opacity: 0.2;
+  td {
+    text-align: center;
+    padding: 10px 2px;
+    border-bottom: 1.2px solid #222;
+    font-family: $Montserrat-font;
+
+    &:first-child {
+      font-family: $Jua-font;
+      // font-weight: bold;
     }
-    
+  }
+
+  th {
+    padding: 10px 0;
+    border-top: 2px solid #cfac8c;
+    border-bottom: 2px solid #cfac8c;
+    font-family: $Jua-font;
+    font-size: 1.1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .boardlist-common-td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* 페이지버튼 */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 1.3rem;
+  outline: none;
+  margin-top: 20px;
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #222222;
+    height: 40px;
+    width: 40px;
+    text-decoration: none;
+    font-family: $Jua-font;
+    outline: none;
+    cursor: pointer;
+  }
+
+  a.active {
+    background-color: #c97f4e;
+    color: #fff;
+    border-radius: 20px;
+  }
+
+  a.disabled {
+    opacity: 0.2;
+  }
 }
 
 .board-profile-img {
-    width: 20px;
-    border-radius: 50%;
-    border: 1px solid $main-color-5;
-    margin-right: 5px;
+  width: 20px;
+  border-radius: 50%;
+  border: 1px solid $main-color-5;
+  margin-right: 5px;
 }
 
 .boardlist-common-nickname {
-    font-size: 0.85rem;
-    font-family: $Montserrat-font;
+  font-size: 0.85rem;
+  font-family: $Montserrat-font;
 
-    &.admin {
-        font-weight: bold;
+  &.admin {
+    font-weight: bold;
 
-        &:hover {
-            color: $main-color-5;
-        }
+    &:hover {
+      color: $main-color-5;
     }
+  }
 }
 
 /* 0 ~ 1024 : 데스크탑3  */
 @media screen and (max-width: 1024px) {
-    .boardlist-common-tables {
-        .boardlist-common-title {
-            width: 50%;
-        }
-        
-        td {
-            font-size: 0.8rem;
-        }
+  .boardlist-common-tables {
+    .boardlist-common-title {
+      width: 50%;
     }
+
+    td {
+      font-size: 0.8rem;
+    }
+  }
 }
 
 /* 0 ~ 790px : 테블릿2 */
 @media screen and (max-width: 790px) {
-    .boardlist-common-tables {
-        width: 100%;
+  .boardlist-common-tables {
+    width: 100%;
+  }
+  .boardlist-common {
+    width: 90%;
+  }
+  .boardlist-common-tables {
+    .boardlist-common-title {
+      width: 50%;
     }
-    .boardlist-common {
-        width: 90%;
+    th {
+      font-size: 0.8rem;
     }
-    .boardlist-common-tables {
-        .boardlist-common-title {
-            width: 50%;
-        }
-        th {
-            font-size: 0.8rem;
-        }
-        td {
-            font-size: 0.8rem;
-        }
+    td {
+      font-size: 0.8rem;
     }
+  }
 }
 @media screen and (max-width: 670px) {
-    .boardlist-common {
-        width: 95%;
-        padding: 100px 0;
+  .boardlist-common {
+    width: 95%;
+    padding: 100px 0;
+  }
+  .boardlist-common-tables {
+    width: 95%;
+    .boardlist-common-title {
+      a {
+        font-size: 0.8rem;
+      }
     }
-    .boardlist-common-tables {
-        width: 95%;
-        .boardlist-common-title {
-            a {
-                font-size: 0.8rem;
-            }
-        }
-     }
-     .pagination-container {
-         bottom: 30px;
-     }
-    
-     .boardlist-common-nickname {
-         font-size: 0.7rem;
-     }
+  }
+  .pagination-container {
+    bottom: 30px;
+  }
+
+  .boardlist-common-nickname {
+    font-size: 0.7rem;
+  }
 }
 
 @media screen and (max-width: 530px) {
-    .boardlist-common {
-        width: 95%;
-        padding: 100px 0 50px 0;
-    }
+  .boardlist-common {
+    width: 95%;
+    padding: 100px 0 50px 0;
+  }
 }
 
 /* 모바일 */
 @media screen and (max-width: 480px) {
-    .boardlist-common {
-        width: 95%;
-    }
-    .boardlist-common-tables {
-        .boardlist-common-title {
-            width: 40%;
+  .boardlist-common {
+    padding: 150px 0 50px;
+    width: 95%;
+  }
+  .boardlist-common-tables {
+    .boardlist-common-title {
+      width: 40%;
 
-            a {
-                font-size: 0.6rem;
-            }
-        }
-    }
-    .boardlist-common-td {
+      a {
         font-size: 0.6rem;
+      }
     }
-    .pagination-container {
-        bottom: 0px;
-        font-size: 1rem;
-        a {
-            height: 30px;
-            width: 30px;
-        }
+  }
+  .boardlist-common-td {
+    font-size: 0.6rem;
+  }
+  .pagination-container {
+    bottom: 0px;
+    font-size: 1rem;
+    a {
+      height: 30px;
+      width: 30px;
     }
+  }
 }
 
 @media screen and (max-width: 410px) {
-    .boardlist-common {
+  .boardlist-common {
+  }
+  .boardlist-common-tables {
+    .boardlist-common-title {
+      width: 40%;
     }
-    .boardlist-common-tables {
-        .boardlist-common-title {
-            width: 40%;
-        }
-        .boardlist-common-td {
-            width: 15%;
-            font-size: 0.6rem;
-        }
-        td {
-            padding: 3px 0px;
-            &:last-child {
-                width: 15%;
-            }
-        }
+    .boardlist-common-td {
+      width: 15%;
+      font-size: 0.6rem;
     }
+    td {
+      padding: 3px 0px;
+      &:last-child {
+        width: 15%;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 380px) {
-    .boardlist-common-tables {
-        .boardlist-common-title {
-            width: 40%;
-        }
-        .boardlist-common-td {
-            width: 15%;
-        }
-        td {
-            padding: 3px 2px;
-
-            &:first-child {
-                font-size: 0.6rem;
-            }
-            &:last-child {
-                font-size: 0.6rem;
-                width: 12%;
-            }
-        }
+  .boardlist-common-tables {
+    .boardlist-common-title {
+      width: 40%;
     }
-
-    .boardlist-common-nickname {
-        font-size: 0.5rem;
+    .boardlist-common-td {
+      width: 15%;
     }
-   
+    td {
+      padding: 3px 2px;
+
+      &:first-child {
+        font-size: 0.6rem;
+      }
+      &:last-child {
+        font-size: 0.6rem;
+        width: 12%;
+      }
+    }
+  }
+
+  .boardlist-common-nickname {
+    font-size: 0.5rem;
+  }
 }

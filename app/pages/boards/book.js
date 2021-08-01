@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 import BoardBanner from "../../components/Board/BoardBanner";
 import Market from "../../components/Board/Market";
@@ -8,8 +9,11 @@ import { API_KEY } from "../../Data/API_KEY";
 
 const MarketBookPage = () => {
   const [productList, setProductList] = useState([]);
+
   const lastNum = useRef(0);
   const lastCount = useRef(9);
+
+  const router = useRouter();
 
   const categoryName = "book";
   let isLoading = false;
@@ -60,7 +64,7 @@ const MarketBookPage = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [categoryName]);
+  }, [categoryName, router.pathname]);
 
   return (
     <>

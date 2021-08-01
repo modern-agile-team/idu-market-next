@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 import BoardBanner from "../../components/Board/BoardBanner";
 import Market from "../../components/Board/Market";
@@ -13,6 +14,8 @@ const MarketClothesPage = () => {
 
   const categoryName = "clothes";
   let isLoading = false;
+
+  const router = useRouter();
 
   const getMoreData = async () => {
     isLoading = true;
@@ -60,7 +63,7 @@ const MarketClothesPage = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [categoryName]);
+  }, [categoryName, router.pathname]);
 
   return (
     <>
