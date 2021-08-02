@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { BsBookHalf } from "react-icons/bs";
 import { GiClothes } from "react-icons/gi";
@@ -7,7 +7,7 @@ import { FaArrowCircleRight } from "react-icons/fa";
 
 const Articles = () => {
   return (
-    <section id="home-articles " className="home-articles">
+    <section id="home-articles" className="home-articles">
       <div className="container">
         <h1 className="article-title">ARTICLES</h1>
         <div className="article-box">

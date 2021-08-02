@@ -6,6 +6,7 @@ import axios from "axios";
 import Head from "next/head";
 
 import LoginForm from "../components/Auth/LoginForm";
+import { API_KEY } from "../Data/API_KEY";
 
 const LoginPage = () => {
   const [errorMsg, setErrorMsg] = useState("");
@@ -33,10 +34,18 @@ const LoginPage = () => {
     e.preventDefault();
 
     const { id, psword } = formValues;
-    const body = { id, psword };
+    const body = {
+      id,
+      psword,
+    };
+    const headers = {
+      "api-key": API_KEY,
+    };
 
     axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/api/jwt`, body)
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/api/jwt`, body, {
+        headers: headers,
+      })
       .then((response) => {
         if (response.data.success) {
           localStorage.setItem("jwt", response.data.jwt);

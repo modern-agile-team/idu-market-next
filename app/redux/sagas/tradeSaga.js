@@ -1,5 +1,6 @@
 import axios from "axios";
 import { all, fork, put, takeEvery, call } from "redux-saga/effects";
+import { API_KEY } from "../../Data/API_KEY";
 import {
   TRADE_COMMENT_GET_REQUEST,
   TRADE_COMMENT_GET_SUCCESS,
@@ -12,7 +13,12 @@ function tradeCommentGetAPI(payload) {
   const num = payload.num;
 
   return axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/comments`
+    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/comments`,
+    {
+      headers: {
+        "api-key": API_KEY,
+      },
+    }
   );
 }
 

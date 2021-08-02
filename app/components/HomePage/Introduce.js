@@ -1,18 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
-const Introduce = () => {
+const Introduce = ({}) => {
   const [scrollViewYoutube, setScrollViewYoutube] = useState(false);
-  const [scrollViewIntro, setScrollViewIntro] = useState(false);
 
   const handleScroll = () => {
     const pageScrollY = window.scrollY;
 
-    if (pageScrollY > 600) {
-      setScrollViewIntro(true);
+    if (pageScrollY >= 1900) {
       setTimeout(() => setScrollViewYoutube(true), 300);
     } else {
       setScrollViewYoutube(false);
-      setScrollViewIntro(false);
     }
   };
 
@@ -24,20 +21,21 @@ const Introduce = () => {
 
   return (
     <section id="home-introduce" className="home-introduce">
+      <div className="bg-box"></div>
       <div className="container">
-        <div className={scrollViewIntro ? "intro-box show" : "intro-box"}>
-          <h1 className="intro-title">INTRO</h1>
+        <div className="intro-desc-box">
+          <h5>Idu Market</h5>
+          <h2>아이두 마켓 소개 영상</h2>
         </div>
         <div className={scrollViewYoutube ? "youtube-box show" : "youtube-box"}>
           <iframe
             className="intro-youtube"
             title="iuam intro youtube"
-            src="https://www.youtube.com/embed/irNoOTfgz1g"
+            src="https://www.youtube.com/embed/oD6H7MdmjMM"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
             allowFullScreen
           />
         </div>
-        <div className="intro-bottom-box"></div>
       </div>
     </section>
   );

@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { API_KEY } from "../../Data/API_KEY";
 
 const TradeComplete = ({ buyers, nickname, categoryName, num }) => {
   const router = useRouter();
@@ -31,7 +32,9 @@ const TradeComplete = ({ buyers, nickname, categoryName, num }) => {
       };
 
       axios
-        .post(`${process.env.NEXT_PUBLIC_API_URL}/api/purchase-list`, body)
+        .post(`${process.env.NEXT_PUBLIC_API_URL}/api/purchase-list`, body, {
+          headers: { "api-key": API_KEY },
+        })
         .then((response) => {
           if (response.data.success) {
             alert("거래가 종료되었습니다.");

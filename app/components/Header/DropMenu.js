@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
+import { IoIosArrowDown } from "react-icons/io";
 
 const DropMenu = ({ item, showSidebar }) => {
   const [dropMenu, setDropMenu] = useState(false);
@@ -32,6 +33,7 @@ const DropMenu = ({ item, showSidebar }) => {
         ) : (
           <>{item.title}</>
         )}
+        <IoIosArrowDown></IoIosArrowDown>
         <ul className={dropMenu ? "header-menu-drop" : "header-menu-drop none"}>
           {dropMenu &&
             item.subMenu.map((item, index) => {

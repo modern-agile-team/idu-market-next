@@ -9,6 +9,7 @@ import EditorImageUpload from "./EditorImageUpload";
 import EditorPost from "./EditorPost";
 import Loading from "../Loading/Loading";
 import { IMAGE_DELETE_REQUEST } from "../../redux/types";
+import { API_KEY } from "../../Data/API_KEY";
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
@@ -29,6 +30,7 @@ const Editor = ({ categoryName }) => {
     thumbnail: "",
     price: "",
     categoryName: "",
+    fileId: [],
   });
   const [uploadImages, setUploadImages] = useState([]);
 
@@ -68,7 +70,6 @@ const Editor = ({ categoryName }) => {
     const body = {
       url: [],
     };
-
     body.url = [uploadImages[index]];
 
     dispatch({
@@ -83,6 +84,14 @@ const Editor = ({ categoryName }) => {
     const fileImages = e.target.files;
     let imageValidation = false;
 
+    formData.append(
+      "params",
+      JSON.stringify({
+        basepath: "/boards",
+        autorename: true,
+      })
+    );
+
     if (Object.keys(fileImages).length > 5) {
       alert("업로드 하실 수 있는 이미지의 최대 개수는 5개입니다.");
     } else {
@@ -92,17 +101,31 @@ const Editor = ({ categoryName }) => {
           break;
         } else {
           imageValidation = true;
-          formData.append("upload", fileImages[i]);
+          formData.append("files", fileImages[i]);
         }
       }
     }
 
     if (imageValidation) {
+      const headers = {
+        Authorization: process.env.NEXT_PUBLIC_IMAGE_SECRET_KEY,
+      };
+
       await axios
-        .post(`${process.env.NEXT_PUBLIC_API_URL}/api/image`, formData)
+        .post(
+          `https://api-image.cloud.toast.com/image/v2.0/appkeys/${process.env.NEXT_PUBLIC_IMAGE_KEY}/images`,
+          formData,
+          { headers }
+        )
         .then((response) => {
-          if (response.data.success) {
-            setUploadImages(uploadImages.concat(response.data.images));
+          if (response.data.header.isSuccessful) {
+            response.data.successes.forEach((el) => {
+              const data = {
+                id: el.id,
+                url: el.url,
+              };
+              setUploadImages((prev) => [...prev, data]);
+            });
           }
         })
         .catch((err) => {
@@ -114,21 +137,25 @@ const Editor = ({ categoryName }) => {
   const onMouseDown = (e) => {
     e.preventDefault();
 
-    const images = [];
+    let images = [];
+    let fileId = [];
 
     if (uploadImages.length === 0) {
       setFormValues({
         ...formValues,
         images: [],
+        fileId: [],
         thumbnail: "",
       });
     } else {
       for (let i = 0; i < uploadImages.length; i++) {
-        images.push(uploadImages[i]);
+        images = [...images, uploadImages[i].url];
+        fileId = [...fileId, uploadImages[i].id];
       }
       setFormValues({
         ...formValues,
-        images: images,
+        images,
+        fileId,
         thumbnail: images[0],
       });
     }
@@ -136,9 +163,11 @@ const Editor = ({ categoryName }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    const headers = { "api-key": API_KEY };
 
     if (categoryName === "free" || categoryName === "notice") {
-      const { studentId, title, content, categoryName, images } = formValues;
+      const { studentId, title, content, categoryName, images, fileId } =
+        formValues;
 
       const body = {
         studentId,
@@ -146,6 +175,7 @@ const Editor = ({ categoryName }) => {
         content,
         categoryName,
         images,
+        fileId,
       };
 
       //유효성 검사
@@ -157,7 +187,8 @@ const Editor = ({ categoryName }) => {
         axios
           .post(
             `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`,
-            body
+            body,
+            { headers }
           )
           .then((response) => {
             if (response.data.success) {
@@ -167,7 +198,7 @@ const Editor = ({ categoryName }) => {
           })
           .catch((err) => {
             const response = err.response;
-            console.log(response.data.msg);
+            console.log(response.data);
           });
       }
     } else {
@@ -179,6 +210,7 @@ const Editor = ({ categoryName }) => {
         price,
         categoryName,
         images,
+        fileId,
       } = formValues;
 
       const body = {
@@ -189,6 +221,7 @@ const Editor = ({ categoryName }) => {
         price,
         categoryName,
         images,
+        fileId,
       };
 
       //유효성 검사
@@ -208,7 +241,8 @@ const Editor = ({ categoryName }) => {
         axios
           .post(
             `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`,
-            body
+            body,
+            { headers }
           )
           .then((response) => {
             if (response.data.success) {
@@ -218,7 +252,7 @@ const Editor = ({ categoryName }) => {
           })
           .catch((err) => {
             const response = err.response;
-            console.log(response.data.msg);
+            console.log(response.data);
           });
       }
     }

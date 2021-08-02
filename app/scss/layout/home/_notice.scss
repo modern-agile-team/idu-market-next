@@ -1,303 +1,183 @@
 .home-notice {
-    height: 900px;
-    background-color: $bg-color-2;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  padding: 200px 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.notice-box {
-    position: absolute;
-    width: 280px;
-    height: 280px;
-    top: 40px;
-    left: 18%;
-    background: $main-color-3;
-    border-radius: 50%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+.slide-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 30px 0;
+}
 
+.backgorund-container {
+  width: 60%;
+  margin: 0 auto;
+
+  .background-monitor {
+    width: 100%;
+    height: 100%;
+  }
+}
+.slide-notice-container {
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  h1 {
+    text-align: center;
+    font-family: $Fredoka-font;
+    font-size: 4rem;
+    margin: 40px 0 40px 0;
+    color: #4f3119;
+  }
+
+  p {
+    font-size: 3rem;
+    font-family: $Jua-font;
+    color: #d68339;
+  }
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.chat1-img {
+  position: relative;
+  width: 800px;
+  left: -100px;
+  transform: translateY(-12%);
+  opacity: 0;
+  animation: slideQnA 7s linear infinite;
+}
+
+.chat2-img {
+  position: relative;
+  left: 100px;
+  width: 800px;
+  transform: translateY(-12%);
+  opacity: 0;
+  animation: slideQnA 7s 0.7s linear infinite;
+}
+
+@media screen and (max-width: 1050px) {
+  .chat1-img {
+    width: 700px;
+    left: -80px;
+  }
+
+  .chat2-img {
+    left: 80px;
+    width: 700px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .chat1-img {
+    width: 600px;
+    left: -60px;
+  }
+
+  .chat2-img {
+    width: 600px;
+    left: 60px;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .chat1-img {
+    width: 500px;
+    left: -40px;
+  }
+
+  .chat2-img {
+    width: 500px;
+    left: 40px;
+  }
+
+  .slide-notice-container {
     h1 {
-        font-family: 'Thasadith', sans-serif;
-        font-size: 3.7rem;
-        padding-left: 20px;
-        color: #fdfdfd;
-        line-height: 50px;
+      font-size: 3rem;
     }
+  }
 }
-
-.notice-slide {
-    transition: 1.5s ease;
-    opacity: 0;
-    z-index: 10;
-
-    &.active { 
-        opacity: 1; 
-    }
-
-    .notice-image {
-        width: 800px;
-        height: 700px;
-    }
-}
-
-.right-arrow {
-    position: absolute;
-    top: 50%;
-    right: 280px;
-    font-size: 5rem;
-    color: #000;
-    z-index: 99;
-    cursor: pointer;
-    user-select: none;
-
-    &:hover {
-        color: $main-color-2;
-    }
-}
-  
-.left-arrow {
-    position: absolute;
-    top: 50%;
-    left: 280px;
-    font-size: 5rem;
-    color: #000;
-    z-index: 99;
-    cursor: pointer;
-    user-select: none;
-
-    &:hover {
-        color: $main-color-2;
-    }
-}
-
-.slide-btns {
-    display: flex;
-    flex-direction: column;
-
-    .slide-btn {
-        width: 15px;
-        height: 15px;
-        background-color:rgba(255,255,255,0.8);
-        margin: 15px 0;
-        border-radius: 5px;
-        cursor: pointer;
-
-        &.active {
-            background: $main-color-9;
-        }
-    }
-}
-
- /* 0 ~ 1550 : 데스크탑1  */
- @media screen and (max-width: 1550px) {
-    .notice-box {
-        left: 16%;
-        
-        h1 { 
-            font-size: 3rem;
-        }
-    }
-
-    .notice-slide {
-        .notice-image {
-            width: 700px;
-            height: 600px;
-        }
-    }
-    .right-arrow { 
-        right: 150px;
-    }
-
-    .left-arrow { 
-        left: 150px;
-    }
-}
-
-/* 0 ~ 1220 : 데스크탑2  */
-@media screen and (max-width: 1220px) {
-    .notice-box {
-        left: 12%;
-        width: 250px;
-        height: 250px;
-
-        h1 {
-            font-size: 2.8rem;
-            padding-left: 10px;
-        }
-    }
-
-    .notice-slide {
-        .notice-image {
-            width: 680px;
-            height: 580px;
-        }
-    }
-    
-    .right-arrow { 
-        right: 30px;
-    }
-
-    .left-arrow { 
-        left: 30px;
-    }
-}
-
-/* 0 ~ 960 : 테블릿1  */
-@media screen and (max-width: 960px) {
-    .home-notice {
-        flex-direction: column;
-    }
-
-    .notice-box {
-        left: 5%;
-    }
-
-    .notice-slide {
-        .notice-image {
-            width: 650px;
-            height: 550px;
-        }
-    }
-
-    .slide-btns {
-        flex-direction: row;
-
-        .slide-btn { 
-            margin: 20px 10px 0 10px;
-        }
-    }
-}
-
-/* 0 ~ 768px : 테블릿2 */
-@media screen and (max-width: 768px) {
-    .home-notice { 
-        height: 800px; 
-    }
-
-    .notice-box {
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 120px;
-        border-radius: 0;
-        padding-left: 0;
-        justify-content: center;
-
-        .notice-title {
-            font-size: 4rem;
-        }
-    }
-
-    .notice-slide {
-        .notice-image {
-            width: 550px;
-            height: 480px;
-        }
-    }
-
-    .right-arrow {
-        right: 20px;
-        font-size: 3.5rem;
-        
-    }
-      
-    .left-arrow {
-        left: 20px;
-        font-size: 3.5rem;
-    }
-}
-
-/* 0 ~ 670px : 테블릿2 */
 @media screen and (max-width: 670px) {
-    .home-notice { 
-        height: 700px; 
-    }
-
-    .notice-slide {
-        .notice-image {
-            width: 450px;
-            height: 380px;
-        }
-    }
-
-    .right-arrow {
-        right: 10px;
-        font-size: 2.7rem;
-        
-    }
-      
-    .left-arrow {
-        left: 10px;
-        font-size: 2.7rem;
-    }
-    
-    .slide-btns {
-        .slide-btn {
-            width: 10px;
-            height: 10px;
-        }
-    }
+  .home-notice {
+    padding: 150px 0;
+  }
 }
 
-/* 0 ~ 480px : 모바일1 */
-@media screen and (max-width: 480px){ 
-    .home-notice { 
-        height: 600px; 
-        padding-top: 50px;
-    }
+@media screen and (max-width: 600px) {
+  .chat1-img {
+    width: 400px;
+    left: -40px;
+  }
 
-    .notice-slide {
-        .notice-image {
-            width: 330px;
-            height: 300px;
-        }
-    }
-
-    .right-arrow {
-        top: 78%;
-        font-size: 2.2rem;
-    }
-      
-    .left-arrow {
-        top: 78%;
-        font-size: 2.2rem;
-    }
-
-    .notice-box {
-        height: 100px;
-
-        .notice-title {
-            font-size: 3rem;
-        }
-    }
-
-    .notice-box {
-        height: 100px;
-
-        .notice-title {
-            font-size: 3rem;
-        }
-    }
+  .chat2-img {
+    width: 400px;
+    left: 40px;
+  }
 }
 
-/* 0 ~ 360px : 모바일1 */
-@media screen and (max-width: 360px){
-    .notice-slide {
-        .notice-image {
-            width: 300px;
-            height: 280px;
-        }
-    }
-    .right-arrow {
-        top: 76%;
-        font-size: 1.5rem;
-    }
+@media screen and (max-width: 500px) {
+  .chat1-img {
+    width: 300px;
+    left: -30px;
+  }
 
-    .left-arrow {
-        top: 76%;
-        font-size: 1.5rem;
+  .chat2-img {
+    width: 300px;
+    left: 30px;
+  }
+
+  .slide-notice-container {
+    h1 {
+      font-size: 2.5rem;
     }
+  }
+}
+@media screen and (max-width: 400px) {
+  .chat1-img {
+    width: 250px;
+    left: -20px;
+  }
+
+  .chat2-img {
+    width: 250px;
+    left: 20px;
+  }
+}
+
+@keyframes slideQnA {
+  0% {
+    transform: translateY(-12%);
+    opacity: 0;
+  }
+
+  5% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-12%);
+    opacity: 0;
+  }
 }

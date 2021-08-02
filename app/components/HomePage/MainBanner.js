@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { IoArrowDownCircleOutline } from "react-icons/io5";
 
 const MainBanner = () => {
   const onScroll = (e) => {
     e.preventDefault();
 
-    const introduceSection = document.querySelector("#home-introduce");
-
-    window.scrollTo({ top: introduceSection.offsetTop - 60 });
+    const articlesSection = document.querySelector("#home-articles");
+    window.scrollTo({ top: articlesSection.offsetTop });
   };
 
   return (
@@ -29,6 +29,10 @@ const MainBanner = () => {
           alt="배너 이미지"
         />
         <button onClick={onScroll}>START</button>
+      </div>
+
+      <div className="animation-scroll-box">
+        <div className="circle"></div>
       </div>
     </section>
   );

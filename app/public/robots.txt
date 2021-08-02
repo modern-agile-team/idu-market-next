@@ -1,0 +1,16 @@
+User-agent: *
+Allow:/
+DisAllow: /boards/free/*/update
+DisAllow: /boards/book/*/update
+DisAllow: /boards/device/*/update
+DisAllow: /boards/clothes/*/update
+DisAllow: /boards/etc/*/update
+DisAllow: /boards/free/*/update
+DisAllow: /boards/notice/*/update
+DisAllow: /boards/book/new
+DisAllow: /boards/device/new
+DisAllow: /boards/clothes/new
+DisAllow: /boards/etc/new
+DisAllow: /boards/free/new
+DisAllow: /boards/notice/new
+Sitemap:https://idu-market.shop/sitemap.xml

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { all, fork, put, takeEvery, call } from "redux-saga/effects";
+import { API_KEY } from "../../Data/API_KEY";
 import {
   BOARD_WRITE_REQUEST,
   BOARD_WRITE_SUCCESS,
@@ -37,7 +38,12 @@ function boardDetailAPI(payload) {
   const studentId = payload.studentId;
 
   return axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${studentId}`
+    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${studentId}`,
+    {
+      headers: {
+        "api-key": API_KEY,
+      },
+    }
   );
 }
 
@@ -60,10 +66,14 @@ function* boardDetail(action) {
 //BoardNew
 function boardWriteAPI(payload) {
   const categoryName = payload.categoryName;
+  const headers = {
+    "api-key": API_KEY,
+  };
 
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`,
-    payload
+    payload,
+    { headers }
   );
 }
 
@@ -90,9 +100,14 @@ function boardStatusAPI(payload) {
   const body = {
     status: payload.status,
   };
+  const headers = {
+    "api-key": API_KEY,
+  };
+
   return axios.patch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/status`,
-    body
+    body,
+    { headers }
   );
 }
 
@@ -117,9 +132,13 @@ function boardDeleteAPI(payload) {
   const categoryName = payload.categoryName;
   const num = payload.num;
 
+  const headers = {
+    "api-key": API_KEY,
+  };
+
   return axios.delete(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}`,
-    payload
+    { headers }
   );
 }
 
@@ -141,11 +160,19 @@ function* boardDelete(action) {
 
 //Image Delete
 function imageDeleteAPI(payload) {
-  return axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/image`, {
-    data: {
-      url: payload.url,
-    },
-  });
+  const fileId = payload.fileId;
+  const fileIds = fileId.join();
+  const headers = {
+    "api-key": API_KEY,
+    Authorization: process.env.NEXT_PUBLIC_IMAGE_SECRET_KEY,
+  };
+
+  return axios.delete(
+    `https://api-image.cloud.toast.com/image/v2.0/appkeys/${process.env.NEXT_PUBLIC_IMAGE_KEY}/images/async?fileIds=${fileIds}`,
+    {
+      headers,
+    }
+  );
 }
 
 function* imageDelete(action) {
@@ -169,9 +196,14 @@ function boardUpdateAPI(payload) {
   const categoryName = payload.categoryName;
   const num = payload.num;
 
+  const headers = {
+    "api-key": API_KEY,
+  };
+
   return axios.put(
     `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}`,
-    payload
+    payload,
+    { headers }
   );
 }
 
@@ -196,8 +228,14 @@ function boardHitAPI(payload) {
   const categoryName = payload.categoryName;
   const num = payload.num;
 
+  const headers = {
+    "api-key": API_KEY,
+  };
+
   return axios.patch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}`
+    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}`,
+    {},
+    { headers }
   );
 }
 
@@ -225,10 +263,14 @@ function WatchlistAddAPI(payload) {
     boardNum: payload.boardNum,
     categoryName: payload.categoryName,
   };
+  const headers = {
+    "api-key": API_KEY,
+  };
 
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/api/watchlist/${studentId}`,
-    body
+    body,
+    { headers }
   );
 }
 
@@ -252,12 +294,17 @@ function* WatchlistAdd(action) {
 function WatchlistDeleteAPI(payload) {
   const studentId = payload.studentId;
 
+  const headers = {
+    "api-key": API_KEY,
+  };
+
   return axios.delete(
     `${process.env.NEXT_PUBLIC_API_URL}/api/watchlist/${studentId}`,
     {
       data: {
         boardNum: payload.boardNum,
       },
+      headers,
     }
   );
 }

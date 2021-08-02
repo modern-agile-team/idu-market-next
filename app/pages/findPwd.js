@@ -3,6 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import FindPwdForm from "../components/Auth/FindPwdForm";
+import { API_KEY } from "../Data/API_KEY";
 
 const FindPwdPage = () => {
   const [errorMsg, setErrorMsg] = useState("");
@@ -29,8 +30,15 @@ const FindPwdPage = () => {
     if ([id, email].includes("")) {
       setErrorMsg("빈 칸을 모두 입력하세요.");
     } else {
+      const headers = {
+        "api-key":
+        API_KEY,
+      };
+
       axios
-        .post(`${process.env.NEXT_PUBLIC_API_URL}/api/forgot-password`, body)
+        .post(`${process.env.NEXT_PUBLIC_API_URL}/api/forgot-password`, body, {
+          headers: headers,
+        })
         .then((response) => {
           if (response.data.success) {
             alert(response.data.msg);

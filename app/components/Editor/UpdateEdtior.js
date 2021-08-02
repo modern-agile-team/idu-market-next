@@ -16,8 +16,6 @@ const QuillNoSSRWrapper = dynamic(import("react-quill"), {
 });
 
 const UpdateEditor = ({ categoryName, num, id, board }) => {
-  const router = useRouter();
-
   const [formValues, setFormValues] = useState({
     studentId: id,
     title: "",
@@ -27,10 +25,12 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
     price: "",
     categoryName,
     num,
+    fileId: [],
   });
   const [uploadImages, setUploadImages] = useState([]);
 
   const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     setFormValues({
@@ -42,8 +42,18 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
       images: board.images,
       categoryName,
       num,
+      fileId: board.fileId,
     });
-    setUploadImages(board.images);
+
+    if (board.fileId.length) {
+      setUploadImages([{ id: board.fileId[0], url: board.images[0] }]);
+      for (let i = 1; i < board.images.length; i++) {
+        setUploadImages([
+          ...uploadImages,
+          { id: board.fileId[i], url: board.images[i] },
+        ]);
+      }
+    }
   }, []);
 
   const onChange = (e) => {
@@ -65,7 +75,7 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
       url: [],
     };
 
-    body.url = [uploadImages[index]];
+    body.url = [uploadImages[index].url];
 
     dispatch({
       type: IMAGE_DELETE_REQUEST,
@@ -80,6 +90,14 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
     const fileImages = e.target.files;
     let imageValidation = false;
 
+    formData.append(
+      "params",
+      JSON.stringify({
+        basepath: "/boards",
+        autorename: true,
+      })
+    );
+
     if (Object.keys(fileImages).length > 5) {
       alert("업로드 하실 수 있는 이미지의 최대 개수는 5개입니다.");
     } else {
@@ -89,17 +107,31 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
           break;
         } else {
           imageValidation = true;
-          formData.append("upload", fileImages[i]);
+          formData.append("files", fileImages[i]);
         }
       }
     }
 
     if (imageValidation) {
+      const headers = {
+        Authorization: process.env.NEXT_PUBLIC_IMAGE_SECRET_KEY,
+      };
       await axios
-        .post(`${process.env.NEXT_PUBLIC_API_URL}/api/image`, formData)
+        .post(
+          `https://api-image.cloud.toast.com/image/v2.0/appkeys/${process.env.NEXT_PUBLIC_IMAGE_KEY}/images`,
+          formData,
+          { headers }
+        )
         .then((response) => {
-          if (response.data.success) {
-            setUploadImages(uploadImages.concat(response.data.images));
+          if (response.data.header.isSuccessful) {
+            response.data.successes.forEach((el) => {
+              const data = {
+                id: el.id,
+                url: el.url,
+              };
+              setUploadImages((prev) => [...prev, data]);
+              // setUploadImages(uploadImages.concat(response.data.images));
+            });
           }
         })
         .catch((err) => {
@@ -111,21 +143,25 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
   const onMouseDown = (e) => {
     e.preventDefault();
 
-    const images = [];
+    let images = [];
+    let fileId = [];
 
     if (uploadImages.length === 0) {
       setFormValues({
         ...formValues,
         images: [],
+        fileId: [],
         thumbnail: "",
       });
     } else {
       for (let i = 0; i < uploadImages.length; i++) {
-        images.push(uploadImages[i]);
+        images = [...images, uploadImages[i].url];
+        fileId = [...fileId, uploadImages[i].id];
       }
       setFormValues({
         ...formValues,
         images,
+        fileId,
         thumbnail: images[0],
       });
     }
@@ -135,7 +171,7 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
     e.preventDefault();
 
     if (categoryName === "free" || categoryName === "notice") {
-      const { studentId, title, content, categoryName, num, images } =
+      const { studentId, title, content, categoryName, num, images, fileId } =
         formValues;
 
       const body = {
@@ -146,6 +182,7 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
         categoryName,
         images,
         num,
+        fileId,
       };
 
       //유효성 검사
@@ -171,6 +208,7 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
         categoryName,
         images,
         num,
+        fileId,
       } = formValues;
 
       let body = {
@@ -182,6 +220,7 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
         categoryName,
         images,
         num,
+        fileId,
       };
 
       //',' 제거
@@ -276,6 +315,7 @@ const UpdateEditor = ({ categoryName, num, id, board }) => {
         onSubmit={onSubmit}
         onMouseDown={onMouseDown}
         categoryName={categoryName}
+        num={num}
       />
     </form>
   );

@@ -7,6 +7,7 @@ import Head from "next/head";
 
 import BoardBanner from "../../components/Board/BoardBanner";
 import MarketListItem from "../../components/Board/MarketListItem";
+import { API_KEY } from "../../Data/API_KEY";
 
 const purchaseListPage = () => {
   const [productList, setProductList] = useState([]);
@@ -21,7 +22,8 @@ const purchaseListPage = () => {
       if (studentId === id) {
         axios
           .get(
-            `${process.env.NEXT_PUBLIC_API_URL}/api/purchase-list/${studentId}`
+            `${process.env.NEXT_PUBLIC_API_URL}/api/purchase-list/${studentId}`,
+            { headers: { "api-key": API_KEY } }
           )
           .then((response) => {
             if (response.data.success) {

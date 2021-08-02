@@ -5,9 +5,19 @@ import { useSelector } from "react-redux";
 import Head from "next/head";
 
 import RegisterForm from "../components/Auth/RegisterForm";
+import { API_KEY } from "../Data/API_KEY";
 
 const RegisterPage = () => {
   const [errorMsg, setErrorMsg] = useState("");
+  const [tags, setTags] = useState({
+    id: "",
+    name: "",
+    nickname: "",
+    email: "",
+    psword: "",
+    pswordConfirm: "",
+    major: "",
+  });
   const [formValues, setFormValues] = useState({
     id: "",
     name: "",
@@ -26,6 +36,11 @@ const RegisterPage = () => {
   }, [jwt]);
 
   const onChange = (e) => {
+    e.target.style.color = "black";
+    setTags({
+      ...tags,
+      [e.target.name]: e.target,
+    });
     setFormValues({
       ...formValues,
       [e.target.name]: e.target.value,
@@ -51,34 +66,51 @@ const RegisterPage = () => {
       setErrorMsg("빈 칸을 모두 입력하세요.");
     } else if (major.length === 0) {
       setErrorMsg("학과를 선택해주세요");
-    } else if (id.match(/^[a-zA-Z][a-zA-Z0-9]{5,11}$/) === null) {
-      setErrorMsg(
-        "첫글자는 숫자를 입력할 수 없으며, 6~12자 제한을 지켜야 합니다."
+    } else if (id.match(/^[a-zA-Z][a-zA-Z0-9]{5,20}$/) === null) {
+      errorHandler(
+        id,
+        tags.id,
+        "아이디는 영문 대소문자 6자 이상입니다. 특수문자 불가"
       );
     } else if (name.match(/^[가-힣]{2,6}$/) === null) {
-      setErrorMsg("이름은 공백없이 한글만 입력해주세요 ");
+      errorHandler(name, tags.name, "이름은 공백없이 한글만 입력해주세요 ");
     } else if (nickname.match(/^[a-zA-Z가-힣0-9]{2,10}$/) === null) {
-      setErrorMsg("별명은 2~10자리입니다. 모음,자음 따로입력 불가");
+      errorHandler(
+        nickname,
+        tags.nickname,
+        "별명은 2~10자리입니다. 특수문자, 모음,자음 따로입력 불가"
+      );
     } else if (
-      email !== "" &&
       email.match(
         /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i
       ) === null
     ) {
-      setErrorMsg("이메일 형식을 유지해주세요.");
+      errorHandler(email, tags.email, "이메일 형식을 유지해주세요.");
     } else if (
       psword.match(
-        /^.*(?=^.{9,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&+=]).*$/
+        /^.*(?=^.{9,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&*()-_+=]).*$/
       ) === null
     ) {
-      setErrorMsg(
+      errorHandler(
+        psword,
+        tags.psword,
         "비밀번호가 양식(영대소문자, 숫자, 특수문자 조합 9-20자)에 벗어났습니다."
       );
     } else if (psword !== pswordConfirm) {
-      setErrorMsg("비밀번호가 일치하지 않습니다.");
+      errorHandler(
+        pswordConfirm,
+        tags.pswordConfirm,
+        "비밀번호가 일치하지 않습니다."
+      );
     } else {
+      const headers = {
+        "api-key": API_KEY,
+      };
+
       axios
-        .post(`${process.env.NEXT_PUBLIC_API_URL}/api/student`, body)
+        .post(`${process.env.NEXT_PUBLIC_API_URL}/api/student`, body, {
+          headers: headers,
+        })
         .then((response) => {
           if (response.data.success) {
             alert(
@@ -94,6 +126,14 @@ const RegisterPage = () => {
           }
         });
     }
+  };
+
+  const errorHandler = (value, tag, msg) => {
+    if (value.length > 0) {
+      tag.focus();
+      tag.style.color = "red";
+    }
+    setErrorMsg(msg);
   };
 
   return (
