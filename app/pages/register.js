@@ -78,7 +78,7 @@ const RegisterPage = () => {
       errorHandler(
         nickname,
         tags.nickname,
-        "별명은 2~10자리입니다. 모음,자음 따로입력 불가"
+        "별명은 2~10자리입니다. 특수문자, 모음,자음 따로입력 불가"
       );
     } else if (
       email.match(
@@ -88,7 +88,7 @@ const RegisterPage = () => {
       errorHandler(email, tags.email, "이메일 형식을 유지해주세요.");
     } else if (
       psword.match(
-        /^.*(?=^.{9,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&+=]).*$/
+        /^.*(?=^.{9,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&*()-_+=]).*$/
       ) === null
     ) {
       errorHandler(
