@@ -10,6 +10,9 @@ import loginCheck from "../components/Auth/loginCheck";
 
 import "../scss/main.scss";
 import "react-quill/dist/quill.snow.css";
+import "swiper/swiper.min.css";
+import "swiper/components/pagination/pagination.min.css";
+import "swiper/components/navigation/navigation.min.css";
 
 loginCheck();
 

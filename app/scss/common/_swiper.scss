@@ -8,6 +8,7 @@
   text-align: center;
   font-size: 18px;
   background: #fff;
+  padding-bottom: 5px;
 
   /* Center slide text vertically */
   display: -webkit-box;
@@ -58,4 +59,21 @@
 
 .swiper-pagination-bullets-dynamic {
   bottom: 0% !important;
+}
+
+.swiper-button-next {
+  z-index: 100;
+}
+
+.swiper-pagination-progressbar {
+  bottom: 0;
+}
+.swiper-pagination-progressbar-fill {
+  background-color: $main-color-5 !important;
+}
+
+.swiper-container-horizontal > .swiper-pagination-progressbar,
+.swiper-container-vertical
+  > .swiper-pagination-progressbar.swiper-pagination-progressbar-opposite {
+  top: 99% !important;
 }
