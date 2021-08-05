@@ -110,7 +110,7 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
       {categoryName === "free" || categoryName === "notice" ? (
         ""
       ) : (
-        <p className="detail-price">{boardDetail.price}원</p>
+        <p className="detail-price">가격: {boardDetail.price}원</p>
       )}
 
       <div className="detail-btn-box">

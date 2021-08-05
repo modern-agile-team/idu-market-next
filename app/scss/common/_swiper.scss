@@ -77,3 +77,21 @@
   > .swiper-pagination-progressbar.swiper-pagination-progressbar-opposite {
   top: 99% !important;
 }
+
+.swiper-prev-btn {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.swiper-next-btn {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.swiper-button-next::after {
+  color: $main-color-5;
+}
+
+.swiper-button-prev::after {
+  color: $main-color-5;
+}

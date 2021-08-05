@@ -1,10 +1,10 @@
 import React from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 
-import SwiperCore, { Autoplay, Pagination, Scrollbar } from "swiper";
+import SwiperCore, { Navigation, Pagination, Scrollbar } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-SwiperCore.use([Autoplay, Pagination, Scrollbar]);
+SwiperCore.use([Pagination, Scrollbar, Navigation]);
 
 const BoardDetailImage = ({
   boardDetail,
@@ -12,7 +12,6 @@ const BoardDetailImage = ({
   nextSlide,
   prevSlide,
 }) => {
-  console.log(boardDetail.images);
   return (
     <>
       <Swiper
@@ -20,6 +19,7 @@ const BoardDetailImage = ({
         pagination={{
           type: "progressbar",
         }}
+        navigation={true}
       >
         {boardDetail.images ? (
           boardDetail.images.map((image, index) => {
