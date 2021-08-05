@@ -4,7 +4,8 @@
 }
 
 .swiper-slide {
-  // background-color: $bg-color-2;
+  // background-color: rgba(0, 0, 0, 0.3) !important;
+  position: relative;
   text-align: center;
   font-size: 18px;
   background: #fff;

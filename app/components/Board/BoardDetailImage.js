@@ -15,7 +15,7 @@ const BoardDetailImage = ({
   return (
     <>
       <Swiper
-        loop={true}
+        // loop={true}
         pagination={{
           type: "progressbar",
         }}

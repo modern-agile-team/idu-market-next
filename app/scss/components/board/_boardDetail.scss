@@ -203,8 +203,9 @@
 
 .board-detail-content {
   width: 100%;
-  padding: 20px;
-  border: 2px solid #999;
+  padding: 30px;
+  border: 1px solid rgb(224, 224, 224);
+  border-radius: 4px;
   margin: 50px 0;
   font-family: $Montserrat-font;
   font-size: 1.1rem;
@@ -293,8 +294,8 @@
       font-size: 1.7rem;
     }
     .detail-price {
-      font-size: 1.7rem;
-      width: 40%;
+      font-size: 1.2rem;
+      width: 45%;
     }
   }
 
@@ -367,8 +368,8 @@
       font-size: 1.5rem;
     }
     .detail-price {
-      font-size: 1.5rem;
-      width: 40%;
+      font-size: 1rem;
+      width: 50%;
     }
   }
   .detail-date-student {
@@ -404,10 +405,10 @@
     .detail-title {
       font-size: 1.2rem;
     }
-    .detail-price {
-      font-size: 1.2rem;
-      width: 40%;
-    }
+    // .detail-price {
+    //   font-size: 1.2rem;
+    //   width: 40%;
+    // }
   }
   .detail-btn-box {
     .detail-btn-edit {
