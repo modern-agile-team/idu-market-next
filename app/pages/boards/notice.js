@@ -19,9 +19,7 @@ const BoardNoticePage = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`, {
-        headers: { "api-key": API_KEY },
-      })
+      .get(`/api/boards/${categoryName}`)
       .then((response) => {
         if (response.data.success) {
           const result = response.data.boards;

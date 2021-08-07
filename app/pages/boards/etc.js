@@ -20,10 +20,7 @@ const EtcPage = () => {
   const getMoreData = async () => {
     isLoading = true;
     await axios
-      .get(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}?lastNum=${lastNum.current}`,
-        { headers: { "api-key": API_KEY } }
-      )
+      .get(`/api/boards/${categoryName}?lastNum=${lastNum.current}`)
       .then((response) => {
         if (response.data.success) {
           const result = response.data.boards;
