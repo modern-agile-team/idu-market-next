@@ -38,14 +38,9 @@ const LoginPage = () => {
       id,
       psword,
     };
-    const headers = {
-      "api-key": API_KEY,
-    };
 
     axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/api/jwt`, body, {
-        headers: headers,
-      })
+      .post(`/api/jwt`, body)
       .then((response) => {
         if (response.data.success) {
           localStorage.setItem("jwt", response.data.jwt);

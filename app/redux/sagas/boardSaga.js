@@ -37,14 +37,7 @@ function boardDetailAPI(payload) {
   const num = payload.num;
   const studentId = payload.studentId;
 
-  return axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${studentId}`,
-    {
-      headers: {
-        "api-key": API_KEY,
-      },
-    }
-  );
+  return axios.get(`/api/boards/${categoryName}/${num}/${studentId}`);
 }
 
 function* boardDetail(action) {
@@ -66,15 +59,8 @@ function* boardDetail(action) {
 //BoardNew
 function boardWriteAPI(payload) {
   const categoryName = payload.categoryName;
-  const headers = {
-    "api-key": API_KEY,
-  };
 
-  return axios.post(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`,
-    payload,
-    { headers }
-  );
+  return axios.post(`/api/boards/${categoryName}`, payload);
 }
 
 function* boardWrite(action) {
@@ -100,15 +86,8 @@ function boardStatusAPI(payload) {
   const body = {
     status: payload.status,
   };
-  const headers = {
-    "api-key": API_KEY,
-  };
 
-  return axios.patch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/status`,
-    body,
-    { headers }
-  );
+  return axios.patch(`/api/boards/${categoryName}/${num}/status`, body);
 }
 
 function* boardStatus(action) {
@@ -132,14 +111,7 @@ function boardDeleteAPI(payload) {
   const categoryName = payload.categoryName;
   const num = payload.num;
 
-  const headers = {
-    "api-key": API_KEY,
-  };
-
-  return axios.delete(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}`,
-    { headers }
-  );
+  return axios.delete(`/api/boards/${categoryName}/${num}`);
 }
 
 function* boardDelete(action) {
@@ -196,15 +168,7 @@ function boardUpdateAPI(payload) {
   const categoryName = payload.categoryName;
   const num = payload.num;
 
-  const headers = {
-    "api-key": API_KEY,
-  };
-
-  return axios.put(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}`,
-    payload,
-    { headers }
-  );
+  return axios.put(`/api/boards/${categoryName}/${num}`, payload);
 }
 
 function* boardUpdate(action) {
@@ -228,15 +192,7 @@ function boardHitAPI(payload) {
   const categoryName = payload.categoryName;
   const num = payload.num;
 
-  const headers = {
-    "api-key": API_KEY,
-  };
-
-  return axios.patch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}`,
-    {},
-    { headers }
-  );
+  return axios.patch(`/api/boards/${categoryName}/${num}`, {});
 }
 
 function* boardHit(action) {
@@ -263,15 +219,8 @@ function WatchlistAddAPI(payload) {
     boardNum: payload.boardNum,
     categoryName: payload.categoryName,
   };
-  const headers = {
-    "api-key": API_KEY,
-  };
 
-  return axios.post(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/watchlist/${studentId}`,
-    body,
-    { headers }
-  );
+  return axios.post(`/api/watchlist/${studentId}`, body);
 }
 
 function* WatchlistAdd(action) {
@@ -294,19 +243,11 @@ function* WatchlistAdd(action) {
 function WatchlistDeleteAPI(payload) {
   const studentId = payload.studentId;
 
-  const headers = {
-    "api-key": API_KEY,
-  };
-
-  return axios.delete(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/watchlist/${studentId}`,
-    {
-      data: {
-        boardNum: payload.boardNum,
-      },
-      headers,
-    }
-  );
+  return axios.delete(`/api/watchlist/${studentId}`, {
+    data: {
+      boardNum: payload.boardNum,
+    },
+  });
 }
 
 function* WatchlistDelete(action) {

@@ -103,14 +103,8 @@ const RegisterPage = () => {
         "비밀번호가 일치하지 않습니다."
       );
     } else {
-      const headers = {
-        "api-key": API_KEY,
-      };
-
       axios
-        .post(`${process.env.NEXT_PUBLIC_API_URL}/api/student`, body, {
-          headers: headers,
-        })
+        .post(`/api/student`, body)
         .then((response) => {
           if (response.data.success) {
             alert(

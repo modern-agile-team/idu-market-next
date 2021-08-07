@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 
 import BoardBanner from "../../components/Board/BoardBanner";
 import Market from "../../components/Board/Market";
-import { API_KEY } from "../../Data/API_KEY";
 
 const MarketDevicePage = () => {
   const [productList, setProductList] = useState([]);

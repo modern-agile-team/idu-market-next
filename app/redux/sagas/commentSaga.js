@@ -1,6 +1,5 @@
 import axios from "axios";
 import { all, fork, put, takeEvery, call } from "redux-saga/effects";
-import { API_KEY } from "../../Data/API_KEY";
 import {
   COMMENT_GET_REQUEST,
   COMMENT_GET_SUCCESS,
@@ -25,10 +24,7 @@ function CommentGetAPI(payload) {
   const num = payload.num;
   const studentId = payload.studentId;
 
-  return axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${studentId}`,
-    { headers: { "api-key": API_KEY } }
-  );
+  return axios.get(`/api/boards/${categoryName}/${num}/${studentId}`);
 }
 
 function* commentGet(action) {
@@ -64,15 +60,8 @@ function commentUploadAPI(payload) {
     notiCategoryNum,
     url,
   };
-  const headers = {
-    "api-key": API_KEY,
-  };
 
-  return axios.post(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}`,
-    body,
-    { headers }
-  );
+  return axios.post(`/api/boards/${categoryName}/${num}`, body);
 }
 
 function* commentUpload(action) {
@@ -102,15 +91,7 @@ function commentUpdateAPI(payload) {
     content: payload.content,
   };
 
-  const headers = {
-    "api-key": API_KEY,
-  };
-
-  return axios.patch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${commentNum}`,
-    body,
-    { headers }
-  );
+  return axios.patch(`/api/boards/${categoryName}/${num}/${commentNum}`, body);
 }
 
 function* commentUpdate(action) {
@@ -135,20 +116,12 @@ function commentDeleteAPI(payload) {
   const num = payload.num;
   const commentNum = payload.commentNum;
 
-  const headers = {
-    "api-key": API_KEY,
-  };
-
-  return axios.delete(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${commentNum}`,
-    {
-      data: {
-        studentId: payload.studentId,
-        depth: payload.depth,
-      },
-      headers,
-    }
-  );
+  return axios.delete(`/api/boards/${categoryName}/${num}/${commentNum}`, {
+    data: {
+      studentId: payload.studentId,
+      depth: payload.depth,
+    },
+  });
 }
 
 function* commentDelete(action) {
@@ -185,15 +158,7 @@ function replyUploadAPI(payload) {
     url,
   };
 
-  const headers = {
-    "api-key": API_KEY,
-  };
-
-  return axios.post(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}/${num}/${groupNum}`,
-    body,
-    { headers }
-  );
+  return axios.post(`/api/boards/${categoryName}/${num}/${groupNum}`, body);
 }
 
 function* replyUpload(action) {

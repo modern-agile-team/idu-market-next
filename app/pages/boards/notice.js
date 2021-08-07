@@ -3,7 +3,6 @@ import axios from "axios";
 import BoardBanner from "../../components/Board/BoardBanner";
 import Basic from "../../components/Board/Basic";
 import Head from "next/head";
-import { API_KEY } from "../../Data/API_KEY";
 import { useRouter } from "next/router";
 
 const BoardNoticePage = () => {
