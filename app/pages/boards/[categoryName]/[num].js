@@ -96,7 +96,6 @@ const BoardDetailPage = () => {
             categoryName={categoryName}
             num={num}
           />
-
           <BoardDetailImage
             boardDetail={boardDetail}
             currentImage={currentImage}
