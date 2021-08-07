@@ -3,7 +3,6 @@ import axios from "axios";
 import BoardBanner from "../../components/Board/BoardBanner";
 import Basic from "../../components/Board/Basic";
 import Head from "next/head";
-import { API_KEY } from "../../Data/API_KEY";
 import { useRouter } from "next/router";
 
 const BoardNoticePage = () => {
@@ -19,9 +18,7 @@ const BoardNoticePage = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`, {
-        headers: { "api-key": API_KEY },
-      })
+      .get(`/api/boards/${categoryName}`)
       .then((response) => {
         if (response.data.success) {
           const result = response.data.boards;

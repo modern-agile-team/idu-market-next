@@ -7,6 +7,8 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 
 import loginCheck from "../components/Auth/loginCheck";
+import { API_KEY } from "../Data/API_KEY";
+import axios from "axios";
 
 import "../scss/main.scss";
 import "react-quill/dist/quill.snow.css";
@@ -26,6 +28,9 @@ function MyApp({ Component, pageProps }) {
       );
     }
   }, []);
+
+  axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
+  axios.defaults.headers.common["api-key"] = API_KEY;
 
   return (
     <Provider store={store}>

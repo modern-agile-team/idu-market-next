@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Head from "next/head";
-
+import { useRouter } from "next/router";
 import BoardBanner from "../../components/Board/BoardBanner";
 import Market from "../../components/Board/Market";
-import { API_KEY } from "../../Data/API_KEY";
 
 const MarketFreePage = () => {
   const [productList, setProductList] = useState([]);
@@ -12,16 +11,13 @@ const MarketFreePage = () => {
   const lastCount = useRef(9);
 
   const categoryName = "freemarket";
-
+  const router = useRouter();
   let isLoading = false;
 
   const getMoreData = async () => {
     isLoading = true;
     await axios
-      .get(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}?lastNum=${lastNum.current}`,
-        { headers: { "api-key": API_KEY } }
-      )
+      .get(`/api/boards/${categoryName}?lastNum=${lastNum.current}`)
       .then((response) => {
         if (response.data.success) {
           const result = response.data.boards;
@@ -61,7 +57,7 @@ const MarketFreePage = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [categoryName]);
+  }, [categoryName, router.pathname]);
 
   return (
     <>

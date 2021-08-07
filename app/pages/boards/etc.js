@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 
 import BoardBanner from "../../components/Board/BoardBanner";
 import Market from "../../components/Board/Market";
-import { API_KEY } from "../../Data/API_KEY";
 
 const EtcPage = () => {
   const [productList, setProductList] = useState([]);
@@ -20,10 +19,7 @@ const EtcPage = () => {
   const getMoreData = async () => {
     isLoading = true;
     await axios
-      .get(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}?lastNum=${lastNum.current}`,
-        { headers: { "api-key": API_KEY } }
-      )
+      .get(`/api/boards/${categoryName}?lastNum=${lastNum.current}`)
       .then((response) => {
         if (response.data.success) {
           const result = response.data.boards;

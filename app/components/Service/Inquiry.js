@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useState, useRef } from "react";
 import { useSelector } from "react-redux";
-import { API_KEY } from "../../Data/API_KEY";
 
 const Inquiry = () => {
   const [formValues, setFormValues] = useState({
@@ -39,9 +38,7 @@ const Inquiry = () => {
       alert("본문을 작성해주시기 바랍니다.");
     } else {
       axios
-        .post(`${process.env.NEXT_PUBLIC_API_URL}/api/inquiry`, body, {
-          headers: { "api-key": API_KEY },
-        })
+        .post(`/api/inquiry`, body)
         .then((response) => {
           if (response.data.success) {
             alert("문의 접수가 완료되었습니다.");
