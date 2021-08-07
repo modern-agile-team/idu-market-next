@@ -16,6 +16,9 @@ import "swiper/swiper.min.css";
 import "swiper/components/pagination/pagination.min.css";
 import "swiper/components/navigation/navigation.min.css";
 
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
+axios.defaults.headers.common["api-key"] = API_KEY;
+
 loginCheck();
 
 function MyApp({ Component, pageProps }) {
@@ -28,9 +31,6 @@ function MyApp({ Component, pageProps }) {
       );
     }
   }, []);
-
-  axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
-  axios.defaults.headers.common["api-key"] = API_KEY;
 
   return (
     <Provider store={store}>
