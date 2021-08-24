@@ -9,6 +9,8 @@ import Market from "../../components/Board/Market";
 const MarketBookPage = () => {
   const [productList, setProductList] = useState([]);
 
+  console.log("test");
+  
   const lastNum = useRef(0);
   const lastCount = useRef(9);
 
