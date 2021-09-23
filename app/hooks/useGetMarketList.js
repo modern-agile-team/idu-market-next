@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import { useRouter } from "next/router";
 
 export const useGetMarketList = (categoryName) => {
   const [productList, setProductList] = useState([]);

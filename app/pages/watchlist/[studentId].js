@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useRouter } from "next/router";
+import React from "react";
 import Link from "next/link";
-import { useSelector } from "react-redux";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 import BoardBanner from "../../components/Board/BoardBanner";
 import MarketListItem from "../../components/Board/MarketListItem";
 import { useGetProfileBoardList } from "../../hooks/useGetProfileBoardList";
 
 const URL = "/api/watchlist";
+const LIST_TYPE = "watch";
 
 const WatchlistPage = () => {
+  const router = useRouter();
   const { studentId } = router.query;
-  const { productList } = useGetProfileBoardList(studentId, URL);
+  const { productList } = useGetProfileBoardList(studentId, URL, LIST_TYPE);
 
+  console.log(productList);
   return (
     <>
       <Head>

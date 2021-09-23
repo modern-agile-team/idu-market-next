@@ -1,21 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import axios from "axios";
 
-export const useGetProfileBoardList = (studentId, url) => {
+export const useGetProfileBoardList = (studentId, url, type) => {
   const [productList, setProductList] = useState([]);
+  const { id } = useSelector((state) => state.auth);
 
   const router = useRouter();
 
-  const { authId } = useSelector((state) => state.auth);
-
   useEffect(() => {
-    if (authId && studentId) {
-      if (authId === studentId) {
+    if (id && studentId) {
+      if (id === studentId) {
         axios
           .get(`${url}/${studentId}`)
           .then((response) => {
             if (response.data.success) {
-              const result = response.data.watchLists;
+              let result = [];
+
+              if (type === "watch") result = response.data.watchLists;
+              else if (type === "sales") result = response.data.saleLists;
+              else if (type === "purchase") result = response.data.purchaseList;
+
               setProductList(result);
             }
           })
@@ -28,7 +34,7 @@ export const useGetProfileBoardList = (studentId, url) => {
         router.back();
       }
     }
-  }, [authId, studentId]);
+  }, [id, studentId]);
 
   return { productList };
 };
