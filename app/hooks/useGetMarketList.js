@@ -2,13 +2,11 @@ import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-export const useGetBoardList = (categoryName) => {
+export const useGetMarketList = (categoryName) => {
   const [productList, setProductList] = useState([]);
   const lastNum = useRef(0);
   const lastCount = useRef(9);
   const isLoading = useRef(false);
-
-  const router = useRouter();
 
   const getMoreData = async () => {
     isLoading.current = true;

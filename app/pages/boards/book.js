@@ -3,11 +3,11 @@ import Head from "next/head";
 
 import BoardBanner from "../../components/Board/BoardBanner";
 import Market from "../../components/Board/Market";
-import { useGetBoardList } from "../../hooks/useGetBoardList";
+import { useGetMarketList } from "../../hooks/useGetMarketList";
 
 const MarketBookPage = () => {
   const categoryName = "book";
-  const { productList } = useGetBoardList(categoryName);
+  const { productList } = useGetMarketList(categoryName);
 
   return (
     <>

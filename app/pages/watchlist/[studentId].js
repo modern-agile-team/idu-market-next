@@ -7,36 +7,13 @@ import Head from "next/head";
 
 import BoardBanner from "../../components/Board/BoardBanner";
 import MarketListItem from "../../components/Board/MarketListItem";
+import { useGetProfileBoardList } from "../../hooks/useGetProfileBoardList";
+
+const URL = "/api/watchlist";
 
 const WatchlistPage = () => {
-  const [productList, setProductList] = useState([]);
-
-  const router = useRouter();
   const { studentId } = router.query;
-
-  const { id } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    if (id && studentId) {
-      if (id === studentId) {
-        axios
-          .get(`/api/watchlist/${studentId}`)
-          .then((response) => {
-            if (response.data.success) {
-              const result = response.data.watchLists;
-              setProductList(result);
-            }
-          })
-          .catch((err) => {
-            const response = err.response;
-            console.log(response.data.msg);
-          });
-      } else {
-        alert("잘못된 접근입니다.");
-        router.back();
-      }
-    }
-  }, [id, studentId]);
+  const { productList } = useGetProfileBoardList(studentId, URL);
 
   return (
     <>

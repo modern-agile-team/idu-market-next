@@ -1,12 +1,12 @@
 import React from "react";
 import Head from "next/head";
-import { useGetBoardList } from "../../hooks/useGetBoardList";
+import { useGetMarketList } from "../../hooks/useGetMarketList";
 import BoardBanner from "../../components/Board/BoardBanner";
 import Market from "../../components/Board/Market";
 
 const EtcPage = () => {
   const categoryName = "etc";
-  const { productList } = useGetBoardList(categoryName);
+  const { productList } = useGetMarketList(categoryName);
 
   return (
     <>
