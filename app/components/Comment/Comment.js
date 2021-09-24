@@ -56,7 +56,7 @@ const Comment = ({ comments, categoryName, num }) => {
 
   return (
     <>
-      {comments.length !== 0 ? (
+      {comments.length !== 0 &&
         comments.map((comment) => {
           return (
             <SingleComment
@@ -66,10 +66,7 @@ const Comment = ({ comments, categoryName, num }) => {
               num={num}
             />
           );
-        })
-      ) : (
-        <></>
-      )}
+        })}
       <form className="detail-comment">
         <h1 className="comment-title">Write comments</h1>
         <div className="comment-submit-box">

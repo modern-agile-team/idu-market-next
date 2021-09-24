@@ -254,7 +254,7 @@ const SingleComment = ({ comment, categoryName, num }) => {
               <></>
             )}
 
-            {openReply ? (
+            {openReply && (
               <div className="comment-submit-box">
                 {auth.id ? (
                   <>
@@ -278,8 +278,6 @@ const SingleComment = ({ comment, categoryName, num }) => {
                   </p>
                 )}
               </div>
-            ) : (
-              <></>
             )}
           </div>
         </>
