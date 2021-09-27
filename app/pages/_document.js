@@ -9,18 +9,18 @@ class MyDocument extends Document {
           <script
             async
             src="https://www.googletagmanager.com/gtag/js?id=G-3QWGCQ01GN"
-          ></script>
+          />
           <script
             dangerouslySetInnerHTML={{
               __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
 
-            gtag('config', '${GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
-            });
-          `,
+                gtag('config', '${GA_TRACKING_ID}', {
+                  page_path: window.location.pathname,
+                });
+              `,
             }}
           />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
