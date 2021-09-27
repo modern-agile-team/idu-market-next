@@ -82,7 +82,7 @@ const ProfileUpdate = ({ profileList, studentId }) => {
 
   return (
     <div className="profile-box">
-      {profileList ? (
+      {profileList && (
         <div className="profile-information-box">
           <h1 className="profile-update-title">프로필 수정</h1>
           <p className="profile-information">
@@ -145,8 +145,6 @@ const ProfileUpdate = ({ profileList, studentId }) => {
             UPDATE
           </button>
         </div>
-      ) : (
-        <></>
       )}
     </div>
   );

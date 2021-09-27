@@ -84,7 +84,7 @@ const Notification = ({ studentId, setSidebar }) => {
         return <></>;
       })()}
 
-      {notification ? (
+      {notification && (
         <ul className="notification-ul" ref={refEl}>
           {notifications.length > 0 ? (
             notifications.map((noti, index) => {
@@ -102,8 +102,6 @@ const Notification = ({ studentId, setSidebar }) => {
             </li>
           )}
         </ul>
-      ) : (
-        <></>
       )}
     </div>
   );
