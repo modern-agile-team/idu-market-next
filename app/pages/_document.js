@@ -1,10 +1,28 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import { GA_TRACKING_ID } from "../lib/gtag";
 
 class MyDocument extends Document {
   render() {
     return (
       <Html lang="ko">
         <Head>
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-3QWGCQ01GN"
+          ></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', '${GA_TRACKING_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
+            }}
+          />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
             href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Jua&family=Montserrat&family=Thasadith&display=swap"
