@@ -14,26 +14,17 @@ const BoardDetailImage = ({
 }) => {
   return (
     <>
-      <Swiper
-        // loop={true}
-        pagination={{
-          type: "progressbar",
-        }}
-        navigation={true}
-      >
-        {boardDetail.images ? (
+      <Swiper pagination={{ type: "progressbar" }} navigation={true}>
+        {boardDetail.images &&
           boardDetail.images.map((image, index) => {
             return (
-              <SwiperSlide>
+              <SwiperSlide key={index}>
                 <div className="detail-slide">
                   <img src={image} alt="이미지" className="detail-image" />
                 </div>
               </SwiperSlide>
             );
-          })
-        ) : (
-          <></>
-        )}
+          })}
       </Swiper>
     </>
   );

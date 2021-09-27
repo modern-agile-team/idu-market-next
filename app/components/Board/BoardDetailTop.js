@@ -107,9 +107,7 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
     <div className="detail-top-box">
       <h1 className="detail-title">{boardDetail.title}</h1>
 
-      {categoryName === "free" || categoryName === "notice" ? (
-        ""
-      ) : (
+      {categoryName !== "free" && categoryName !== "notice" && (
         <p className="detail-price">가격: {boardDetail.price}원</p>
       )}
 
@@ -175,14 +173,12 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
         <>
           {boardDetail.studentId === auth.id ? (
             <div className="detail-trade-status-box">
-              {boardDetail.status === 2 ? (
+              {boardDetail.status === 2 && (
                 <Link
                   href={`/boards/${categoryName}/${num}/${boardDetail.studentId}/complete`}
                 >
                   <a className="trade-complete-btn">거래완료</a>
                 </Link>
-              ) : (
-                <></>
               )}
 
               <ul>
@@ -190,42 +186,35 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
                   className="detail-trade-status"
                   onClick={() => setDropStatus(!dropStatus)}
                 >
-                  {(function () {
-                    if (boardDetail.status === 0)
-                      return (
-                        <>
-                          <span className="trade-status sale"></span>{" "}
-                          {tradeSentence}
-                          <IoMdArrowDropdown />
-                        </>
-                      );
-                    if (boardDetail.status === 1)
-                      return (
-                        <>
-                          <span className="trade-status reservation"></span>{" "}
-                          {tradeSentence}
-                          <IoMdArrowDropdown />
-                        </>
-                      );
-                    if (boardDetail.status === 2)
-                      return (
-                        <>
-                          <span className="trade-status complete"></span>{" "}
-                          {tradeSentence}
-                          <IoMdArrowDropdown />
-                        </>
-                      );
-                    if (boardDetail.status === 3) {
-                      return (
-                        <>
-                          <span className="trade-status complete"></span>{" "}
-                          {tradeSentence}
-                        </>
-                      );
-                    }
-                  })()}
+                  {boardDetail.status === 0 && (
+                    <>
+                      <span className="trade-status sale"></span>{" "}
+                      {tradeSentence}
+                      <IoMdArrowDropdown />
+                    </>
+                  )}
+                  {boardDetail.status === 1 && (
+                    <>
+                      <span className="trade-status reservation"></span>{" "}
+                      {tradeSentence}
+                      <IoMdArrowDropdown />
+                    </>
+                  )}
+                  {boardDetail.status === 2 && (
+                    <>
+                      <span className="trade-status complete"></span>{" "}
+                      {tradeSentence}
+                      <IoMdArrowDropdown />
+                    </>
+                  )}
+                  {boardDetail.status === 3 && (
+                    <>
+                      <span className="trade-status complete"></span>{" "}
+                      {tradeSentence}
+                    </>
+                  )}
 
-                  {dropStatus && boardDetail.status !== 3 ? (
+                  {dropStatus && boardDetail.status !== 3 && (
                     <ul className="detail-trade-status-drop">
                       <li value="판매중" onClick={onTradeSentenceChange}>
                         <span className="trade-status sale"></span>판매중
@@ -237,8 +226,6 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
                         <span className="trade-status complete"></span>거래완료
                       </li>
                     </ul>
-                  ) : (
-                    <></>
                   )}
                 </li>
               </ul>
@@ -253,37 +240,30 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
             >
               <ul>
                 <li className="detail-trade-status">
-                  {(function () {
-                    if (boardDetail.status === 0)
-                      return (
-                        <>
-                          <span className="trade-status sale"></span>{" "}
-                          {tradeSentence}
-                        </>
-                      );
-                    if (boardDetail.status === 1)
-                      return (
-                        <>
-                          <span className="trade-status reservation"></span>{" "}
-                          {tradeSentence}
-                        </>
-                      );
-                    if (boardDetail.status === 2)
-                      return (
-                        <>
-                          <span className="trade-status complete"></span>{" "}
-                          {tradeSentence}
-                        </>
-                      );
-                    if (boardDetail.status === 3) {
-                      return (
-                        <>
-                          <span className="trade-status complete"></span>{" "}
-                          {tradeSentence}
-                        </>
-                      );
-                    }
-                  })()}
+                  {boardDetail.status === 0 && (
+                    <>
+                      <span className="trade-status sale"></span>{" "}
+                      {tradeSentence}
+                    </>
+                  )}
+                  {boardDetail.status === 1 && (
+                    <>
+                      <span className="trade-status reservation"></span>{" "}
+                      {tradeSentence}
+                    </>
+                  )}
+                  {boardDetail.status === 2 && (
+                    <>
+                      <span className="trade-status complete"></span>{" "}
+                      {tradeSentence}
+                    </>
+                  )}
+                  {boardDetail.status === 3 && (
+                    <>
+                      <span className="trade-status complete"></span>{" "}
+                      {tradeSentence}
+                    </>
+                  )}
                 </li>
               </ul>
             </div>
@@ -291,24 +271,20 @@ const BoardDetailTop = ({ boardDetail, categoryName, num }) => {
         </>
       )}
 
-      {categoryName === "free" ||
-      categoryName === "notice" ||
-      auth.id.length === 0 ? (
-        <></>
-      ) : (
-        <>
-          {boardDetail.studentId !== auth.id ? (
-            <WatchlistAddDelete
-              isWatchList={isWatchList}
-              categoryName={categoryName}
-              boardNum={boardDetail.num}
-              studentId={auth.id}
-            />
-          ) : (
-            <></>
-          )}
-        </>
-      )}
+      {categoryName !== "free" &&
+        categoryName !== "notice" &&
+        auth.id.length > 0 && (
+          <>
+            {boardDetail.studentId !== auth.id && (
+              <WatchlistAddDelete
+                isWatchList={isWatchList}
+                categoryName={categoryName}
+                boardNum={boardDetail.num}
+                studentId={auth.id}
+              />
+            )}
+          </>
+        )}
     </div>
   );
 };

@@ -91,7 +91,7 @@ const ReplyComment = ({ comment, categoryName, num, onDelete }) => {
           <span>{comment.inDate}</span>
         </div>
 
-        {openUpdate ? (
+        {openUpdate && (
           <div className="comment-submit-box">
             <textarea
               type="textarea"
@@ -107,11 +107,9 @@ const ReplyComment = ({ comment, categoryName, num, onDelete }) => {
               Update
             </button>
           </div>
-        ) : (
-          <></>
         )}
 
-        {auth.id === comment.studentId ? (
+        {auth.id === comment.studentId && (
           <div className="comment-update-box">
             <button className="comment-update-icon" onClick={onOpenUpdate}>
               <RiPencilLine />
@@ -120,8 +118,6 @@ const ReplyComment = ({ comment, categoryName, num, onDelete }) => {
               <RiDeleteBin6Line />
             </button>
           </div>
-        ) : (
-          <></>
         )}
       </div>
     </>
