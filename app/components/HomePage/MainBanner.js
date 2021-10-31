@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
-import { IoArrowDownCircleOutline } from "react-icons/io5";
+import React from "react";
+import Image from "next/image";
+// import banner from "../../static/images/banner.png";
 
 const MainBanner = () => {
   const onScroll = (e) => {
@@ -23,10 +24,12 @@ const MainBanner = () => {
       </button>
 
       <div className="banner-img">
-        <img
+        <Image
           className="show"
-          src="https://wooahan-agile.s3.ap-northeast-2.amazonaws.com/HomePage/main-banner.png"
+          src="/images/banner.png"
           alt="배너 이미지"
+          width={500}
+          height={400}
         />
         <button onClick={onScroll}>START</button>
       </div>

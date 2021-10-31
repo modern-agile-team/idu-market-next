@@ -1,4 +1,4 @@
-import "../styles/globals.css";
+import "../static/styles/globals.css";
 import React, { useEffect } from "react";
 import { Provider } from "react-redux";
 import { createWrapper } from "next-redux-wrapper";

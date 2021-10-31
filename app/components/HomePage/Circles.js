@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const Circles = () => {
   return (
@@ -6,10 +7,12 @@ const Circles = () => {
       <div className="container">
         <div className="circle-items">
           <div className="circle-item">
-            <img
-              src="https://wooahan-agile.s3.ap-northeast-2.amazonaws.com/HomePage/circles.jpg"
+            <Image
+              src="/images/main_2.jpg"
               alt="동아리"
               className="circle-img"
+              width={300}
+              height={300}
             />
           </div>
           <div className="circles-desc-box">
