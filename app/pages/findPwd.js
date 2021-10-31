@@ -40,7 +40,6 @@ const FindPwdPage = () => {
         })
         .catch((err) => {
           const response = err.response;
-          console.log(response);
           if (response.status === 400) {
             setErrorMsg(response.data.msg);
           }

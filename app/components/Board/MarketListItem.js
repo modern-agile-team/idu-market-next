@@ -54,6 +54,7 @@ const MarketListItem = ({ productList, categoryName, profile }) => {
                         src={board.profilePath}
                         alt="프로필 이미지"
                         className="board-profile-img"
+                        onerror="this.src='/images/profile_error.png'"
                       />
                       {board.sellerName} &nbsp;
                     </a>
@@ -73,6 +74,7 @@ const MarketListItem = ({ productList, categoryName, profile }) => {
                         src={board.profilePath}
                         alt="프로필 이미지"
                         className="board-profile-img"
+                        onerror="this.src='/images/profile_error.png'"
                       />
                       {board.nickname} &nbsp;
                     </a>
