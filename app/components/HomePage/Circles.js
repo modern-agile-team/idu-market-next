@@ -7,13 +7,7 @@ const Circles = () => {
       <div className="container">
         <div className="circle-items">
           <div className="circle-item">
-            <Image
-              src="/images/main_2.jpg"
-              alt="동아리"
-              className="circle-img"
-              width={300}
-              height={300}
-            />
+            <img src="/images/main_2.jpg" alt="동아리" className="circle-img" />
           </div>
           <div className="circles-desc-box">
             <h1>Idu Market</h1>

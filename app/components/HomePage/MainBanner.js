@@ -24,13 +24,7 @@ const MainBanner = () => {
       </button>
 
       <div className="banner-img">
-        <Image
-          className="show"
-          src="/images/banner.png"
-          alt="배너 이미지"
-          width={500}
-          height={400}
-        />
+        <img className="show" src="/images/banner.png" alt="배너 이미지" />
         <button onClick={onScroll}>START</button>
       </div>
 

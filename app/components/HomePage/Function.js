@@ -37,12 +37,10 @@ const Function = () => {
               scrollActionFuntion ? "function-item show" : "function-item"
             }
           >
-            <Image
+            <img
               src="/images/main_1.jpg"
               alt="중고거래"
               className="function-img"
-              width={600}
-              height={400}
             />
           </div>
         </div>
