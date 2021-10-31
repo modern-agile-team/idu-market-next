@@ -15,7 +15,6 @@ const WatchlistPage = () => {
   const { studentId } = router.query;
   const { productList } = useGetProfileBoardList(studentId, URL, LIST_TYPE);
 
-  console.log(productList);
   return (
     <>
       <Head>

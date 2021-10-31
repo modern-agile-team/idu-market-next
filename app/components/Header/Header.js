@@ -62,6 +62,7 @@ const Header = () => {
                   alt="프로필 이미지"
                   className="profile-icon-box"
                   onClick={() => setSidebar(!sidebar)}
+                  onerror={"this.src = '/images/profile_error.png'"}
                 />
               </Link>
 
