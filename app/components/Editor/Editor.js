@@ -9,7 +9,6 @@ import EditorImageUpload from "./EditorImageUpload";
 import EditorPost from "./EditorPost";
 import Loading from "../Loading/Loading";
 import { IMAGE_DELETE_REQUEST } from "../../redux/types";
-import { API_KEY } from "../../Data/API_KEY";
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
@@ -163,7 +162,6 @@ const Editor = ({ categoryName }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const headers = { "api-key": API_KEY };
 
     if (categoryName === "free" || categoryName === "notice") {
       const { studentId, title, content, categoryName, images, fileId } =
@@ -185,11 +183,7 @@ const Editor = ({ categoryName }) => {
         alert("빈 본문입니다.");
       } else {
         axios
-          .post(
-            `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`,
-            body,
-            { headers }
-          )
+          .post(`/api/boards/${categoryName}`, body)
           .then((response) => {
             if (response.data.success) {
               alert("게시글 업로드에 성공하셨습니다.");
@@ -239,11 +233,7 @@ const Editor = ({ categoryName }) => {
         alert("1개 이상의 이미지 업로드를 해주시기 바랍니다.");
       } else {
         axios
-          .post(
-            `${process.env.NEXT_PUBLIC_API_URL}/api/boards/${categoryName}`,
-            body,
-            { headers }
-          )
+          .post(`/api/boards/${categoryName}`, body)
           .then((response) => {
             if (response.data.success) {
               alert("게시글 업로드에 성공하셨습니다.");

@@ -25,6 +25,7 @@ const TradeCompletePage = () => {
       categoryName === "book" ||
       categoryName === "device" ||
       categoryName === "clothes" ||
+      categoryName === "freemarket" ||
       categoryName === "etc"
     ) {
       if (status === 0 || status === 1) {

@@ -1,18 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
-import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
+import React from "react";
+import Image from "next/image";
 
 import SwiperCore, { Autoplay, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import "swiper/swiper.min.css";
-import "swiper/components/pagination/pagination.min.css";
-import "swiper/components/navigation/navigation.min.css";
-
 SwiperCore.use([Autoplay, Pagination]);
 
 const Notice = ({ slides }) => {
-  const SLIDES_LENGTH = slides.length;
-
   return (
     <section id="home-notice" className="home-notice">
       <Swiper
@@ -29,16 +23,10 @@ const Notice = ({ slides }) => {
               </div>
               <div className="chat-container">
                 <div className="chat1-img">
-                  <img
-                    src="https://wooahan-agile.s3.ap-northeast-2.amazonaws.com/HomePage/noticeChat/chat3.png"
-                    alt=""
-                  />
+                  <img src="/images/chat1.png" alt="qna" />
                 </div>
                 <div className="chat2-img">
-                  <img
-                    src="https://wooahan-agile.s3.ap-northeast-2.amazonaws.com/HomePage/noticeChat/chat4.png"
-                    alt=""
-                  />
+                  <img src="/images/chat2.png" alt="qna" />
                 </div>
               </div>
             </div>
@@ -52,16 +40,10 @@ const Notice = ({ slides }) => {
               </div>
               <div className="chat-container">
                 <div className="chat1-img">
-                  <img
-                    src="https://wooahan-agile.s3.ap-northeast-2.amazonaws.com/HomePage/noticeChat/chat1.png"
-                    alt=""
-                  />
+                  <img src="/images/chat3.png" alt="qna" />
                 </div>
                 <div className="chat2-img">
-                  <img
-                    src="https://wooahan-agile.s3.ap-northeast-2.amazonaws.com/HomePage/noticeChat/chat2.png"
-                    alt=""
-                  />
+                  <img src="/images/chat4.png" alt="qna" />
                 </div>
               </div>
             </div>
@@ -75,16 +57,10 @@ const Notice = ({ slides }) => {
               </div>
               <div className="chat-container">
                 <div className="chat1-img">
-                  <img
-                    src="https://wooahan-agile.s3.ap-northeast-2.amazonaws.com/HomePage/noticeChat/chat5.png"
-                    alt=""
-                  />
+                  <img src="/images/chat5.png" alt="qna" />
                 </div>
                 <div className="chat2-img">
-                  <img
-                    src="https://wooahan-agile.s3.ap-northeast-2.amazonaws.com/HomePage/noticeChat/chat6.png"
-                    alt=""
-                  />
+                  <img src="/images/chat6.png" alt="qna" />
                 </div>
               </div>
             </div>
@@ -98,16 +74,10 @@ const Notice = ({ slides }) => {
               </div>
               <div className="chat-container">
                 <div className="chat1-img">
-                  <img
-                    src="https://wooahan-agile.s3.ap-northeast-2.amazonaws.com/HomePage/noticeChat/chat7.png"
-                    alt=""
-                  />
+                  <img src="/images/chat7.png" alt="qna" />
                 </div>
                 <div className="chat2-img">
-                  <img
-                    src="https://wooahan-agile.s3.ap-northeast-2.amazonaws.com/HomePage/noticeChat/chat8.png"
-                    alt=""
-                  />
+                  <img src="/images/chat8.png" alt="qna" />
                 </div>
               </div>
             </div>

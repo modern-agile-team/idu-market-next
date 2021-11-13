@@ -21,13 +21,11 @@ function loginCheckAPI(token) {
 
   if (token) {
     config.headers["x-auth-token"] = token;
-    return axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/api/auth`, config)
-      .catch((e) => {
-        localStorage.removeItem("jwt");
-      });
+    return axios.get(`/api/auth`, config).catch((e) => {
+      localStorage.removeItem("jwt");
+    });
   } else {
-    return axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/un-auth`, config);
+    return axios.get(`/api/un-auth`, config);
   }
 }
 

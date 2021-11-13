@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import Image from "next/image";
 
 const Function = () => {
   const [scrollActionFuntion, setScrollActionFunction] = useState(false);
@@ -37,7 +38,7 @@ const Function = () => {
             }
           >
             <img
-              src="https://wooahan-agile.s3.ap-northeast-2.amazonaws.com/HomePage/trade.jpg"
+              src="/images/main_1.jpg"
               alt="중고거래"
               className="function-img"
             />

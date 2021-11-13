@@ -4,10 +4,12 @@
 }
 
 .swiper-slide {
-  // background-color: $bg-color-2;
+  // background-color: rgba(0, 0, 0, 0.3) !important;
+  position: relative;
   text-align: center;
   font-size: 18px;
   background: #fff;
+  padding-bottom: 5px;
 
   /* Center slide text vertically */
   display: -webkit-box;
@@ -58,4 +60,39 @@
 
 .swiper-pagination-bullets-dynamic {
   bottom: 0% !important;
+}
+
+.swiper-button-next {
+  z-index: 100;
+}
+
+.swiper-pagination-progressbar {
+  bottom: 0;
+}
+.swiper-pagination-progressbar-fill {
+  background-color: $main-color-5 !important;
+}
+
+.swiper-container-horizontal > .swiper-pagination-progressbar,
+.swiper-container-vertical
+  > .swiper-pagination-progressbar.swiper-pagination-progressbar-opposite {
+  top: 99% !important;
+}
+
+.swiper-prev-btn {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.swiper-next-btn {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.swiper-button-next::after {
+  color: $main-color-5;
+}
+
+.swiper-button-prev::after {
+  color: $main-color-5;
 }

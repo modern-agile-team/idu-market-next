@@ -1,46 +1,19 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useRouter } from "next/router";
+import React from "react";
 import Link from "next/link";
-import { useSelector } from "react-redux";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 import BoardBanner from "../../components/Board/BoardBanner";
 import MarketListItem from "../../components/Board/MarketListItem";
-import { API_KEY } from "../../Data/API_KEY";
+import { useGetProfileBoardList } from "../../hooks/useGetProfileBoardList";
+
+const URL = "/api/watchlist";
+const LIST_TYPE = "watch";
 
 const WatchlistPage = () => {
-  const [productList, setProductList] = useState([]);
-
   const router = useRouter();
   const { studentId } = router.query;
-
-  const { id } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    if (id && studentId) {
-      if (id === studentId) {
-        axios
-          .get(
-            `${process.env.NEXT_PUBLIC_API_URL}/api/watchlist/${studentId}`,
-            { headers: { "api-key": API_KEY } }
-          )
-          .then((response) => {
-            if (response.data.success) {
-              const result = response.data.watchLists;
-              setProductList(result);
-            }
-          })
-          .catch((err) => {
-            const response = err.response;
-            console.log(response.data.msg);
-          });
-      } else {
-        alert("잘못된 접근입니다.");
-        router.back();
-      }
-    }
-  }, [id, studentId]);
+  const { productList } = useGetProfileBoardList(studentId, URL, LIST_TYPE);
 
   return (
     <>
